@@ -1,1 +1,1 @@
-bonagate-rails
+Welcome to Bonagate server
