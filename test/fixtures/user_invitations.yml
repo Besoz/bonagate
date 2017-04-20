@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  random_key: MyString
+  reciever_email: MyString
+  reciever_name: MyString
+  company_id: 
+  user_id: 
+
+two:
+  random_key: MyString
+  reciever_email: MyString
+  reciever_name: MyString
+  company_id: 
+  user_id: 

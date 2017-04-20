@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to property_detail_instances_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_property_detail_instance_path(@property_detail_instance), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show property_detail_instance</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Property:</dt>
+  <dd><%= @property_detail_instance.property %></dd>
+
+  <dt>Property detail:</dt>
+  <dd><%= @property_detail_instance.property_detail %></dd>
+
+  <dt>Value:</dt>
+  <dd><%= @property_detail_instance.value %></dd>
+
+</dl>

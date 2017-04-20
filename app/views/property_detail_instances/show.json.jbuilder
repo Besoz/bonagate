@@ -1,0 +1,1 @@
+json.partial! "property_detail_instances/property_detail_instance", property_detail_instance: @property_detail_instance

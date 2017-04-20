@@ -1,0 +1,31 @@
+<div class="page-header">
+  <%= link_to new_property_service_type_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Property service type
+  <% end %>
+  <h1>Listing property_service_types</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @property_service_types) do |property_service_type| %>
+            <td><%= property_service_type.code %></td>
+            <td><%= property_service_type.name %></td>
+            <td><%= link_to 'Show', property_service_type %></td>
+        <td><%= link_to 'Edit', edit_property_service_type_path(property_service_type) %></td>
+        <td><%= link_to 'Destroy', property_service_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

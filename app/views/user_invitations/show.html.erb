@@ -1,0 +1,29 @@
+<div class="page-header">
+  <%= link_to user_invitations_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_user_invitation_path(@user_invitation), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show user_invitation</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Random key:</dt>
+  <dd><%= @user_invitation.random_key %></dd>
+
+  <dt>Reciever email:</dt>
+  <dd><%= @user_invitation.reciever_email %></dd>
+
+  <dt>Reciever name:</dt>
+  <dd><%= @user_invitation.reciever_name %></dd>
+
+  <dt>Company:</dt>
+  <dd><%= @user_invitation.company %></dd>
+
+  <dt>User:</dt>
+  <dd><%= @user_invitation.user %></dd>
+
+</dl>
