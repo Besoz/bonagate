@@ -1,0 +1,33 @@
+<div class="page-header">
+  <%= link_to new_property_detail_instance_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Property detail instance
+  <% end %>
+  <h1>Listing property_detail_instances</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Property</th>
+            <th>Property detail</th>
+            <th>Value</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @property_detail_instances) do |property_detail_instance| %>
+            <td><%= property_detail_instance.property %></td>
+            <td><%= property_detail_instance.property_detail %></td>
+            <td><%= property_detail_instance.value %></td>
+            <td><%= link_to 'Show', property_detail_instance %></td>
+        <td><%= link_to 'Edit', edit_property_detail_instance_path(property_detail_instance) %></td>
+        <td><%= link_to 'Destroy', property_detail_instance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

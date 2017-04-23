@@ -1,0 +1,31 @@
+<div class="page-header">
+  <%= link_to new_property_state_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Property state
+  <% end %>
+  <h1>Listing property_states</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @property_states) do |property_state| %>
+            <td><%= property_state.code %></td>
+            <td><%= property_state.name %></td>
+            <td><%= link_to 'Show', property_state %></td>
+        <td><%= link_to 'Edit', edit_property_state_path(property_state) %></td>
+        <td><%= link_to 'Destroy', property_state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
