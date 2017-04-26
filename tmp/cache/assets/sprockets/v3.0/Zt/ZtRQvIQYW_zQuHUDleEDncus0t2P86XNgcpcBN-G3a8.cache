@@ -1,0 +1,28 @@
+{:uriI"~file://vendor/assets/views/app.html?type=text/ng-html&id=d731103ea2c22e0e3716b848a81fa56ae33be2c59d1f6d33d562702670c3518c:ET:load_pathI"vendor/assets/views;T:filenameI"!vendor/assets/views/app.html;T:	nameI"app;T:logical_pathI"app.html;T:content_typeI"text/ng-html;T:sourceI"D<!-- toaster directive -->
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!-- / toaster directive -->
+<!-- sidebar -->
+<div class="sidebar app-aside" id="sidebar" toggleable parent-active-class="app-slide-off" >
+	<div perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true" class="sidebar-container">
+		<div data-ng-include=" 'assets/dashboard/views/partials/sidebar.html' "></div>
+	</div>
+</div>
+<!-- / sidebar -->
+<div class="app-content" ng-class="{loading: loading}">
+	<!-- top navbar -->
+	<header data-ng-include=" 'assets/dashboard/views/partials/top-navbar.html' " class="navbar navbar-default navbar-static-top"></header>
+	<!-- / top navbar -->
+	<!-- main content -->
+	<div data-ng-include=" 'assets/dashboard/views/partials/main-content.html' " class="main-content" ></div>
+	<!-- / main content -->
+</div>
+<!-- footer -->
+<footer data-ng-include=" 'assets/dashboard/views/partials/footer.html' "></footer>
+<!-- / footer -->
+<div data-ng-include=" 'assets/dashboard/views/partials/off-sidebar.html' " id="off-sidebar" class="sidebar" toggleable parent-active-class="app-offsidebar-open"></div>
+<div data-ng-include=" 'assets/dashboard/views/partials/settings.html' " toggleable class="settings panel panel-default hidden-xs hidden-sm" id="settings"></div>
+;T:metadata{	:dependencieso:Set:
+@hash{
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"/file-digest://vendor/assets/views/app.html;TT:charsetI"
+utf-8;F:digest"%VĞáêWÊ»:ÆkH~‚>¬.è¸¹*ÃcEnÈ:lengthiD:dependencies_digest"%ªKÁ*ú¡ºı²ÙâŞª+~¢Ìëu­Ğ€×Däš…õÿ:idI"Ed731103ea2c22e0e3716b848a81fa56ae33be2c59d1f6d33d562702670c3518c;F:
+mtimel+Ú½üX

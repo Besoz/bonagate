@@ -1,5 +1,6 @@
 class UserSessionsController < ApplicationController
   before_action :set_user_session, only: [:show, :edit, :update, :destroy]
+  layout "cliptheme-layout"
 
   # GET /user_sessions
   # GET /user_sessions.json
@@ -26,22 +27,15 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(user_session_params)
 
-    # respond_to do |format|
+    respond_to do |format|
       if @user_session.save
-        redirect_to root_path
-
-        puts "hhhhhhhhhhhhhhh"
-        puts current_user.to_json
-
         # format.html { redirect_to @user_session, notice: 'User session was successfully created.' }
-        # format.json { render :show, status: :created, location: @user_session }
+        format.json { render :show, status: :created, location: @user_session }
       else
-
-        render :new
         # format.html { render :new }
-        # format.json { render json: @user_session.errors, status: :unprocessable_entity }
+        format.json { render json: @user_session.errors, status: :unprocessable_entity }
       end
-    # end
+    end
   end
 
   # PATCH/PUT /user_sessions/1
