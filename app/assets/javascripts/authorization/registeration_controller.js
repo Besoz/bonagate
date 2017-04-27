@@ -1,40 +1,52 @@
 (function() {
-    angular.module('app')
-        .controller('RegisterationController', RegisterationController);
+  angular.module('auth_app')
+    .controller('RegisterationController', RegisterationController);
 
-    RegisterationController.$inject = ['$http'];
+  RegisterationController.$inject = ['$http', '$window', 'redirectService'];
 
-    function RegisterationController($http) {
-        var vm = this;
+  function RegisterationController($http, $window, redirectService) {
+    var vm = this;
 
-        vm.email;
-        vm.password;
-        vm.passwordConfrirmation;
-        vm.registerUser = register;
+    vm.email;
+    vm.password;
+    vm.passwordConfirmation;
+    vm.emailError;
+    vm.registerUser = register;
+    vm.gotoLoginPage = gotoLoginPage;
 
-        function register() {
 
-            console.log("hhhhhhhhhhhhhhhhhhhhhhhhh");
-            user = {
-                email: vm.userEmail,
-                password: vm.userPassword,
-                passwordConfrirmation: vm.passwordConfrirmation
-            };
+    function register() {
 
-            $http.post('/users/new.json', {
-                    user_session: userSession
-                })
-                .then(function(res) {
-                    console.log("res");
-                    console.log(res);
+      user = {
+        email: vm.email,
+        password: vm.password,
+        password_confirmation: vm.passwordConfirmation
+      };
 
-                })
-                .catch(function(err) {
+      $http.post('/users.json', {
+          user: user
+        })
+        .then(function(res) {
 
-                    console.log("Errro");
-                    console.log(err);
-                });
-        };
+          //todo use redirect service
+          $window.location.href = redirectService.afterSignupRedirectUrl();
+
+          console.log("res");
+          console.log(res);
+
+        })
+        .catch(function(err) {
+          vm.emailError = err.data.email[0];
+
+
+          console.log("Errro");
+          console.log(err);
+        });
+    };
+
+    function gotoLoginPage() {
+      $window.location.href = '/sign_in';
     }
+  }
 
 })();

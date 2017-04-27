@@ -1,5 +1,5 @@
 (function() {
-  angular.module('app')
+  angular.module('auth_app')
     .controller('LoginController', LoginController);
 
   LoginController.$inject = ['$http', '$window', 'redirectService'];

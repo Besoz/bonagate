@@ -1,6 +1,6 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('app', []);
+  angular
+    .module('auth_app', []);
 })();
