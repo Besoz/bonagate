@@ -1,0 +1,29 @@
+{:uriI"ófile://app/assets/javascripts/dashboard/RTL/assets/views/app.html?type=text/ng-html&id=a79b7b61c05f70e6794fd8e8242ef9a414a1d833ee3b0493a1d7b6ff4eb0c0f9:ET:load_pathI"app/assets/javascripts;T:filenameI"?app/assets/javascripts/dashboard/RTL/assets/views/app.html;T:	nameI"#dashboard/RTL/assets/views/app;T:logical_pathI"(dashboard/RTL/assets/views/app.html;T:content_typeI"text/ng-html;T:sourceI"<!-- toaster directive -->
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!-- / toaster directive -->
+<!-- sidebar -->
+<div class="sidebar app-aside" id="sidebar" toggleable parent-active-class="app-slide-off" >
+	<div perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true" class="sidebar-container">
+		<div data-ng-include=" 'assets/views/partials/sidebar.html' "></div>
+	</div>
+</div>
+<!-- / sidebar -->
+<div class="app-content" ng-class="{loading: loading}">
+	<!-- top navbar -->
+	<header data-ng-include=" 'assets/views/partials/top-navbar.html' " class="navbar navbar-default navbar-static-top"></header>
+	<!-- / top navbar -->
+	<!-- main content -->
+	<div data-ng-include=" 'assets/views/partials/main-content.html' " class="main-content" ></div>
+	<!-- / main content -->
+</div>
+<!-- footer -->
+<footer data-ng-include=" 'assets/views/partials/footer.html' "></footer>
+<!-- / footer -->
+<div data-ng-include=" 'assets/views/partials/off-sidebar.html' " id="off-sidebar" class="sidebar" toggleable parent-active-class="app-offsidebar-open"></div>
+<div data-ng-include=" 'assets/views/partials/settings.html' " toggleable class="settings panel panel-default hidden-xs hidden-sm" id="settings"></div>
+;T:metadata{	:dependencieso:Set:
+@hash{
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Mfile-digest://app/assets/javascripts/dashboard/RTL/assets/views/app.html;TT:charsetI"
+utf-8;F:digest"%™¶P˜˜$ŸCâda ‹ÙÕÖ±‰>%P¸Êƒê’$‡:lengthi:dependencies_digest"%ü´¡°˘ˆ≤§´>ÜÔªÅ‡ÖÓ6∆≈ Œ,å—d
+)1Á:idI"Ea79b7b61c05f70e6794fd8e8242ef9a414a1d833ee3b0493a1d7b6ff4eb0c0f9;F:
+mtimel+d¬U

@@ -1,0 +1,47 @@
+{:uriI"°file://app/assets/javascripts/dashboard/RTL/assets/views/calendar/main.html?type=text/ng-html&id=14c20a6eb8cb7491cb79c1378d6ef22edc25f9d5d2f54b04fb235f949b24e558:ET:load_pathI"app/assets/javascripts;T:filenameI"Iapp/assets/javascripts/dashboard/RTL/assets/views/calendar/main.html;T:	nameI"-dashboard/RTL/assets/views/calendar/main;T:logical_pathI"2dashboard/RTL/assets/views/calendar/main.html;T:content_typeI"text/ng-html;T:sourceI"<div class="cal-context" style="width: 100%;">
+
+  <mwl-calendar-year
+    calendar-events="events"
+    calendar-current-day="currentDay"
+    calendar-event-click="eventClick"
+    calendar-edit-event-click="eventEditClick"
+    calendar-delete-event-click="eventDeleteClick"
+    calendar-edit-event-html="editEventHtml"
+    calendar-delete-event-html="deleteEventHtml"
+    calendar-auto-open="autoOpen"
+    ng-if="view == 'year'"
+  ></mwl-calendar-year>
+
+  <mwl-calendar-month
+    calendar-events="events"
+    calendar-current-day="currentDay"
+    calendar-event-click="eventClick"
+    calendar-edit-event-click="eventEditClick"
+    calendar-delete-event-click="eventDeleteClick"
+    calendar-edit-event-html="editEventHtml"
+    calendar-delete-event-html="deleteEventHtml"
+    calendar-auto-open="autoOpen"
+    calendar-use-iso-week="useIsoWeek"
+    ng-if="view == 'month'"
+    ></mwl-calendar-month>
+
+  <mwl-calendar-week
+    calendar-events="events"
+    calendar-current-day="currentDay"
+    calendar-event-click="eventClick"
+    calendar-use-iso-week="useIsoWeek"
+    ng-if="view == 'week'"
+    ></mwl-calendar-week>
+
+  <mwl-calendar-day
+    calendar-events="events"
+    calendar-current-day="currentDay"
+    calendar-event-click="eventClick"
+    ng-if="view == 'day'"
+    ></mwl-calendar-day>
+</div>
+;T:metadata{	:dependencieso:Set:
+@hash{
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Wfile-digest://app/assets/javascripts/dashboard/RTL/assets/views/calendar/main.html;TT:charsetI"
+utf-8;F:digest"%'ÀÉÙ'•ÒÅÒ=O$ôª1Å’,¢©!÷&îW#¡∂fd:lengthi:dependencies_digest"%Wlm@∑VÁ”·®ÅmÕ?)IPÊÇS™/ﬁ!~Ä!:idI"E14c20a6eb8cb7491cb79c1378d6ef22edc25f9d5d2f54b04fb235f949b24e558;F:
+mtimel+d¬U

@@ -1,22 +1,102 @@
-<div class="page-header"><h1>Register</h1></div>
-
-<%= form_for @user do |f| %>
-  <%= render 'partials/errors', object: @user %>
-
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, class: 'form-control' %>
+<!-- start: REGISTRATION -->
+<div class="row" ng-controller="RegisterationController as regCtrl">
+  <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+    <div class="logo">
+      <img ng-src="{{app.layout.logo}}" alt="{{app.name}}" />
+    </div>
+    <!-- start: REGISTER BOX -->
+    <div class="box-register">
+      <form class="form-register" name="Form" ng-submit="regCtrl.register()" novalidate>
+        <fieldset>
+          <legend>
+            Sign Up
+          </legend>
+          <!-- <p>
+  Enter your personal details below:
+</p>
+<div class="form-group" ng-class="{'has-error':Form.full_name.$dirty && Form.full_name.$invalid, 'has-success':Form.full_name.$valid}">
+  <input type="text" class="form-control" name="full_name" placeholder="Full Name" ng-model="regCtrl.fullName" required>
+  <span class="error text-small block" ng-if="Form.full_name.$dirty && Form.full_name.$invalid">Full Name is required</span>
+  <span class="success text-small" ng-if="Form.full_name.$valid">Thank You!</span>
+</div>
+<div class="form-group">
+  <input type="text" class="form-control" name="address" placeholder="Address">
+</div>
+<div class="form-group">
+  <input type="text" class="form-control" name="city" placeholder="City">
+</div>
+<div class="form-group">
+  <label class="block">
+    Gender
+  </label>
+  <div class="clip-radio radio-primary">
+    <input type="radio" id="rg-female" name="gender" value="female">
+    <label for="rg-female">
+      Female
+    </label>
+    <input type="radio" id="rg-male" name="gender" value="male">
+    <label for="rg-male">
+      Male
+    </label>
   </div>
-
-  <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
+</div>
+ -->
+          <p>
+            Enter your account details below:
+          </p>
+          <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid || regCtrl.emailError, 'has-success':Form.email.$valid}">
+            <span class="input-icon">
+              <input type="email" class="form-control" name="email" placeholder="Email" ng-model="regCtrl.email" required>
+              <i class="fa fa-envelope"></i> </span>
+            <span class="error text-small block" ng-if="Form.email.$dirty && Form.email.$error.required">Email is required.</span>
+            <span class="error text-small block" ng-if="Form.email.$error.email">Please, enter a valid email address.</span>
+            <span class="error text-small block" ng-if="regCtrl.emailError">Email  {{regCtrl.emailError}}</span>
+          </div>
+          <div class=" form-group" ng-class="{ 'has-error':Form.password.$dirty && Form.password.$invalid, 'has-success':Form.password.$valid}">
+            <span class="input-icon">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="regCtrl.password" required>
+              <i class="fa fa-lock"></i> </span>
+            <span class="error text-small block" ng-if="Form.password.$dirty && Form.password.$error.required">Password is required.</span>
+            <span class="error text-small block" ng-if="regCtrl.password.hasErr">{{regCtrl.password.error}}</span>
+            <!-- <span class="success text-small block" ng-if="Form.password.$valid">Ok!</span> -->
+          </div>
+          <div class="form-group" ng-class="{ 'has-error':Form.password2.$dirty && Form.password2.$error.compareTo || Form.password2.$dirty && Form.password2.$invalid, 'has-success':Form.password2.$valid}">
+            <span class="input-icon">
+              <input type="password" class="form-control" name="password2" placeholder="Password Again" ng-model="regCtrl.passwordConfirmation" compare-to="regCtrl.password" required>
+              <i class="fa fa-lock"></i> </span>
+            <span class="error text-small block" ng-if="Form.password2.$dirty && Form.password2.$error.required">Repeat password is required!</span>
+            <span class="error text-small block" ng-if="Form.password2.$dirty && Form.password2.$error.compareTo">Passwords do not match!</span>
+            <!-- <span class="success text-small block" ng-if="Form.password2.$valid">Passwords match!</span> -->
+            <span class="error text-small block" ng-if="regCtrl.passwordConfirmation.hasErr">{{regCtrl.passwordConfirmation.error}}</span>
+          </div>
+          <div class="form-group">
+            <div class="checkbox clip-check check-primary">
+              <input type="checkbox" id="agree" value="agree">
+              <label for="agree">
+                I agree
+              </label>
+            </div>
+          </div>
+          <div class="form-actions">
+            <p>
+              Already have an account?
+              <a ng-click="regCtrl.gotoLoginPage()">
+                Log-in
+              </a>
+            </p>
+            <button type="submit" ng-click="regCtrl.registerUser()" class="btn btn-primary pull-right">
+              Submit <i class="fa fa-arrow-circle-right"></i>
+            </button>
+          </div>
+        </fieldset>
+      </form>
+      <!-- start: COPYRIGHT -->
+      <div class="copyright">
+        {{app.year}} &copy; {{ app.name }} by {{ app.author }}.
+      </div>
+      <!-- end: COPYRIGHT -->
+    </div>
+    <!-- end: REGISTER BOX -->
   </div>
-
-  <div class="form-group">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-  </div>
-
-  <%= f.submit 'Register', class: 'btn btn-primary btn-lg' %>
-<% end %>
+</div>
+<!-- end: REGISTRATION -->

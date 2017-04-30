@@ -1,0 +1,34 @@
+{:uriI"¤file://app/assets/javascripts/dashboard/RTL/assets/views/form_text_editor.html?type=text/ng-html&id=344062a334a2e0cca0831da3dc1df6d336c5640ab12c01e3fdb835016036323a:ET:load_pathI"app/assets/javascripts;T:filenameI"Lapp/assets/javascripts/dashboard/RTL/assets/views/form_text_editor.html;T:	nameI"0dashboard/RTL/assets/views/form_text_editor;T:logical_pathI"5dashboard/RTL/assets/views/form_text_editor.html;T:content_typeI"text/ng-html;T:sourceI"”<!-- start: PAGE TITLE -->
+<section id="page-title">
+	<div class="row">
+		<div class="col-sm-8">
+			<h1 class="mainTitle" translate="sidebar.nav.forms.TEXTEDITOR">{{ mainTitle }}</h1>
+			<span class="mainDescription">CKEditor directive for Angular.</span>
+		</div>
+		<div ncy-breadcrumb></div>
+	</div>
+</section>
+<!-- end: PAGE TITLE -->
+<!-- start: TEXT EDITOR -->
+<div class="container-fluid container-fullw bg-white">
+	<div class="row">
+		<div class="col-md-12">
+			<h5 class="over-title">WYSIWYG <span class="text-bold">Editor</span></h5>
+			<p class="margin-bottom-30">
+				CKEditor is a ready-for-use HTML text editor designed to simplify web content creation. It's a WYSIWYG editor that brings common word processor features directly to your web pages. Enhance your website experience with our community maintained editor.
+			</p>
+			<!-- /// controller:  'CkeditorCtrl' -  localtion: assets/js/controllers/ckeditorCtrl.js /// -->
+			<div ng-controller="CkeditorCtrl">
+				<div ckeditor="options" ng-model="content" ready="onReady()"></div>
+				<div class="well margin-top-20">
+					{{content}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end: TEXT EDITOR -->;T:metadata{	:dependencieso:Set:
+@hash{
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Zfile-digest://app/assets/javascripts/dashboard/RTL/assets/views/form_text_editor.html;TT:charsetI"
+utf-8;F:digest"%ÔÈX†·vÖ[Çùëiş)E¢´rûäø²emMmT:lengthi”:dependencies_digest"%MÍ§zïèyvÁhbÉrÌb[5MšÏÂâ§*ÌŒ% :idI"E344062a334a2e0cca0831da3dc1df6d336c5640ab12c01e3fdb835016036323a;F:
+mtimel+dÂU

@@ -1,0 +1,36 @@
+{:uriI"œfile://app/assets/javascripts/dashboard/RTL/assets/views/ui_icons.html?type=text/ng-html&id=540702cdfed76f906ad9678babb58ee3311f8f95b75d07ef65a863c52d0cb831:ET:load_pathI"app/assets/javascripts;T:filenameI"Dapp/assets/javascripts/dashboard/RTL/assets/views/ui_icons.html;T:	nameI"(dashboard/RTL/assets/views/ui_icons;T:logical_pathI"-dashboard/RTL/assets/views/ui_icons.html;T:content_typeI"text/ng-html;T:sourceI"’<!-- start: PAGE TITLE -->
+<section id="page-title" class="page-title-center">
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<h1 class="mainTitle" translate="sidebar.nav.element.FONTAWESOME">{{ mainTitle }}</h1>
+			<span class="mainDescription">Font Awesome gives you scalable vector icons that can instantly be customized â€” size, color, drop shadow, and anything that can be done with the power of CSS.</span>
+			<input ng-model="search" class="form-control text-center margin-top-15" type="text" placeholder="Search {{icons.name}} icons...">
+			<div ncy-breadcrumb></div>
+		</div>
+	</div>
+</section>
+<!-- end: PAGE TITLE -->
+<!-- start: FONTAWESOME ICONS -->
+<!-- /// controller:  'IconsCtrl' -  localtion: assets/js/controllers/iconsCtrl.js /// -->
+<div ng-controller="IconsCtrl">
+	<div ng-repeat="icons in icons | filter: { type: 'fontawesome' }">
+		<div class="container-fluid container-fullw bg-white" ng-repeat="sections in icons.sections" ng-if="(sections.icons | filter: search).length">
+			<div class="row">
+				<div class="col-md-12">
+					<h5 class="over-title margin-bottom-15">{{sections.title}}</h5>
+					<div class="row the-icons">
+						<div class="fa-hover col-md-3 col-sm-4" ng-repeat="item in sections.icons | filter: search">
+							<i class="{{icons.prefix}} {{item}}"></i> {{item}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end: FONTAWESOME ICONS -->
+;T:metadata{	:dependencieso:Set:
+@hash{
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Rfile-digest://app/assets/javascripts/dashboard/RTL/assets/views/ui_icons.html;TT:charsetI"
+utf-8;F:digest"%ÙÙ®ÿ½Ñ`tÁ¬§ÆÄ\Tƒ¾4\ãp9Kr2œ;W–:lengthi’:dependencies_digest"%ªY.ØJ©bROŞÏrS©5b ;PÑPÅø‚:idI"E540702cdfed76f906ad9678babb58ee3311f8f95b75d07ef65a863c52d0cb831;F:
+mtimel+dÂU
