@@ -23,7 +23,7 @@
     };
 
     function afterSignupRedirectUrl() {
-      return '/sign_in'
+      return '/sign_in';
     }
   }
 })();
