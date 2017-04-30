@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   	has_many :property_detail_queries
 
 	#[Role Values]
-	@@NORMAL_USER = 10
-	@@ADMIN = 20
-	@@COMPANY_MANGER = 30
+	@@NORMAL_USER = '10'
+	@@ADMIN = '20'
+	@@COMPANY_MANGER = '30'
 
 
 	def self.NORMAL_USER

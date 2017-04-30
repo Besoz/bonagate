@@ -51,6 +51,7 @@ app.constant('JS_REQUIRES', {
     'inboxCtrl': 'assets/controllers/inboxCtrl.js',
     'xeditableCtrl': 'assets/controllers/xeditableCtrl.js',
     'chatCtrl': 'assets/controllers/chatCtrl.js',
+    'usersController': 'assets/dashboard/js/users/users_controller.js',
 
     //*** Filters
     'htmlToPlaintext': 'assets/dashboard/js/filters/htmlToPlaintext.js'

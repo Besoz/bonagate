@@ -29,10 +29,10 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
-        # format.html { redirect_to @user_session, notice: 'User session was successfully created.' }
+        format.html { redirect_to @user_session, notice: 'User session was successfully created.' }
         format.json { render :show, status: :created, location: @user_session }
       else
-        # format.html { render :new }
+        format.html { render :new }
         format.json { render json: @user_session.errors, status: :unprocessable_entity }
       end
     end

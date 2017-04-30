@@ -1,13 +1,36 @@
 (function() {
-  angular.module('auth_app')
+  angular.module('clip-two')
     .controller('UsersController', UsersController);
 
-  UsersController.$inject = ['$http', '$window'];
+  UsersController.$inject = ['$http', '$window', 'usersList'];
 
-  function UsersController($http, $window) {
+  function UsersController($http, $window, usersList) {
+
     var vm = this;
 
-    vm.users;
+    vm.users = usersList.data;
+    vm.editId;
+    vm.setEditId = setEditId;
+    vm.save = save;
+
+    function setEditId(id) {
+      vm.editId = id;
+    }
+
+    function save(user) {
+      console.log(user);
+
+      $http.put('/users/' + user.id + '.json', { user })
+        .then(function(res) {
+          console.log(res);
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+
+    }
+
+    console.log(vm.users);
 
     // function register() {
 

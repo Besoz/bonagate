@@ -41,6 +41,21 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
       ncyBreadcrumb: {
         label: 'Dashboard'
       }
+    }).state('app.users', {
+      url: "/users",
+      templateUrl: "assets/dashboard/js/users/users.html",
+      controller: "UsersController",
+      controllerAs: 'usersCtrl',
+      resolve: {
+        usersList: function($http) {
+          return $http.get('/users.json');
+        },
+        deps: mLoadSequence('ngTable', "usersController")
+      }, // resolve: loadSequence('jquery-sparkline', 'dashboardCtrl'),
+      // title: 'Dashboard',
+      ncyBreadcrumb: {
+        label: 'Dashboard'
+      }
     }).state('app.ui', {
       url: '/ui',
       template: '<div ui-view class="fade-in-up"></div>',
@@ -412,6 +427,39 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
           }
         ]
       };
+    }
+
+    function mLoadSequence() {
+      var _args = arguments;
+      return ['$ocLazyLoad', '$q',
+        function($ocLL, $q) {
+          var promise = $q.when(1);
+          for (var i = 0, len = _args.length; i < len; i++) {
+            promise = promiseThen(_args[i]);
+          }
+          return promise;
+
+          function promiseThen(_arg) {
+            if (typeof _arg == 'function')
+              return promise.then(_arg);
+            else
+              return promise.then(function() {
+                var nowLoad = requiredData(_arg);
+                if (!nowLoad)
+                  return $.error('Route resolve: Bad resource name [' + _arg + ']');
+                return $ocLL.load(nowLoad);
+              });
+          }
+
+          function requiredData(name) {
+            if (jsRequires.modules)
+              for (var m in jsRequires.modules)
+                if (jsRequires.modules[m].name && jsRequires.modules[m].name === name)
+                  return jsRequires.modules[m];
+            return jsRequires.scripts && jsRequires.scripts[name];
+          }
+        }
+      ]
     }
   }
 ]);
