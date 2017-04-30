@@ -1,0 +1,28 @@
+{:uriI"Œfile://app/assets/javascripts/dashboard/views/app.html?type=text/ng-html&id=c41493169a38236da181cb86268ab8a8a51eb7b6cdc3511b3fff87f9d1bfff3a:ET:load_pathI"app/assets/javascripts;T:filenameI"4app/assets/javascripts/dashboard/views/app.html;T:	nameI"dashboard/views/app;T:logical_pathI"dashboard/views/app.html;T:content_typeI"text/ng-html;T:sourceI"<!-- toaster directive -->
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!-- / toaster directive -->
+<!-- sidebar -->
+<div class="sidebar app-aside" id="sidebar" toggleable parent-active-class="app-slide-off" >
+	<div perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true" class="sidebar-container">
+		<div data-ng-include=" 'assets/views/partials/sidebar.html' "></div>
+	</div>
+</div>
+<!-- / sidebar -->
+<div class="app-content" ng-class="{loading: loading}">
+	<!-- top navbar -->
+	<header data-ng-include=" 'assets/views/partials/top-navbar.html' " class="navbar navbar-default navbar-static-top"></header>
+	<!-- / top navbar -->
+	<!-- main content -->
+	<div data-ng-include=" 'assets/views/partials/main-content.html' " class="main-content" ></div>
+	<!-- / main content -->
+</div>
+<!-- footer -->
+<footer data-ng-include=" 'assets/views/partials/footer.html' "></footer>
+<!-- / footer -->
+<div data-ng-include=" 'assets/views/partials/off-sidebar.html' " id="off-sidebar" class="sidebar" toggleable parent-active-class="app-offsidebar-open"></div>
+<div data-ng-include=" 'assets/views/partials/settings.html' " toggleable class="settings panel panel-default hidden-xs hidden-sm" id="settings"></div>
+;T:metadata{	:dependencieso:Set:
+@hash{
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Bfile-digest://app/assets/javascripts/dashboard/views/app.html;TT:charsetI"
+utf-8;F:digest"%ª¦P÷÷$ÙC‰daÊÜôÍ…±ä>%PüæÄÕ$à:lengthi:dependencies_digest"%#Ê9ps§„ÇPLŒ|Ce­İ#T¡ªú¿©*#8®o:idI"Ec41493169a38236da181cb86268ab8a8a51eb7b6cdc3511b3fff87f9d1bfff3a;F:
+mtimel+dÂU

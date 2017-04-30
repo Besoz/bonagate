@@ -1,0 +1,18 @@
+{:uriI"™file://app/assets/javascripts/dashboard/views/pages_blank_page.html?type=text/ng-html&id=0f84f0c862d66b90036e2f0fe430df90a6e316bc03e982a74278dbfc3734508b:ET:load_pathI"app/assets/javascripts;T:filenameI"Aapp/assets/javascripts/dashboard/views/pages_blank_page.html;T:	nameI"%dashboard/views/pages_blank_page;T:logical_pathI"*dashboard/views/pages_blank_page.html;T:content_typeI"text/ng-html;T:sourceI"²<!-- start: PAGE TITLE -->
+<section id="page-title">
+	<div class="row">
+		<div class="col-sm-8">
+			<h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">{{ mainTitle }}</h1>
+			<span class="mainDescription">Use this page to start from scratch and put your custom content</span>
+		</div>
+		<div ncy-breadcrumb></div>
+	</div>
+</section>
+<!-- end: PAGE TITLE -->
+<!-- start: YOUR CONTENT HERE -->
+<!-- end: YOUR CONTENT HERE -->;T:metadata{	:dependencieso:Set:
+@hash{
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Ofile-digest://app/assets/javascripts/dashboard/views/pages_blank_page.html;TT:charsetI"
+utf-8;F:digest"%ùó½Dı˜g10·d˜ç|´*¸bU8g~·ŞÓ9‹ñß:lengthi²:dependencies_digest"%)É/ùE3²
+W‡ÒlÈÄn’ËÄMN—'dìıÈš:idI"E0f84f0c862d66b90036e2f0fe430df90a6e316bc03e982a74278dbfc3734508b;F:
+mtimel+dÂU

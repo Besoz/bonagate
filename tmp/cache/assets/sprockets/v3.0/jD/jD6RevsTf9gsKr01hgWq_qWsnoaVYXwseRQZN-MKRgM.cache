@@ -1,0 +1,28 @@
+{:uriI"Œfile://app/assets/javascripts/dashboard/views/app.html?type=text/ng-html&id=f1b9b38505bcd377d024264238d9c9796f42b087aa377be82a1079ba297e753d:ET:load_pathI"app/assets/javascripts;T:filenameI"4app/assets/javascripts/dashboard/views/app.html;T:	nameI"dashboard/views/app;T:logical_pathI"dashboard/views/app.html;T:content_typeI"text/ng-html;T:sourceI"D<!-- toaster directive -->
+<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+<!-- / toaster directive -->
+<!-- sidebar -->
+<div class="sidebar app-aside" id="sidebar" toggleable parent-active-class="app-slide-off" >
+	<div perfect-scrollbar wheel-propagation="false" suppress-scroll-x="true" class="sidebar-container">
+		<div data-ng-include=" 'assets/dashboard/views/partials/sidebar.html' "></div>
+	</div>
+</div>
+<!-- / sidebar -->
+<div class="app-content" ng-class="{loading: loading}">
+	<!-- top navbar -->
+	<header data-ng-include=" 'assets/dashboard/views/partials/top-navbar.html' " class="navbar navbar-default navbar-static-top"></header>
+	<!-- / top navbar -->
+	<!-- main content -->
+	<div data-ng-include=" 'assets/dashboard/views/partials/main-content.html' " class="main-content" ></div>
+	<!-- / main content -->
+</div>
+<!-- footer -->
+<footer data-ng-include=" 'assets/dashboard/views/partials/footer.html' "></footer>
+<!-- / footer -->
+<div data-ng-include=" 'assets/dashboard/views/partials/off-sidebar.html' " id="off-sidebar" class="sidebar" toggleable parent-active-class="app-offsidebar-open"></div>
+<div data-ng-include=" 'assets/dashboard/views/partials/settings.html' " toggleable class="settings panel panel-default hidden-xs hidden-sm" id="settings"></div>
+;T:metadata{	:dependencieso:Set:
+@hash{
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Bfile-digest://app/assets/javascripts/dashboard/views/app.html;TT:charsetI"
+utf-8;F:digest"%VĞáêWÊ»:ÆkH~‚>¬.è¸¹*ÃcEnÈ:lengthiD:dependencies_digest"%ÕS…Íşëü4ò¡.¹2q‘YÚ ÚÈ0jû=“ÇŒ:idI"Ef1b9b38505bcd377d024264238d9c9796f42b087aa377be82a1079ba297e753d;F:
+mtimel+Ú½üX

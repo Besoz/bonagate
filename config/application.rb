@@ -22,5 +22,9 @@ module BonagateServer
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.assets.paths << Rails.root.join('vendor', 'assets')
+    #Rails.application.config.assets.paths += Dir["#{Rails.root}/vendor/assets/bower_components/*"].sort_by { |dir| -dir.size }
+
   end
 end

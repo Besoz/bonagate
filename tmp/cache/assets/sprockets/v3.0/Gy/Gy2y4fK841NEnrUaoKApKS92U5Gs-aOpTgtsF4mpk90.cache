@@ -1,0 +1,37 @@
+{:uriI"Ÿfile://app/assets/javascripts/dashboard/RTL/assets/views/ui_nestable.html?type=text/ng-html&id=e8be256a6c92ae59ea53fbf84b1d2069230b56240fcdf20b9087898a51a3b7a0:ET:load_pathI"app/assets/javascripts;T:filenameI"Gapp/assets/javascripts/dashboard/RTL/assets/views/ui_nestable.html;T:	nameI"+dashboard/RTL/assets/views/ui_nestable;T:logical_pathI"0dashboard/RTL/assets/views/ui_nestable.html;T:content_typeI"text/ng-html;T:sourceI"”<!-- start: PAGE TITLE -->
+<section id="page-title">
+	<div class="row">
+		<div class="col-sm-8">
+			<h1 class="mainTitle" translate="sidebar.nav.element.NESTABLE">{{ mainTitle }}</h1>
+			<span class="mainDescription">Drag &amp; drop hierarchical list with mouse and touch compatibility</span>
+		</div>
+		<div ncy-breadcrumb></div>
+	</div>
+</section>
+<!-- end: PAGE TITLE -->
+<!-- start: NESTABLE LIST -->
+<div class="container-fluid container-fullw bg-white">
+	<div>
+		<!-- /// controller:  'nestableCtrl' -  localtion: assets/js/controllers/nestableCtrl.js /// -->
+		<div ng-controller="nestableCtrl">
+			<div class="row">
+				<div class="col-md-6">
+					<div ng-nestable ng-model="mdl">
+						{{$item.text}}
+					</div>
+				</div>
+				<div class="col-md-6">
+					<h5>Data binding</h5>
+					<div class="well">
+						{{mdl | json}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end: NESTABLE LIST -->;T:metadata{	:dependencieso:Set:
+@hash{
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Ufile-digest://app/assets/javascripts/dashboard/RTL/assets/views/ui_nestable.html;TT:charsetI"
+utf-8;F:digest"%Kßdy'3½ãeB¹ÀfÃ³ŞT4¾¯¾˜x"º"Ùö¤:lengthi”:dependencies_digest"%f°l\ÈUS‹õu²V@!u	ßëÎ…Šbßî:idI"Ee8be256a6c92ae59ea53fbf84b1d2069230b56240fcdf20b9087898a51a3b7a0;F:
+mtimel+dÂU

@@ -1,0 +1,27 @@
+{:uriI"•file://app/assets/javascripts/dashboard/RTL/templates/week.html?type=text/ng-html&id=6ef5d2d0ce7e370fee5509f11d9367c282061b7fec6f1fd08b342ecfd96ab39c:ET:load_pathI"app/assets/javascripts;T:filenameI"=app/assets/javascripts/dashboard/RTL/templates/week.html;T:	nameI"!dashboard/RTL/templates/week;T:logical_pathI"&dashboard/RTL/templates/week.html;T:content_typeI"text/ng-html;T:sourceI"<div class="cal-week-box">
+  <div class="cal-row-fluid cal-row-head">
+
+    <div class="cal-cell1" ng-repeat="column in view.columns track by $index" ng-class="{'cal-day-weekend': $index > 4, 'cal-day-today': column.isToday}">{{ column.weekDay }}<br>
+      <small>
+        <span data-cal-date ng-click="drillDown(column.day)" class="pointer">{{ column.date }}</span>
+      </small>
+    </div>
+
+
+  </div>
+
+  <div class="cal-row-fluid" ng-repeat="event in view.events track by $index">
+    <div class="cal-cell{{ event.daySpan }} cal-offset{{ event.dayOffset }} day-highlight dh-event-{{ event.type }}" data-event-class>
+      <a href="javascript:;" ng-click="eventClick({$event: event})" class="cal-event-week">
+        {{ event.title }}
+      </a>
+    </div>
+  </div>
+
+
+</div>
+;T:metadata{	:dependencieso:Set:
+@hash{
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Kfile-digest://app/assets/javascripts/dashboard/RTL/templates/week.html;TT:charsetI"
+utf-8;F:digest"%ŽÁþ —{Ô~ÉÜ^…ÚwUƒ¥¦šJU†|ê‚Æ:lengthi:dependencies_digest"%xM–7CÎÙ+xeêaM_ù«j•cfõódw?ö¢Nƒ·©:idI"E6ef5d2d0ce7e370fee5509f11d9367c282061b7fec6f1fd08b342ecfd96ab39c;F:
+mtimel+< U
