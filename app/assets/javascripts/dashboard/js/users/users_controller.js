@@ -1,10 +1,13 @@
 (function() {
+
+  'use strict';
+
   angular.module('clip-two')
     .controller('UsersController', UsersController);
 
-  UsersController.$inject = ['$http', '$window', 'usersList'];
+  UsersController.$inject = ['$http', '$window', 'usersList', 'UserServices'];
 
-  function UsersController($http, $window, usersList) {
+  function UsersController($http, $window, usersList, UserServices) {
 
     var vm = this;
 
@@ -20,46 +23,16 @@
     function save(user) {
       console.log(user);
 
-      $http.put('/users/' + user.id + '.json', { user })
+      UserServices.updateUser(user)
         .then(function(res) {
           console.log(res);
+          vm.setEditId(-1)
         })
         .catch(function(err) {
           console.log(err);
         });
 
     }
-
-    console.log(vm.users);
-
-    // function register() {
-
-    //   user = {
-    //     email: vm.email,
-    //     password: vm.password,
-    //     password_confirmation: vm.passwordConfirmation
-    //   };
-
-    //   $http.post('/users.json', {
-    //       user: user
-    //     })
-    //     .then(function(res) {
-
-    //       $window.location.href = '/sign_in';
-
-    //       console.log("res");
-    //       console.log(res);
-
-    //     })
-    //     .catch(function(err) {
-    //       vm.emailError = err.data.email[0];
-
-
-    //       console.log("Errro");
-    //       console.log(err);
-    //     });
-    // };
-
   }
 
 })();

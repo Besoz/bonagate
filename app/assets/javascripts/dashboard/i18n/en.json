@@ -4,11 +4,11 @@
   },
   "topbar": {
     "messages": {
-    	"MAIN": "Messages",
-      	"HEADER": "Unread messages",
-      	"SEEALL": "See All"
+      "MAIN": "Messages",
+      "HEADER": "Unread messages",
+      "SEEALL": "See All"
     },
-    
+
     "activities": {
       "MAIN": "Activities",
       "HEADER": "You have new notifications",
@@ -16,10 +16,10 @@
     },
     "user": {
       "PROFILE": "My Profile",
-      "CALENDAR" : "My Calendar",
-      "MESSAGES" : "My Messages",
-      "LOCKSCREEN" : "Lock Screen",
-      "LOGOUT" : "Log Out"
+      "CALENDAR": "My Calendar",
+      "MESSAGES": "My Messages",
+      "LOCKSCREEN": "Lock Screen",
+      "LOGOUT": "Log Out"
     }
   },
   "offsidebar": {
@@ -27,7 +27,7 @@
       "ONLINE": "On-Line",
       "OFFLINE": "Off-Line",
       "BACK": "Back",
-      "SEND" : "Send",
+      "SEND": "Send",
       "PLACEHOLDER": "Message"
     },
     "favorites": {
@@ -40,8 +40,8 @@
       "SHOWUSERS": "Show Offline Users",
       "EMAILALERT": "E-mail Alerts",
       "SMSALERT": "SMS Alerts",
-      "SAVE" : "Save Changes"     
-    }  
+      "SAVE": "Save Changes"
+    }
   },
   "sidebar": {
     "heading": {
@@ -54,19 +54,22 @@
     },
     "nav": {
       "dashboard": {
-      	"MAIN": "Dashboard"
+        "MAIN": "Dashboard"
       },
       "element": {
-      	"MAIN": "UI Elements",
+        "MANAGEUSERS": "Manage users",
+        "USERS": "Users",
+
+        "MAIN": "UI Elements",
         "ELEMENTS": "Elements",
         "BUTTONS": "Buttons",
         "LINKS": "Link Effects",
-        "FONTAWESOME" : "Font Awesome Icons",
-        "LINEARICONS" : "Linear Icons",
-        "MODALS" : "Modals",
-        "TOGGLE" : "Toggle",
-        "TABS" : "Tabs & Accordions",
-        "PANELS" : "Panels",
+        "FONTAWESOME": "Font Awesome Icons",
+        "LINEARICONS": "Linear Icons",
+        "MODALS": "Modals",
+        "TOGGLE": "Toggle",
+        "TABS": "Tabs & Accordions",
+        "PANELS": "Panels",
         "NOTIFICATIONS": "Notifications",
         "SLIDERS": "Sliders",
         "TREEVIEW": "TreeView",
@@ -116,88 +119,88 @@
       "3level": {
         "MAIN": "3 Level Menu",
         "Item1": {
-        	"MAIN": "Item 1",
-        	"LINK1" : "Sample Link 1",
-        	"LINK2" : "Sample Link 2",
-        	"LINK3" : "Sample Link 3"
+          "MAIN": "Item 1",
+          "LINK1": "Sample Link 1",
+          "LINK2": "Sample Link 2",
+          "LINK3": "Sample Link 3"
         },
         "Item2": {
-        	"MAIN": "Item 2",
-        	"LINK1" : "Sample Link 1",
-        	"LINK2" : "Sample Link 2",
-        	"LINK3" : "Sample Link 3"
+          "MAIN": "Item 2",
+          "LINK1": "Sample Link 1",
+          "LINK2": "Sample Link 2",
+          "LINK3": "Sample Link 3"
         },
         "Item3": {
-        	"MAIN": "Item 3",
-        	"LINK1" : "Sample Link 1",
-        	"LINK2" : "Sample Link 2",
-        	"LINK3" : "Sample Link 3"
+          "MAIN": "Item 3",
+          "LINK1": "Sample Link 1",
+          "LINK2": "Sample Link 2",
+          "LINK3": "Sample Link 3"
         }
       },
       "4level": {
         "MAIN": "4 Level Menu",
         "Item1": {
-        	"MAIN": "Item 1",
-        	"link1" : {
-        		"MAIN": "Sample Link 1",
-        		"LINK1" : "Link 1",
-        		"LINK2" : "Link 2",
-        		"LINK3" : "Link 3"         		
-        	},
-        	"link2" : {
-        		"MAIN": "Sample Link 2",
-        		"LINK1" : "Link 1",
-        		"LINK2" : "Link 2",
-        		"LINK3" : "Link 3"        		
-        	},
-        	"link3" : {
-        		"MAIN": "Sample Link 3",
-        		"LINK1" : "Link 1",
-        		"LINK2" : "Link 2",
-        		"LINK3" : "Link 3"       		
-        	}        	
+          "MAIN": "Item 1",
+          "link1": {
+            "MAIN": "Sample Link 1",
+            "LINK1": "Link 1",
+            "LINK2": "Link 2",
+            "LINK3": "Link 3"
+          },
+          "link2": {
+            "MAIN": "Sample Link 2",
+            "LINK1": "Link 1",
+            "LINK2": "Link 2",
+            "LINK3": "Link 3"
+          },
+          "link3": {
+            "MAIN": "Sample Link 3",
+            "LINK1": "Link 1",
+            "LINK2": "Link 2",
+            "LINK3": "Link 3"
+          }
         },
         "Item2": {
-        	"MAIN": "Item 2",
-        	"link1" : {
-        		"MAIN": "Sample Link 1",
-        		"LINK1" : "Link 1",
-        		"LINK2" : "Link 2",
-        		"LINK3" : "Link 3"        		
-        	},
-        	"link2" : {
-        		"MAIN": "Sample Link 2",
-        		"LINK1" : "Link 1",
-        		"LINK2" : "Link 2",
-        		"LINK3" : "Link 3"        		
-        	},
-        	"link3" : {
-        		"MAIN": "Sample Link 3",
-        		"LINK1" : "Link 1",
-        		"LINK2" : "Link 2",
-        		"LINK3" : "Link 3"         		
-        	}        	
+          "MAIN": "Item 2",
+          "link1": {
+            "MAIN": "Sample Link 1",
+            "LINK1": "Link 1",
+            "LINK2": "Link 2",
+            "LINK3": "Link 3"
+          },
+          "link2": {
+            "MAIN": "Sample Link 2",
+            "LINK1": "Link 1",
+            "LINK2": "Link 2",
+            "LINK3": "Link 3"
+          },
+          "link3": {
+            "MAIN": "Sample Link 3",
+            "LINK1": "Link 1",
+            "LINK2": "Link 2",
+            "LINK3": "Link 3"
+          }
         },
         "Item3": {
-        	"MAIN": "Item 3",
-        	"link1" : {
-        		"MAIN": "Sample Link 1",
-        		"LINK1" : "Link 1",
-        		"LINK2" : "Link 2",
-        		"LINK3" : "Link 3"        		
-        	},
-        	"link2" : {
-        		"MAIN": "Sample Link 2",
-        		"LINK1" : "Link 1",
-        		"LINK2" : "Link 2",
-        		"LINK3" : "Link 3"        		
-        	},
-        	"link3" : {
-        		"MAIN": "Sample Link 3",
-        		"LINK1" : "Link 1",
-        		"LINK2" : "Link 2",
-        		"LINK3" : "Link 3"        		
-        	}        	
+          "MAIN": "Item 3",
+          "link1": {
+            "MAIN": "Sample Link 1",
+            "LINK1": "Link 1",
+            "LINK2": "Link 2",
+            "LINK3": "Link 3"
+          },
+          "link2": {
+            "MAIN": "Sample Link 2",
+            "LINK1": "Link 1",
+            "LINK2": "Link 2",
+            "LINK3": "Link 3"
+          },
+          "link3": {
+            "MAIN": "Sample Link 3",
+            "LINK1": "Link 1",
+            "LINK2": "Link 2",
+            "LINK3": "Link 3"
+          }
         }
       },
       "maps": {
@@ -210,12 +213,12 @@
   },
   "footer": {
     "copyright": {
-    	"MAIN": "Copyright",
-      	"MESSAGE": "All rights reserved"
+      "MAIN": "Copyright",
+      "MESSAGE": "All rights reserved"
     }
   },
   "setting": {
-  	"MAIN" : "Style Selector",
+    "MAIN": "Style Selector",
     "FIXEDHEADER": "Fixed header",
     "FIXEDSIDEBAR": "Fixed sidebar",
     "CLOSEDSIDEBAR": "Closed sidebar",

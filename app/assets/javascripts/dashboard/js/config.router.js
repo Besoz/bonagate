@@ -42,6 +42,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         label: 'Dashboard'
       }
     }).state('app.users', {
+      templateUrl: "assets/dashboard/js/users/users-layout.html"
+    }).state('app.users.all', {
       url: "/users",
       templateUrl: "assets/dashboard/js/users/users.html",
       controller: "UsersController",
@@ -50,12 +52,23 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         usersList: function($http) {
           return $http.get('/users.json');
         },
-        deps: mLoadSequence('ngTable', "usersController")
+        deps: mLoadSequence('ngTable', "userServices", "usersController")
       }, // resolve: loadSequence('jquery-sparkline', 'dashboardCtrl'),
       // title: 'Dashboard',
       ncyBreadcrumb: {
         label: 'Dashboard'
       }
+    }).state('app.users.edit', {
+      url: '/users/edit',
+      templateUrl: "assets/dashboard/views/pages_user_profile.html",
+      title: 'User Profile',
+      controller: "UserController",
+      controllerAs: 'userCtrl',
+      params: { user: null, edit: true },
+      ncyBreadcrumb: {
+        label: 'User Profile'
+      },
+      resolve: loadSequence('flow', "userServices", 'userController')
     }).state('app.ui', {
       url: '/ui',
       template: '<div ui-view class="fade-in-up"></div>',
