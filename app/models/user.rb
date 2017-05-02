@@ -1,24 +1,9 @@
 class User < ActiveRecord::Base
+	extend Enumerize
 	acts_as_authentic
 
   	has_many :property_detail_queries
 
-	#[Role Values]
-	@@NORMAL_USER = '10'
-	@@ADMIN = '20'
-	@@COMPANY_MANGER = '30'
-
-
-	def self.NORMAL_USER
-		@@NORMAL_USER
-	end
-
-	def self.ADMIN
-		@@ADMIN
-	end
-
-  	def admin?
-		self.role == @@ADMIN
-  	end
+	enumerize :role, in: [:user, :admin], default: :user , predicates: true
 
 end

@@ -52,7 +52,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         usersList: function($http) {
           return $http.get('/users.json');
         },
-        deps: mLoadSequence('ngTable', "userServices", "usersController")
+        deps: mLoadSequence('ngTable', 'moment', 'angularMoment', "userServices", "usersController")
       }, // resolve: loadSequence('jquery-sparkline', 'dashboardCtrl'),
       // title: 'Dashboard',
       ncyBreadcrumb: {

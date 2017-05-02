@@ -5,9 +5,9 @@
   angular.module('clip-two')
     .controller('UserController', UserController);
 
-  UserController.$inject = ['$http', '$window', '$stateParams', 'flowFactory', 'UserServices'];
+  UserController.$inject = ['$http', '$window', '$stateParams', 'flowFactory', 'UserServices', 'moment'];
 
-  function UserController($http, $window, $stateParams, flowFactory, UserServices) {
+  function UserController($http, $window, $stateParams, flowFactory, UserServices, moment) {
 
     var vm = this;
 
