@@ -1,9 +1,9 @@
 (function() {
 
-
+  'use strict';
 
   angular.module('clip-two')
-    .controller('UserController', UserController);
+    .controller('UserController', UserController)
 
   UserController.$inject = ['$http', '$window', '$stateParams', 'flowFactory', 'UserServices', 'moment'];
 
@@ -18,15 +18,25 @@
     vm.obj;
     vm.noImage;
     vm.update = update;
+    vm.uploadImage = uploadImage;
 
-    activate()
+    activate();
 
 
     function activate() {
 
       console.log($stateParams);
 
-      vm.obj = new Flow();
+      vm.obj = new Flow({
+        target: '/upload',
+        chunkSize: 1024 * 1024,
+        testChunks: false
+      });
+
+      console.log(vm.obj);
+
+      console.log(vm.obj);
+
       vm.editActive = false;
 
 
@@ -34,40 +44,38 @@
         vm.editActive = true;
       }
 
-      vm.user = {
-        firstName: 'Peter',
-        lastName: 'Clark',
-        url: 'www.example.com',
-        email: 'peter@example.com',
-        phone: '(641)-734-4763',
-        gender: 'male',
-        zipCode: '12345',
-        city: 'London (UK)',
-        avatar: 'assets/images/avatar-1-xl.jpg',
-        twitter: '',
-        github: '',
-        facebook: '',
-        linkedin: '',
-        google: '',
-        skype: 'peterclark82'
-      };
-
-      Object.assign(vm.user, $stateParams.user);
-
+      vm.user = $stateParams.user;
 
       // vm.user = $stateParams.user;
-      if (vm.user.avatar && vm.user.avatar == '') {
+      if (vm.user.avatar) {
+        vm.noImage = false;
+      } else {
         vm.noImage = true;
       }
-
-
     }
 
     function removeImage() {
-      vm.noImage = true;
-    };
+      vm.user.avatar = '';
+    }
+
+    function uploadImage() {
+
+      console.log(vm.obj.files[0].file);
+
+      UserServices.updateUserImage(vm.user.id, vm.obj.files[0].file)
+        .then(function(res) {
+          console.log("res");
+          console.log(res);
+        })
+        .catch(function(err) {
+          console.log("err");
+          console.log(err);
+        });
+
+    }
 
     function update() {
+      delete vm.user.avatar;
       UserServices.updateUser(vm.user)
         .then(function(res) {
           vm.overviewActive = true;
