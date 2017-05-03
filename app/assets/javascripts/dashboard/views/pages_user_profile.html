@@ -24,20 +24,20 @@
                 <div class="user-left">
                   <div class="center">
                     <h4>{{userCtrl.user.first_name}} {{userCtrl.user.last_name}}</h4>
-                    <div flow-init="{singleFile:true}" flow-name="userCtrl.obj.flow" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
+                    <div flow-init="{singleFile:true}" flow-object="userCtrl.obj" flow-files-submitted="userCtrl.uploadImage()" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow>
                       <div class="user-image">
                         <div class="thumbnail">
-                          <img src="assets/images/default-user.png" alt="" ng-if="!userCtrl.obj.flow.files.length && noImage">
-                          <img ng-src="{{userCtrl.user.avatar}}" alt="" ng-if="!userCtrl.obj.flow.files.length && !noImage">
-                          <img flow-img="userCtrl.obj.flow.files[0]" ng-if="userCtrl.obj.flow.files.length">
+                          <img src="assets/images/default-user.png" alt="" ng-if="!userCtrl.obj.files.length && userCtrl.noImage">
+                          <img ng-src="{{userCtrl.user.avatar}}" alt="" ng-if="!userCtrl.obj.files.length && !userCtrl.noImage">
+                          <img flow-img="userCtrl.obj.files[0]" ng-if="userCtrl.obj.files.length">
                         </div>
-                        <div class="user-image-buttons" ng-if="userCtrl.obj.flow.files.length">
+                        <div class="user-image-buttons" ng-if="userCtrl.obj.files.length">
                           <span class="btn btn-primary" flow-btn><i class="fa fa-pencil"></i></span>
-                          <span class="btn btn-danger" ng-click="userCtrl.obj.flow.cancel()"> <i class="fa fa-times"></i> </span>
+                          <span class="btn btn-danger" ng-click="userCtrl.obj.cancel()"> <i class="fa fa-times"></i> </span>
                         </div>
-                        <div class="user-image-buttons" ng-if="!userCtrl.obj.flow.files.length">
+                        <div class="user-image-buttons" ng-if="!userCtrl.obj.files.length">
                           <span class="btn btn-primary" flow-btn><i class="fa fa-pencil"></i></span>
-                          <span class="btn btn-danger" ng-if="!noImage" ng-click="userCtrl.removeImage()"><i class="fa fa-times"></i></span>
+                          <span class="btn btn-danger" ng-if="!userCtrl.noImage" ng-click="userCtrl.removeImage()"><i class="fa fa-times"></i></span>
                         </div>
                       </div>
                     </div>
@@ -389,116 +389,115 @@
                       <label>
                         Image Upload
                       </label>
-                      <div flow-init flow-object="userCtrl.obj.flow">
-                        <div class="user-image">
-                          <div class="thumbnail margin-bottom-5">
-                            <img src="assets/images/default-user.png" alt="" ng-if="!userCtrl.obj.flow.files.length && noImage">
-                            <img ng-src="{{userCtrl.user.avatar}}" alt="" ng-if="!userCtrl.obj.flow.files.length && !noImage">
-                            <img flow-img="userCtrl.obj.flow.files[0]" ng-if="userCtrl.obj.flow.files.length">
+                      <div flow-init flow-object="userCtrl.obj" flow-files-submitted="userCtrl.uploadImage()">
+                        <div class="user-image ">
+                          <div class="thumbnail margin-bottom-5 ">
+                            <img src="assets/images/default-user.png " alt=" " ng-if="!userCtrl.obj.files.length && userCtrl.noImage ">
+                            <img ng-src="{{userCtrl.user.avatar}} " alt=" " ng-if="!userCtrl.obj.files.length && !userCtrl.noImage ">
+                            <img flow-img="userCtrl.obj.files[0] " ng-if="userCtrl.obj.files.length ">
                           </div>
                         </div>
-                        <div class="user-image-buttons-edit" ng-if="userCtrl.obj.flow.files.length">
-                          <span class="btn btn-primary" flow-btn><i class="fa fa-pencil"></i></span>
-                          <span class="btn btn-danger" ng-click="userCtrl.obj.flow.cancel()"> <i class="fa fa-times"></i></span>
+                        <div class="user-image-buttons-edit " ng-if="userCtrl.obj.files.length ">
+                          <span class="btn btn-primary " flow-btn><i class="fa fa-pencil "></i></span>
+                          <span class="btn btn-danger " ng-click="userCtrl.obj.cancel() "> <i class="fa fa-times "></i></span>
                         </div>
-                        <div class="user-image-buttons-edit" ng-if="!userCtrl.obj.flow.files.length">
-                          <span class="btn btn-primary" flow-btn><i class="fa fa-pencil"></i></span>
-                          <span class="btn btn-danger" ng-if="!userCtrl.noImage" ng-click="userCtrl.removeImage()"><i class="fa fa-times"></i> </span>
+                        <div class="user-image-buttons-edit " ng-if="!userCtrl.obj.files.length ">
+                          <span class="btn btn-primary " flow-btn><i class="fa fa-pencil "></i></span>
+                          <span class="btn btn-danger " ng-if="!userCtrl.noImage " ng-click="userCtrl.removeImage() "><i class="fa fa-times "></i> </span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <td>
-                  <div class="checkbox clip-check check-primary checkbox-inline">
-                    <input type="checkbox" id="checkbox-approve-{{userCtrl.user.id}}" class="form-control" class="w180" ng-model="userCtrl.user.approved" checked="">
-                    <label for="checkbox-approve-{{userCtrl.user.id}}">
+                  <div class="checkbox clip-check check-primary checkbox-inline ">
+                    <input type="checkbox" id="checkbox-approve-{{userCtrl.user.id}}" class="form-control" class="w180" ng-model="userCtrl.user.approved">
+                    <label for="checkbox-approve-{{userCtrl.user.id}} ">
                       Approved
                     </label>
                   </div>
-                  <!-- <input class="form-control" type="text" name="dc" class="w180" ng-model="p.approved">-->
+                  <!-- <input class="form-control " type="text " name="dc " class="w180 " ng-model="p.approved ">-->
                 </td>
                 <td>
                   <div class="checkbox clip-check check-primary checkbox-inline">
-                    <input type="checkbox" id="checkbox-confim-{{userCtrl.user.id}}" class="form-control" class="w180" ng-model="userCtrl.user.confirmed" checked="">
-                    <label for="checkbox-confim-{{userCtrl.user.id}}">
+                    <input type="checkbox" id="checkbox-confim-{{userCtrl.user.id}}" class="form-control" class="w180" ng-model="userCtrl.user.confirmed">
+                    <label for="checkbox-confim-{{userCtrl.user.id}} ">
                       Confirmed
                     </label>
                   </div>
-                  <!--                         <input class="form-control" type="text" name="em" class="w180" ng-model="p.confirmed"> -->
                 </td>
                 <td>
-                  <div class="checkbox clip-check check-primary checkbox-inline">
-                    <input type="checkbox" id="checkbox-activ-{{userCtrl.user.id}}" class="form-control" class="w100" ng-model="userCtrl.user.active" checked="">
-                    <label for="checkbox-activ-{{userCtrl.user.id}}">
+                  <div class="checkbox clip-check check-primary checkbox-inline ">
+                    <input type="checkbox" id="checkbox-activ-{{userCtrl.user.id}}" class="form-control" class="w100" ng-model="userCtrl.user.active">
+                    <label for="checkbox-activ-{{userCtrl.user.id}} ">
                       Active
                     </label>
                   </div>
-                  <!-- <input class="form-control" type="text" name="ln" class="w100" ng-model="p.active"> -->
+                  <!-- <input class="form-control " type="text " name="ln " class="w100 " ng-model="p.active "> -->
                 </td>
               </fieldset>
               <!-- <fieldset>
   <legend>
     Additional Info
   </legend>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label class="control-label">
+  <div class="row ">
+    <div class="col-md-6 ">
+      <div class="form-group ">
+        <label class="control-label ">
           Twitter
         </label>
-        <span class="input-icon">
-												<input class="form-control" type="text" placeholder="Twitter" name="twitter" ng-model="userCtrl.user.twitter">
-												<i class="fa fa-twitter"></i> </span>
+        <span class="input-icon ">
+												<input class="form-control " type="text " placeholder="Twitter " name="twitter " ng-model="userCtrl.user.twitter ">
+												<i class="fa fa-twitter "></i> </span>
       </div>
-      <div class="form-group">
-        <label class="control-label">
+      <div class="form-group ">
+        <label class="control-label ">
           Facebook
         </label>
-        <span class="input-icon">
-												<input class="form-control" type="text" placeholder="Facebook" name="facebook" ng-model="userCtrl.user.facebook">
-												<i class="fa fa-facebook"></i> </span>
+        <span class="input-icon ">
+												<input class="form-control " type="text " placeholder="Facebook " name="facebook " ng-model="userCtrl.user.facebook ">
+												<i class="fa fa-facebook "></i> </span>
       </div>
-      <div class="form-group">
-        <label class="control-label">
+      <div class="form-group ">
+        <label class="control-label ">
           Google Plus
         </label>
-        <span class="input-icon">
-												<input class="form-control" type="text" placeholder="Google Plus" name="google" ng-model="userCtrl.user.google">
-												<i class="fa fa-google-plus"></i> </span>
+        <span class="input-icon ">
+												<input class="form-control " type="text " placeholder="Google Plus " name="google " ng-model="userCtrl.user.google ">
+												<i class="fa fa-google-plus "></i> </span>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label class="control-label">
+    <div class="col-md-6 ">
+      <div class="form-group ">
+        <label class="control-label ">
           Github
         </label>
-        <span class="input-icon">
-												<input class="form-control" type="text" placeholder="Github" name="github" ng-model="userCtrl.user.github">
-												<i class="fa fa-github"></i> </span>
+        <span class="input-icon ">
+												<input class="form-control " type="text " placeholder="Github " name="github " ng-model="userCtrl.user.github ">
+												<i class="fa fa-github "></i> </span>
       </div>
-      <div class="form-group">
-        <label class="control-label">
+      <div class="form-group ">
+        <label class="control-label ">
           Linkedin
         </label>
-        <span class="input-icon">
-												<input class="form-control" type="text" placeholder="Linkedin" name="linkedin" ng-model="userCtrl.user.linkedin">
-												<i class="fa fa-linkedin"></i> </span>
+        <span class="input-icon ">
+												<input class="form-control " type="text " placeholder="Linkedin " name="linkedin " ng-model="userCtrl.user.linkedin ">
+												<i class="fa fa-linkedin "></i> </span>
       </div>
-      <div class="form-group">
-        <label class="control-label">
+      <div class="form-group ">
+        <label class="control-label ">
           Skype
         </label>
-        <span class="input-icon">
-												<input class="form-control" type="text" placeholder="Skype" name="skype" ng-model="userCtrl.user.skype">
-												<i class="fa fa-skype"></i> </span>
+        <span class="input-icon ">
+												<input class="form-control " type="text " placeholder="Skype " name="skype " ng-model="userCtrl.user.skype ">
+												<i class="fa fa-skype "></i> </span>
       </div>
     </div>
   </div>
 </fieldset>
  -->
-              <div class="row">
-                <div class="col-md-12">
+              <div class="row ">
+                <div class="col-md-12 ">
                   <!-- <div>
   Required Fields
   <hr>
@@ -506,12 +505,12 @@
  -->
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-8">
+              <div class="row ">
+                <div class="col-md-8 ">
                 </div>
-                <div class="col-md-4">
-                  <button class="btn btn-primary pull-right" ng-click="userCtrl.update()">
-                    Update <i class="fa fa-arrow-circle-right"></i>
+                <div class="col-md-4 ">
+                  <button class="btn btn-primary pull-right " ng-click="userCtrl.update() ">
+                    Update <i class="fa fa-arrow-circle-right "></i>
                   </button>
                 </div>
               </div>
@@ -519,95 +518,95 @@
           </tab>
           <!-- end: TAB EDIT ACCOUNT -->
           <!-- start: TAB PROJECTS -->
-          <tab heading="Projects">
-            <table class="table" id="projects">
+          <tab heading="Projects ">
+            <table class="table " id="projects ">
               <thead>
                 <tr>
                   <th>Project Name</th>
-                  <th class="hidden-xs">Client</th>
+                  <th class="hidden-xs ">Client</th>
                   <th>Proj Comp</th>
-                  <th class="hidden-xs">%Comp</th>
-                  <th class="hidden-xs center">Priority</th>
+                  <th class="hidden-xs ">%Comp</th>
+                  <th class="hidden-xs center ">Priority</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>IT Help Desk</td>
-                  <td class="hidden-xs">Master Company</td>
+                  <td class="hidden-xs ">Master Company</td>
                   <td>11 november 2014</td>
-                  <td class="hidden-xs">
-                    <div class="progress active progress-xs">
-                      <div style="width: 70%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar" class="progress-bar progress-bar-warning">
-                        <span class="sr-only"> 70% Complete (danger)</span>
+                  <td class="hidden-xs ">
+                    <div class="progress active progress-xs ">
+                      <div style="width: 70% " aria-valuemax="100 " aria-valuemin="0 " aria-valuenow="70 " role="progressbar " class="progress-bar progress-bar-warning ">
+                        <span class="sr-only "> 70% Complete (danger)</span>
                       </div>
                     </div>
                   </td>
-                  <td class="center hidden-xs"><span class="label label-danger">Critical</span></td>
+                  <td class="center hidden-xs "><span class="label label-danger ">Critical</span></td>
                 </tr>
                 <tr>
                   <td>PM New Product Dev</td>
-                  <td class="hidden-xs">Brand Company</td>
+                  <td class="hidden-xs ">Brand Company</td>
                   <td>12 june 2014</td>
-                  <td class="hidden-xs">
-                    <div class="progress active progress-xs">
-                      <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-info">
-                        <span class="sr-only"> 40% Complete</span>
+                  <td class="hidden-xs ">
+                    <div class="progress active progress-xs ">
+                      <div style="width: 40% " aria-valuemax="100 " aria-valuemin="0 " aria-valuenow="40 " role="progressbar " class="progress-bar progress-bar-info ">
+                        <span class="sr-only "> 40% Complete</span>
                       </div>
                     </div>
                   </td>
-                  <td class="center hidden-xs"><span class="label label-warning">High</span></td>
+                  <td class="center hidden-xs "><span class="label label-warning ">High</span></td>
                 </tr>
                 <tr>
                   <td>ClipTheme Web Site</td>
-                  <td class="hidden-xs">Internal</td>
+                  <td class="hidden-xs ">Internal</td>
                   <td>11 november 2014</td>
-                  <td class="hidden-xs">
-                    <div class="progress active progress-xs">
-                      <div style="width: 90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="90" role="progressbar" class="progress-bar progress-bar-success">
-                        <span class="sr-only"> 90% Complete</span>
+                  <td class="hidden-xs ">
+                    <div class="progress active progress-xs ">
+                      <div style="width: 90% " aria-valuemax="100 " aria-valuemin="0 " aria-valuenow="90 " role="progressbar " class="progress-bar progress-bar-success ">
+                        <span class="sr-only "> 90% Complete</span>
                       </div>
                     </div>
                   </td>
-                  <td class="center hidden-xs"><span class="label label-success">Normal</span></td>
+                  <td class="center hidden-xs "><span class="label label-success ">Normal</span></td>
                 </tr>
                 <tr>
                   <td>Local Ad</td>
-                  <td class="hidden-xs">UI Fab</td>
+                  <td class="hidden-xs ">UI Fab</td>
                   <td>15 april 2014</td>
-                  <td class="hidden-xs">
-                    <div class="progress active progress-xs">
-                      <div style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" role="progressbar" class="progress-bar progress-bar-warning">
-                        <span class="sr-only"> 50% Complete</span>
+                  <td class="hidden-xs ">
+                    <div class="progress active progress-xs ">
+                      <div style="width: 50% " aria-valuemax="100 " aria-valuemin="0 " aria-valuenow="50 " role="progressbar " class="progress-bar progress-bar-warning ">
+                        <span class="sr-only "> 50% Complete</span>
                       </div>
                     </div>
                   </td>
-                  <td class="center hidden-xs"><span class="label label-success">Normal</span></td>
+                  <td class="center hidden-xs "><span class="label label-success ">Normal</span></td>
                 </tr>
                 <tr>
                   <td>Design new theme</td>
-                  <td class="hidden-xs">Internal</td>
+                  <td class="hidden-xs ">Internal</td>
                   <td>2 october 2014</td>
-                  <td class="hidden-xs">
-                    <div class="progress active progress-xs">
-                      <div style="width: 20%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-success">
-                        <span class="sr-only"> 20% Complete (warning)</span>
+                  <td class="hidden-xs ">
+                    <div class="progress active progress-xs ">
+                      <div style="width: 20% " aria-valuemax="100 " aria-valuemin="0 " aria-valuenow="20 " role="progressbar " class="progress-bar progress-bar-success ">
+                        <span class="sr-only "> 20% Complete (warning)</span>
                       </div>
                     </div>
                   </td>
-                  <td class="center hidden-xs"><span class="label label-danger">Critical</span></td>
+                  <td class="center hidden-xs "><span class="label label-danger ">Critical</span></td>
                 </tr>
                 <tr>
                   <td>IT Help Desk</td>
-                  <td class="hidden-xs">Designer TM</td>
+                  <td class="hidden-xs ">Designer TM</td>
                   <td>6 december 2014</td>
-                  <td class="hidden-xs">
-                    <div class="progress active progress-xs">
-                      <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-warning">
-                        <span class="sr-only"> 40% Complete (warning)</span>
+                  <td class="hidden-xs ">
+                    <div class="progress active progress-xs ">
+                      <div style="width: 40% " aria-valuemax="100 " aria-valuemin="0 " aria-valuenow="40 " role="progressbar " class="progress-bar progress-bar-warning ">
+                        <span class="sr-only "> 40% Complete (warning)</span>
                       </div>
                     </div>
                   </td>
-                  <td class="center hidden-xs"><span class="label label-warning">High</span></td>
+                  <td class="center hidden-xs "><span class="label label-warning ">High</span></td>
                 </tr>
               </tbody>
             </table>

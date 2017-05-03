@@ -12,14 +12,30 @@
   function UserServices($http) {
     var service = {
       updateUser: updateUser,
-      getUsers: getUsers
+      getUsers: getUsers,
+      updateUserImage: updateUserImage
     };
     return service;
 
     ////////////
 
     function updateUser(user) {
-      return $http.put('/users/' + user.id + '.json', { user })
+      return $http.put('/users/' + user.id + '.json', { user });
+    };
+
+    function updateUserImage(userId, file) {
+
+      var fd = new FormData();
+
+      fd.append('user[avatar]', file);
+
+      return $http.put('/users/' + userId + '.json', fd, {
+        withCredentials: false,
+        headers: {
+          'Content-Type': undefined
+        },
+        transformRequest: angular.identity
+      });
     };
 
     function getUsers() {
