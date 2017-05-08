@@ -4,13 +4,37 @@ class Ability
   def initialize(user)
 
 
-    alias_action :index, :create, :read, :update, :destroy, :to => :crud
+    alias_action :create, :read, :update, :destroy, :to => :crud
+    alias_action :index, :create, :read, :update, :destroy, :to => :crud_all
+
 
     user ||= User.new # guest user (not logged in)
     if user.admin?
         can :manage, :all
-    else
-        can :crud, Company, :user_id => user.id
+    
+    elsif user.company_user?
+
+        if(user.company_user.company_admin?)
+
+            can :crud_all, Company, :user_id => user.id # to be changed company_user.company_id
+
+
+            can :crud_all, User, User.in_company(user.company_user.company.id) do |other_user|
+                other_user.company_user.company.id == user.company_user.company.id
+            end
+
+            can :crud_all, UserInvitation, :company_id => user.company_user.company_id
+
+        else
+
+            can :index, User, User.in_company(user.company_user.company.id) do |other_user|
+                other_user.company_user.company.id == user.company_user.company.id
+            end
+
+            can :index, Company, :user_id => user.id # to be changed company_user.company_id
+
+        end
+
     end
     #
     # The first argument to `can` is the action you are giving the user 

@@ -1,6 +1,10 @@
 class UserInvitationsController < ApplicationController
   before_action :set_user_invitation, only: [:show, :edit, :update, :destroy]
 
+  before_filter :require_user
+
+  load_and_authorize_resource except: [:populate]
+
   # GET /user_invitations
   # GET /user_invitations.json
   def index
@@ -24,11 +28,24 @@ class UserInvitationsController < ApplicationController
   # POST /user_invitations
   # POST /user_invitations.json
   def create
-    @user_invitation = UserInvitation.new(user_invitation_params)
+        puts "ppppppppppppppppp"
 
-    UserMailer.invitation_email('ko', '1').deliver_later
+    user_invitation_params = {reciever_email: user_params[:email],
+                                      user_id: current_user.id,
+                                      company_id: current_user.company_user.company_id,
+                                      random_key: Digest::SHA1.hexdigest([Time.now, rand].join)}
+        puts "ppppppppppppppppp"
+
+    @user_invitation = UserInvitation.new(user_invitation_params)
+    # @user_invitation = UserInvitation.new(user_invitation_params)
+    puts "ppppppppppppppppp"
     respond_to do |format|
       if @user_invitation.save
+
+        UserMailer.invitation_email(@user_invitation.reciever_email, 
+          @user_invitation.random_key).deliver_later
+
+
         format.html { redirect_to @user_invitation, notice: 'User invitation was successfully created.' }
         format.json { render :show, status: :created, location: @user_invitation }
       else
@@ -62,6 +79,18 @@ class UserInvitationsController < ApplicationController
     end
   end
 
+  def populate
+
+    user_invitation = UserInvitation.with_state(:active).find_by(random_key: params[:rand_key])
+    if(user_invitation)
+      company = Company.find(user_invitation.company_id)
+      render json: {reciever_email: user_invitation.reciever_email, company: company}
+    else
+      render json: 'Invitation not found', status: :unprocessable_entity
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_invitation
@@ -72,4 +101,9 @@ class UserInvitationsController < ApplicationController
     def user_invitation_params
       params.require(:user_invitation).permit(:reciever_email, :reciever_name, :company_id)
     end
+
+    def user_params
+      params.require(:user).permit(:email, :role)
+    end
+
 end

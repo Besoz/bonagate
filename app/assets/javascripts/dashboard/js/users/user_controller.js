@@ -3,11 +3,11 @@
   'use strict';
 
   angular.module('clip-two')
-    .controller('UserController', UserController)
+    .controller('UserController', UserController);
 
-  UserController.$inject = ['$http', '$window', '$stateParams', 'flowFactory', 'UserServices', 'moment'];
+  UserController.$inject = ['$http', '$window', '$stateParams', 'flowFactory', 'UserServices', 'moment', '$rootScope'];
 
-  function UserController($http, $window, $stateParams, flowFactory, UserServices, moment) {
+  function UserController($http, $window, $stateParams, flowFactory, UserServices, moment, $rootScope) {
 
     var vm = this;
 
