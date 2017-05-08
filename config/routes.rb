@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   root to: 'pages#index'
 
-  resources :user_invitations
+  resources :user_invitations do
+    collection do
+      match "/populate/:rand_key", to: "user_invitations#populate",     via: :get
+    end
+  end
   resources :property_service_types
   resources :property_states
   resources :property_statuses
@@ -12,8 +16,12 @@ Rails.application.routes.draw do
   resources :properties
   resources :companies
   resources :companies
-  resources :user_sessions, only: [:create, :destroy]
-  resources :users
+  resources :user_sessions, only: [:create, :destroy, :current_user] do
+    collection do
+      match "/current_user", to: "user_sessions#show_current_user", via: :get
+    end
+  end
+  resources :users 
 
   delete '/sign_out', to: 'user_sessions#destroy', as: :sign_out
   get '/sign_in', to: 'user_sessions#new', as: :sign_in
