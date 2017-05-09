@@ -84,6 +84,25 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
       ncyBreadcrumb: {
         label: 'Dashboard'
       }
+    }).state('app.companies', {
+      abstract: true,
+      url: '/companies',
+      templateUrl: "assets/dashboard/js/users/users-layout.html"
+    }).state('app.companies.profile', {
+      url: '/:companyId',
+      templateUrl: "assets/dashboard/js/companies/company_profile.html",
+      title: 'Company Profile',
+      controller: "CompanyController",
+      controllerAs: 'compCtrl',
+      ncyBreadcrumb: {
+        label: 'Company Profile'
+      },
+      resolve: {
+        company: function($http, $stateParams) {
+          return $http.get('/companies/' + $stateParams.companyId + '.json');
+        },
+        deps: mLoadSequence('flow', "companyServices", 'companyController')
+      }
     }).state('app.ui', {
       url: '/ui',
       template: '<div ui-view class="fade-in-up"></div>',
