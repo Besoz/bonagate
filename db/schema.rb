@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420102459) do
+ActiveRecord::Schema.define(version: 20170508111630) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20170420102459) do
   end
 
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
+
+  create_table "company_users", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "company_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "role",       limit: 255
+  end
+
+  add_index "company_users", ["company_id"], name: "index_company_users_on_company_id", using: :btree
+  add_index "company_users", ["user_id"], name: "index_company_users_on_user_id", using: :btree
 
   create_table "properties", force: :cascade do |t|
     t.string   "address",            limit: 255
@@ -137,6 +148,7 @@ ActiveRecord::Schema.define(version: 20170420102459) do
     t.integer  "user_id",        limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "state",          limit: 255
   end
 
   add_index "user_invitations", ["company_id"], name: "index_user_invitations_on_company_id", using: :btree
@@ -168,6 +180,13 @@ ActiveRecord::Schema.define(version: 20170420102459) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role",                limit: 255, default: "10"
+    t.string   "first_name",          limit: 255
+    t.string   "last_name",           limit: 255
+    t.string   "phone",               limit: 255
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["perishable_token"], name: "index_users_on_perishable_token", unique: true, using: :btree
@@ -175,6 +194,8 @@ ActiveRecord::Schema.define(version: 20170420102459) do
   add_index "users", ["single_access_token"], name: "index_users_on_single_access_token", unique: true, using: :btree
 
   add_foreign_key "companies", "users"
+  add_foreign_key "company_users", "companies"
+  add_foreign_key "company_users", "users"
   add_foreign_key "properties", "companies"
   add_foreign_key "properties", "property_states"
   add_foreign_key "properties", "property_statuses"

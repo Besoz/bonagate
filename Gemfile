@@ -41,7 +41,7 @@ gem 'bootstrap-generators', '~> 3.3.4'
 
 gem 'authlogic'
 
-gem "cancan"
+gem "cancancan", '~> 1.10'
 
 gem "angular-rails-templates"
 

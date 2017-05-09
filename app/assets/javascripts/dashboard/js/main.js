@@ -1,7 +1,7 @@
 var app = angular.module('clipApp', ['clip-two']);
-app.run(['$rootScope', '$state', '$stateParams', '$http',
+app.run(['$rootScope', '$state', '$stateParams', '$http', 'RedirectService',
 
-  function($rootScope, $state, $stateParams, $http) {
+  function($rootScope, $state, $stateParams, $http, RedirectService) {
 
     // Attach Fastclick for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
     FastClick.attach(document.body);
@@ -39,6 +39,8 @@ app.run(['$rootScope', '$state', '$stateParams', '$http',
       job: 'ng-Dev',
       picture: 'app/img/user/02.jpg'
     };
+
+    $rootScope.redirectService = RedirectService;
 
     $http.get('/user_sessions/current_user.json')
       .then(function(res) {

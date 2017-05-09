@@ -56,8 +56,11 @@ class UserSessionsController < ApplicationController
   # DELETE /user_sessions/1.json
   def destroy
     @user_session.destroy
-    redirect_to root_path
-
+    respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { head :no_content }
+    end
+   
     # respond_to do |format|
     #   format.html { redirect_to user_sessions_url, notice: 'User session was successfully destroyed.' }
     #   format.json { head :no_content }
