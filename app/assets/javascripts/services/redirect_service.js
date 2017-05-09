@@ -16,10 +16,7 @@
     ////////////
 
     function afterLoginRedirectUrl(user) {
-      /* */
-      if (user.role == '10') {
-        return '/';
-      }
+      return '/';
     };
 
     function afterSignupRedirectUrl() {

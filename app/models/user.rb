@@ -1,24 +1,12 @@
 class User < ActiveRecord::Base
+	extend Enumerize
 	acts_as_authentic
 
   	has_many :property_detail_queries
 
-	#[Role Values]
-	@@NORMAL_USER = 10
-	@@ADMIN = 20
-	@@COMPANY_MANGER = 30
+	enumerize :role, in: [:user, :admin], default: :user , predicates: true
 
-
-	def self.NORMAL_USER
-		@@NORMAL_USER
-	end
-
-	def self.ADMIN
-		@@ADMIN
-	end
-
-  	def admin?
-		self.role == @@ADMIN
-  	end
+	has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: ""
+       validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
 end
