@@ -52,7 +52,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         usersList: function($http) {
           return $http.get('/users.json');
         },
-        deps: mLoadSequence('ngTable', 'moment', 'angularMoment', "userServices", "usersController")
+        deps: mLoadSequence('ui.select', 'ngTable', 'moment', 'angularMoment', "userServices", "usersController")
       }, // resolve: loadSequence('jquery-sparkline', 'dashboardCtrl'),
       // title: 'Dashboard',
       ncyBreadcrumb: {
@@ -69,6 +69,21 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         label: 'User Profile'
       },
       resolve: loadSequence('flow', "userServices", 'userController')
+    }).state('app.users.invitations', {
+      url: "/users/invitations",
+      templateUrl: "assets/dashboard/js/invitations/invitations.html",
+      controller: "InvitationsController",
+      controllerAs: 'invitCtrl',
+      resolve: {
+        invitationsList: function($http) {
+          return $http.get('/user_invitations.json');
+        },
+        deps: mLoadSequence('ngTable', 'moment', 'angularMoment', "invitationsServices", "invitationsController")
+      }, // resolve: loadSequence('jquery-sparkline', 'dashboardCtrl'),
+      // title: 'Dashboard',
+      ncyBreadcrumb: {
+        label: 'Dashboard'
+      }
     }).state('app.ui', {
       url: '/ui',
       template: '<div ui-view class="fade-in-up"></div>',

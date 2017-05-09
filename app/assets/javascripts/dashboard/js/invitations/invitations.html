@@ -1,0 +1,55 @@
+<!-- start: PAGE TITLE -->
+<section id="page-title">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">{{ mainTitle }}</h1>
+      <span class="mainDescription">Use this page to start from scratch and put your custom content</span>
+    </div>
+    <div ncy-breadcrumb></div>
+  </div>
+</section>
+<!-- end: PAGE TITLE -->
+<!-- start: YOUR CONTENT HERE -->
+<!-- start: INLINE EDIT EXAMPLE -->
+<div class="container-fluid container-fullw">
+  <div class="row">
+    <div class="col-md-12">
+      <h5 class="over-title margin-bottom-15">Inline <span class="text-bold">edit example</span></h5>
+      <!-- /// controller:  'ngTableCtrl6' -  localtion: assets/js/controllers/ngTableCtrl.js /// -->
+      <div>
+        <div class="row margin-bottom-10">
+          <div class="col-md-12">
+            <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">
+              Clear sorting
+            </button>
+          </div>
+        </div>
+        <strong>Sorting:</strong> {{tableParams.sorting()|json}}
+        <div class="table-responsive">
+          <table ng-table="tableParams" class="table">
+            <tbody ng-repeat="p in invitCtrl.invitations">
+              <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <td class="rowTd" data-title="'ID'" sortable="'id'">{{p.id}}</td>
+                <td class="rowTd" data-title="'random_key'" sortable="'fn'">{{p.random_key}}</td>
+                <td class="rowTd" data-title="'reciever_name'" sortable="'ln'">{{p.reciever_name}}</td>
+                <td class="rowTd" data-title="'company_id'" sortable="'dc'">{{p.company_id}}</td>
+                <td class="rowTd" data-title="'reciever_email'" sortable="'em'">{{p.reciever_email}}</td>
+                <td class="rowTd" data-title="'Phone'" sortable="'ph'">{{p.ph}}</td>
+                <td class="rowTd">
+                  <div class="pull-right margin-right-10">
+                    <input type=button class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit" ng-click="setEditId(p.id)">
+                  </div>
+                </td>
+              </tr>
+              <tr ng-show="editId===p.id" ng-if="editId===p.id">
+                <td colspan="7" ng-include src="'assets/dashboard/views/editRow.html'"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end: INLINE EDIT EXAMPLE -->
+<!-- end: YOUR CONTENT HERE -->

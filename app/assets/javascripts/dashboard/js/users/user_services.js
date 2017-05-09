@@ -10,10 +10,12 @@
 
 
   function UserServices($http) {
+
     var service = {
       updateUser: updateUser,
       getUsers: getUsers,
-      updateUserImage: updateUserImage
+      updateUserImage: updateUserImage,
+      inviteUser: inviteUser
     };
     return service;
 
@@ -40,6 +42,10 @@
 
     function getUsers() {
       return $http.get('/users.json');
+    }
+
+    function inviteUser(userInvitation) {
+      return $http.post('/user_invitations.json', userInvitation)
     }
   }
 })();
