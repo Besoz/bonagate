@@ -15,19 +15,4 @@ angular.module("clip-two", [
   'ncy-angular-breadcrumb',
   'duScroll',
   'pascalprecht.translate',
-]).run(function($rootScope, $http) {
-
-  $http.get('/user_sessions/current_user.json')
-    .then(function(res) {
-      $rootScope.currentUser = res.data;
-
-      $rootScope.currentUser.companyAdmin = function() {
-        return $rootScope.currentUser.role == "company_admin";
-      };
-    })
-    .catch(function(err) {
-      // todo consider no current user
-    });
-
-
-});
+]);

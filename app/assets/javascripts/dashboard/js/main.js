@@ -1,6 +1,7 @@
 var app = angular.module('clipApp', ['clip-two']);
-app.run(['$rootScope', '$state', '$stateParams',
-  function($rootScope, $state, $stateParams) {
+app.run(['$rootScope', '$state', '$stateParams', '$http',
+
+  function($rootScope, $state, $stateParams, $http) {
 
     // Attach Fastclick for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers
     FastClick.attach(document.body);
@@ -12,9 +13,9 @@ app.run(['$rootScope', '$state', '$stateParams',
     // GLOBAL APP SCOPE
     // set below basic information
     $rootScope.app = {
-      name: 'Clip-Two', // name of your project
-      author: 'ClipTheme', // author's name or company name
-      description: 'Angular Bootstrap Admin Template', // brief description
+      name: 'Bonagate', // name of your project
+      author: 'Accorpa', // author's name or company name
+      description: 'Bonagate description', // brief description
       version: '1.0', // current version
       year: ((new Date()).getFullYear()), // automatic current year (for copyright information)
       isMobile: (function() { // true if the browser is a mobile device
@@ -38,6 +39,18 @@ app.run(['$rootScope', '$state', '$stateParams',
       job: 'ng-Dev',
       picture: 'app/img/user/02.jpg'
     };
+
+    $http.get('/user_sessions/current_user.json')
+      .then(function(res) {
+        $rootScope.currentUser = res.data;
+
+        $rootScope.currentUser.companyAdmin = function() {
+          return $rootScope.currentUser.role == "company_admin";
+        };
+      })
+      .catch(function(err) {
+        // todo consider no current user
+      });
   }
 ]);
 // translate config
