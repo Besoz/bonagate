@@ -60,7 +60,7 @@
             To add users, you need to be signed in as the super user.
           </p>
           <p class="links cl-effect-1">
-            <a href>
+            <a ng-click="$state.go('app.users.all')">
 							view more
 						</a>
           </p>
@@ -76,23 +76,21 @@
             The Manage Orders tool provides a view of all your orders.
           </p>
           <p class="cl-effect-1">
-            <a href>
-							view more
-						</a>
+            <a href>view more</a>
           </p>
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4" ng-if="currentUser.companyAdmin()">
       <div class="panel panel-white no-radius text-center">
         <div class="panel-body">
           <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-          <h2 class="StepTitle">Manage Database</h2>
+          <h2 class="StepTitle">Manage Company</h2>
           <p class="text-small">
             Store, modify, and extract information from your database.
           </p>
           <p class="links cl-effect-1">
-            <a ng-click="$state.go('app.users.all')">view more</a>
+            <a ng-click="$state.go('app.companies.profile', {companyId: {{currentUser.company_id}}})">view more</a>
           </p>
         </div>
       </div>
