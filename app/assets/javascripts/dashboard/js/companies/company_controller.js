@@ -5,9 +5,9 @@
   angular.module('clip-two')
     .controller('CompanyController', CompanyController);
 
-  CompanyController.$inject = ['$state', '$window', 'CompanyServices', 'company'];
+  CompanyController.$inject = ['$state', '$window', 'CompanyServices', 'company', '$rootScope'];
 
-  function CompanyController($state, $window, CompanyServices, company) {
+  function CompanyController($state, $window, CompanyServices, company, $rootScope) {
 
     var vm = this;
 
@@ -16,6 +16,7 @@
     vm.company;
     vm.updateCompany = updateCompany;
     vm.uploadImage = uploadImage;
+    vm.canEditCompanyProfile = false;
 
     activate();
 
@@ -24,6 +25,10 @@
       vm.overviewActive = true;
       vm.company = company.data;
       vm.updateCompany = updateCompany;
+
+      if ($rootScope.currentUser.companyAdmin()) {
+        vm.canEditCompanyProfile = true;
+      }
 
       vm.obj = new Flow({
         chunkSize: 1024 * 1024,

@@ -81,16 +81,16 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4" ng-if="currentUser.companyAdmin()">
+    <div class="col-sm-4" ng-if="currentUser.companyUser()">
       <div class="panel panel-white no-radius text-center">
         <div class="panel-body">
           <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-          <h2 class="StepTitle">Manage Company</h2>
+          <h2 class="StepTitle">Company</h2>
           <p class="text-small">
             Store, modify, and extract information from your database.
           </p>
           <p class="links cl-effect-1">
-            <a ng-click="$state.go('app.companies.profile', {companyId: {{currentUser.company_id}}})">view more</a>
+            <a ng-click="$state.go('app.companies.profile', {companyId: {{currentUser.company.id}}})">view more</a>
           </p>
         </div>
       </div>

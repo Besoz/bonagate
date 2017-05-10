@@ -46,8 +46,13 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', 'RedirectService',
       .then(function(res) {
         $rootScope.currentUser = res.data;
 
+        $rootScope.currentUser.companyUser = function() {
+          return $rootScope.currentUser.role == "company_user";
+        };
+
         $rootScope.currentUser.companyAdmin = function() {
-          return $rootScope.currentUser.role == "company_admin";
+          return $rootScope.currentUser.role == "company_user" &&
+            $rootScope.currentUser.company.role == "company_admin";
         };
       })
       .catch(function(err) {

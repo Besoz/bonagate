@@ -31,7 +31,7 @@ class Ability
                 other_user.company_user.company.id == user.company_user.company.id
             end
 
-            can :index, Company, :user_id => user.id # to be changed company_user.company_id
+            can :read, Company, :id => user.company_user.company_id # to be changed company_user.company_id
 
         end
 
