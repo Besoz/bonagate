@@ -24,20 +24,20 @@
                 <div class="user-left">
                   <div class="center">
                     <h4>{{compCtrl.company.name}}</h4>
-                    <div flow-init="{singleFile:true}" flow-object="userCtrl.obj" flow-files-submitted="userCtrl.uploadImage()" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow>
+                    <div flow-init="{singleFile:true}" flow-object="compCtrl.obj" flow-files-submitted="compCtrl.uploadImage()" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" flow>
                       <div class="user-image">
                         <div class="thumbnail">
-                          <img src="assets/images/default-user.png" alt="" ng-if="!userCtrl.obj.files.length && userCtrl.noImage">
-                          <img ng-src="{{compCtrl.company.avatar}}" alt="" ng-if="!userCtrl.obj.files.length && !userCtrl.noImage">
-                          <img flow-img="userCtrl.obj.files[0]" ng-if="userCtrl.obj.files.length">
+                          <img src="assets/images/default-user.png" alt="" ng-if="!compCtrl.obj.files.length && compCtrl.noImage">
+                          <img ng-src="{{compCtrl.company.avatar}}" alt="" ng-if="!compCtrl.obj.files.length && !compCtrl.noImage">
+                          <img flow-img="compCtrl.obj.files[0]" ng-if="compCtrl.obj.files.length">
                         </div>
-                        <div class="user-image-buttons" ng-if="userCtrl.obj.files.length">
+                        <div class="user-image-buttons" ng-if="compCtrl.obj.files.length">
                           <span class="btn btn-primary" flow-btn><i class="fa fa-pencil"></i></span>
-                          <span class="btn btn-danger" ng-click="userCtrl.obj.cancel()"> <i class="fa fa-times"></i> </span>
+                          <span class="btn btn-danger" ng-click="compCtrl.obj.cancel()"> <i class="fa fa-times"></i> </span>
                         </div>
-                        <div class="user-image-buttons" ng-if="!userCtrl.obj.files.length">
+                        <div class="user-image-buttons" ng-if="!compCtrl.obj.files.length">
                           <span class="btn btn-primary" flow-btn><i class="fa fa-pencil"></i></span>
-                          <span class="btn btn-danger" ng-if="!userCtrl.noImage" ng-click="userCtrl.removeImage()"><i class="fa fa-times"></i></span>
+                          <span class="btn btn-danger" ng-if="!compCtrl.noImage" ng-click="compCtrl.removeImage()"><i class="fa fa-times"></i></span>
                         </div>
                       </div>
                     </div>
@@ -45,17 +45,17 @@
                     <div class="social-icons block">
                       <ul>
                         <li data-placement="top" data-original-title="Twitter" class="social-twitter tooltips">
-                          <a href="#" target="_blank">
+                          <a href="{{compCtrl.company.twitter}}" target="_blank">
                             Twitter
                           </a>
                         </li>
                         <li data-placement="top" data-original-title="Facebook" class="social-facebook tooltips">
-                          <a href="#" target="_blank">
+                          <a href="{{compCtrl.company.facebook}}" target="_blank">
                             Facebook
                           </a>
                         </li>
                         <li data-placement="top" data-original-title="Google" class="social-google tooltips">
-                          <a href="#" target="_blank">
+                          <a href="{{compCtrl.company.gplus}}" target="_blank">
                             Google+
                           </a>
                         </li>
@@ -382,21 +382,21 @@
                       <label>
                         Image Upload
                       </label>
-                      <div flow-init flow-object="userCtrl.obj" flow-files-submitted="userCtrl.uploadImage()">
+                      <div flow-init flow-object="compCtrl.obj" flow-files-submitted="compCtrl.uploadImage()">
                         <div class="user-image ">
                           <div class="thumbnail margin-bottom-5 ">
-                            <img src="assets/images/default-user.png " alt=" " ng-if="!userCtrl.obj.files.length && userCtrl.noImage ">
-                            <img ng-src="{{compCtrl.company.avatar}} " alt=" " ng-if="!userCtrl.obj.files.length && !userCtrl.noImage ">
-                            <img flow-img="userCtrl.obj.files[0] " ng-if="userCtrl.obj.files.length ">
+                            <img src="assets/images/default-user.png" alt=" " ng-if="!compCtrl.obj.files.length && compCtrl.noImage ">
+                            <img ng-src="{{compCtrl.company.avatar}} " alt=" " ng-if="!compCtrl.obj.files.length && !compCtrl.noImage ">
+                            <img flow-img="compCtrl.obj.files[0] " ng-if="compCtrl.obj.files.length ">
                           </div>
                         </div>
-                        <div class="user-image-buttons-edit " ng-if="userCtrl.obj.files.length ">
+                        <div class="user-image-buttons-edit " ng-if="compCtrl.obj.files.length ">
                           <span class="btn btn-primary " flow-btn><i class="fa fa-pencil "></i></span>
-                          <span class="btn btn-danger " ng-click="userCtrl.obj.cancel() "> <i class="fa fa-times "></i></span>
+                          <span class="btn btn-danger " ng-click="compCtrl.obj.cancel() "> <i class="fa fa-times "></i></span>
                         </div>
-                        <div class="user-image-buttons-edit " ng-if="!userCtrl.obj.files.length ">
+                        <div class="user-image-buttons-edit " ng-if="!compCtrl.obj.files.length ">
                           <span class="btn btn-primary " flow-btn><i class="fa fa-pencil "></i></span>
-                          <span class="btn btn-danger " ng-if="!userCtrl.noImage " ng-click="userCtrl.removeImage() "><i class="fa fa-times "></i> </span>
+                          <span class="btn btn-danger " ng-if="!compCtrl.noImage " ng-click="compCtrl.removeImage() "><i class="fa fa-times "></i> </span>
                         </div>
                       </div>
                     </div>
@@ -438,24 +438,24 @@
                         Twitter
                       </label>
                       <span class="input-icon ">
-                        <input class="form-control " type="text " placeholder="Twitter " name="twitter " ng-model="compCtrl.company.twitter ">
+                        <input class="form-control" type="text" placeholder="Twitter" name="twitter" ng-model="compCtrl.company.twitter">
                         <i class="fa fa-twitter "></i> </span>
                     </div>
-                    <div class="form-group ">
-                      <label class="control-label ">
+                    <div class="form-group">
+                      <label class="control-label">
                         Facebook
                       </label>
-                      <span class="input-icon ">
-                        <input class="form-control " type="text " placeholder="Facebook " name="facebook " ng-model="compCtrl.company.facebook ">
+                      <span class="input-icon">
+                        <input class="form-control " type="text" placeholder="Facebook" name="facebook" ng-model="compCtrl.company.facebook">
                         <i class="fa fa-facebook "></i> </span>
                     </div>
                     <div class="form-group ">
                       <label class="control-label ">
                         Google Plus
                       </label>
-                      <span class="input-icon ">
-                        <input class="form-control " type="text " placeholder="Google Plus " name="google " ng-model="compCtrl.company.google ">
-                        <i class="fa fa-google-plus "></i> </span>
+                      <span class="input-icon">
+                        <input class="form-control" type="text" placeholder="Google Plus" name="google" ng-model="compCtrl.company.gplus">
+                        <i class="fa fa-google-plus"></i> </span>
                     </div>
                   </div>
                   <!-- <div class="col-md-6 ">
