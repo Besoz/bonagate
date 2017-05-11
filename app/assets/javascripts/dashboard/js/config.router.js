@@ -58,17 +58,22 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
       ncyBreadcrumb: {
         label: 'Dashboard'
       }
-    }).state('app.users.edit', {
-      url: '/users/edit',
+    }).state('app.users.profile', {
+      url: '/users/:userId',
       templateUrl: "assets/dashboard/views/pages_user_profile.html",
       title: 'User Profile',
       controller: "UserController",
       controllerAs: 'userCtrl',
-      params: { user: null, edit: true },
+      params: { edit: null },
       ncyBreadcrumb: {
         label: 'User Profile'
       },
-      resolve: loadSequence('flow', "userServices", 'userController')
+      resolve: {
+        userRequest: function($http, $stateParams) {
+          return $http.get('/users/' + $stateParams.userId + '.json');
+        },
+        deps: mLoadSequence('flow', "userServices", 'userController')
+      }
     }).state('app.users.invitations', {
       url: "/users/invitations",
       templateUrl: "assets/dashboard/js/invitations/invitations.html",
@@ -98,7 +103,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         label: 'Company Profile'
       },
       resolve: {
-        company: function($http, $stateParams) {
+        companyRequest: function($http, $stateParams) {
           return $http.get('/companies/' + $stateParams.companyId + '.json');
         },
         deps: mLoadSequence('flow', "companyServices", 'companyController')
