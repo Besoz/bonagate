@@ -23,7 +23,7 @@ class Ability
                 other_user.company_user.company.id == user.company_user.company.id
             end
 
-            can :crud_all, UserInvitation, :company_id => user.company_user.company_id
+            can :create, UserInvitation, :company_id => user.company_user.company_id
 
         else
 

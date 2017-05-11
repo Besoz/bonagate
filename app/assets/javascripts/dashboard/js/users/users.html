@@ -8,6 +8,11 @@
           </button>
         </div>
       </div> -->
+        <div>
+          <alert ng-repeat="alert in usersCtrl.invitationAlerts" type="{{alert.type}}">
+            {{alert.msg}}
+          </alert>
+        </div>
         <form class="form-register" name="Form" novalidate ng-if="currentUser.companyAdmin()">
           <fieldset>
             <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid || regCtrl.emailError, 'has-success':Form.email.$valid}">
