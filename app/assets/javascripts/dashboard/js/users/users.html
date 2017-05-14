@@ -8,6 +8,11 @@
           </button>
         </div>
       </div> -->
+        <div>
+          <alert ng-repeat="alert in usersCtrl.invitationAlerts" type="{{alert.type}}">
+            {{alert.msg}}
+          </alert>
+        </div>
         <form class="form-register" name="Form" novalidate ng-if="currentUser.companyAdmin()">
           <fieldset>
             <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid || regCtrl.emailError, 'has-success':Form.email.$valid}">
@@ -57,7 +62,7 @@
                   <td class="rowTd" data-title="'Role'" sortable="'ph'">{{p.role}}</td>
                   <td class="rowTd">
                     <div class="pull-right margin-right-10">
-                      <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit" ng-click="$state.go('app.users.edit', {user: p})">
+                      <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit" ng-click="$state.go('app.users.profile', {edit: true, userId: {{p.id}}})">
                       <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="quick edit" ng-click="usersCtrl.setEditId(p.id)">
                     </div>
                   </td>

@@ -5,9 +5,12 @@
   angular.module('clip-two')
     .controller('UserController', UserController);
 
-  UserController.$inject = ['$http', '$window', '$stateParams', 'flowFactory', 'UserServices', 'moment', '$rootScope'];
+  UserController.$inject = ['$http', '$window', '$stateParams', 'flowFactory',
+    'UserServices', 'moment', '$rootScope', 'userRequest'
+  ];
 
-  function UserController($http, $window, $stateParams, flowFactory, UserServices, moment, $rootScope) {
+  function UserController($http, $window, $stateParams, flowFactory, UserServices,
+    moment, $rootScope, userRequest) {
 
     var vm = this;
 
@@ -44,7 +47,7 @@
         vm.editActive = true;
       }
 
-      vm.user = $stateParams.user;
+      vm.user = userRequest.data;
 
       // vm.user = $stateParams.user;
       if (vm.user.avatar) {

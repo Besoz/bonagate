@@ -136,7 +136,7 @@
       </a>
       <ul class="dropdown-menu dropdown-dark">
         <li>
-          <a ui-sref="app.pages.user" translate="topbar.user.PROFILE">
+          <a ui-sref="app.users.profile({userId: {{currentUser.id}}})" translate="topbar.user.PROFILE">
 						My Profile
 					</a>
         </li>
@@ -156,7 +156,7 @@
 					</a>
         </li>
         <li>
-          <a ui-sref="login.signin" translate="topbar.user.LOGOUT">
+          <a ng-click="redirectService.gotoLoginPage()" translate="topbar.user.LOGOUT">
 						Log Out
 					</a>
         </li>

@@ -69,32 +69,50 @@
             <!-- <span class="success text-small block" ng-if="Form.password2.$valid">Passwords match!</span> -->
             <span class="error text-small block" ng-if="regCtrl.passwordConfirmation.hasErr">{{regCtrl.passwordConfirmation.error}}</span>
           </div>
-          <div class="form-group">
-            <div class="checkbox clip-check check-primary">
-              <input type="checkbox" id="agree" value="agree">
-              <label for="agree">
-                I agree
-              </label>
+          <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid || regCtrl.emailError, 'has-success':Form.email.$valid}">
+            <span class="input-icon">
+              <input  class="form-control" name="fn" placeholder="First name" ng-model="regCtrl.firstName">
+            </span>
+          </div>
+          <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid || regCtrl.emailError, 'has-success':Form.email.$valid}">
+            <span class="input-icon">
+              <input  class="form-control" name="ln" placeholder="Last name" ng-model="regCtrl.lastName">
+            </span>
+          </div>
+          <div>
+            <p>
+              Enter your company details below:
+            </p>
+            <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid || regCtrl.emailError, 'has-success':Form.email.$valid}">
+              <span class="input-icon">
+              <input class="form-control" name="companyName" placeholder="Company name" ng-model="regCtrl.companyName" required>
+              
+              <span class="error text-small block" ng-if="Form.email.$dirty && Form.email.$error.required">Company name is required.</span>
+              <span class="error text-small block" ng-if="regCtrl.companyNameError">Company name  {{regCtrl.emailError}}</span>
+            </div>
+            <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid || regCtrl.emailError, 'has-success':Form.email.$valid}">
+              <span class="input-icon">
+              <input  class="form-control" name="address" placeholder="Address" ng-model="regCtrl.address">
+            </span>
             </div>
           </div>
-          <div class="form-actions">
-            <p>
-              Already have an account?
-              <a ng-click="regCtrl.gotoLoginPage()">
+          <p>
+            Already have an account?
+            <a ng-click="regCtrl.gotoLoginPage()">
                 Log-in
               </a>
-            </p>
-            <button type="submit" ng-click="regCtrl.registerUser()" class="btn btn-primary pull-right">
+          </p>
+          <div class="form-actions">
+            <button type="submit" ng-click="regCtrl.registerUser(Form)" class="btn btn-primary pull-right">
               Submit <i class="fa fa-arrow-circle-right"></i>
             </button>
           </div>
         </fieldset>
-      </form>
-      <!-- start: COPYRIGHT -->
-      <div class="copyright">
-        {{app.year}} &copy; {{ app.name }} by {{ app.author }}.
-      </div>
-      <!-- end: COPYRIGHT -->
+        <!-- start: COPYRIGHT -->
+        <div class="copyright">
+          {{app.year}} &copy; {{ app.name }} by {{ app.author }}.
+        </div>
+        <!-- end: COPYRIGHT -->
     </div>
     <!-- end: REGISTER BOX -->
   </div>

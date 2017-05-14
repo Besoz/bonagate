@@ -5,9 +5,9 @@
   angular.module('clip-two')
     .controller('UsersController', UsersController);
 
-  UsersController.$inject = ['$state', '$window', 'usersList', 'UserServices', '$rootScope'];
+  UsersController.$inject = ['$state', '$window', 'usersList', 'UserServices', '$rootScope', 'toaster'];
 
-  function UsersController($state, $window, usersList, UserServices, $rootScope) {
+  function UsersController($state, $window, usersList, UserServices, $rootScope, toaster) {
 
     var vm = this;
 
@@ -18,8 +18,10 @@
     vm.setEditId = setEditId;
     vm.save = save; // inline edit save
 
+    // invitations
     vm.inviteUser = inviteUser;
     vm.userInvitation;
+    vm.invitationAlerts = [];
 
     vm.roles = [
       { name: 'Admin', value: 'company_admin' },
@@ -47,20 +49,50 @@
     //  user invitation
 
     function inviteUser() {
+
+      vm.invitationAlerts = [];
+
       vm.userInvitation.user.role = vm.userInvitation.user.role.value
       vm.userInvitation.user_invitation = {};
       vm.userInvitation.user_invitation.reciever_email = vm.userInvitation.user.email
 
-
       UserServices.inviteUser(vm.userInvitation)
         .then(function(res) {
           console.log(res);
-
+          toaster.pop("success", "Invitation sent", res.data.reciever_email + " is invited");
         }).catch(function(err) {
           console.log(err);
+          var errors = getErrorsArr(err.data);
 
+          for (var i = 0; i < errors.length; i++) {
+            vm.invitationAlerts.push({
+              type: 'danger',
+              msg: errors[i].item + ": " + errors[i].error
+            });
+          }
         })
     }
+
+
+    function getErrorsArr(errors) {
+
+      var arr = [];
+
+      for (var key in errors) {
+        if (errors.hasOwnProperty(key)) {
+
+          for (var i = 0; i < errors[key].length; i++) {
+            arr.push({
+              item: key,
+              error: errors[key][i]
+            });
+          }
+        }
+      }
+
+      return arr;
+    }
+
 
   }
 

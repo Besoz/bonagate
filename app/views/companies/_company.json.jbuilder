@@ -1,2 +1,3 @@
-json.extract! company, :id, :name, :user_id, :created_at, :updated_at
+json.extract! company, :id, :name, :email, :phone, :avatar, :facebook,
+                       :gplus, :twitter
 json.url company_url(company, format: :json)

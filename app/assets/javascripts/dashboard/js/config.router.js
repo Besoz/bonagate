@@ -58,17 +58,22 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
       ncyBreadcrumb: {
         label: 'Dashboard'
       }
-    }).state('app.users.edit', {
-      url: '/users/edit',
+    }).state('app.users.profile', {
+      url: '/users/:userId',
       templateUrl: "assets/dashboard/views/pages_user_profile.html",
       title: 'User Profile',
       controller: "UserController",
       controllerAs: 'userCtrl',
-      params: { user: null, edit: true },
+      params: { edit: null },
       ncyBreadcrumb: {
         label: 'User Profile'
       },
-      resolve: loadSequence('flow', "userServices", 'userController')
+      resolve: {
+        userRequest: function($http, $stateParams) {
+          return $http.get('/users/' + $stateParams.userId + '.json');
+        },
+        deps: mLoadSequence('flow', "userServices", 'userController')
+      }
     }).state('app.users.invitations', {
       url: "/users/invitations",
       templateUrl: "assets/dashboard/js/invitations/invitations.html",
@@ -83,6 +88,25 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
       // title: 'Dashboard',
       ncyBreadcrumb: {
         label: 'Dashboard'
+      }
+    }).state('app.companies', {
+      abstract: true,
+      url: '/companies',
+      templateUrl: "assets/dashboard/js/users/users-layout.html"
+    }).state('app.companies.profile', {
+      url: '/:companyId',
+      templateUrl: "assets/dashboard/js/companies/company_profile.html",
+      title: 'Company Profile',
+      controller: "CompanyController",
+      controllerAs: 'compCtrl',
+      ncyBreadcrumb: {
+        label: 'Company Profile'
+      },
+      resolve: {
+        companyRequest: function($http, $stateParams) {
+          return $http.get('/companies/' + $stateParams.companyId + '.json');
+        },
+        deps: mLoadSequence('flow', "companyServices", 'companyController')
       }
     }).state('app.ui', {
       url: '/ui',

@@ -16,14 +16,14 @@ class Ability
 
         if(user.company_user.company_admin?)
 
-            can :crud_all, Company, :user_id => user.id # to be changed company_user.company_id
+            can :crud_all, Company, :id => user.company_user.company_id # to be changed company_user.company_id
 
 
             can :crud_all, User, User.in_company(user.company_user.company.id) do |other_user|
                 other_user.company_user.company.id == user.company_user.company.id
             end
 
-            can :crud_all, UserInvitation, :company_id => user.company_user.company_id
+            can :create, UserInvitation, :company_id => user.company_user.company_id
 
         else
 
@@ -31,7 +31,7 @@ class Ability
                 other_user.company_user.company.id == user.company_user.company.id
             end
 
-            can :index, Company, :user_id => user.id # to be changed company_user.company_id
+            can :read, Company, :id => user.company_user.company_id # to be changed company_user.company_id
 
         end
 
