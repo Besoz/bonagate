@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
 
-    errors = nil
+    errors = {}
     company = nil
     user_invitation = nil
     invited_user = false
@@ -81,10 +81,14 @@ class UsersController < ApplicationController
       render :show, status: :created, location: @user
       
     rescue Exception => e
-      
-      errors = @user.errors
+      puts errors.to_json
+      # errors = @user.errors
+      errors.merge! @user.errors if @user && @user.errors.size > 0
+      puts errors.to_json
       errors.merge! company.errors if company && company.errors.size > 0
+      puts errors.to_json
       errors.merge! companyUser.errors if companyUser && companyUser.errors.size > 0
+      puts errors.to_json
 
       render json: errors, status: :unprocessable_entity
     end

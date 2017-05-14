@@ -1,58 +1,0 @@
-{:uriI"ïfile://app/assets/javascripts/dashboard/RTL/templates/year.html?type=text/ng-html&id=fda882bea92e7dd7439bfc3690d6a296a51f59e0b60ad097e903c4afde446197:ET:load_pathI"app/assets/javascripts;T:filenameI"=app/assets/javascripts/dashboard/RTL/templates/year.html;T:	nameI"!dashboard/RTL/templates/year;T:logical_pathI"&dashboard/RTL/templates/year.html;T:content_typeI"text/ng-html;T:sourceI"È<div class="cal-year-box">
-  <div ng-repeat="year in view track by $index">
-    <div class="row cal-before-eventlist">
-      <div class="span3 col-md-3 col-xs-6 cal-cell" ng-repeat="month in year track by $index" ng-click="monthClicked($parent.$index, $index)" ng-class="{pointer: month.events.length > 0, 'cal-day-today': month.isToday}">
-        <span class="pull-right" data-cal-date ng-click="drillDown(month.monthIndex)">{{ month.label }}</span>
-
-        <small class="cal-events-num badge badge-important pull-left" ng-show="month.events.length > 0">{{ month.events.length }}</small>
-
-        <div class="cal-day-tick" ng-show="month.isOpened">
-          <i class="glyphicon glyphicon-chevron-up"></i>
-          <i class="fa fa-chevron-up"></i>
-        </div>
-
-      </div>
-    </div>
-    <div class="cal-slide-box" collapse="!year.isOpened">
-      <span class="cal-slide-tick" class="tick-month3"></span>
-      <div class="cal-slide-content" class="cal-event-list">
-        <ul class="unstyled list-unstyled">
-
-          <li ng-repeat="event in openEvents track by $index">
-            <span class="pull-left event" ng-class="'event-' + event.type"></span>
-            &nbsp;
-            <a
-              href="javascript:;"
-              class="event-item"
-              ng-click="eventClick({$event: event})">
-              {{ event.title }}
-            </a>
-
-            <a
-              href="javascript:;"
-              class="event-item-edit"
-              ng-if="editEventHtml && event.editable !== false"
-              ng-bind-html="$sce.trustAsHtml(editEventHtml)"
-              ng-click="eventEditClick({$event: event})">
-            </a>
-
-            <a
-              href="javascript:;"
-              class="event-item-delete"
-              ng-if="deleteEventHtml && event.deletable !== false"
-              ng-bind-html="$sce.trustAsHtml(deleteEventHtml)"
-              ng-click="eventDeleteClick({$event: event})">
-            </a>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</div>
-;T:metadata{	:dependencieso:Set:
-@hash{
-I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Kfile-digest://app/assets/javascripts/dashboard/RTL/templates/year.html;TT:charsetI"
-utf-8;F:digest"%¶ÇU=:≤d ãw√BË\oç¡*À˛{G*Ò$/ÏC˜:lengthiÈ:dependencies_digest"%I÷pQxLM“bw(. ¢Ñ·Î˛Só¸Òá(Z	|9Q:idI"Efda882bea92e7dd7439bfc3690d6a296a51f59e0b60ad097e903c4afde446197;F:
-mtimel+<†U

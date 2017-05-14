@@ -1,47 +1,0 @@
-{:uriI"–file://app/assets/javascripts/dashboard/views/calendar/main.html?type=text/ng-html&id=3f0507aa714c1850a6a5d0d0ac759d318050ab6c6bf78829f1179805c3f4a1f5:ET:load_pathI"app/assets/javascripts;T:filenameI">app/assets/javascripts/dashboard/views/calendar/main.html;T:	nameI""dashboard/views/calendar/main;T:logical_pathI"'dashboard/views/calendar/main.html;T:content_typeI"text/ng-html;T:sourceI"<div class="cal-context" style="width: 100%;">
-
-  <mwl-calendar-year
-    calendar-events="events"
-    calendar-current-day="currentDay"
-    calendar-event-click="eventClick"
-    calendar-edit-event-click="eventEditClick"
-    calendar-delete-event-click="eventDeleteClick"
-    calendar-edit-event-html="editEventHtml"
-    calendar-delete-event-html="deleteEventHtml"
-    calendar-auto-open="autoOpen"
-    ng-if="view == 'year'"
-  ></mwl-calendar-year>
-
-  <mwl-calendar-month
-    calendar-events="events"
-    calendar-current-day="currentDay"
-    calendar-event-click="eventClick"
-    calendar-edit-event-click="eventEditClick"
-    calendar-delete-event-click="eventDeleteClick"
-    calendar-edit-event-html="editEventHtml"
-    calendar-delete-event-html="deleteEventHtml"
-    calendar-auto-open="autoOpen"
-    calendar-use-iso-week="useIsoWeek"
-    ng-if="view == 'month'"
-    ></mwl-calendar-month>
-
-  <mwl-calendar-week
-    calendar-events="events"
-    calendar-current-day="currentDay"
-    calendar-event-click="eventClick"
-    calendar-use-iso-week="useIsoWeek"
-    ng-if="view == 'week'"
-    ></mwl-calendar-week>
-
-  <mwl-calendar-day
-    calendar-events="events"
-    calendar-current-day="currentDay"
-    calendar-event-click="eventClick"
-    ng-if="view == 'day'"
-    ></mwl-calendar-day>
-</div>
-;T:metadata{	:dependencieso:Set:
-@hash{
-I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Lfile-digest://app/assets/javascripts/dashboard/views/calendar/main.html;TT:charsetI"
-utf-8;F:digest"%'Ëƒô'¥ññ=O$™»1Õ,¢©!Ö&”W#Á¶fd:lengthi:dependencies_digest"%ÚO‘H†2EWÔg•³¹,UHZÉõtÊ|7’bêÌÑ:idI"E3f0507aa714c1850a6a5d0d0ac759d318050ab6c6bf78829f1179805c3f4a1f5;F:
-mtimel+dÂU
