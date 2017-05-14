@@ -87,14 +87,7 @@
         })
         .catch(function(err) {
           // vm.emailError = err.data.email[0]
-          var errors = decoratorService.getErrorsArr(err.data);
-
-          for (var i = 0; i < errors.length; i++) {
-            vm.regAlerts.push({
-              type: 'danger',
-              msg: errors[i].item + ": " + errors[i].error
-            });
-          }
+          vm.regAlerts = decoratorService.getErrorsAlertsArr(err.data);
 
           console.log("Errro");
           console.log(err);

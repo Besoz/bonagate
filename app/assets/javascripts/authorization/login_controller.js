@@ -2,16 +2,20 @@
   angular.module('auth_app')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$http', '$window', 'redirectService'];
+  LoginController.$inject = ['$http', '$window', 'redirectService', 'decoratorService'];
 
-  function LoginController($http, $window, redirectService) {
+  function LoginController($http, $window, redirectService, decoratorService) {
     var vm = this;
 
     vm.userEmail = '';
     vm.userPassword = '';
     vm.loginUser = loginUser;
+    vm.loginAlerts = [];
 
     function loginUser() {
+
+      vm.loginAlerts = [];
+
       userSession = {
         email: vm.userEmail,
         password: vm.userPassword
@@ -28,6 +32,7 @@
 
         })
         .catch(function(err) {
+          vm.loginAlerts = decoratorService.getErrorsAlertsArr(err.data);
 
           console.log("Errro");
           console.log(err);

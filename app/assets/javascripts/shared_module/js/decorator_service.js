@@ -11,14 +11,14 @@
   function decoratorService() {
 
     var service = {
-      getErrorsArr: getErrorsArr
+      getErrorsAlertsArr: getErrorsAlertsArr
     };
 
     return service;
 
     ////////////
 
-    function getErrorsArr(errors) {
+    function getErrorsAlertsArr(errors) {
 
       var arr = [];
 
@@ -28,7 +28,9 @@
           for (var i = 0; i < errors[key].length; i++) {
             arr.push({
               item: key,
-              error: errors[key][i]
+              error: errors[key][i],
+              type: 'danger',
+              msg: key + ": " + errors[key][i]
             });
           }
         }
