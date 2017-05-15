@@ -20,12 +20,26 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ar:
+  # star: registartion page #
   Enter your account details below: Enter your account details belowِق
   Sign Up: Sign Upسس
   Enter your company details below: Enter your company details belowشش
   Already have an account: Already have an accountشش
   Submit: Submitشش
   Log-in: Log-inشش
+  # end: registartion page #
+  
+  # start: signup page #
+  Sign in to your account: Sign in to your accountسس
+  Username required: Username requiredسس
+  I forgot my password: I forgot my passسسword
+  Keep me signed in: Keep me signed inسس
+  Login: Loginسسس
+  Don't have an account yet: Don't have an account yetسس
+  Create an account: Create an accountسس
+  Please enter your name and password to log in: Please enter your name and password to log inسس
+  # end: signup page #
+
   activerecord:
     models:
       user: المستخدم

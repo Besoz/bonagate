@@ -15,42 +15,43 @@
         <form name="Form" class="form-login" novalidate>
           <fieldset>
             <legend>
-              Sign in to your account
+              <%= t('Sign in to your account') %>
             </legend>
             <p>
-              Please enter your name and password to log in.
+              <%= t('Please enter your name and password to log in') %>.
             </p>
             <div class="form-group" ng-class="{'has-error':Form.username.$dirty && Form.username.$invalid, 'has-success':Form.username.$valid}">
               <span class="input-icon">
-                          <input type="text" class="form-control" name="username" placeholder="Username" ng-model= "loginController.userEmail" required>
+                          <input type="text" class="form-control" name="username" 
+                          placeholder= "<%= User.human_attribute_name('email')%>" ng-model= "loginController.userEmail" required>
                           <i class="fa fa-user" ></i>
-                          <span class="error text-small block" ng-if="Form.username.$dirty && Form.username.$invalid">Username required</span>
+                          <span class="error text-small block" ng-if="Form.username.$dirty && Form.username.$invalid"><%= t('Username required') %></span>
               </span>
             </div>
             <div class="form-group form-actions">
               <span class="input-icon">
-              <input type="password" class="form-control password" name="password" placeholder="Password" ng-model= "loginController.userPassword">
+              <input type="password" class="form-control password" name="password" placeholder="<%= User.human_attribute_name('password')%>" ng-model= "loginController.userPassword">
               <i class="fa fa-lock"></i>
               <a class="forgot" ui-sref="login.forgot">
-                I forgot my password
+                <%= t('I forgot my password') %>
               </a> </span>
             </div>
             <div class="form-actions">
               <div class="checkbox clip-check check-primary">
                 <input type="checkbox" id="remember" value="1">
                 <label for="remember">
-                  Keep me signed in
+                  <%= t('Keep me signed in') %>
                 </label>
               </div>
               <button ng-click="loginController.loginUser()" class="btn btn-primary pull-right">
-                Login <i class="fa fa-arrow-circle-right"></i>
+                <%= t('Login') %><i class="fa fa-arrow-circle-right"></i>
               </button>
             </div>
             <div class="new-account">
-              Don't have an account yet?
-              <a ui-sref="login.registration">
-                          Create an account
-                        </a>
+              <%= t('Don\'t have an account yet') %>?
+                <a ui-sref="login.registration">
+                  <%= t('Create an account') %>?
+                </a>
             </div>
           </fieldset>
         </form>
