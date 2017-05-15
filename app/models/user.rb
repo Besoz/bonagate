@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
 	extend Enumerize
 	acts_as_authentic
 
+  default_value_for :confirmed, true
+  default_value_for :approved, true
+  default_value_for :active, true
+
   has_many :property_detail_queries
 
   enumerize :role, in: [:user, :admin, :company_user], default: :user , predicates: true, scope: true

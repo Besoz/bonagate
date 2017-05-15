@@ -2,9 +2,13 @@
   angular.module('auth_app')
     .controller('RegisterationController', RegisterationController);
 
-  RegisterationController.$inject = ['$http', '$window', '$location', 'redirectService'];
+  RegisterationController.$inject = ['$http', '$window', '$location',
+    'redirectService', 'decoratorService'
+  ];
 
-  function RegisterationController($http, $window, $location, redirectService) {
+  function RegisterationController($http, $window, $location, redirectService,
+    decoratorService) {
+
     var vm = this;
 
     vm.email;
@@ -16,6 +20,7 @@
     vm.invitedUser = false;
     vm.registerUser = register;
     vm.gotoLoginPage = gotoLoginPage;
+    vm.regAlerts = [];
 
 
     activate();
@@ -45,6 +50,8 @@
 
 
     function register(form) {
+
+      vm.regAlerts = [];
 
       if (!form.$valid)
         return;
@@ -79,8 +86,8 @@
 
         })
         .catch(function(err) {
-          vm.emailError = err.data.email[0];
-
+          // vm.emailError = err.data.email[0]
+          vm.regAlerts = decoratorService.getErrorsAlertsArr(err.data);
 
           console.log("Errro");
           console.log(err);

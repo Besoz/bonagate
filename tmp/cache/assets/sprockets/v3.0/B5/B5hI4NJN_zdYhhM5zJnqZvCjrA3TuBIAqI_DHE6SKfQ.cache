@@ -1,27 +1,0 @@
-{:uriI"öfile://app/assets/javascripts/dashboard/views/login_lock_screen.html?type=text/ng-html&id=b9bfc22ceeb28c5d9ddba9f0cf65c45a8f8403b9110ce82254b195c6b28e1a56:ET:load_pathI"app/assets/javascripts;T:filenameI"Bapp/assets/javascripts/dashboard/views/login_lock_screen.html;T:	nameI"&dashboard/views/login_lock_screen;T:logical_pathI"+dashboard/views/login_lock_screen.html;T:content_typeI"text/ng-html;T:sourceI"m<!-- start: LOCK SCREEN -->
-<div class="row">
-	<div class="lock-screen">
-		<div class="box-ls">
-			<img alt="" src="assets/images/avatar-1-xl.jpg" class="img-rounded"/>
-			<div class="user-info">
-				<h4>Peter Clark</h4>
-				<span>peter@example.com</span>
-				<form>
-					<div class="input-group">
-						<input type="text" placeholder="Password to unlock" class="form-control">
-						<span class="input-group-btn">
-							<button class="btn btn-primary" type="submit">
-								<i class="fa fa-chevron-right"></i>
-							</button> </span>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end: LOCK SCREEN -->;T:metadata{	:dependencieso:Set:
-@hash{
-I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Pfile-digest://app/assets/javascripts/dashboard/views/login_lock_screen.html;TT:charsetI"
-utf-8;F:digest"%°ûÀˆ ppÂ´3lo€»‹Ç ŒÏ_√Z√6Ñé/Q:lengthim:dependencies_digest"%-∆J‡û¿:¡â,∆ei.O¶<ıûà»
-36=Qº„A:idI"Eb9bfc22ceeb28c5d9ddba9f0cf65c45a8f8403b9110ce82254b195c6b28e1a56;F:
-mtimel+d¬U

@@ -1,26 +1,0 @@
-{:uriI"¥file://app/assets/javascripts/dashboard/RTL/assets/views/login_lock_screen.html?type=text/ng-html&id=fbf793e1406be1ef60fa90001a980344e9abd12d0f3038536fef56e820c76abc:ET:load_pathI"app/assets/javascripts;T:filenameI"Mapp/assets/javascripts/dashboard/RTL/assets/views/login_lock_screen.html;T:	nameI"1dashboard/RTL/assets/views/login_lock_screen;T:logical_pathI"6dashboard/RTL/assets/views/login_lock_screen.html;T:content_typeI"text/ng-html;T:sourceI"m<!-- start: LOCK SCREEN -->
-<div class="row">
-	<div class="lock-screen">
-		<div class="box-ls">
-			<img alt="" src="assets/images/avatar-1-xl.jpg" class="img-rounded"/>
-			<div class="user-info">
-				<h4>Peter Clark</h4>
-				<span>peter@example.com</span>
-				<form>
-					<div class="input-group">
-						<input type="text" placeholder="Password to unlock" class="form-control">
-						<span class="input-group-btn">
-							<button class="btn btn-primary" type="submit">
-								<i class="fa fa-chevron-right"></i>
-							</button> </span>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end: LOCK SCREEN -->;T:metadata{	:dependencieso:Set:
-@hash{
-I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"[file-digest://app/assets/javascripts/dashboard/RTL/assets/views/login_lock_screen.html;TT:charsetI"
-utf-8;F:digest"%¡ËöÊppå«3loÛÈÜ‚ÊÎì_ÃZÃ6„/Q:lengthim:dependencies_digest"%^–‡¶ø®~ŒN¤ Õ=—Ôİ_äÆ ?Å3K:idI"Efbf793e1406be1ef60fa90001a980344e9abd12d0f3038536fef56e820c76abc;F:
-mtimel+dÂU

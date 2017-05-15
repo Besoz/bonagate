@@ -1,40 +1,0 @@
-{:uriI"file://app/assets/javascripts/dashboard/views/editRow.html?type=text/ng-html&id=160892c424760f8d14b9fb6012a369eabb8d68564aed2128e3d88350b0f3633d:ET:load_pathI"app/assets/javascripts;T:filenameI"8app/assets/javascripts/dashboard/views/editRow.html;T:	nameI"dashboard/views/editRow;T:logical_pathI"!dashboard/views/editRow.html;T:content_typeI"text/ng-html;T:sourceI"<table class="table no-bg">
-	<tr>
-		<td rowspan="2">ID: {{p.id}}
-		<input type="hidden" name="id" value="{{p.id}}">
-		</td>
-		<td>Firstname:</td>
-		<td>
-		<input class="form-control" type="text" name="fn" class="w100" ng-model="p.fn">
-		</td>
-		<td>Description: </td>
-		<td>
-		<input class="form-control" type="text" name="dc" class="w180" ng-model="p.dc">
-		</td>
-		<td>Email:</td>
-		<td>
-		<input class="form-control" type="text" name="em" class="w180" ng-model="p.em">
-		</td>
-	</tr>
-	<tr>
-		<td>Lastname:</td>
-		<td>
-		<input class="form-control" type="text" name="ln" class="w100" ng-model="p.ln">
-		</td>
-		<td>Phone: </td>
-		<td>
-		<input class="form-control" type="text" name="ph" class="w120" ng-model="p.ph">
-		</td>
-		<td colspan="2">
-		<div class="pull-right">
-			<input type="button" class="btn btn-primary btn-sm margin-right-15" value=" save " onclick="alert('Save :)')">
-			<input type="button" class="btn btn-primary btn-sm" value=" cancel" ng-click="setEditId(-1)">
-		</div></td>
-	</tr>
-</table>
-<!--  class="editRowTd" -->
-;T:metadata{	:dependencieso:Set:
-@hash{
-I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Ffile-digest://app/assets/javascripts/dashboard/views/editRow.html;TT:charsetI"
-utf-8;F:digest"%õ,˜å2½|Ô4ÓzCªÿâÜ ¢î›Æaâ› F‘7:lengthi:dependencies_digest"%ò4¡AIşƒZ’ˆHÁƒÙ{Sí—Š5ÍµRÁCø1ö*¶:idI"E160892c424760f8d14b9fb6012a369eabb8d68564aed2128e3d88350b0f3633d;F:
-mtimel+dÂU

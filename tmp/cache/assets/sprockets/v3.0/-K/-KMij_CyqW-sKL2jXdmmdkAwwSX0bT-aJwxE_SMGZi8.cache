@@ -1,46 +1,0 @@
-{:uriI"†file://app/assets/javascripts/dashboard/RTL/assets/views/login_forgot.html?type=text/ng-html&id=6bd6ca998d4f721c3b51c8154d29aa4b508f2af5348871f335d92cf9d927cc2e:ET:load_pathI"app/assets/javascripts;T:filenameI"Happ/assets/javascripts/dashboard/RTL/assets/views/login_forgot.html;T:	nameI",dashboard/RTL/assets/views/login_forgot;T:logical_pathI"1dashboard/RTL/assets/views/login_forgot.html;T:content_typeI"text/ng-html;T:sourceI"Õ<!-- start: FORGOT -->
-<div class="row">
-	<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-		<div class="logo">
-			<img ng-src="{{app.layout.logo}}" alt="{{app.name}}"/>
-		</div>
-		<!-- start: FORGOT BOX -->
-		<div class="box-forgot">
-			<form class="form-forgot">
-				<fieldset>
-					<legend>
-						Forget Password?
-					</legend>
-					<p>
-						Enter your e-mail address below to reset your password.
-					</p>
-					<div class="form-group">
-						<span class="input-icon">
-							<input type="email" class="form-control" name="email" placeholder="Email">
-							<i class="fa fa-envelope-o"></i> </span>
-					</div>
-					<div class="form-actions">
-						<a class="btn btn-primary btn-o" ui-sref="login.signin">
-							<i class="fa fa-chevron-circle-right"></i> Log-In
-						</a>
-						<button type="submit" class="btn btn-primary pull-left">
-							Submit <i class="fa fa-arrow-circle-left"></i>
-						</button>
-					</div>
-				</fieldset>
-			</form>
-			<!-- start: COPYRIGHT -->
-			<div class="copyright">
-				{{app.year}} &copy; {{ app.name }} by {{ app.author }}.
-			</div>
-			<!-- end: COPYRIGHT -->
-		</div>
-		<!-- end: FORGOT BOX -->
-	</div>
-</div>
-<!-- end: FORGOT -->
-;T:metadata{	:dependencieso:Set:
-@hash{
-I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Vfile-digest://app/assets/javascripts/dashboard/RTL/assets/views/login_forgot.html;TT:charsetI"
-utf-8;F:digest"%À4w`ùÄò∑¥(Ú ¯XŸÔ†‚V4C[1À#œ(£:lengthiÕ:dependencies_digest"%M"~éÍ´Ä=.W√ÒÌü û‘6ö1‹∂fö™ﬂÄÉK:idI"E6bd6ca998d4f721c3b51c8154d29aa4b508f2af5348871f335d92cf9d927cc2e;F:
-mtimel+d¬U
