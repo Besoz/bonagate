@@ -20,6 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  Enter your account details below: Enter your account details below
+  Sign Up: Sign Up
+  Enter your company details below: Enter your company details below
+  Already have an account: Already have an account
+  Submit: Submit
+  Log-in: Log-in
   activerecord:
     errors:
       messages:

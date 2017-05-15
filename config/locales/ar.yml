@@ -20,12 +20,21 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ar:
+  Enter your account details below: Enter your account details belowِق
+  Sign Up: Sign Upسس
+  Enter your company details below: Enter your company details belowشش
+  Already have an account: Already have an accountشش
+  Submit: Submitشش
+  Log-in: Log-inشش
   activerecord:
     models:
       user: المستخدم
     attributes:
       user:
         email: "الإيميل" 
+        password: كلمة السر
+        password_confirmation: تأكيد كلمة السر
+        first_name: الاسم الاول
     errors:
       messages:
         record_invalid: 'فشل التحقّق من: %{errors}'
