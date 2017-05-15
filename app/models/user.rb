@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   enumerize :role, in: [:user, :admin, :company_user], default: :user , predicates: true, scope: true
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: ""
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "assets/default-user.png"
      validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   has_one :company_user
