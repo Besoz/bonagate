@@ -1,35 +1,0 @@
-{:uriI"–file://app/assets/javascripts/dashboard/views/ui_line_icons.html?type=text/ng-html&id=f2a4f5eeb1ce58c0cc64a049be627ddf00df3dad7d09ddc5edb6f291d4bb7058:ET:load_pathI"app/assets/javascripts;T:filenameI">app/assets/javascripts/dashboard/views/ui_line_icons.html;T:	nameI""dashboard/views/ui_line_icons;T:logical_pathI"'dashboard/views/ui_line_icons.html;T:content_typeI"text/ng-html;T:sourceI"‰<!-- start: PAGE TITLE -->
-<section id="page-title" class="page-title-center">
-	<div class="row">
-		<div class="col-sm-8 col-sm-offset-2">
-			<h1 class="mainTitle" translate="sidebar.nav.element.LINEARICONS">{{ mainTitle }}</h1>
-			<span class="mainDescription">Themify Icons is a complete set of icons for use in web design and apps, consisting of 320+ pixel-perfect, hand-crafted icons that draw inspiration from Apple iOS 7</span>
-			<input ng-model="search" class="form-control text-center margin-top-15" type="text" placeholder="Search {{icons.name}} icons...">
-			<div ncy-breadcrumb></div>
-		</div>
-	</div>
-</section>
-<!-- end: PAGE TITLE -->
-<!-- start: THEMIFY ICONS -->
-<!-- /// controller:  'IconsCtrl' -  localtion: assets/js/controllers/iconsCtrl.js /// -->
-<div ng-controller="IconsCtrl">
-	<div ng-repeat="icons in icons | filter: { type: 'themify' }">
-		<div class="container-fluid container-fullw bg-white" ng-repeat="sections in icons.sections" ng-if="(sections.icons | filter: search).length">
-			<div class="row">
-				<div class="col-md-12">
-					<h5 class="over-title margin-bottom-15">{{sections.title}}</h5>
-					<div class="row the-icons">
-						<div class="fa-hover col-md-3 col-sm-4" ng-repeat="item in sections.icons | filter: search">
-							<i class="{{icons.prefix}} {{item}}"></i> {{item}}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end: THEMIFY ICONS -->;T:metadata{	:dependencieso:Set:
-@hash{
-I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Lfile-digest://app/assets/javascripts/dashboard/views/ui_line_icons.html;TT:charsetI"
-utf-8;F:digest"%iòÃ9©¢­n]xHj†¾@—–Ä;mšÒ6YÜO/å:lengthi‰:dependencies_digest"%›ãÃä×!Ê}ì÷êŸ:·Z³šŽ §EÒ¹”ò[Ù·Ü:idI"Ef2a4f5eeb1ce58c0cc64a049be627ddf00df3dad7d09ddc5edb6f291d4bb7058;F:
-mtimel+dÂU

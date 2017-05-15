@@ -1,8 +1,0 @@
-{:uriI"ôfile://app/assets/javascripts/dashboard/views/partials/sidebar.html?type=text/ng-html&id=b84dbe73f937afa143d9100eed07d88c2b0f1a1d7507c1f6cade6cfd868a4f28:ET:load_pathI"app/assets/javascripts;T:filenameI"Aapp/assets/javascripts/dashboard/views/partials/sidebar.html;T:	nameI"%dashboard/views/partials/sidebar;T:logical_pathI"*dashboard/views/partials/sidebar.html;T:content_typeI"text/ng-html;T:sourceI"~<!-- start: SIDEBAR -->
-<nav data-ng-include=" 'assets/dashboard/views/partials/nav.html' "></nav>
-<!-- end: SIDEBAR -->
-;T:metadata{	:dependencieso:Set:
-@hash{
-I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Ofile-digest://app/assets/javascripts/dashboard/views/partials/sidebar.html;TT:charsetI"
-utf-8;F:digest"%¡¿[%˛’ì	“0∏—ñQjZﬁ‡˜Ë SmÒ^:lengthi~:dependencies_digest"%ÜÔ∫	q,ÎÙ¶>ùqZ√Ê¿Ñ'."UÊV`”Ê/ày:idI"Eb84dbe73f937afa143d9100eed07d88c2b0f1a1d7507c1f6cade6cfd868a4f28;F:
-mtimel+∆¸X

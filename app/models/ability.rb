@@ -27,9 +27,10 @@ class Ability
 
         else
 
-            can :index, User, User.in_company(user.company_user.company.id) do |other_user|
-                other_user.company_user.company.id == user.company_user.company.id
-            end
+
+            can :crud, User, id: user.id
+
+            can :index, User,  :company_user => { :company_id => user.company_user.company.id }
 
             can :read, Company, :id => user.company_user.company_id # to be changed company_user.company_id
 
