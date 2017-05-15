@@ -81,6 +81,7 @@ class UsersController < ApplicationController
       render :show, status: :created, location: @user
       
     rescue Exception => e
+      puts e
       puts errors.to_json
       # errors = @user.errors
       errors.merge! @user.errors if @user && @user.errors.size > 0
