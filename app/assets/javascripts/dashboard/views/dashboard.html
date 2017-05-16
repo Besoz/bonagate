@@ -2,12 +2,11 @@
 <section id="page-title" class="padding-top-15 padding-bottom-15">
   <div class="row">
     <div class="col-sm-7">
-      <h1 class="mainTitle" translate="dashboard.WELCOME" translate-values="{ appName: app.name }">{{ mainTitle }}
-      </h1>
-      <span class="mainDescription">overview &amp; stats </span>
+      <h1 class="mainTitle" translate="dashboard.WELCOME" translate-values="{appName:  '{{ 'app.name'|translate}}'  }"></h1>
+      <span class="mainDescription">{{'dashboard.overview'|translate}} &amp; {{'dashboard.stats'|translate}} </span>
     </div>
     <div class="col-sm-5">
-      <!-- start: MINI STATS WITH SPARKLINE -->
+      <!-- start: MINI STATS WITH SPARKLINE {{ 'app.name' | translate}} -->
       <!-- end: MINI STATS WITH SPARKLINE -->
     </div>
   </div>
@@ -20,13 +19,13 @@
       <div class="panel panel-white no-radius text-center">
         <div class="panel-body">
           <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-          <h2 class="StepTitle">Manage Users</h2>
+          <h2 class="StepTitle">{{'dashboard.Manage_Users'|translate}}</h2>
           <p class="text-small">
-            To add users, you need to be signed in as the super user.
+            {{'dashboard.add_user'|translate}}.
           </p>
           <p class="links cl-effect-1">
             <a ng-click="$state.go('app.users.all')">
-              view more
+              {{'dashboard.view_more'|translate}}
             </a>
           </p>
         </div>
@@ -51,12 +50,12 @@
       <div class="panel panel-white no-radius text-center">
         <div class="panel-body">
           <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-          <h2 class="StepTitle">Company</h2>
+          <h2 class="StepTitle">{{'dashboard.Manage_Company'|translate}}</h2>
           <p class="text-small">
-            Store, modify, and extract information from your database.
+            {{'dashboard.Store_modify'|translate}}.
           </p>
           <p class="links cl-effect-1">
-            <a ng-click="$state.go('app.companies.profile', {companyId: {{currentUser.company.id}}})">view more</a>
+            <a ng-click="$state.go('app.companies.profile', {companyId: {{currentUser.company.id}}})">{{'dashboard.view_more'|translate}}</a>
           </p>
         </div>
       </div>
