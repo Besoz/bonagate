@@ -12,15 +12,16 @@ module PagesHelper
 		input_file = File.open(input_filename, 'r')
 		input_yml = input_file.read
 		input_file.close
-
+		
 		output_json_str = JSON.dump(YAML::load(input_yml))
+		# replacing %{} in yaml with {{}} to be used with for angular translation
+		output_json_str = output_json_str.gsub(/%{.*?}/){|match| '{{'+match[2..-2]+'}}'}
 
 		output_json = JSON.parse(output_json_str)
 		output_json.each do |k, v| 
 			output_json_str = v
 		end
 
-		
 		# puts output_json
 		output_file = File.open(output_filename, 'w+')
 		output_file.write(output_json_str.to_json)
