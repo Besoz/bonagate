@@ -16,10 +16,10 @@
         <form class="form-register" name="Form" ng-submit="regCtrl.register()" novalidate>
           <fieldset>
             <legend>
-              <%= t('Sign Up') %>
+              <%= t('pages.Sign Up') %>
             </legend>
             <p>
-              <%= t('Enter your account details below') %>:
+              <%= t('pages.Enter your account details below') %>:
             </p>
             <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid || regCtrl.emailError, 'has-success':Form.email.$valid}">
               <span class="input-icon">
@@ -58,7 +58,7 @@
             </div>
             <div>
               <p>
-                <%= t('Enter your company details below') %>:
+                <%= t('pages.Enter your company details below') %>:
               </p>
               <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid || regCtrl.emailError, 'has-success':Form.email.$valid}">
                 <span class="input-icon">
@@ -74,14 +74,14 @@
               </div>
             </div>
             <p>
-              <%= t('Already have an account') %>?
+              <%= t('pages.Already have an account') %>?
                 <a ng-click="regCtrl.gotoLoginPage()">
-                  <%= t('Log-in') %>?
+                  <%= t('pages.Log-in') %>?
                 </a>
             </p>
             <div class="form-actions">
               <button type="submit" ng-click="regCtrl.registerUser(Form)" class="btn btn-primary pull-right">
-                <%= t('Submit') %> <i class="fa fa-arrow-circle-right"></i>
+                <%= t('pages.Submit') %> <i class="fa fa-arrow-circle-right"></i>
               </button>
             </div>
           </fieldset>

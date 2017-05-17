@@ -17,9 +17,11 @@
           <fieldset>
             <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid || regCtrl.emailError, 'has-success':Form.email.$valid}">
               <span class="input-icon">
-              <input type="email" class="form-control" name="email" placeholder="Email" ng-model="usersCtrl.userInvitation.user.email" required>
+              <input type="email" class="form-control" name="email" placeholder="{{'activerecord.attributes.user.email' | translate}}" ng-model="usersCtrl.userInvitation.user.email" required>
               <i class="fa fa-envelope"></i> </span>
-              <span class="error text-small block" ng-if="Form.email.$dirty && Form.email.$error.required">Email is required.</span>
+              <span class="error text-small block" ng-if="Form.email.$dirty && Form.email.$error.required">
+                <div translate="dashboard.errors.required" translate-values="{attribute:'{{ 'activerecord.attributes.user.email'|translate}}'}"/>.
+              </span>
               <span class="error text-small block" ng-if="Form.email.$error.email">Please, enter a valid email address.</span>
               <span class="error text-small block" ng-if="regCtrl.emailError">Email  {{regCtrl.emailError}}</span>
             </div>
