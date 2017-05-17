@@ -24,8 +24,8 @@
     vm.invitationAlerts = [];
 
     vm.roles = [
-      { name: 'Admin', value: 'company_admin' },
-      { name: 'Sales', value: 'company_sales' },
+      'company_admin',
+      'company_sales'
     ];
 
 
@@ -52,7 +52,7 @@
 
       vm.invitationAlerts = [];
 
-      vm.userInvitation.user.role = vm.userInvitation.user.role.value
+      vm.userInvitation.user.role = vm.userInvitation.user.role
       vm.userInvitation.user_invitation = {};
       vm.userInvitation.user_invitation.reciever_email = vm.userInvitation.user.email
 

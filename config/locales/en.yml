@@ -29,6 +29,10 @@ en:
         password: password
         password_confirmation: password confirmation
         first_name: first name
+        last_name: last name
+        role: role
+        active: active
+        phone: phone
     errors:
       messages:
         record_invalid: "Validation failed: %{errors}"
@@ -285,7 +289,7 @@ en:
     Don't have an account yet: Don't have an account yet
     Create an account: Create an account
     Please enter your name and password to log in: Please enter your name and password to log in
-    # end: signup page #
+    # end: signup page #             
   dashboard:
     app:
       name: Bonagate
@@ -299,10 +303,20 @@ en:
     Manage_Company: Manage Company
     Store_modify: Store, modify, and extract information from your database
     # end: dashboard
-
+    # start: users.html
+    select_list: Select in the list
+    # end: users.html
     errors:
       required: '{{attribute}} is required'
 
+    roles:
+      admin: admin
+      company_user: company user
+      company_admin: company admin
+      company_sales: company sales
+    bools:
+      'true': 'yes'
+      'false': 'no'   
   topbar:
     messages:
       MAIN: Messages

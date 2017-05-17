@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :property_detail_queries
 
-  enumerize :role, in: [:user, :admin, :company_user], default: :user , predicates: true, scope: true
+  enumerize :role, in: [:user, :admin, :company_user], default: :user , predicates: true, scope: true, i18n_scope: "roles"
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "assets/default-user.png"
      validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
