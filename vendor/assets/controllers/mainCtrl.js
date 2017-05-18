@@ -91,6 +91,12 @@ app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$translate', '$loc
         var preferredLanguage = $translate.preferredLanguage();
         // we know we have set a preferred one in app.config
         $scope.language.selected = $scope.language.available[(proposedLanguage || preferredLanguage)];
+
+        $scope.$on('localeChanegEvent', function(event, data) {
+          $translate.use(data.locale);
+          $scope.language.selected = $scope.language.available[data.locale];
+          event.preventDefault();
+        });
       },
       set: function(localeId, ev) {
         $translate.use(localeId);
@@ -98,6 +104,9 @@ app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$translate', '$loc
         $scope.language.listIsOpen = !$scope.language.listIsOpen;
 
         $http.put('change_locale', { locale: localeId });
+      },
+      isRTL: function() {
+        return $scope.language.selected == $scope.language.available['ar']
       }
     };
 

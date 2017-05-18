@@ -45,6 +45,13 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', 'RedirectService',
     $http.get('/user_sessions/current_user.json')
       .then(function(res) {
         $rootScope.currentUser = res.data;
+        // firing an event downwards
+
+        if ($rootScope.currentUser.locale) {
+          $rootScope.$broadcast('localeChanegEvent', {
+            locale: $rootScope.currentUser.locale
+          });
+        }
 
         $rootScope.currentUser.companyUser = function() {
           return $rootScope.currentUser.role == "company_user";
