@@ -2,8 +2,10 @@
 /**
  * Clip-Two Main Controller
  */
-app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$translate', '$localStorage', '$window', '$document', '$timeout', 'cfpLoadingBar',
-  function($rootScope, $scope, $state, $translate, $localStorage, $window, $document, $timeout, cfpLoadingBar) {
+app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$translate', '$localStorage',
+  '$window', '$document', '$timeout', 'cfpLoadingBar', '$http',
+  function($rootScope, $scope, $state, $translate, $localStorage, $window, $document,
+    $timeout, cfpLoadingBar, $http) {
 
     // Loading bar transition
     // -----------------------------------
@@ -94,6 +96,8 @@ app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$translate', '$loc
         $translate.use(localeId);
         $scope.language.selected = $scope.language.available[localeId];
         $scope.language.listIsOpen = !$scope.language.listIsOpen;
+
+        $http.put('change_locale', { locale: localeId });
       }
     };
 

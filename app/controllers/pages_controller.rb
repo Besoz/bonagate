@@ -20,4 +20,10 @@ class PagesController < ApplicationController
   			# render :file => "#{Rails.root}/public/404.html", status: :not_found
   		# end
   	end
+
+  	def change_locale
+		I18n.locale = params[:locale] || I18n.default_locale
+		current_user.update_attributes(locale: params[:locale])
+		render json: "",status: :ok
+  	end
 end

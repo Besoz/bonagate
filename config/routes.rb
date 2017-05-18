@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   get '/sign_in', to: 'user_sessions#new', as: :sign_in
 
   get '/translation', to: 'pages#translation', as: :translation
+  put '/change_locale', to: 'pages#change_locale', as: :change_locale 
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

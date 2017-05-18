@@ -11,13 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508111630) do
+ActiveRecord::Schema.define(version: 20170518155909) do
 
   create_table "companies", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",                limit: 255
+    t.integer  "user_id",             limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
+    t.string   "email",               limit: 255
+    t.string   "phone",               limit: 255
+    t.string   "facebook",            limit: 255
+    t.string   "gplus",               limit: 255
+    t.string   "twitter",             limit: 255
+    t.text     "overview",            limit: 65535
   end
 
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
@@ -187,6 +197,7 @@ ActiveRecord::Schema.define(version: 20170508111630) do
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
+    t.string   "locale",              limit: 255
   end
 
   add_index "users", ["perishable_token"], name: "index_users_on_perishable_token", unique: true, using: :btree

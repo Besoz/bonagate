@@ -49,6 +49,8 @@ ar:
         password: كلمة السر
         password_confirmation: تأكيد كلمة السر
         first_name: الاسم الاول
+      user_invitation:
+        reciever_email: سسس
     errors:
       messages:
         record_invalid: 'فشل التحقّق من: %{errors}'
