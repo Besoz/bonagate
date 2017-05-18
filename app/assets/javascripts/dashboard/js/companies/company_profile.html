@@ -2,10 +2,10 @@
 <section id="page-title">
   <div class="row">
     <div class="col-sm-8">
-      <h1 class="mainTitle" translate="sidebar.nav.pages.USERPROFILE">{{ mainTitle }}</h1>
-      <span class="mainDescription">There are many systems which have a need for user profile pages which display personal information on each member.</span>
+      <h1 class="mainTitle" translate="sidebar.nav.pages.COMPANYPROFILE"></h1>
+      <!--   <span class="mainDescription">There are many systems which have a need for user profile pages which display personal information on each member.</span> -->
     </div>
-    <div ncy-breadcrumb></div>
+    <!-- <div ncy-breadcrumb></div> -->
   </div>
 </section>
 <!-- end: PAGE TITLE -->
@@ -18,7 +18,7 @@
         <!-- start: USER TABSET -->
         <tabset class="tabbable">
           <!-- start: TAB OVERVIEW -->
-          <tab heading="Overview" active="compCtrl.overviewActive">
+          <tab heading="{{'dashboard.overview' | translate}}" active="compCtrl.overviewActive">
             <div class="row">
               <div class="col-md-4">
                 <div class="user-left">
@@ -46,17 +46,17 @@
                       <ul>
                         <li data-placement="top" data-original-title="Twitter" class="social-twitter tooltips">
                           <a ng-href="{{compCtrl.company.twitter}}" target="_blank">
-                            Twitter
+                            {{'dashboard.twitter' | translate}}
                           </a>
                         </li>
                         <li data-placement="top" data-original-title="Facebook" class="social-facebook tooltips">
                           <a ng-href="{{compCtrl.company.facebook}}" target="_blank">
-                            Facebook
+                            {{'dashboard.fb' | translate}}
                           </a>
                         </li>
                         <li data-placement="top" data-original-title="Google" class="social-google tooltips">
                           <a ng-href="{{compCtrl.company.gplus}}" target="_blank">
-                            Google+
+                            {{'dashboard.gplus' | translate}}
                           </a>
                         </li>
                         <!--                         <li data-placement="top" data-original-title="LinkedIn" class="social-linkedin tooltips">
@@ -76,26 +76,26 @@
                   <table class="table table-condensed">
                     <thead>
                       <tr>
-                        <th colspan="3">Contact Information</th>
+                        <th colspan="3"> {{'dashboard.contact_information' | translate}}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>url</td>
+                        <td>{{'activerecord.attributes.company.url' | translate}}</td>
                         <td>
                           <a href="#">
                           {{compCtrl.company.url}}
                         </a></td>
                       </tr>
                       <tr>
-                        <td>email:</td>
+                        <td>{{'activerecord.attributes.company.email' | translate}}:</td>
                         <td>
                           <a href>
                           {{compCtrl.company.email}}
                         </a></td>
                       </tr>
                       <tr>
-                        <td>phone:</td>
+                        <td>{{'activerecord.attributes.company.phone' | translate}}:</td>
                         <td>{{compCtrl.company.phone}}</td>
                       </tr>
                       <!--                       <tr>
@@ -155,7 +155,8 @@
                   </table> -->
                   <div class="text-left" ng-if="compCtrl.canEditCompanyProfile">
                     <a class="btn btn-primary btn-o btn-wide" href="#" ng-click="compCtrl.editActive = true">
-                      Edit Account
+                      {{'dashboard.edit_account' | translate}}
+
                     </a>
                   </div>
                 </div>
@@ -309,31 +310,31 @@
           </tab>
           <!-- end: TAB OVERVIEW -->
           <!-- start: TAB EDIT ACCOUNT -->
-          <tab heading="Edit Account" active="compCtrl.editActive" ng-if="compCtrl.canEditCompanyProfile">
+          <tab heading="{{'dashboard.edit_account' | translate}}" active="compCtrl.editActive" ng-if="compCtrl.canEditCompanyProfile">
             <form role="form" id="form">
               <fieldset>
                 <legend>
-                  Account Info
+                  {{'dashboard.account_info' | translate}}
                 </legend>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="control-label">
-                        Name
+                        {{'activerecord.attributes.company.name' | translate}}
                       </label>
-                      <input type="text" placeholder="Enter your first name" class="form-control" name="firstname" ng-model="compCtrl.company.name">
+                      <input type="text" placeholder="{{'activerecord.attributes.company.name' | translate}}" class="form-control" name="name" ng-model="compCtrl.company.name">
                     </div>
                     <div class="form-group">
                       <label class="control-label">
-                        Email Address
+                        {{'activerecord.attributes.company.email' | translate}}
                       </label>
-                      <input type="email" placeholder="email address" class="form-control" name="email" ng-model="compCtrl.company.email">
+                      <input type="email" placeholder="{{'activerecord.attributes.company.email' | translate}}" class="form-control" name="email" ng-model="compCtrl.company.email">
                     </div>
                     <div class="form-group">
                       <label class="control-label">
-                        Phone
+                        {{'activerecord.attributes.company.phone' | translate}}
                       </label>
-                      <input type="text" placeholder="phone number" class="form-control" name="phone" ng-model="compCtrl.company.phone">
+                      <input type="text" placeholder="{{'activerecord.attributes.company.phone' | translate}}" class="form-control" name="phone" ng-model="compCtrl.company.phone">
                     </div>
                     <!-- <div class="form-group">
   <label class="control-label">
@@ -380,7 +381,7 @@
  -->
                     <div class="form-group">
                       <label>
-                        Image Upload
+                        {{'dashboard.image_upload' | translate}}
                       </label>
                       <div flow-init flow-object="compCtrl.obj" flow-files-submitted="compCtrl.uploadImage()">
                         <div class="user-image ">
@@ -429,32 +430,32 @@
               </fieldset>
               <fieldset>
                 <legend>
-                  Additional Info
+                  {{'dashboard.addtional_information' | translate}}
                 </legend>
                 <div class="row">
                   <div class="col-md-6 ">
                     <div class="form-group ">
                       <label class="control-label ">
-                        Twitter
+                        {{'dashboard.twitter' | translate}}
                       </label>
                       <span class="input-icon ">
-                        <input class="form-control" type="text" placeholder="Twitter" name="twitter" ng-model="compCtrl.company.twitter">
+                        <input class="form-control" type="text" placeholder="{{'dashboard.twitter' | translate}}" name="twitter" ng-model="compCtrl.company.twitter">
                         <i class="fa fa-twitter "></i> </span>
                     </div>
                     <div class="form-group">
                       <label class="control-label">
-                        Facebook
+                        {{'dashboard.fb' | translate}}
                       </label>
                       <span class="input-icon">
-                        <input class="form-control " type="text" placeholder="Facebook" name="facebook" ng-model="compCtrl.company.facebook">
+                        <input class="form-control " type="text" placeholder="{{'dashboard.fb' | translate}}" name="facebook" ng-model="compCtrl.company.facebook">
                         <i class="fa fa-facebook "></i> </span>
                     </div>
                     <div class="form-group ">
                       <label class="control-label ">
-                        Google Plus
+                        {{'dashboard.gplus' | translate}}
                       </label>
                       <span class="input-icon">
-                        <input class="form-control" type="text" placeholder="Google Plus" name="google" ng-model="compCtrl.company.gplus">
+                        <input class="form-control" type="text" placeholder="{{'dashboard.gplus' | translate}}" name="google" ng-model="compCtrl.company.gplus">
                         <i class="fa fa-google-plus"></i> </span>
                     </div>
                   </div>
@@ -500,7 +501,7 @@
                 </div>
                 <div class="col-md-4 ">
                   <button class="btn btn-primary pull-right " ng-click="compCtrl.updateCompany() ">
-                    Update <i class="fa fa-arrow-circle-right "></i>
+                    {{'dashboard.update' | translate}} <i class="fa fa-arrow-circle-right "></i>
                   </button>
                 </div>
               </div>
@@ -508,7 +509,7 @@
           </tab>
           <!-- end: TAB EDIT ACCOUNT -->
           <!-- start: TAB PROJECTS -->
-          <tab heading="Projects ">
+          <!--           <tab heading="Projects ">
             <table class="table " id="projects ">
               <thead>
                 <tr>
@@ -600,7 +601,7 @@
                 </tr>
               </tbody>
             </table>
-          </tab>
+          </tab> -->
           <!-- end: TAB PROJECTS -->
         </tabset>
         <!-- end: USER TABSET -->

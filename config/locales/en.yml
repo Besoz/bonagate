@@ -37,6 +37,10 @@ en:
         approved: approved
         confirmed: confirmed
         active: active
+      company:
+        email: emial 
+        name:  name
+        phone: phone
     errors:
       messages:
         record_invalid: "Validation failed: %{errors}"
@@ -297,6 +301,12 @@ en:
   dashboard:
     app:
       name: Bonagate
+
+    # start general
+    fb: facebook
+    twitter: twitter
+    gplus: google +
+    # end general
     
     # start: dashboard
     WELCOME: Welcome to {{appName}}
@@ -313,13 +323,18 @@ en:
     select_list: Select in the list
     invite_user: Invite user
     clear_sorting: Clear sorting
+    user_invited: User Invitation
+    is_invited: is invited
     # end: users.html
     
     # start: user profile
     edit_account: Edit Account
     contact_information: Contact Information
     general_information: General Information
-
+    addtional_information: Additional info
+    account_info: Account info
+    image_upload: Image Upload
+    update: Update
     # end: user profile
     
     errors:
@@ -418,6 +433,7 @@ en:
       pages:
         MAIN: Pages
         USERPROFILE: User Profile
+        COMPANYPROFILE: Company Profile
         INVOICE: Invoice
         TIMELINE: Timeline
         CALENDAR: Calendar
