@@ -5,9 +5,9 @@
   angular.module('clip-two')
     .controller('UsersController', UsersController);
 
-  UsersController.$inject = ['$state', '$window', 'usersList', 'UserServices', '$rootScope', 'toaster'];
+  UsersController.$inject = ['$state', '$window', 'usersList', 'UserServices', '$rootScope', 'toaster', '$translate'];
 
-  function UsersController($state, $window, usersList, UserServices, $rootScope, toaster) {
+  function UsersController($state, $window, usersList, UserServices, $rootScope, toaster, $translate) {
 
     var vm = this;
 
@@ -59,7 +59,26 @@
       UserServices.inviteUser(vm.userInvitation)
         .then(function(res) {
           console.log(res);
-          toaster.pop("success", "Invitation sent", res.data.reciever_email + " is invited");
+
+          var title = '';
+          var msg = '';
+
+          $translate('dashboard.user_invited').then(function(paragraph) {
+            title = paragraph;
+          }, function(translationId) {
+            tile = translationId;
+          }).finally(function() {
+            $translate('dashboard.is_invited').then(function(paragraph) {
+              msg = paragraph;
+            }, function(translationId) {
+              msg = translationId;
+            }).finally(function() {
+              toaster.pop("success", title, res.data.reciever_email + " " + msg);
+            });
+          });
+
+
+
         }).catch(function(err) {
           console.log(err);
           var errors = getErrorsArr(err.data);

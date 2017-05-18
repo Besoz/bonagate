@@ -33,6 +33,10 @@ en:
         role: role
         active: active
         phone: phone
+        last_login_at: last login at
+        approved: approved
+        confirmed: confirmed
+        active: active
     errors:
       messages:
         record_invalid: "Validation failed: %{errors}"
@@ -293,6 +297,7 @@ en:
   dashboard:
     app:
       name: Bonagate
+    
     # start: dashboard
     WELCOME: Welcome to {{appName}}
     overview: overview
@@ -303,9 +308,20 @@ en:
     Manage_Company: Manage Company
     Store_modify: Store, modify, and extract information from your database
     # end: dashboard
+    
     # start: users.html
     select_list: Select in the list
+    invite_user: Invite user
+    clear_sorting: Clear sorting
     # end: users.html
+    
+    # start: user profile
+    edit_account: Edit Account
+    contact_information: Contact Information
+    general_information: General Information
+
+    # end: user profile
+    
     errors:
       required: '{{attribute}} is required'
 
@@ -314,6 +330,7 @@ en:
       company_user: company user
       company_admin: company admin
       company_sales: company sales
+    
     bools:
       'true': 'yes'
       'false': 'no'   
