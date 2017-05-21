@@ -78,7 +78,7 @@ app.config(['$translateProvider',
     //   suffix: '.json'
     // });
 
-    $translateProvider.useUrlLoader('http://localhost:3000/translation')
+    $translateProvider.useUrlLoader('/translation')
 
     // Since you've now registered more then one translation table, angular-translate has to know which one to use.
     // This is where preferredLanguage(langKey) comes in.
