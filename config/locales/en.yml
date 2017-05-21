@@ -391,8 +391,17 @@ en:
     nav:
       dashboard:
         MAIN: Dashboard
-      MANAGE_COMPANY: Manage company
-      MANAGE_USERS: Mangae users
+      company: 
+        MAIN: Manage company
+      user:  
+        MAIN: Mangae users
+      property:
+        MAIN: Manage property
+        DETAIL: Property details
+        TYPE: Property types
+        STATUS: Property statuses
+        STATE: Property states
+        SERVICE_TYPE: Property service types
       element:
         USERS: Users
         MAIN: UI Elements
