@@ -5,12 +5,20 @@ class ApplicationController < ActionController::Base
   
   skip_before_filter :verify_authenticity_token
 
+  before_action :set_locale
+
   helper :all
 
   helper_method :current_user_session, :current_user
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => exception.message
+  end
+
+  def set_locale
+    if UserSession.find
+      I18n.locale = current_user.try(:locale) || I18n.default_locale
+    end
   end
   
   private

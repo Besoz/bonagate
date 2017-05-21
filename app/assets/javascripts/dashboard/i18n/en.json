@@ -1,6 +1,16 @@
 {
   "dashboard": {
-    "WELCOME": "Welcome to {{appName}}"
+    "WELCOME": "Welcome to {{appName}}",
+    "overview": "overview",
+    "stats": "stats",
+    "Manage_Users": "Manage Users",
+    "add_user": "To add users, you need to be signed in as the super user",
+    "view_more": "view more",
+    "Manage_Company": "Manage Company",
+    "Store_modify": "Store, modify, and extract information from your database"
+  },
+  "app": {
+    "name": "Bonagate"
   },
   "topbar": {
     "messages": {

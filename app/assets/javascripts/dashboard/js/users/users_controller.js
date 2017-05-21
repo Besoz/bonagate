@@ -5,9 +5,9 @@
   angular.module('clip-two')
     .controller('UsersController', UsersController);
 
-  UsersController.$inject = ['$state', '$window', 'usersList', 'UserServices', '$rootScope', 'toaster'];
+  UsersController.$inject = ['$state', '$window', 'usersList', 'UserServices', '$rootScope', 'toaster', '$translate'];
 
-  function UsersController($state, $window, usersList, UserServices, $rootScope, toaster) {
+  function UsersController($state, $window, usersList, UserServices, $rootScope, toaster, $translate) {
 
     var vm = this;
 
@@ -24,8 +24,8 @@
     vm.invitationAlerts = [];
 
     vm.roles = [
-      { name: 'Admin', value: 'company_admin' },
-      { name: 'Sales', value: 'company_sales' },
+      'company_admin',
+      'company_sales'
     ];
 
 
@@ -52,14 +52,33 @@
 
       vm.invitationAlerts = [];
 
-      vm.userInvitation.user.role = vm.userInvitation.user.role.value
+      vm.userInvitation.user.role = vm.userInvitation.user.role
       vm.userInvitation.user_invitation = {};
       vm.userInvitation.user_invitation.reciever_email = vm.userInvitation.user.email
 
       UserServices.inviteUser(vm.userInvitation)
         .then(function(res) {
           console.log(res);
-          toaster.pop("success", "Invitation sent", res.data.reciever_email + " is invited");
+
+          var title = '';
+          var msg = '';
+
+          $translate('dashboard.user_invited').then(function(paragraph) {
+            title = paragraph;
+          }, function(translationId) {
+            tile = translationId;
+          }).finally(function() {
+            $translate('dashboard.is_invited').then(function(paragraph) {
+              msg = paragraph;
+            }, function(translationId) {
+              msg = translationId;
+            }).finally(function() {
+              toaster.pop("success", title, res.data.reciever_email + " " + msg);
+            });
+          });
+
+
+
         }).catch(function(err) {
           console.log(err);
           var errors = getErrorsArr(err.data);

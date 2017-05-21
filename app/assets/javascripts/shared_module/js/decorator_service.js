@@ -30,7 +30,7 @@
               item: key,
               error: errors[key][i],
               type: 'danger',
-              msg: key + ": " + errors[key][i]
+              msg: errors[key][i]
             });
           }
         }
