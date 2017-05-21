@@ -391,8 +391,9 @@ en:
     nav:
       dashboard:
         MAIN: Dashboard
+      MANAGE_COMPANY: Manage company
+      MANAGE_USERS: Mangae users
       element:
-        MANAGEUSERS: Manage users
         USERS: Users
         MAIN: UI Elements
         ELEMENTS: Elements

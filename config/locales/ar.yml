@@ -390,6 +390,7 @@ ar:
         MEDIA: Media
         NESTABLE: Liste Ordinabili
         TYPOGRAPHY: Stili Tipografici
+        MANAGE_COMPANY: Manage company
       tables:
         MAIN: Tabelle
         BASIC: Tabelle Basiche
