@@ -81,8 +81,6 @@ app.controller('AppCtrl', ['$rootScope', '$scope', '$state', '$translate', '$loc
       // list of available languages
       available: {
         'en': 'English',
-        'it_IT': 'Italiano',
-        'de_DE': 'Deutsch',
         'ar': 'عربي'
       },
       // display always the current ui language
