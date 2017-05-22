@@ -25,7 +25,7 @@ en:
       user: user
     attributes:
       user:
-        email: "emial" 
+        email: "email" 
         password: password
         password_confirmation: password confirmation
         first_name: first name
@@ -38,7 +38,7 @@ en:
         confirmed: confirmed
         active: active
       company:
-        email: emial 
+        email: email 
         name:  name
         phone: phone
     errors:
