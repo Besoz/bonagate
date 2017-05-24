@@ -114,6 +114,18 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
         templateUrl: "assets/dashboard/js/pages/layout.html"
       }).state('app.property.details', {
         url: '/property_details',
+        templateUrl: "assets/dashboard/js/property_details/property_details.html",
+        controller: "PropertyDetailsController",
+        controllerAs: 'detailsCtrl',
+        resolve: {
+          detailsRequest: function($http) {
+            return $http.get('/property_details.json');
+          },
+          deps: mLoadSequence('ngTable', 'ui.select', "propertyDetailModal", "propertyDetailController",
+            "propertyDetailsServices", "propertyDetailsController")
+        }
+
+
       }).state('app.property.types', {
         url: '/property_types',
       }).state('app.property.statuses', {

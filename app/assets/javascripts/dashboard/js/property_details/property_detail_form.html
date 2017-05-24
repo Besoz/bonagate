@@ -1,0 +1,56 @@
+<div>
+  <alert ng-repeat="alert in detailCtrl.detailCreationErrors" type="{{alert.type}}">
+    {{alert.msg}}
+  </alert>
+</div>
+<form name="Form" id="form1" novalidate ng-submit="detailCtrl.submitPropertyDetail(Form)">
+  <div class="row">
+    <div class="col-md-6">
+      <fieldset>
+        <legend>
+          <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_detail'|translate}}'}" />
+        </legend>
+        <div class="form-group" ng-class="{'has-error':Form.firstName.$dirty && Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
+          <label class="control-label">
+            {{'activerecord.attributes.property_detail.name'|translate}} <span class="symbol required"></span>
+          </label>
+          <input type="text" placeholder="{{'activerecord.attributes.property_detail.name'|translate}}" class="form-control" name="firstName" ng-model="detailCtrl.propertyDetail.name" required />
+          <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.name'|translate}}'}" /></span>
+        </div>
+        <div class="form-group" ng-class="{'has-error':Form.code.$dirty && Form.code.$invalid, 'has-success':Form.code.$valid}">
+          <label class="control-label">
+            {{'activerecord.attributes.property_detail.code'|translate}} <span class="symbol required"></span>
+          </label>
+          <input placeholder="{{'activerecord.attributes.property_detail.code'|translate}}" class="form-control" name="code" ng-model="detailCtrl.propertyDetail.code" required>
+          <span class="error text-small block" ng-if="Form.code.$dirty && Form.code.$error.required" translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.code'|translate}}'}"> .</span>
+          <!--           <span class="error text-small block" ng-if="Form.code.$error.email" translate="errors.messages.invalid" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.code'|translate}}'}">.</span> -->
+          <!-- <span class="success text-small" ng-if="Form.code.$valid">It's a valid e-mail!</span> -->
+        </div>
+        <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
+          <label class="control-label">
+            {{'activerecord.attributes.property_detail.value_type'|translate}} <span class="symbol required"></span>
+          </label>
+          <ui-select ng-model="detailCtrl.propertyDetail.value_type" theme="bootstrap" name="type" required>
+            <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+              {{'dashboard.value_types.'+ $select.selected | translate}}
+            </ui-select-match>
+            <ui-select-choices repeat="item in detailCtrl.valueTypeOptions | filter: $select.search">
+              <div ng-bind-html="('dashboard.value_types.'+item | translate)| highlight: $select.search"></div>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+        <div class="form-group">
+          <div class="pull-right">
+            <button type="submit" class="btn btn-primary">
+              <div ng-if="!(detailCtrl.propertyDetail.id)" translate="helpers.submit.create" translate-values="{model:'{{ 'activerecord.models.property_detail'|translate}}'}" />
+              <div ng-if="detailCtrl.propertyDetail.id" translate="helpers.submit.update" translate-values="{model:'{{ 'activerecord.models.property_detail'|translate}}'}" />
+            </button>
+            <button type="button" ng-click="detailCtrl.dismiss()" class="btn btn-o btn-primary">
+              <div translate="dashboard.cancel" />
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</form>

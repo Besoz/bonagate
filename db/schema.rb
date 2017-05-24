@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510092918) do
+ActiveRecord::Schema.define(version: 20170522100741) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170510092918) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "value_type", limit: 255
   end
 
   add_index "property_details", ["code"], name: "index_property_details_on_code", unique: true, using: :btree
@@ -197,6 +198,7 @@ ActiveRecord::Schema.define(version: 20170510092918) do
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
+    t.string   "locale",              limit: 255
   end
 
   add_index "users", ["perishable_token"], name: "index_users_on_perishable_token", unique: true, using: :btree

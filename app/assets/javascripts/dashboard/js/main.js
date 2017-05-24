@@ -1,4 +1,4 @@
-var app = angular.module('clipApp', ['clip-two']);
+var app = angular.module('clipApp', ['clip-two', 'shared_module']);
 app.run(['$rootScope', '$state', '$stateParams', '$http', 'RedirectService',
 
   function($rootScope, $state, $stateParams, $http, RedirectService) {
