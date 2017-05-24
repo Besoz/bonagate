@@ -51,13 +51,21 @@ app.constant('JS_REQUIRES', {
     'inboxCtrl': 'assets/controllers/inboxCtrl.js',
     'xeditableCtrl': 'assets/controllers/xeditableCtrl.js',
     'chatCtrl': 'assets/controllers/chatCtrl.js',
+
     //*** User scripts
     'usersController': 'assets/dashboard/js/users/users_controller.js',
     'userController': 'assets/dashboard/js/users/user_controller.js',
     'userServices': 'assets/dashboard/js/users/user_services.js',
+
     //*** Company scripts
     'companyController': 'assets/dashboard/js/companies/company_controller.js',
     'companyServices': 'assets/dashboard/js/companies/company_services.js',
+
+    //*** property details scripts
+    'propertyDetailsController': 'assets/dashboard/js/property_details/property_details_controller.js',
+    'propertyDetailsServices': 'assets/dashboard/js/property_details/property_details_services.js',
+    'propertyDetailModal': 'assets/dashboard/js/property_details/property_detail_form.html',
+    'propertyDetailController': 'assets/dashboard/js/property_details/property_detail_controller.js',
 
     //*** Filters
     'htmlToPlaintext': 'assets/dashboard/js/filters/htmlToPlaintext.js'

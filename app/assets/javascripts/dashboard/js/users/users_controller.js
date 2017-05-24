@@ -77,6 +77,7 @@
             });
           });
 
+          $filter('filter')(array, expression)
 
 
         }).catch(function(err) {
