@@ -1,5 +1,8 @@
 class PropertyDetail < ActiveRecord::Base
   extend Enumerize
+
+  enumerize :state, in: [:active, :inactive], default: :active , predicates: true, scope: true
+
   validates :code, uniqueness: true
 
   enumerize :value_type, in: [:string, :text, :bool, :select, :multi_select],

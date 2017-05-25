@@ -1,4 +1,7 @@
 class Property < ActiveRecord::Base
+  extend Enumerize
+
+  enumerize :state, in: [:active, :inactive], default: :active , predicates: true, scope: true
 
   belongs_to :company
   belongs_to :property_type
@@ -14,5 +17,5 @@ class Property < ActiveRecord::Base
   validates :service_type_instances, :length => { :minimum => 1 }
 
   validates :company_id, :property_status_id, :property_type_id,
-            presence: true
+    presence: true
 end

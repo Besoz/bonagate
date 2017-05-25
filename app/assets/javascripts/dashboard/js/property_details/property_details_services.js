@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('clip-two')
+    .module('clipApp')
     .service('PropertyDetailsServices', PropertyDetailsServices);
 
   PropertyDetailsServices.$inject = ['$http', 'GeneralDataServices'];

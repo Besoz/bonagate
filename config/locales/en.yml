@@ -24,6 +24,7 @@ en:
     models:
       user: user
       property_detail: property detail
+      property_type: property type
     attributes:
       user:
         email: "email" 
@@ -46,6 +47,10 @@ en:
         name: name
         value_type: type
         code: code
+      property_type:
+        name: name
+        value_type: type
+        code: code        
     errors:
       messages:
         record_invalid: "Validation failed: %{errors}"
@@ -356,6 +361,10 @@ en:
       company_admin: company admin
       company_sales: company sales
     
+    recored_states:
+      active: active
+      inactive: inactive
+
     value_types:
       string: string
       text: text

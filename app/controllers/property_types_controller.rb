@@ -62,13 +62,13 @@ class PropertyTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property_type
-      @property_type = PropertyType.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property_type
+    @property_type = PropertyType.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def property_type_params
-      params.require(:property_type).permit(:code)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def property_type_params
+    params.require(:property_type).permit(:code, :name)
+  end
 end

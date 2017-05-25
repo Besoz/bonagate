@@ -64,8 +64,27 @@ app.constant('JS_REQUIRES', {
     //*** property details scripts
     'propertyDetailsController': 'assets/dashboard/js/property_details/property_details_controller.js',
     'propertyDetailsServices': 'assets/dashboard/js/property_details/property_details_services.js',
-    'propertyDetailModal': 'assets/dashboard/js/property_details/property_detail_form.html',
     'propertyDetailController': 'assets/dashboard/js/property_details/property_detail_controller.js',
+
+    //*** property details scripts
+    'propertyTypesController': 'assets/dashboard/js/property_types/property_types_controller.js',
+    'propertyTypesServices': 'assets/dashboard/js/property_types/property_types_services.js',
+    'propertyTypeController': 'assets/dashboard/js/property_types/property_type_controller.js',
+
+    //*** property details scripts
+    'propertyServiceTypesController': 'assets/dashboard/js/property_service_types/property_service_types_controller.js',
+    'propertyServiceTypesServices': 'assets/dashboard/js/property_service_types/property_service_types_services.js',
+    'propertyServiceTypeController': 'assets/dashboard/js/property_service_types/property_service_type_controller.js',
+
+    //*** property details scripts
+    'propertyStatesController': 'assets/dashboard/js/property_states/property_states_controller.js',
+    'propertyStatesServices': 'assets/dashboard/js/property_states/property_states_services.js',
+    'propertyStateController': 'assets/dashboard/js/property_states/property_state_controller.js',
+
+    //*** property details scripts
+    'propertyStatusesController': 'assets/dashboard/js/property_statuses/property_statuses_controller.js',
+    'propertyStatusesServices': 'assets/dashboard/js/property_statuses/property_statuses_services.js',
+    'propertyStatusController': 'assets/dashboard/js/property_statuses/property_status_controller.js',
 
     //*** Filters
     'htmlToPlaintext': 'assets/dashboard/js/filters/htmlToPlaintext.js'
