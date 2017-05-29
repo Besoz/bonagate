@@ -16,10 +16,10 @@
 
     vm.typesList;
     vm.stateOptions;
+    vm.propertyDetails;
 
     // creating new property type
     vm.newPropertyType;
-    // vm.createPropertyType = createPropertyType;
     vm.typeCreationErrors;
 
     // crud property type
@@ -31,6 +31,7 @@
     function activate() {
       vm.typesList = typesRequest.data.list;
       vm.stateOptions = typesRequest.data.state_options;
+      vm.propertyDetails = typesRequest.data.property_details;
       vm.typeCreationErrors = [];
     }
 
@@ -68,7 +69,10 @@
             return propertyType;
           },
           formHelpers: function() {
-            return { stateOptions: typesRequest.data.state_options }
+            return {
+              stateOptions: typesRequest.data.state_options,
+              propertyDetails: vm.propertyDetails
+            }
           }
         }
       });

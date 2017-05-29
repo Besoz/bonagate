@@ -49,7 +49,7 @@ en:
         code: code
       property_type:
         name: name
-        value_type: type
+        state: type
         code: code        
     errors:
       messages:

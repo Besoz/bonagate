@@ -1,6 +1,8 @@
 class PropertyDetailsController < ApplicationController
   before_action :set_property_detail, only: [:show, :edit, :update, :destroy]
 
+  include PropertyTypesHelper
+
   # GET /property_details
   # GET /property_details.json
   def index
@@ -69,6 +71,6 @@ class PropertyDetailsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_detail_params
-    params.require(:property_detail).permit(:code, :name, :type_value)
+    params.require(:property_detail).permit(:id, :code, :name, :type_value)
   end
 end
