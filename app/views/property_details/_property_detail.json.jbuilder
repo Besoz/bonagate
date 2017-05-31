@@ -1,2 +1,2 @@
-json.extract! property_detail, :id, :code, :string, :created_at, :updated_at
-json.url property_detail_url(property_detail, format: :json)
+json.partial! "property_details/property_detail_min", property_detail: @property_detail
+json.value_type_options PropertyDetail.value_type.values

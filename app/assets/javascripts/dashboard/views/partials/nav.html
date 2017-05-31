@@ -24,7 +24,7 @@
           <i class="ti-pie-chart"></i>
         </div>
         <div class="item-inner">
-          <span class="title" translate="sidebar.nav.MANAGE_USERS"></span>
+          <span class="title" translate="sidebar.nav.user.MAIN"></span>
         </div>
       </div>
     </a>
@@ -36,10 +36,54 @@
           <i class="ti-pie-chart"></i>
         </div>
         <div class="item-inner">
-          <span class="title" translate="sidebar.nav.MANAGE_COMPANY"></span>
+          <span class="title" translate="sidebar.nav.company.MAIN"></span>
         </div>
       </div>
     </a>
+  </li>
+  <li ng-class="{'active open':$state.includes('app.property')}">
+    <a href="javascript:void(0)">
+      <div class="item-content">
+        <div class="item-media">
+          <i class="ti-settings"></i>
+        </div>
+        <div class="item-inner">
+          <span class="title" translate="sidebar.nav.property.MAIN"></span><i class="icon-arrow"></i>
+        </div>
+      </div>
+    </a>
+    <ul class="sub-menu">
+      <li ui-sref-active="active">
+        <a ui-sref="app.property.create">
+          <span class="title" translate="sidebar.nav.property.CREATE"></span>
+        </a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="app.property.details">
+          <span class="title" translate="sidebar.nav.property.DETAIL"></span>
+        </a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="app.property.types">
+          <span class="title" translate="sidebar.nav.property.TYPE"></span>
+        </a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="app.property.statuses">
+          <span class="title" translate="sidebar.nav.property.STATUS"></span>
+        </a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="app.property.states">
+          <span class="title" translate="sidebar.nav.property.STATE"></span>
+        </a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="app.property.service_types">
+          <span class="title" translate="sidebar.nav.property.SERVICE_TYPE"></span>
+        </a>
+      </li>
+    </ul>
   </li>
 </ul>
 <!-- end: MAIN NAVIGATION MENU -->

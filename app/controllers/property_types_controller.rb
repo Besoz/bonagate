@@ -24,7 +24,8 @@ class PropertyTypesController < ApplicationController
   # POST /property_types
   # POST /property_types.json
   def create
-    @property_type = PropertyType.new(property_type_params)
+    @property_type = PropertyType.new(property_type_params.except(:property_details_attributes))
+    @property_type.set_property_details property_type_params[:property_details_attributes]
 
     respond_to do |format|
       if @property_type.save
@@ -40,8 +41,11 @@ class PropertyTypesController < ApplicationController
   # PATCH/PUT /property_types/1
   # PATCH/PUT /property_types/1.json
   def update
+    @property_type.assign_attributes(property_type_params.except(:property_details_attributes))
+    @property_type.set_property_details property_type_params[:property_details_attributes]
+
     respond_to do |format|
-      if @property_type.update(property_type_params)
+      if  @property_type.save
         format.html { redirect_to @property_type, notice: 'Property type was successfully updated.' }
         format.json { render :show, status: :ok, location: @property_type }
       else
@@ -62,13 +66,13 @@ class PropertyTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property_type
-      @property_type = PropertyType.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property_type
+    @property_type = PropertyType.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def property_type_params
-      params.require(:property_type).permit(:code)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def property_type_params
+    params.require(:property_type).permit(:code, :name, :state, :property_details_attributes =>[:id])
+  end
 end

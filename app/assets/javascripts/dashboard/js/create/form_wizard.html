@@ -1,0 +1,292 @@
+<!-- start: PAGE TITLE -->
+<!-- end: PAGE TITLE -->
+<!-- start: WIZARD DEMO -->
+<div class="container-fluid container-fullw bg-white">
+  <div class="row">
+    <div class="col-md-12">
+      <h5 class="over-title margin-bottom-15">Wizard <span class="text-bold">demo</span></h5>
+      <p>
+        Some textboxes in this example is required.
+      </p>
+      <div>
+        <!-- start: WIZARD FORM -->
+        <form name="Form" id="form" novalidate>
+          <div id="wizard" class="swMain">
+            <!-- start: WIZARD SEPS -->
+            <ul>
+              <li ng-click="wizardCtrl.form.goTo(Form, 1)">
+                <a href ng-class="{'selected' : wizardCtrl.currentStep >= 1, 'done' : wizardCtrl.currentStep > 1}">
+                  <div class="stepNumber">
+                    1
+                  </div>
+                  <span class="stepDesc text-small"> Personal Information </span>
+                </a>
+              </li>
+              <li ng-click="wizardCtrl.form.goTo(Form, 2)">
+                <a href ng-class="{'selected' : wizardCtrl.currentStep >= 2, 'done' : wizardCtrl.currentStep > 2}">
+                  <div class="stepNumber">
+                    2
+                  </div>
+                  <span class="stepDesc text-small"> Create an account </span>
+                </a>
+              </li>
+              <li ng-click="wizardCtrl.form.goTo(Form, 3)">
+                <a href ng-class="{'selected' : wizardCtrl.currentStep >= 3, 'done' : wizardCtrl.currentStep > 3}">
+                  <div class="stepNumber">
+                    3
+                  </div>
+                  <span class="stepDesc text-small"> Billing details </span>
+                </a>
+              </li>
+              <li ng-click="wizardCtrl.form.goTo(Form, 4)">
+                <a href ng-class="{'selected' : wizardCtrl.currentStep >= 4, 'done' : wizardCtrl.currentStep > 4}">
+                  <div class="stepNumber">
+                    4
+                  </div>
+                  <span class="stepDesc text-small"> Complete </span>
+                </a>
+              </li>
+            </ul>
+            <!-- end: WIZARD SEPS -->
+            <!-- start: WIZARD STEP 1 -->
+            <div id="step-1" ng-show="wizardCtrl.currentStep == 1">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="padding-30">
+                    <h2 class="StepTitle"> Choose property type</h2>
+                    <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
+                      <label class="control-label">
+                        {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span>
+                      </label>
+                      <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="service_type" required>
+                        <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                          {{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in wizardCtrl.propertyTypes | filter: $select.search">
+                          <div ng-bind-html="item.name | highlight: $select.search"></div>
+                          <small ng-bind-html="item.code | highlight: $select.search"></small>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="padding-30">
+                    <h2 class="StepTitle"> Choose service type</h2>
+                    <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
+                      <label class="control-label">
+                        {{'activerecord.models.property_service_type'|translate}} <span class="symbol required"></span>
+                      </label>
+                      <ui-select ng-model="wizardCtrl.property.service_type" theme="bootstrap" name="type" required>
+                        <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                          {{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in wizardCtrl.serviceTypes | filter: $select.search">
+                          <div ng-bind-html="item.name | highlight: $select.search"></div>
+                          <small ng-bind-html="item.code | highlight: $select.search"></small>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end: WIZARD STEP 1 -->
+            <!-- start: WIZARD STEP 2 -->
+            <div id="step-2" ng-show="wizardCtrl.currentStep == 2">
+              <div class="row">
+                <div class="col-md-7">
+                  <fieldset>
+                    <legend>
+                      Account Credential
+                    </legend>
+                    <div ng-repeat="detail in wizardCtrl.property.property_details">
+                      <div class="form-group">
+                        <label class="control-label">
+                          {{detail.name}}
+                        </label>
+                        <input ng-if="detail.value_type == 'string'" ng-model="wizardCtrl.property.details_instances[$index].value" ng-init="wizardCtrl.property.details_instances[$index].property_detail_id = detail.id" placeholder="{{detail.name}}" class="form-control" name="{{detail.code}}" ng-required="wizardCtrl.currentStep == 2">
+                        <textarea ng-if="detail.value_type == 'text'" placeholder="Default Text" id="form-field-22" class="form-control"></textarea>
+                        <ui-select ng-if="detail.value_type == 'select'" ng-model="person.selected" theme="bootstrap">
+                          <ui-select-match placeholder="Select in the list...">
+                            {{$select.selected.name}}
+                          </ui-select-match>
+                          <ui-select-choices repeat="item in detail.value_options | filter: $select.search">
+                            <div ng-bind-html="item | highlight: $select.search"></div>
+                          </ui-select-choices>
+                        </ui-select>
+                        <ui-select ng-if="detail.value_type == 'multi_select'" multiple ng-model="multipleDemo.colors" theme="bootstrap" ng-disabled="disabled" close-on-select="false">
+                          <ui-select-match placeholder="Select colors...">
+                            {{$item}}
+                          </ui-select-match>
+                          <ui-select-choices repeat="option in detail.value_options | filter:$select.search">
+                            {{color}}
+                          </ui-select-choices>
+                        </ui-select>
+                        <input ng-if="detail.value_type == 'bool'" type="checkbox" id="checkbox1" value="1">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <div class="form-group">
+                    <button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="wizardCtrl.form.prev(Form)">
+                      <i class="fa fa-circle-arrow-right"></i> Back
+                    </button>
+                    <button class="btn btn-primary btn-o next-step btn-wide pull-left" ng-click="wizardCtrl.form.next(Form)">
+                      Next <i class="fa fa-arrow-circle-left"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="padding-30">
+                    <h2 class="StepTitle">Create an account <span class="text-large block">to manage everything you do with ng-Clip</span></h2>
+                    <p>
+                      You’ll enjoy personal services and great benefits including:
+                    </p>
+                    <p class="text-small">
+                      <ul class="no-margin">
+                        <li>
+                          Access to exclusive releases and limited products.
+                        </li>
+                        <li>
+                          ng-Clip services, benefits and promotions.
+                        </li>
+                      </ul>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end: WIZARD STEP 2 -->
+            <!-- start: WIZARD STEP 3 -->
+            <div id="step-3" ng-show="wizardCtrl.currentStep == 3">
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="padding-30">
+                    <h2 class="StepTitle">Enter billing details</h2>
+                    <p class="text-large">
+                      You will need to enter your billing address and select your payment method.
+                    </p>
+                    <p class="text-small">
+                      You can use most major credit card, as well as PayPal.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <fieldset>
+                    <legend>
+                      Payment Method
+                    </legend>
+                    <label>
+                      Payment type
+                    </label>
+                    <div class="form-group">
+                      <div class="btn-group">
+                        <label class="btn btn-primary btn-sm" ng-model="myModel.paymentMethod" btn-radio="'creditcard'">
+                          <i class="fa fa-cc-visa"></i> <i class="fa fa-cc-mastercard"></i> Credit Card
+                        </label>
+                        <label class="btn btn-primary btn-sm" ng-model="myModel.paymentMethod" btn-radio="'paypal'">
+                          <i class="fa fa-cc-paypal"></i> PayPal
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>
+                        Card Number
+                      </label>
+                      <input type="text" class="form-control" name="cardNumber" ng-model="myModel.cardNumber" placeholder="Enter Your Card Number">
+                    </div>
+                    <label>
+                      Expires
+                    </label>
+                    <div class="row">
+                      <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                          <select class="cs-select cs-skin-slide" ng-model="myModel.expiresMonth">
+                            <option value="" disabled>Month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                          <select class="cs-select cs-skin-slide" ng-model="myModel.expiresYear">
+                            <option value="" disabled>Year</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <label>
+                          Security code
+                        </label>
+                        <div class="row">
+                          <div class="col-xs-3">
+                            <div class="form-group">
+                              <input type="text" class="form-control" name="securityCode" placeholder="Security code" ng-model="myModel.securityCode">
+                            </div>
+                          </div>
+                          <span class="help-inline col-xs-4"> <a href popover="The security code is a three-digit number on the back of your credit card, immediately following your main card number." popover-placement="top" popover-title="How to find the security code"><i class="ti-help-alt text-large text-primary"></i></a> </span>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <div class="form-group">
+                    <button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="wizardCtrl.form.prev(Form)">
+                      <i class="fa fa-circle-arrow-right"></i> Back
+                    </button>
+                    <button class="btn btn-primary btn-o next-step btn-wide pull-left" ng-click="wizardCtrl.form.next(Form)">
+                      Next <i class="fa fa-arrow-circle-left"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end: WIZARD STEP 3 -->
+            <!-- start: WIZARD STEP 4 -->
+            <div id="step-4" ng-show="wizardCtrl.currentStep == 4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="text-center">
+                    <h1 class=" ti-check block text-primary"></h1>
+                    <h2 class="StepTitle">Congratulations!</h2>
+                    <p class="text-large">
+                      Your tutorial is complete.
+                    </p>
+                    <p class="text-small">
+                      Thank you for your registration. Your transaction has been completed, and a receipt for your purchase has been emailed to you. You may log into your account to view details of this transaction.
+                    </p>
+                    <a class="btn btn-primary btn-o" href ng-click="wizardCtrl.form.goTo(Form, 1)">
+											Back to first step
+										</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end: WIZARD STEP 4 -->
+          </div>
+          <pre class="code margin-top-20">{{ wizardCtrl.property | json }}</pre>
+        </form>
+        <!-- end: WIZARD FORM -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- start: WIZARD DEMO -->

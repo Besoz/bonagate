@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510092918) do
+ActiveRecord::Schema.define(version: 20170530144359) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170510092918) do
     t.string   "gplus",               limit: 255
     t.string   "twitter",             limit: 255
     t.text     "overview",            limit: 65535
+    t.string   "state",               limit: 255
   end
 
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(version: 20170510092918) do
     t.integer  "property_type_id",   limit: 4,   null: false
     t.integer  "property_status_id", limit: 4,   null: false
     t.integer  "property_state_id",  limit: 4
+    t.string   "state",              limit: 255
   end
 
   add_index "properties", ["company_id"], name: "index_properties_on_company_id", using: :btree
@@ -78,10 +80,13 @@ ActiveRecord::Schema.define(version: 20170510092918) do
   end
 
   create_table "property_details", force: :cascade do |t|
-    t.string   "code",       limit: 255
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "code",          limit: 255
+    t.string   "name",          limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "value_type",    limit: 255
+    t.string   "state",         limit: 255
+    t.string   "value_options", limit: 255
   end
 
   add_index "property_details", ["code"], name: "index_property_details_on_code", unique: true, using: :btree
@@ -100,6 +105,7 @@ ActiveRecord::Schema.define(version: 20170510092918) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "state",      limit: 255
   end
 
   add_index "property_service_types", ["code"], name: "index_property_service_types_on_code", unique: true, using: :btree
@@ -109,6 +115,7 @@ ActiveRecord::Schema.define(version: 20170510092918) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "state",      limit: 255
   end
 
   add_index "property_states", ["code"], name: "index_property_states_on_code", unique: true, using: :btree
@@ -118,6 +125,7 @@ ActiveRecord::Schema.define(version: 20170510092918) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "state",      limit: 255
   end
 
   add_index "property_statuses", ["code"], name: "index_property_statuses_on_code", unique: true, using: :btree
@@ -136,6 +144,8 @@ ActiveRecord::Schema.define(version: 20170510092918) do
     t.string   "code",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "name",       limit: 255
+    t.string   "state",      limit: 255
   end
 
   add_index "property_types", ["code"], name: "index_property_types_on_code", unique: true, using: :btree
@@ -197,6 +207,7 @@ ActiveRecord::Schema.define(version: 20170510092918) do
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
+    t.string   "locale",              limit: 255
   end
 
   add_index "users", ["perishable_token"], name: "index_users_on_perishable_token", unique: true, using: :btree
