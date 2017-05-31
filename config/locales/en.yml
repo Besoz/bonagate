@@ -428,6 +428,7 @@ en:
         STATUS: Property statuses
         STATE: Property states
         SERVICE_TYPE: Property service types
+        CREATE: Create property
       element:
         USERS: Users
         MAIN: UI Elements

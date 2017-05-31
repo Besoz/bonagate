@@ -112,6 +112,20 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
       abstract: true,
       url: '/property',
       templateUrl: "assets/dashboard/js/pages/layout.html"
+    }).state('app.property.create', {
+      url: '/create',
+      templateUrl: "assets/dashboard/js/create/form_wizard.html",
+      controller: "WizardController",
+      controllerAs: 'wizardCtrl',
+      resolve: {
+        propertyTypesRequest: function($http) {
+          return $http.get('/property_types.json');
+        },
+        serviceTypesRequest: function($http) {
+          return $http.get('/property_service_types.json');
+        },
+        deps: mLoadSequence('ui.select', 'wizardController', 'propertyDetailsServices')
+      }
     }).state('app.property.details', {
       url: '/property_details',
       templateUrl: "assets/dashboard/js/property_details/property_details.html",
