@@ -1,5 +1,6 @@
 class PropertyDetail < ActiveRecord::Base
   extend Enumerize
+  # serialize :value_options, Array
 
   enumerize :state, in: [:active, :inactive], default: :active , predicates: true, scope: true
 

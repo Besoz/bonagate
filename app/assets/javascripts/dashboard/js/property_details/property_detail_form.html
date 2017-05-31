@@ -39,6 +39,30 @@
             </ui-select-choices>
           </ui-select>
         </div>
+        <div ng-if="detailCtrl.propertyDetail.value_type == 'select' || detailCtrl.propertyDetail.value_type == 'multi_select'">
+          <div class="panel panel-transparent">
+            <div class="panel-heading">
+              <div class="panel-title">
+                Value options
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="list-group">
+                <a ng-repeat="option in detailCtrl.propertyDetail.value_options" class="list-group-item">
+									{{option}} 
+								</a>
+                <div class="input-group">
+                  <input type="text" class="form-control" name="masked" ng-model="x">
+                  <span class="input-group-btn">
+					<button type="button" class="btn btn-primary" ng-click="detailCtrl.propertyDetail.value_options.push(x)">
+						<i class="fa fa-plus"></i>
+					</button> 
+				  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="form-group">
           <div class="pull-right">
             <button type="submit" class="btn btn-primary">
@@ -51,6 +75,7 @@
           </div>
         </div>
       </fieldset>
+      <pre class="code margin-top-20">{{ detailCtrl.propertyDetail | json }}</pre>
     </div>
   </div>
 </form>

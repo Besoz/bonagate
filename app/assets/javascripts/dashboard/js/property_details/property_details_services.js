@@ -14,7 +14,8 @@
     var service = {
       updatePropertyDetail: updatePropertyDetail,
       getPropertyDetails: getPropertyDetails,
-      createPropertyDetail: createPropertyDetail
+      createPropertyDetail: createPropertyDetail,
+      getPropertyDetailsByIDS: getPropertyDetailsByIDS
     };
     return service;
 
@@ -26,6 +27,10 @@
 
     function getPropertyDetails() {
       return GeneralDataServices.index('property_details');
+    }
+
+    function getPropertyDetailsByIDS(IdsArray) {
+      return $http.post('property_details/index_by_ids.json', { details_ids: IdsArray });
     }
 
     function createPropertyDetail(obj) {

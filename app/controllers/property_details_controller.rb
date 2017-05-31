@@ -7,6 +7,17 @@ class PropertyDetailsController < ApplicationController
   # GET /property_details.json
   def index
     @property_details = PropertyDetail.all
+    puts params.to_json
+  end
+
+  def index_by_ids
+    puts params.to_json
+    @property_details = PropertyDetail.where(id: params[:details_ids])
+
+    respond_to do |format|
+      format.html { }
+      format.json { render :index }
+    end
   end
 
   # GET /property_details/1
@@ -71,6 +82,6 @@ class PropertyDetailsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_detail_params
-    params.require(:property_detail).permit(:id, :code, :name, :type_value)
+    params.require(:property_detail).permit(:id, :code, :name, :value_type, :value_options, :details_ids)
   end
 end

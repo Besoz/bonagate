@@ -24,7 +24,8 @@ app.constant('JS_REQUIRES', {
     'chartjs': '../assets/bower_components/chartjs/Chart.min.js',
     'jquery-sparkline': '../assets/bower_components/jquery.sparkline.build/dist/jquery.sparkline.min.js',
     'ckeditor-plugin': '../assets/bower_components/ckeditor/ckeditor.js',
-    'jquery-nestable-plugin': ['../assets/bower_components/jquery-nestable-rtl/jquery.nestable.rtl.js'],
+    'jquery-nestable-plugin': ['../bower_components/jquery-nestable/jquery.nestable.js'],
+    // 'jquery-nestable-plugin': ['../assets/bower_components/jquery-nestable-rtl/jquery.nestable.rtl.js'],
     'touchspin-plugin': ['../assets/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js', '../assets/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'],
 
     //*** Controllers
