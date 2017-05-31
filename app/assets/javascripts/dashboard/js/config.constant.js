@@ -159,7 +159,7 @@ app.constant('JS_REQUIRES', {
     files: ['../assets/bower_components/v-accordion/dist/v-accordion.min.js', '../assets/bower_components/v-accordion/dist/v-accordion.min.css']
   }, {
     name: 'xeditable',
-    files: ['../assets/bower_components/angular-xeditable/dist/js/xeditable.min.js', '../assets/bower_components/angular-xeditable/dist/css/xeditable.css', 'assets/js/config/config-xeditable.js']
+    files: ['../assets/bower_components/angular-xeditable/dist/js/xeditable.min.js', '../assets/bower_components/angular-xeditable/dist/css/xeditable.css', 'assets/dashboard/js/config/config-xeditable.js']
   }, {
     name: 'checklist-model',
     files: ['../assets/bower_components/checklist-model/checklist-model.js']

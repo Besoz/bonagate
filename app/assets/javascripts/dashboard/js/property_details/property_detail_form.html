@@ -43,39 +43,47 @@
           <div class="panel panel-transparent">
             <div class="panel-heading">
               <div class="panel-title">
-                Value options
+                {{'activerecord.attributes.property_detail.value_options'}}
               </div>
             </div>
             <div class="panel-body">
-              <div class="list-group">
-                <a ng-repeat="option in detailCtrl.propertyDetail.value_options" class="list-group-item">
-									{{option}} 
-								</a>
-                <div class="input-group">
-                  <input type="text" class="form-control" name="masked" ng-model="x">
-                  <span class="input-group-btn">
-					<button type="button" class="btn btn-primary" ng-click="detailCtrl.propertyDetail.value_options.push(x)">
-						<i class="fa fa-plus"></i>
+              <div class="list-group" ng-init="detailCtrl.propertyDetail.value_options = detailCtrl.propertyDetail.value_options || []">
+                <div ng-repeat="option in detailCtrl.propertyDetail.value_options track by $index">
+                  <div class="input-group">
+                    <input type="text" class="form-control" ng-model="option">
+                    <span class="input-group-btn">
+					  <button type="button" class="btn btn-danger" ng-click="
+					    detailCtrl.propertyDetail.value_options.splice($index, 1)">
+						<i class="fa fa-minus"></i>
+					  </button> 
+			      </span>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group">
+                <input type="text" class="form-control" ng-model='x'>
+                <span class="input-group-btn ">
+					<button type="button" class="btn btn-primary " ng-click="detailCtrl.propertyDetail.value_options.push(x) ">
+						<i class="fa fa-plus "></i>
 					</button> 
 				  </span>
-                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <div class="pull-right">
+        <div class="form-group ">
+          <div class="pull-right ">
             <button type="submit" class="btn btn-primary">
-              <div ng-if="!(detailCtrl.propertyDetail.id)" translate="helpers.submit.create" translate-values="{model:'{{ 'activerecord.models.property_detail'|translate}}'}" />
-              <div ng-if="detailCtrl.propertyDetail.id" translate="helpers.submit.update" translate-values="{model:'{{ 'activerecord.models.property_detail'|translate}}'}" />
+              <div ng-if="!(detailCtrl.propertyDetail.id) " translate="helpers.submit.create" translate-values="{model: '{{ 'activerecord.models.property_detail '|translate}}'} " />
+              <div ng-if="detailCtrl.propertyDetail.id " translate="helpers.submit.update" translate-values="{model: '{{ 'activerecord.models.property_detail '|translate}}'} " />
             </button>
-            <button type="button" ng-click="detailCtrl.dismiss()" class="btn btn-o btn-primary">
-              <div translate="dashboard.cancel" />
+            <button type="button" ng-click="detailCtrl.dismiss() " class="btn btn-o btn-primary ">
+              <div translate="dashboard.cancel " />
             </button>
           </div>
         </div>
       </fieldset>
-      <pre class="code margin-top-20">{{ detailCtrl.propertyDetail | json }}</pre>
+      <pre class="code margin-top-20 ">{{ detailCtrl.propertyDetail | json }}</pre>
     </div>
   </div>
 </form>

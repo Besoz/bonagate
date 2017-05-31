@@ -33,16 +33,31 @@
 
     function submitPropertyDetail(form) {
 
-      vm.detailCreationErrors = [];
-
-      if (vm.propertyDetail && vm.propertyDetail.id) {
-        // already exist needs update\
-        updatePropertyDetail(form);
-
+      if (form.$valid) {
+        vm.detailCreationErrors = [];
+        if (vm.propertyDetail && vm.propertyDetail.id) {
+          // already exist needs update\
+          updatePropertyDetail(form);
+        } else {
+          // create new
+          createPropertyDetail(form);
+        }
       } else {
-        // create new
-        createPropertyDetail(form);
+        var field = null,
+          firstError = null;
+        for (field in form) {
+          if (field[0] != '$') {
+            if (firstError === null && !form[field].$valid) {
+              firstError = form[field].$name;
+            }
+
+            if (form[field].$pristine) {
+              form[field].$dirty = true;
+            }
+          }
+        }
       }
+
     }
 
     function createPropertyDetail(form) {
