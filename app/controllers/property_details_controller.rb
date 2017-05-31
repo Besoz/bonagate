@@ -82,6 +82,6 @@ class PropertyDetailsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_detail_params
-    params.require(:property_detail).permit(:id, :code, :name, :value_type, :value_options, :details_ids)
+    params.require(:property_detail).permit(:id, :code, :name, :value_type, :details_ids, :value_options => [])
   end
 end
