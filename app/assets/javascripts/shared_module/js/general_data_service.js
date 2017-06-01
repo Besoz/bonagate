@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('clip-two')
+    .module('shared_module')
     .service('GeneralDataServices', GeneralDataServices);
 
   GeneralDataServices.$inject = ['$http'];

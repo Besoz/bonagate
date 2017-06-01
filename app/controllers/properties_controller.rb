@@ -1,6 +1,8 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
 
+  load_and_authorize_resource
+
   # GET /properties
   # GET /properties.json
   def index
@@ -25,9 +27,10 @@ class PropertiesController < ApplicationController
   # POST /properties.json
   def create
     @property = Property.new(property_params)
+    @property.company_id = current_user.company_user.company_id
 
     respond_to do |format|
-      if @property.save
+      if @property.save!
         format.html { redirect_to @property, notice: 'Property was successfully created.' }
         format.json { render :show, status: :created, location: @property }
       else
@@ -62,13 +65,15 @@ class PropertiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property
-      @property = Property.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property
+    @property = Property.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def property_params
-      params.require(:property).permit(:address, :company_id, :property_type_id, :property_status_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def property_params
+    params.require(:property).permit(:address, :company_id, :property_type_id, :property_status_id,
+                                     :property_state_id,
+                                     property_detail_instances_attributes: [:property_detail_id, :value, value: []])
+  end
 end

@@ -89,6 +89,7 @@ app.constant('JS_REQUIRES', {
 
     //*** property creation scripts
     'wizardController': 'assets/dashboard/js/create/wizard_controller.js',
+    'propertiesServices': 'assets/dashboard/js/create/properties_services.js',
 
     //*** Filters
     'htmlToPlaintext': 'assets/dashboard/js/filters/htmlToPlaintext.js'

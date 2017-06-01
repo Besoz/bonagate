@@ -25,6 +25,8 @@ class Ability
 
         can :create, UserInvitation, :company_id => user.company_user.company_id
 
+        can :create, Property
+
       else
 
 

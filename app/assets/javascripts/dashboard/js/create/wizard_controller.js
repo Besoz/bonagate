@@ -3,9 +3,10 @@
  * controller for Wizard Form example
  */
 app.controller('WizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest',
-  'PropertyDetailsServices',
+  'PropertyDetailsServices', 'PropertiesServices', 'propertyStatesRequest', 'propertyStatusesRequest',
 
-  function(toaster, $scope, propertyTypesRequest, serviceTypesRequest, PropertyDetailsServices) {
+  function(toaster, $scope, propertyTypesRequest, serviceTypesRequest, PropertyDetailsServices,
+    PropertiesServices, propertyStatesRequest, propertyStatusesRequest) {
     var vm = this;
 
     vm.currentStep;
@@ -29,9 +30,11 @@ app.controller('WizardController', ['toaster', '$scope', 'propertyTypesRequest',
 
       vm.propertyTypes = propertyTypesRequest.data.list;
       vm.serviceTypes = serviceTypesRequest.data.list;
+      vm.states = propertyStatesRequest.data.list;
+      vm.statuses = propertyStatusesRequest.data.list;
 
       vm.property = {}
-      vm.property.details_instances = [];
+      vm.property.property_detail_instances_attributes = [];
     }
 
     function next(form) {
@@ -105,6 +108,17 @@ app.controller('WizardController', ['toaster', '$scope', 'propertyTypesRequest',
 
     function submit() {
 
+      vm.property.property_type_id = vm.property.type.id
+      vm.property.property_status_id = vm.property.status.id
+      vm.property.property_state_id = vm.property.state.id
+
+      PropertiesServices.createProperty(vm.property)
+        .then(function(res) {
+          console.log(res);
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
     }
 
     function reset() {

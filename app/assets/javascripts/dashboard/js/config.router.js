@@ -118,13 +118,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$com
       controller: "WizardController",
       controllerAs: 'wizardCtrl',
       resolve: {
-        propertyTypesRequest: function($http) {
-          return $http.get('/property_types.json');
+        propertyTypesRequest: function(GeneralDataServices) {
+          return GeneralDataServices.index('property_types');
         },
-        serviceTypesRequest: function($http) {
-          return $http.get('/property_service_types.json');
+        serviceTypesRequest: function(GeneralDataServices) {
+          return GeneralDataServices.index('property_service_types');
         },
-        deps: mLoadSequence('ui.select', 'wizardController', 'propertyDetailsServices')
+        propertyStatesRequest: function(GeneralDataServices) {
+          return GeneralDataServices.index('property_states');
+        },
+        propertyStatusesRequest: function(GeneralDataServices) {
+          return GeneralDataServices.index('property_statuses');
+        },
+        deps: mLoadSequence('ui.select', 'wizardController', 'propertiesServices', 'propertyDetailsServices')
       }
     }).state('app.property.details', {
       url: '/property_details',
