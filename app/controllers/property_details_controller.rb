@@ -1,10 +1,23 @@
 class PropertyDetailsController < ApplicationController
   before_action :set_property_detail, only: [:show, :edit, :update, :destroy]
 
+  include PropertyTypesHelper
+
   # GET /property_details
   # GET /property_details.json
   def index
     @property_details = PropertyDetail.all
+    puts params.to_json
+  end
+
+  def index_by_ids
+    puts params.to_json
+    @property_details = PropertyDetail.where(id: params[:details_ids])
+
+    respond_to do |format|
+      format.html { }
+      format.json { render :index }
+    end
   end
 
   # GET /property_details/1
@@ -62,13 +75,13 @@ class PropertyDetailsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property_detail
-      @property_detail = PropertyDetail.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property_detail
+    @property_detail = PropertyDetail.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def property_detail_params
-      params.require(:property_detail).permit(:code, :name)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def property_detail_params
+    params.require(:property_detail).permit(:id, :code, :name, :value_type, :details_ids, :value_options => [])
+  end
 end

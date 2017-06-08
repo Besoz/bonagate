@@ -1,0 +1,30 @@
+<div class="container-fluid container-fullw">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <button class="btn btn-wide btn-primary" ng-click="statesCtrl.create()">
+          <i class="ti-plus"></i>
+          <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}" />
+        </button>
+        <!-- start: TABLE WITH FILTERS -->
+        <div class="col-md-12">
+          <div>
+            <!-- <strong>Filter:</strong> {{tableParams.filter()|json}} -->
+            <table ng-table="tableParams" show-filter="true" class="table table-striped">
+              <tr ng-repeat="propertyState in statesCtrl.statesList">
+                <td data-title="'activerecord.attributes.property_state.name' | translate " filter="{ 'name': 'text' }"> {{propertyState.name}} </td>
+                <td data-title="'activerecord.attributes.property_state.code' | translate ">{{propertyState.code}} </td>
+                <td class="rowTd">
+                  <div class="pull-right margin-right-10">
+                    <input state="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit" ng-click="statesCtrl.edit($index)">
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- end: TABLE WITH FILTERS -->
+      </div>
+    </div>
+  </div>
+</div>

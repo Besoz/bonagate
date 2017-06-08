@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   resources :property_states
   resources :property_statuses
   resources :property_detail_instances
-  resources :property_details
+  resources :property_details do
+    collection do
+      post 'index_by_ids'
+    end
+  end
   resources :property_types
   resources :properties
   resources :companies
@@ -21,13 +25,13 @@ Rails.application.routes.draw do
       match "/current_user", to: "user_sessions#show_current_user", via: :get
     end
   end
-  resources :users 
+  resources :users
 
   delete '/sign_out', to: 'user_sessions#destroy', as: :sign_out
   get '/sign_in', to: 'user_sessions#new', as: :sign_in
 
   get '/translation', to: 'pages#translation', as: :translation
-  put '/change_locale', to: 'pages#change_locale', as: :change_locale 
+  put '/change_locale', to: 'pages#change_locale', as: :change_locale
 
 
   # The priority is based upon order of creation: first created -> highest priority.

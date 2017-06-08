@@ -24,7 +24,8 @@ app.constant('JS_REQUIRES', {
     'chartjs': '../assets/bower_components/chartjs/Chart.min.js',
     'jquery-sparkline': '../assets/bower_components/jquery.sparkline.build/dist/jquery.sparkline.min.js',
     'ckeditor-plugin': '../assets/bower_components/ckeditor/ckeditor.js',
-    'jquery-nestable-plugin': ['../assets/bower_components/jquery-nestable-rtl/jquery.nestable.rtl.js'],
+    'jquery-nestable-plugin': ['../bower_components/jquery-nestable/jquery.nestable.js'],
+    // 'jquery-nestable-plugin': ['../assets/bower_components/jquery-nestable-rtl/jquery.nestable.rtl.js'],
     'touchspin-plugin': ['../assets/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js', '../assets/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'],
 
     //*** Controllers
@@ -51,13 +52,44 @@ app.constant('JS_REQUIRES', {
     'inboxCtrl': 'assets/controllers/inboxCtrl.js',
     'xeditableCtrl': 'assets/controllers/xeditableCtrl.js',
     'chatCtrl': 'assets/controllers/chatCtrl.js',
+
     //*** User scripts
     'usersController': 'assets/dashboard/js/users/users_controller.js',
     'userController': 'assets/dashboard/js/users/user_controller.js',
     'userServices': 'assets/dashboard/js/users/user_services.js',
+
     //*** Company scripts
     'companyController': 'assets/dashboard/js/companies/company_controller.js',
     'companyServices': 'assets/dashboard/js/companies/company_services.js',
+
+    //*** property details scripts
+    'propertyDetailsController': 'assets/dashboard/js/property_details/property_details_controller.js',
+    'propertyDetailsServices': 'assets/dashboard/js/property_details/property_details_services.js',
+    'propertyDetailController': 'assets/dashboard/js/property_details/property_detail_controller.js',
+
+    //*** property details scripts
+    'propertyTypesController': 'assets/dashboard/js/property_types/property_types_controller.js',
+    'propertyTypesServices': 'assets/dashboard/js/property_types/property_types_services.js',
+    'propertyTypeController': 'assets/dashboard/js/property_types/property_type_controller.js',
+
+    //*** property details scripts
+    'propertyServiceTypesController': 'assets/dashboard/js/property_service_types/property_service_types_controller.js',
+    'propertyServiceTypesServices': 'assets/dashboard/js/property_service_types/property_service_types_services.js',
+    'propertyServiceTypeController': 'assets/dashboard/js/property_service_types/property_service_type_controller.js',
+
+    //*** property details scripts
+    'propertyStatesController': 'assets/dashboard/js/property_states/property_states_controller.js',
+    'propertyStatesServices': 'assets/dashboard/js/property_states/property_states_services.js',
+    'propertyStateController': 'assets/dashboard/js/property_states/property_state_controller.js',
+
+    //*** property details scripts
+    'propertyStatusesController': 'assets/dashboard/js/property_statuses/property_statuses_controller.js',
+    'propertyStatusesServices': 'assets/dashboard/js/property_statuses/property_statuses_services.js',
+    'propertyStatusController': 'assets/dashboard/js/property_statuses/property_status_controller.js',
+
+    //*** property creation scripts
+    'wizardController': 'assets/dashboard/js/create/wizard_controller.js',
+    'propertiesServices': 'assets/dashboard/js/create/properties_services.js',
 
     //*** Filters
     'htmlToPlaintext': 'assets/dashboard/js/filters/htmlToPlaintext.js'
@@ -128,7 +160,7 @@ app.constant('JS_REQUIRES', {
     files: ['../assets/bower_components/v-accordion/dist/v-accordion.min.js', '../assets/bower_components/v-accordion/dist/v-accordion.min.css']
   }, {
     name: 'xeditable',
-    files: ['../assets/bower_components/angular-xeditable/dist/js/xeditable.min.js', '../assets/bower_components/angular-xeditable/dist/css/xeditable.css', 'assets/js/config/config-xeditable.js']
+    files: ['../assets/bower_components/angular-xeditable/dist/js/xeditable.min.js', '../assets/bower_components/angular-xeditable/dist/css/xeditable.css', 'assets/dashboard/js/config/config-xeditable.js']
   }, {
     name: 'checklist-model',
     files: ['../assets/bower_components/checklist-model/checklist-model.js']
