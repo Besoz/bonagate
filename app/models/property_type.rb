@@ -14,4 +14,8 @@ class PropertyType < ActiveRecord::Base
     property_details = PropertyDetail.where(id: property_detail_ids)
     self.property_details = property_details
   end
+
+  def self.get_affected_with_property_detail detail_id
+    PropertyType.joins(:property_type_details).where(property_type_details: { property_detail_id: detail_id })
+  end
 end

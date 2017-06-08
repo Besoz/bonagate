@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
   'use strict';
 
@@ -34,9 +34,9 @@
 
       var modalInstance = openModal();
 
-      modalInstance.result.then(function(createdPropDetail) {
-        vm.detailsList.push(createdPropDetail);
-      }, function() {
+      modalInstance.result.then(function (res) {
+        vm.detailsList.push(res.propertyDetail);
+      }, function () {
 
       });
     }
@@ -45,14 +45,29 @@
 
       var modalInstance = openModal(angular.copy(vm.detailsList[index]));
 
-      modalInstance.result.then(function(updatedPropDetail) {
-        vm.detailsList[index] = updatedPropDetail;
-      }, function() {
-
+      modalInstance.result.then(function (res) {
+        if(res.success){
+          vm.detailsList[index] = res.propertyDetail;
+        }else{
+          createAsDuplicate(res.propertyDetail);
+        }
+      }, function () {
       });
     }
 
+    function createAsDuplicate(propDetail) {
 
+      var newPorpDetail = angular.copy(propDetail);
+      delete newPorpDetail.id;
+      delete newPorpDetail.code;
+
+      var modalInstance = openModal(newPorpDetail);
+
+      modalInstance.result.then(function (res) {
+        vm.detailsList.push(res.propertyDetail);
+      }, function () {
+      });
+    }
     function openModal(propertyDetail) {
 
       var modalInstance = $modal.open({
@@ -60,11 +75,13 @@
         controller: 'PropertyDetailController',
         controllerAs: 'detailCtrl',
         resolve: {
-          propertyDetail: function() {
+          propertyDetail: function () {
             return propertyDetail;
           },
-          formHelpers: function() {
-            return { valueTypeOptions: detailsRequest.data.value_type_options }
+          formHelpers: function () {
+            return {
+              valueTypeOptions: detailsRequest.data.value_type_options
+            }
           }
         }
       });

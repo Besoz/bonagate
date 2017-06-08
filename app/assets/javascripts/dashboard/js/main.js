@@ -68,8 +68,8 @@ app.run(['$rootScope', '$state', '$stateParams', '$http', 'RedirectService',
   }
 ]);
 // translate config
-app.config(['$translateProvider',
-  function($translateProvider) {
+app.config(['$translateProvider', '$provide', '$httpProvider',
+  function($translateProvider, $provide, $httpProvider) {
 
     // prefix and suffix information  is required to specify a pattern
     // You can simply use the static-files loader with this pattern:
@@ -86,6 +86,49 @@ app.config(['$translateProvider',
 
     // Store the language in the local storage
     $translateProvider.useLocalStorage();
+
+
+    // http configuration start
+    // register the interceptor as a service
+    $provide.factory('myHttpInterceptor', function($q) {
+      return {
+        // optional method
+        'request': function(config) {
+          // do something on success
+          return config;
+        },
+
+        // optional method
+        'requestError': function(rejection) {
+          // do something on error
+          // if (canRecover(rejection)) {
+          //   return responseOrNewPromise
+          // }
+          return $q.reject(rejection);
+        },
+
+
+
+        // optional method
+        'response': function(response) {
+          // do something on success
+          return response;
+        },
+
+        // optional method
+        'responseError': function(rejection) {
+          // do something on error
+          if (rejection.status == 500) {
+            rejection.data = { server_error: [rejection.statusText] };
+            return $q.reject(rejection)
+          }
+          return $q.reject(rejection);
+        }
+      };
+    });
+
+    $httpProvider.interceptors.push('myHttpInterceptor');
+    // http configuration end
 
   }
 ]);

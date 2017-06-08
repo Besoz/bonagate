@@ -53,13 +53,34 @@ class PropertyDetailsController < ApplicationController
   # PATCH/PUT /property_details/1
   # PATCH/PUT /property_details/1.json
   def update
-    respond_to do |format|
-      if @property_detail.update(property_detail_params)
-        format.html { redirect_to @property_detail, notice: 'Property detail was successfully updated.' }
-        format.json { render :show, status: :ok, location: @property_detail }
-      else
-        format.html { render :edit }
-        format.json { render json: @property_detail.errors, status: :unprocessable_entity }
+    affected_properties =
+      Property.get_affected_with_property_detail(@property_detail.id)
+
+    puts @property_detail.value_type
+    puts property_detail_params[:value_type] 
+    puts JSON.parse(@property_detail.value_options)
+    puts property_detail_params[:value_options]
+
+    # check if value options or value type will change and the details is already used
+    if((@property_detail.value_type != property_detail_params[:value_type] || 
+      JSON.parse(@property_detail.value_options) != property_detail_params[:value_options]) &&
+      !Property.get_affected_with_property_detail(@property_detail.id).empty?)
+
+      affected_types = PropertyType.get_affected_with_property_detail(@property_detail.id)
+
+      response = {affected_properties: affected_properties, affected_types: affected_types}
+
+      puts response.to_json
+      render json: response, status: :multi_status
+    else
+      respond_to do |format|
+        if @property_detail.update(property_detail_params)
+          format.html { redirect_to @property_detail, notice: 'Property detail was successfully updated.' }
+          format.json { render :show, status: :ok, location: @property_detail }
+        else
+          format.html { render :edit }
+          format.json { render json: @property_detail.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
