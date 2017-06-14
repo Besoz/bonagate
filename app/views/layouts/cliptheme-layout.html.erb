@@ -1,6 +1,6 @@
 <!-- main content -->
 <!DOCTYPE html>
-<html ng-app="auth_app">
+<html ng-app="app.authorization">
 
 <head>
   <meta charset="utf-8">
@@ -34,15 +34,17 @@
 
 
   <script src="../assets/bower_components/angular/angular.min.js"></script>
-  <!-- shared utils module -->
-  <script src="../assets/shared_module/js/app.js"></script>
-  <script src="../assets/shared_module/js/decorator_service.js"></script>
+  
+  <!-- shared module -->
+  <script src="../assets/app.shared/app_module.js"></script>
+  <script src="../assets/app.shared/services/decorator_service.js"></script>
+
   <!-- authorization module -->
-  <script src="../assets/authorization/app.js"></script>
-  <script src="../assets/authorization/services/redirect_service.js"></script>
-  <script src="../assets/authorization/main.js"></script>
-  <script src="../assets/authorization/login_controller.js"></script>
-  <script src="../assets/authorization/registeration_controller.js"></script>
+  <script src="../assets/app.authorization/app_module.js"></script>
+    <script src="../assets/app.authorization/config/config_rootscope.js"></script>  
+  <script src="../assets/app.authorization/services/redirect_service.js"></script>
+  <script src="../assets/app.authorization/pages/user_sessions/new_controller.js"></script>
+  <script src="../assets/app.authorization//pages/users/new_controller.js"></script>
 </head>
 
 <body>
