@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-ng-app="clipApp">
+<html lang="en" data-ng-app="app.dashboard">
 
 <head>
   <meta charset="utf-8">
@@ -15,7 +15,6 @@
   <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
   <!-- Bootstrap -->
   <link rel="stylesheet" href="../assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="../assets/bower_components/bootstrap-rtl/dist/css/bootstrap-rtl.min.css"> -->
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../assets/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Themify Icons -->
@@ -32,7 +31,7 @@
   <link rel="stylesheet" data-ng-href="../assets/css/themes/{{ app.layout.theme }}.css" />
 </head>
 
-<body ng-controller="AppCtrl">
+<body>
   <div ui-view id="app" ng-class="{'app-mobile' : app.isMobile, 'app-navbar-fixed' : app.layout.isNavbarFixed, 'app-sidebar-fixed' : app.layout.isSidebarFixed, 'app-sidebar-closed':app.layout.isSidebarClosed, 'app-footer-fixed':app.layout.isFooterFixed}"></div>
   <!-- jQuery -->
   <script src="../assets/bower_components/jquery/dist/jquery.min.js"></script>
@@ -65,40 +64,44 @@
   <script src="../assets/bower_components/angular-scroll/angular-scroll.min.js"></script>
 
   <!-- shared utils module -->
-  <script src="../assets/shared_module/js/app.js"></script>
-  <script src="../assets/shared_module/js/decorator_service.js"></script>
-	<script src="assets/shared_module/js/general_data_service.js"></script>
-
-  <!-- Clip-Two Scripts -->
-  <script src="assets/dashboard/js/app.js"></script>
-  <script src="assets/dashboard/js/redirect_service.js"></script>
-  <script src="assets/dashboard/js/main.js"></script>
-  <script src="assets/dashboard/js/config.constant.js"></script>
-  <script src="assets/dashboard/js/config.router.js"></script>
+  <script src="../assets/app.shared/app_module.js"></script>
+  <script src="../assets/app.shared/services/decorator_service.js"></script>
+	<script src="assets/app.shared/services/general_data_service.js"></script>
+  
+  <!-- Clip-Two Directives module -->
+  <script src="assets/app.cliptwo/app_module.js"></script>
   <!-- Clip-Two Directives -->
-  <script src="assets/dashboard/js/directives/toggle.js"></script>
-  <script src="assets/dashboard/js/directives/perfect-scrollbar.js"></script>
-  <script src="assets/dashboard/js/directives/empty-links.js"></script>
-  <script src="assets/dashboard/js/directives/sidebars.js"></script>
-  <script src="assets/dashboard/js/directives/off-click.js"></script>
-  <script src="assets/dashboard/js/directives/full-height.js"></script>
-  <script src="assets/dashboard/js/directives/panel-tools.js"></script>
-  <script src="assets/dashboard/js/directives/char-limit.js"></script>
-  <script src="assets/dashboard/js/directives/dismiss.js"></script>
-  <script src="assets/dashboard/js/directives/compare-to.js"></script>
-  <script src="assets/dashboard/js/directives/select.js"></script>
-  <script src="assets/dashboard/js/directives/messages.js"></script>
-  <script src="assets/dashboard/js/directives/chat.js"></script>
-  <script src="assets/dashboard/js/directives/sparkline.js"></script>
-  <script src="assets/dashboard/js/directives/touchspin.js"></script>
-  <script src="assets/dashboard/js/directives/file-upload.js"></script>
-  <!-- Clip-Two Controllers -->
-  <script src="assets/controllers/mainCtrl.js"></script>
-  <script src="assets/controllers/bootstrapCtrl.js"></script>
+  <script src="assets/app.cliptwo/directives/toggle.js"></script>
+  <script src="assets/app.cliptwo/directives/perfect-scrollbar.js"></script>
+  <script src="assets/app.cliptwo/directives/empty-links.js"></script>
+  <script src="assets/app.cliptwo/directives/sidebars.js"></script>
+  <script src="assets/app.cliptwo/directives/off-click.js"></script>
+  <script src="assets/app.cliptwo/directives/full-height.js"></script>
+  <script src="assets/app.cliptwo/directives/panel-tools.js"></script>
+  <script src="assets/app.cliptwo/directives/char-limit.js"></script>
+  <script src="assets/app.cliptwo/directives/dismiss.js"></script>
+  <script src="assets/app.cliptwo/directives/compare-to.js"></script>
+  <script src="assets/app.cliptwo/directives/select.js"></script>
+  <script src="assets/app.cliptwo/directives/messages.js"></script>
+  <script src="assets/app.cliptwo/directives/chat.js"></script>
+  <script src="assets/app.cliptwo/directives/sparkline.js"></script>
+  <script src="assets/app.cliptwo/directives/touchspin.js"></script>
+  <script src="assets/app.cliptwo/directives/file-upload.js"></script>
+
+  <!-- dashboard module -->
+  <script src="assets/app.dashboard/app_module.js"></script>
+  <!-- dashboard module services -->
+  <script src="assets/app.dashboard/services/redirect_service.js"></script>
+  <!-- dashboard module config -->
+  <script src="assets/app.dashboard/config/config_rootscope.js"></script>
+  <script src="assets/app.dashboard/config/config_translation.js"></script>
+  <script src="assets/app.dashboard/config/config_loadingbar.js"></script>
+  <script src="assets/app.dashboard/config/config_constant.js"></script>
+  <script src="assets/app.dashboard/config/config_router.js"></script>
+  
   <!-- Google Apis -->
   <script src="//maps.googleapis.com/maps/api/js?v=3.exp&libraries=weather,visualization"></script>
-  <link ng-if="language.isRTL()" rel="stylesheet" href="assets/css/rtl.css">
-  <link ng-if="language.isRTL()" rel="stylesheet" href="../assets/bower_components/bootstrap-rtl/dist/css/bootstrap-rtl.min.css">
+
 </body>
 
 </html>
