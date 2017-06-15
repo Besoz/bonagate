@@ -37,6 +37,10 @@ class PropertyDetailsController < ApplicationController
   # POST /property_details
   # POST /property_details.json
   def create
+    puts property_detail_params.to_json
+
+    puts property_detail_extended_params.to_json
+
     @property_detail = PropertyDetail.new(property_detail_params)
 
     respond_to do |format|
@@ -53,19 +57,12 @@ class PropertyDetailsController < ApplicationController
   # PATCH/PUT /property_details/1
   # PATCH/PUT /property_details/1.json
   def update
-    affected_properties =
-      Property.get_affected_with_property_detail(@property_detail.id)
-
-    puts @property_detail.value_type
-    puts property_detail_params[:value_type] 
-    puts JSON.parse(@property_detail.value_options)
-    puts property_detail_params[:value_options]
-
     # check if value options or value type will change and the details is already used
     if((@property_detail.value_type != property_detail_params[:value_type] || 
       JSON.parse(@property_detail.value_options) != property_detail_params[:value_options]) &&
       !Property.get_affected_with_property_detail(@property_detail.id).empty?)
 
+      affected_properties = Property.get_affected_with_property_detail(@property_detail.id)
       affected_types = PropertyType.get_affected_with_property_detail(@property_detail.id)
 
       response = {affected_properties: affected_properties, affected_types: affected_types}
@@ -103,6 +100,12 @@ class PropertyDetailsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_detail_params
-    params.require(:property_detail).permit(:id, :code, :name, :value_type, :details_ids, :value_options => [])
+    params.require(:property_detail).permit(:id, :code, :name, :value_type, 
+    :details_ids, :old_detail_id, :value_options => [])
+  end
+
+  def property_detail_extended_params
+    params.require(:property_detail).permit(:id, :code, :name, :value_type, 
+    :details_ids, :old_detail_id, :value_options => [], affected_types: [:id])
   end
 end

@@ -55,13 +55,13 @@
       });
     }
 
+
     function createAsDuplicate(propDetail) {
 
       var newPorpDetail = angular.copy(propDetail);
       delete newPorpDetail.id;
       delete newPorpDetail.code;
-      newPorpDetail.old_detail_id = propDetail.id;
-      
+
       var modalInstance = openModal(newPorpDetail);
 
       modalInstance.result.then(function (res) {
@@ -69,6 +69,7 @@
       }, function () {
       });
     }
+
     function openModal(propertyDetail) {
 
       var modalInstance = $modal.open({

@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
   'use strict';
 
@@ -6,11 +6,11 @@
     .controller('PropertyDetailController', PropertyDetailController);
 
   PropertyDetailController.$inject = ['PropertyDetailsServices', 'propertyDetail', 'formHelpers',
-    'toaster', '$translate', 'decoratorService', '$filter', '$modalInstance'
+    'toaster', '$translate', 'decoratorService', '$filter', '$modalInstance', 'SweetAlert'
   ];
 
   function PropertyDetailController(PropertyDetailsServices, propertyDetail, formHelpers,
-    toaster, $translate, decoratorService, $filter, $modalInstance) {
+    toaster, $translate, decoratorService, $filter, $modalInstance, SweetAlert) {
 
     var vm = this;
 
@@ -20,8 +20,11 @@
     vm.propertyDetail;
     vm.submitPropertyDetail = submitPropertyDetail;
     vm.detailCreationErrors = [];
+    vm.updateTypes = updateTypes;
 
     vm.valueTypeOptions;
+
+    vm.updatePropertyTypes;
 
     activate();
 
@@ -62,17 +65,23 @@
 
     function createPropertyDetail(form) {
 
+      if (vm.updatePropertyTypes) {
+        vm.propertyDetail.update_property_types = true;
+      }
+
       PropertyDetailsServices.createPropertyDetail(vm.propertyDetail)
-        .then(function(res) {
+        .then(function (res) {
 
           var propertydDetailStr = $filter('translate')('activerecord.models.property_detail');
           var title = $filter('translate')('dashboard.success');
-          var msg = $filter('translate')('dashboard.recored_created', { model: propertydDetailStr })
+          var msg = $filter('translate')('dashboard.recored_created', {
+            model: propertydDetailStr
+          })
           toaster.pop("success", title, msg);
 
           closeModalAndReturnResponse(res.data);
 
-        }).catch(function(err) {
+        }).catch(function (err) {
           vm.detailCreationErrors = decoratorService.getErrorsAlertsArr(err.data);
         })
     }
@@ -80,21 +89,59 @@
     function updatePropertyDetail(form) {
 
       PropertyDetailsServices.updatePropertyDetail(vm.propertyDetail)
-        .then(function(res) {
+        .then(function (res) {
 
-          var propertydDetailStr = $filter('translate')('activerecord.models.property_detail');
-          var title = $filter('translate')('dashboard.success');
-          toaster.pop("success", title, $filter('translate')('dashboard.recored_updated', { model: propertydDetailStr }));
+          if (res.status == 200) {
+            var propertydDetailStr = $filter('translate')('activerecord.models.property_detail');
+            var title = $filter('translate')('dashboard.success');
+            toaster.pop("success", title, $filter('translate')('dashboard.recored_updated', {
+              model: propertydDetailStr
+            }));
 
-          closeModalAndReturnResponse(res.data);
+            closeModalAndReturnResponse(res.data);
 
-        }).catch(function(err) {
+          } else {
+            var propertydDetailStr = $filter('translate')('activerecord.models.property_detail');
+            var title = $filter('translate')('dashboard.success');
+            var msg = $filter('translate')('dashboard.recored_created', {
+              model: propertydDetailStr
+            })
+            toaster.pop("warning", title, msg);
+
+            Object.assign(vm.propertyDetail, res.data);
+
+            SweetAlert.swal({
+              title: "You can't update the value type or value options of this property detail",
+              text: "Edting this property details will affect " + res.data.affected_types.length + " property type and " + res.data.affected_properties.length + " property",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Create new detail",
+              cancelButtonText: "No, cancel!"
+            }, function (isConfirm) {
+              if (isConfirm) {
+                updateTypes();
+              }
+            });
+          }
+
+        }).catch(function (err) {
           vm.detailCreationErrors = decoratorService.getErrorsAlertsArr(err.data);
         })
     }
 
-    function closeModalAndReturnResponse(object) {
-      $modalInstance.close(object);
+    function updateTypes() {
+      var response = {}
+      response.propertyDetail = propertyDetail;
+      response.success = false;
+      $modalInstance.close(response);
+    }
+
+    function closeModalAndReturnResponse(propertyDetail) {
+      var response = {}
+      response.propertyDetail = propertyDetail;
+      response.success = true;
+      $modalInstance.close(response);
     };
 
     function cancel() {
