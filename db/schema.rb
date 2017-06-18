@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530144359) do
+ActiveRecord::Schema.define(version: 20170613154054) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(version: 20170530144359) do
     t.boolean  "confirmed",           limit: 1,   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "role",                limit: 255, default: "10"
+    t.string   "role",                limit: 255
     t.string   "first_name",          limit: 255
     t.string   "last_name",           limit: 255
     t.string   "phone",               limit: 255
