@@ -37,14 +37,24 @@ class PropertyDetailsController < ApplicationController
   # POST /property_details
   # POST /property_details.json
   def create
-    puts property_detail_params.to_json
-
-    puts property_detail_extended_params.to_json
-
     @property_detail = PropertyDetail.new(property_detail_params)
+
+    duplicate_detail_id = property_detail_extended_params[:duplicate_detail_id]
+    types_need_update = property_detail_extended_params[:types_need_update]
 
     respond_to do |format|
       if @property_detail.save
+
+        if(duplicate_detail_id && 
+          types_need_update && types_need_update.length > 0)
+          
+          types_need_update_ids = types_need_update.map { |x| x[:id] }
+          PropertyTypeDetail
+            .where(property_type_id: types_need_update_ids, 
+              property_detail_id: duplicate_detail_id)
+            .update_all(property_detail_id: @property_detail.id)
+        end
+
         format.html { redirect_to @property_detail, notice: 'Property detail was successfully created.' }
         format.json { render :show, status: :created, location: @property_detail }
       else
@@ -58,8 +68,12 @@ class PropertyDetailsController < ApplicationController
   # PATCH/PUT /property_details/1.json
   def update
     # check if value options or value type will change and the details is already used
-    if((@property_detail.value_type != property_detail_params[:value_type] || 
-      JSON.parse(@property_detail.value_options) != property_detail_params[:value_options]) &&
+
+    value_type_changed = @property_detail.value_type != property_detail_params[:value_type]
+    value_options_changed =
+      (JSON.parse(@property_detail.value_options) != property_detail_params[:value_options])
+
+    if((value_type_changed || value_options_changed) && 
       !Property.get_affected_with_property_detail(@property_detail.id).empty?)
 
       affected_properties = Property.get_affected_with_property_detail(@property_detail.id)
@@ -101,11 +115,11 @@ class PropertyDetailsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_detail_params
     params.require(:property_detail).permit(:id, :code, :name, :value_type, 
-    :details_ids, :old_detail_id, :value_options => [])
+    :details_ids, :value_options => [])
   end
 
   def property_detail_extended_params
     params.require(:property_detail).permit(:id, :code, :name, :value_type, 
-    :details_ids, :old_detail_id, :value_options => [], affected_types: [:id])
+    :details_ids, :duplicate_detail_id, :value_options => [], types_need_update: [:id])
   end
 end

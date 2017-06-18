@@ -57,36 +57,33 @@
                     <div class="input-group">
                       <input type="text" class="form-control" ng-model="option">
                       <span class="input-group-btn">
-					  <button type="button" class="btn btn-danger" ng-click="
-					    detailCtrl.propertyDetail.value_options.splice($index, 1)">
-						<i class="fa fa-minus"></i>
-					  </button> 
-			      </span>
+                        <button type="button" class="btn btn-danger" ng-click="
+                          detailCtrl.propertyDetail.value_options.splice($index, 1)">
+                          <i class="fa fa-minus"></i>
+                        </button> 
+                      </span>
                     </div>
                   </div>
                 </div>
                 <div class="input-group">
                   <input type="text" class="form-control" ng-model='x'>
                   <span class="input-group-btn ">
-					<button type="button" class="btn btn-primary " ng-click="detailCtrl.propertyDetail.value_options.push(x) ">
-						<i class="fa fa-plus "></i>
-					</button> 
-				  </span>
+                    <button type="button" class="btn btn-primary " ng-click="detailCtrl.propertyDetail.value_options.push(x) ">
+                      <i class="fa fa-plus "></i>
+                    </button> 
+                  </span>
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group ">
             <div class="pull-right ">
-              <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary">
               <div ng-if="!(detailCtrl.propertyDetail.id) " translate="helpers.submit.create" translate-values="{model: '{{ 'activerecord.models.property_detail '|translate}}'} " />
               <div ng-if="detailCtrl.propertyDetail.id " translate="helpers.submit.update" translate-values="{model: '{{ 'activerecord.models.property_detail '|translate}}'} " />
             </button>
-              <button type="button" ng-click="detailCtrl.dismiss() " class="btn btn-o btn-primary ">
+            <button type="button" ng-click="detailCtrl.dismiss() " class="btn btn-o btn-primary ">
               <div translate="dashboard.cancel " />
-            </button>
-              <button type="button" ng-click="detailCtrl.updateTypes()" class="btn btn-o btn-primary ">
-              <div translate="proceed" />
             </button>
             </div>
           </div>
@@ -95,13 +92,18 @@
       </form>
     </div>
     <div class="col-md-6">
+      <div>affected property types</div>
+      <div ng-repeat="type in detailCtrl.propertyDetail.affected_types track by $index">
+        <label>
+             <input type="checkbox" checklist-model="detailCtrl.propertyDetail.types_need_update" 
+            checklist-value="type"> {{type.name}}         
+        </label>
+        <pre class="code margin-top-20 ">{{ type | json }}</pre>
+      </div>
+
       <div>affected_properties</div>
       <div ng-repeat="property in detailCtrl.propertyDetail.affected_properties track by $index">
         <pre class="code margin-top-20 ">{{ property | json }}</pre>
-      </div>
-      <div>affected property types</div>
-      <div ng-repeat="type in detailCtrl.propertyDetail.affected_types track by $index">
-        <pre class="code margin-top-20 ">{{ type | json }}</pre>
       </div>
     </div>
   </div>
