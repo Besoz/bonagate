@@ -46,10 +46,10 @@
       var modalInstance = openModal(angular.copy(vm.detailsList[index]));
 
       modalInstance.result.then(function (res) {
-        if(res.success){
+        if(res.updated){
           vm.detailsList[index] = res.propertyDetail;
         }else{
-          createAsDuplicate(res.propertyDetail);
+          vm.detailsList.push(res.propertyDetail);
         }
       }, function () {
       });
