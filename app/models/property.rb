@@ -24,4 +24,8 @@ class Property < ActiveRecord::Base
     presence: true
 
 
+  def self.get_affected_with_property_detail detail_id
+    Property.joins(:property_detail_instances).where(property_detail_instances: { property_detail_id: detail_id })
+  end
+
 end
