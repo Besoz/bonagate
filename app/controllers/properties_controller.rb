@@ -1,7 +1,7 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
 
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   # GET /properties
   # GET /properties.json
@@ -25,7 +25,7 @@ class PropertiesController < ApplicationController
 
   # POST /properties
   # POST /properties.json
-  def create
+  def create 
     @property = Property.new(property_params)
     @property.company_id = current_user.company_user.company_id
 
@@ -42,16 +42,22 @@ class PropertiesController < ApplicationController
 
   # PATCH/PUT /properties/1
   # PATCH/PUT /properties/1.json
-  def update
+  def update    
     respond_to do |format|
       if @property.update(property_params)
+
         format.html { redirect_to @property, notice: 'Property was successfully updated.' }
         format.json { render :show, status: :ok, location: @property }
       else
         format.html { render :edit }
-        format.json { render json: @property.errors, status: :unprocessable_entity }
+        format.json { render json: @property.errors, status: :unprocessable_entity}
       end
     end
+  end
+
+  def upload_image
+    Property.find(params[:id]).property_images << PropertyImage.create(property_params[:property_images_attributes])
+    render json: "",status: :ok
   end
 
   # DELETE /properties/1
@@ -73,7 +79,7 @@ class PropertiesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_params
     params.require(:property).permit(:address, :company_id, :property_type_id, :property_status_id,
-                                     :property_state_id,
+                                     :property_state_id, {property_images_attributes: :avatar},
                                      property_detail_instances_attributes: [:property_detail_id, :value, value: []])
   end
 end

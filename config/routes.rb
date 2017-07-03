@@ -17,7 +17,11 @@ Rails.application.routes.draw do
     end
   end
   resources :property_types
-  resources :properties
+  resources :properties do
+    member do
+      put 'upload_image'
+    end
+  end
   resources :companies
   resources :companies
   resources :user_sessions, only: [:create, :destroy, :current_user] do

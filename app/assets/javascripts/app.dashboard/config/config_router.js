@@ -135,7 +135,7 @@ angular
           propertyStatusesRequest: function (GeneralDataServices) {
             return GeneralDataServices.index('property_statuses');
           },
-          deps: mLoadSequence('ui.select', 'wizardController', 'propertiesServices', 'propertyDetailsServices')
+          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 'wizardController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.details', {
         url: '/property_details',

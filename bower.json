@@ -44,7 +44,7 @@
       "angular-truncate": "*",
       "angular-sweetalert-promised": "~1.0.4",
       "angular-elastic": "~2.4.2",
-      "ngmap": "~1.4.2",
+      "ngmap": "~1.18.4",
       "tc-angular-chartjs": "~1.0.9",
       "angular-ui-switch": "~0.1.0",
       "angular-ckeditor": "~0.3.2",
