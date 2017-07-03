@@ -58,42 +58,52 @@
           <!-- start: WIZARD STEP 1 -->
           <div id="step-1" ng-show="wizardCtrl.currentStep == 1">
             <div class="row">
-              <div class="col-md-6">
-                <div class="padding-30">
-                  <h2 class="StepTitle"> Choose property type</h2>
-                  <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
-                    <label class="control-label">
-                      {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span>
-                    </label>
-                    <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="service_type" required>
-                      <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
-                        {{$select.selected.name}}
-                      </ui-select-match>
-                      <ui-select-choices repeat="item in wizardCtrl.propertyTypes | filter: $select.search">
-                        <div ng-bind-html="item.name | highlight: $select.search"></div>
-                        <small ng-bind-html="item.code | highlight: $select.search"></small>
-                      </ui-select-choices>
-                    </ui-select>
+              <div class="col-md-12">>
+                <div class="col-md-6">
+                  <div class="padding-30">
+                    <h2 class="StepTitle"> Choose property type</h2>
+                    <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
+                      <label class="control-label">
+                        {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span>
+                      </label>
+                      <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="service_type" required>
+                        <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                          {{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in wizardCtrl.propertyTypes | filter: $select.search">
+                          <div ng-bind-html="item.name | highlight: $select.search"></div>
+                          <small ng-bind-html="item.code | highlight: $select.search"></small>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="padding-30">
-                  <h2 class="StepTitle"> Choose service type</h2>
-                  <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
-                    <label class="control-label">
-                      {{'activerecord.models.property_service_type'|translate}} <span class="symbol required"></span>
-                    </label>
-                    <ui-select ng-model="wizardCtrl.property.service_type" theme="bootstrap" name="type" required>
-                      <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
-                        {{$select.selected.name}}
-                      </ui-select-match>
-                      <ui-select-choices repeat="item in wizardCtrl.serviceTypes | filter: $select.search">
-                        <div ng-bind-html="item.name | highlight: $select.search"></div>
-                        <small ng-bind-html="item.code | highlight: $select.search"></small>
-                      </ui-select-choices>
-                    </ui-select>
+                <div class="col-md-6">
+                  <div class="padding-30">
+                    <h2 class="StepTitle"> Choose service type</h2>
+                    <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
+                      <label class="control-label">
+                        {{'activerecord.models.property_service_type'|translate}} <span class="symbol required"></span>
+                      </label>
+                      <ui-select ng-model="wizardCtrl.property.service_type" theme="bootstrap" name="type" required>
+                        <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                          {{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in wizardCtrl.serviceTypes | filter: $select.search">
+                          <div ng-bind-html="item.name | highlight: $select.search"></div>
+                          <small ng-bind-html="item.code | highlight: $select.search"></small>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
                   </div>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="wizardCtrl.form.prev(Form)">
+                        <i class="fa fa-circle-arrow-right"></i> Back
+                      </button>
+                  <button class="btn btn-primary btn-o next-step btn-wide pull-left" ng-click="wizardCtrl.form.next(Form)">
+                        Next <i class="fa fa-arrow-circle-left"></i>
+                      </button>
                 </div>
               </div>
             </div>
@@ -190,7 +200,7 @@
           </div>
           <!-- end: WIZARD STEP 2-->
           <!-- start: WIZARD STEP 3 -->
-          <div id="step-3" ng-if="wizardCtrl.currentStep == 3">
+          <div id="step-3" ng-if="wizardCtrl.currentStep == wizardCtrl.LOCATION_STEP">
             <!-- start: UPLOADS ONLY IMAGES -->
             <div class="container-fluid container-fullw bg-white">
               <div class="row">
@@ -284,6 +294,14 @@
                       </div>
                     </div>
                   </div>
+                  <div class="form-group">
+                    <button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="wizardCtrl.form.prev(Form)">
+                      <i class="fa fa-circle-arrow-right"></i> Back
+                    </button>
+                    <button class="btn btn-primary btn-o next-step btn-wide pull-left" ng-click="wizardCtrl.form.next(Form)">
+                      Next <i class="fa fa-arrow-circle-left"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -376,6 +394,14 @@
                   </fieldset>
                 </div>
                 <!--end: Map-->
+                <div class="form-group">
+                  <button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="wizardCtrl.form.prev(Form)">
+                      <i class="fa fa-circle-arrow-right"></i> Back
+                    </button>
+                  <button class="btn btn-primary btn-o next-step btn-wide pull-left" ng-click="wizardCtrl.form.next(Form)">
+                      Next <i class="fa fa-arrow-circle-left"></i>
+                    </button>
+                </div>
               </div>
             </div>
           </div>
