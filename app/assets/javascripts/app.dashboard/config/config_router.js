@@ -137,6 +137,18 @@ angular
           },
           deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 'wizardController', 'propertiesServices', 'propertyDetailsServices')
         }
+      }).state('app.property.list', {
+        url: '/list',
+        templateUrl: "assets/app.dashboard/pages/property/property_list/property_list.html",
+        controller: "PropertyListController",
+        controllerAs: 'listCtrl',
+        resolve: {
+          propertiesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('properties');
+          },
+          deps: mLoadSequence('ngTable', "propertyListController",
+            "propertiesServices")
+        }
       }).state('app.property.details', {
         url: '/property_details',
         templateUrl: "assets/app.dashboard/pages/property/property_details/property_details.html",

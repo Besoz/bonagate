@@ -4,3 +4,6 @@ json.property_state property.property_type, partial: 'property_types/property_ty
 json.property_state property.property_state, partial: 'property_states/property_state', as: :property_state
 json.property_status property.property_status, partial: 'property_statuses/property_status', as: :property_status
 json.url property_url(property, format: :json)
+if(property.property_images.first)
+    json.avatar property.property_images.first.avatar
+end
