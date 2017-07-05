@@ -49,7 +49,7 @@ angular
         vm.property = propertyRequest.data;
         vm.property.property_detail_instances_attributes = [];
 
-        vm.property.selectedImagesForDelete = [];
+        vm.property.deleted_images_ids = [];
       }
 
       function addGeoLocationMarker(map) {
@@ -178,7 +178,7 @@ angular
       function submit() {
         decoratePropertyRequest();
 
-        PropertiesServices.createProperty(vm.property)
+        PropertiesServices.updateProperty(vm.property)
           .then(function (res) {
             Object.assign(vm.property, res.data);
             // upload images
@@ -193,8 +193,6 @@ angular
         vm.property.property_type_id = vm.property.type.id;
         vm.property.property_status_id = vm.property.status.id;
         vm.property.property_state_id = vm.property.state.id;
-        vm.property.lat = vm.property.latLng[0];
-        vm.property.lng = vm.property.latLng[1];
       }
 
       function reset() {

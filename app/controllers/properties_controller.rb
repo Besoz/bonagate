@@ -1,12 +1,13 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show, :edit, :update, :destroy]
+  before_action :set_property, only: [:show, :edit, :update, :destroy, 
+  :upload_image]
 
   # load_and_authorize_resource
 
   # GET /properties
   # GET /properties.json
   def index
-    @properties = Property.all
+    @properties = Property.all  
   end
 
   # GET /properties/1
@@ -45,6 +46,12 @@ class PropertiesController < ApplicationController
   def update    
     respond_to do |format|
       if @property.update(property_params)
+          puts "hhhhhhhhhhhhhhhhhhhhhh"
+          puts params[:property][:deleted_images_ids].to_json
+        if(params[:property][:deleted_images_ids])
+          puts "hhhhhhhhhhhhhhhhhhhhhh"
+          @property.property_images.where(id: params[:property][:deleted_images_ids]).destroy_all
+        end
 
         format.html { redirect_to @property, notice: 'Property was successfully updated.' }
         format.json { render :show, status: :ok, location: @property }
@@ -56,9 +63,10 @@ class PropertiesController < ApplicationController
   end
 
   def upload_image
-    Property.find(params[:id]).property_images << PropertyImage.create(property_params[:property_images_attributes])
+    @property.property_images << PropertyImage.create(property_params[:property_images_attributes])
     render json: "",status: :ok
   end
+
 
   # DELETE /properties/1
   # DELETE /properties/1.json
