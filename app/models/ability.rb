@@ -28,8 +28,6 @@ class Ability
         can :create, Property
 
       else
-
-
         can :crud, User, id: user.id
 
         can :index, User,  :company_user => { :company_id => user.company_user.company.id }
@@ -38,6 +36,8 @@ class Ability
 
       end
 
+      can :crud_all, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id
+      can :upload_image, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id
     end
     #
     # The first argument to `can` is the action you are giving the user

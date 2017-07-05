@@ -2,7 +2,7 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy, 
   :upload_image]
 
-  # load_and_authorize_resource
+  load_and_authorize_resource
 
   # GET /properties
   # GET /properties.json
