@@ -1,0 +1,15 @@
+.media-heading {
+    a, small {
+        display: inline-block;
+    }
+}
+
+@media (min-width: @screen-md) {
+    .property-meta .property-meta-item {
+        border-left: 1px solid @grey-200;
+        border-right: 0;
+        &:last-of-type {
+            border-left: none;
+        }
+    }
+}

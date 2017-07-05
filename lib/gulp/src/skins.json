@@ -1,0 +1,27 @@
+{
+    "html": {
+        "default": {
+            "primary-color": "#16ae9f"
+        }
+    },
+    "rtl": {
+        "default": {
+            "primary-color": "#16ae9f"
+        }
+    },
+    "angular": {
+        "default": {
+            "primary-color": "#16ae9f"
+        }
+    },
+    "choose": {
+        "default": {
+            "primary-color": "#16ae9f"
+        }
+    },
+    "docs": {
+        "default": {
+            "primary-color": "#16ae9f"
+        }
+    }
+}

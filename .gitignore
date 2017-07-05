@@ -46,3 +46,5 @@ bower.json
 .log
 
 .pid
+
+/node_modules
