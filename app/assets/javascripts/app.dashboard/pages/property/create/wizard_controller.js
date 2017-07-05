@@ -47,7 +47,6 @@ angular
         vm.property = {}
         vm.property.property_detail_instances_attributes = [];
 
-        vm.property.selected_images_for_delete = [];
       }
 
       function addGeoLocationMarker(map) {

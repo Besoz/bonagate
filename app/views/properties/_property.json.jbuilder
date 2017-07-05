@@ -1,4 +1,4 @@
-json.extract! property, :id, :address, :created_at, :updated_at, :state
+json.extract! property, :id, :address, :created_at, :updated_at, :state, :lat, :lng
 json.property_detail_instances property.property_detail_instances, partial: 'property_detail_instances/property_detail_instance', as: :property_detail_instance
 json.type property.property_type, partial: 'property_types/property_type', as: :property_type
 json.state property.property_state, partial: 'property_states/property_state', as: :property_state

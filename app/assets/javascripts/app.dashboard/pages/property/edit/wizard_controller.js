@@ -36,7 +36,7 @@ angular
           submit: submit,
           reset: reset,
           map: {
-            drag: mapDrag,
+            centerChanged: centerChanged,
             goCurrentLocation: goCurrentLocation
           }
         };
@@ -72,16 +72,16 @@ angular
             } else {
               vm.geolocationMarker.position = vm.geolocalpoint;
             }
-            map.setCenter(vm.geolocalpoint);
           },
           function (error) {
             alert('Unable to get location: ' + error.message);
           }, options);
       }
 
-      function mapDrag() {
-        if (vm.map) {
-          vm.property.latLng = [vm.map.getCenter().lat(), vm.map.getCenter().lng()];
+      function centerChanged() {
+        if (vm.map && vm.map.getCenter()){
+          vm.property.lat = vm.map.getCenter().lat() 
+          vm.property.lng = vm.map.getCenter().lng();
         }
       }
 
@@ -158,6 +158,8 @@ angular
             NgMap.getMap().then(function (evtMap) {
               vm.map = evtMap;
               addGeoLocationMarker(vm.map);
+              vm.map.setCenter(google.maps.LatLng(vm.property.lat,
+              vm.property.lng));
             });
             break;
           default:

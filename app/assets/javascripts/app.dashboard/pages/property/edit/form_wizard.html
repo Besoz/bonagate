@@ -343,8 +343,8 @@
             <div class="row">
               <div class="col-md-12">
                 <!--start: Map-->
-                <map on-center_changed="wizardCtrl.form.map.drag()" zoom="20" map-type-id="MapTypeId.ROADMAP">
-                  <marker position="{{wizardCtrl.property.latLng}}" 
+                <map on-center_changed="wizardCtrl.form.map.centerChanged()" zoom="20" map-type-id="MapTypeId.ROADMAP">
+                  <marker position="{{[wizardCtrl.property.lat, wizardCtrl.property.lng]}}" 
                   centered="true" draggable="true"></marker>
                   <custom-control id="go-home" position="TOP_RIGHT" index="1" 
                   on-click="wizardCtrl.form.map.goCurrentLocation()">
