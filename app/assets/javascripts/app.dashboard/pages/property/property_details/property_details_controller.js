@@ -49,7 +49,7 @@
         if(res.success){
           vm.detailsList[index] = res.propertyDetail;
         }else{
-          createAsDuplicate(res.propertyDetail);
+          createAsDuplicate(res);
         }
       }, function () {
       });
