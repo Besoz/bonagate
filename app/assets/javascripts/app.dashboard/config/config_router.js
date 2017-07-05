@@ -135,7 +135,32 @@ angular
           propertyStatusesRequest: function (GeneralDataServices) {
             return GeneralDataServices.index('property_statuses');
           },
-          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 'wizardController', 'propertiesServices', 'propertyDetailsServices')
+          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 'wizardController', 
+          'propertiesServices', 'propertyDetailsServices')
+        }
+      }).state('app.property.edit', {
+        url: '/edit/:propertyId',
+        templateUrl: "assets/app.dashboard/pages/property/edit/form_wizard.html",
+        controller: "EditWizardController",
+        controllerAs: 'wizardCtrl',
+        resolve: {
+          propertyRequest: function (GeneralDataServices, $stateParams) {
+            return GeneralDataServices.get('properties', $stateParams.propertyId);
+          },
+          propertyTypesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_types');
+          },
+          serviceTypesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_service_types');
+          },
+          propertyStatesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_states');
+          },
+          propertyStatusesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_statuses');
+          },
+          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 
+          'editWizardController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.list', {
         url: '/list',

@@ -1,5 +1,5 @@
 // service
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -14,7 +14,8 @@
     var service = {
       update: update,
       index: index,
-      create: create
+      create: create,
+      get: get
     };
     return service;
 
@@ -30,6 +31,10 @@
 
     function create(table, object) {
       return $http.post('/' + table + '.json', object);
+    };
+
+    function get(table, id) {
+      return $http.get('/' + table + '/'+ id +'.json');
     };
   }
 })();

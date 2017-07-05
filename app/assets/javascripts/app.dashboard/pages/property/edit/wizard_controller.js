@@ -4,12 +4,14 @@
  */
 angular
   .module('app.dashboard')
-  .controller('WizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest',
+  .controller('EditWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest',
     'PropertyDetailsServices', 'PropertiesServices', 'propertyStatesRequest', 'propertyStatusesRequest',
-    'NgMap', 'FileUploader',
+    'NgMap', 'FileUploader', 'propertyRequest',
 
     function (toaster, $scope, propertyTypesRequest, serviceTypesRequest, PropertyDetailsServices,
-      PropertiesServices, propertyStatesRequest, propertyStatusesRequest, NgMap, FileUploader) {
+      PropertiesServices, propertyStatesRequest, propertyStatusesRequest, NgMap, FileUploader, 
+      propertyRequest) {
+      
       var vm = this;
 
       vm.LOCATION_STEP = 4;
@@ -44,10 +46,10 @@ angular
         vm.states = propertyStatesRequest.data.list;
         vm.statuses = propertyStatusesRequest.data.list;
 
-        vm.property = {}
+        vm.property = propertyRequest.data;
         vm.property.property_detail_instances_attributes = [];
 
-        vm.property.selected_images_for_delete = [];
+        vm.property.selectedImagesForDelete = [];
       }
 
       function addGeoLocationMarker(map) {
