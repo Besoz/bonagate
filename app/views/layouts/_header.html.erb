@@ -1,3 +1,11 @@
+
+  <script src="assets/app.realestate/controllers/login.controller.js"></script>
+
+  <% if current_user.nil? %>
+    <script src="assets/app.realestate/controllers/register.controller.js"></script>
+  <% else %>
+  <% end %>
+
   <!-- Fixed navbar -->
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
@@ -18,18 +26,15 @@
       <div class="collapse navbar-collapse" id="main-nav">
         <ul class="nav navbar-nav">   
           <li class="dropdown active">    
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Website <span class="caret"></span></a>    
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+             <%= t('language_name') %> <span class="caret"></span></a>    
             <ul class="dropdown-menu">    
-              <li class="dropdown-header">Website pages</li>    
-              <li><a href="front-home-slider.html">Home + Slider</a></li>   
-              <li><a href="front-home-map.html">Home + Map</a></li>   
-              <li class="active"><a href="front-listing-list.html">Listing - List</a></li>    
-              <li><a href="front-listing-grid.html">Listing - Grid</a></li>   
-              <li><a href="front-property.html">Property</a></li>   
+              <li><a ng-click="AppCtrl.setLocale('en')">English</a></li>   
+              <li><a ng-click="AppCtrl.setLocale('ar')">عربي</a></li>   
             </ul>   
           </li>   
         </ul>
-        <form class="navbar-form navbar-left margin-none">
+        <form class="navbar-form navbar-left margin-none" ng-class='{"flip": AppCtrl.ar}'>
           <div class="search-1">
             <div class="input-group">
               <span class="input-group-addon"><i class="icon-search"></i></span>
@@ -37,29 +42,29 @@
             </div>
           </div>
         </form>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right" ng-class='{"flip": AppCtrl.ar}'>
           <% if current_user.nil? %>
             <!-- Login -->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-fw fa-lock"></i> Login
               </a>
-              <div class="dropdown-menu dropdown-size-280">
+              <div class="dropdown-menu dropdown-size-280" ng-controller="LoginController as LoginCtrl">
                 <form>
                   <div class="form-group">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                      <input type="text" class="form-control" placeholder="Username">
+                      <input type="text" class="form-control" placeholder="<%= User.human_attribute_name('email')%>" ng-model="LoginCtrl.userEmail">
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-shield"></i></span>
-                      <input type="password" class="form-control" placeholder="Password">
+                      <input type="password" class="form-control" placeholder="<%= User.human_attribute_name('password')%>" ng-model="LoginCtrl.userPassword">
                     </div>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Login <i class="fa fa-sign-in"></i></button>
+                    <button type="submit" class="btn btn-primary" ng-click="LoginCtrl.login()">Login <i class="fa fa-sign-in"></i></button>
                   </div>
                 </form>
               </div>
@@ -101,14 +106,14 @@
             <!-- // END sign up -->
           <% else %>
             <!-- user -->
-            <li class="dropdown user">
+            <li class="dropdown user" ng-controller="LoginController as LoginCtrl">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="images/people/110/guy-6.jpg" alt="" class="img-circle" /> Bill<span class="caret"></span>
+                <img src="images/people/110/guy-6.jpg" alt="" class="img-circle" /> <%= current_user.first_name %><span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>
-                <li><a href="#"><i class="fa fa-sign-out"></i>Logout</a></li>
+                <li><a ng-click="LoginCtrl.logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
               </ul>
             </li>
           <% end %>
