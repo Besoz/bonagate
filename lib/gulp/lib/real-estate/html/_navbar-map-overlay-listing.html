@@ -1,0 +1,15 @@
+<nav class="navbar navbar-default navbar-size-large navbar-static-top navbar-map-overlay">
+    <a data-toggle="sidebar-menu" href="#sidebar-map" class="toggle pull-right hidden-xs margin-none{% if btnActive %} active{% endif %}{% if rtl %} flip{% endif %}"><i class="fa fa-list"></i></a>
+    <div class="navbar-header">
+        <div class="container-fluid">
+            <div class="navbar-text pull-left{% if rtl %} flip{% endif %}"><i class="fa fa-fw fa-info"></i> Discover thousands of locations</div>
+            <a class="toggle pull-right margin-none visible-xs{% if rtl %} flip{% endif %}" data-toggle="collapse" data-target="#map-nav"><i class="fa fa-sliders fa-rotate-90"></i></a>
+        </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="map-nav">
+        <form class="navbar-form {% if rtl %} navbar-right{% else %} navbar-left{% endif %}">
+            {% include "lib/navbar/html/_search_2.html" { btnClass: "btn-inverse" } %}
+        </form>
+    </div>
+</nav>

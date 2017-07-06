@@ -17,7 +17,11 @@ Rails.application.routes.draw do
     end
   end
   resources :property_types
-  resources :properties
+  resources :properties do
+    collection do
+      get 'search'
+    end
+  end
   resources :companies
   resources :companies
   resources :user_sessions, only: [:create, :destroy, :current_user] do

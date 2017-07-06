@@ -1,0 +1,30 @@
+<div class="panel panel-default relative">
+    <div class="ribbon-heading ribbon-{{ caretStyle or 'default' }} inline absolute {% if rtl %}right{% else %}left{% endif %} margin-none">{{ caretText or 'Sale' }}</div>
+    <div class="cover hover overlay margin-none">
+        <img src="images/{{ image }}" alt="location" class="img-responsive" />
+        <a{% if angular %} ui-sref="{{ propertyUrl or 'property.map' }}"{% else %} href="{{ propertyUrl or 'property.html' }}"{% endif %} class="overlay overlay-full overlay-bg-black overlay-hover">
+            <span class="v-center">
+                <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
+            </span>
+        </a>
+    </div>
+    <div class="panel-body">
+        <h4 class="margin-v-0-5">{{ title or 'Property for sale' }}</h4>
+        <p class="small">
+            <span class="fa fa-fw fa-star text-yellow-800"></span>
+            <span class="fa fa-fw fa-star text-yellow-800"></span>
+            <span class="fa fa-fw fa-star text-yellow-800"></span>
+            <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+            <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+        </p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <span class="label label-grey-100">&euro;{{ price }}</span>&nbsp;
+        {% if (type == 'individual') %}
+            <i class="small fa fa-fw icon-user-1" data-toggle="tooltip" data-title="Individual"></i>
+        {% endif %}
+        {% if (!type || type == 'agency') %}
+            <i class="small fa fa-fw icon-home-fill-1" data-toggle="tooltip" data-title="Agency"></i>
+        {% endif %}
+        <a{% if angular %} ui-sref="{{ propertyUrl or 'property.map' }}"{% else %} href="{{ propertyUrl or 'property.html' }}"{% endif %} class="btn btn-primary btn-circle absolute bottom {% if rtl %}left{% else %}right{% endif %}"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+</div>

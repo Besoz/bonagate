@@ -1,0 +1,10 @@
+{% include "lib/layout/html/_header.html" { htmlClass: 'hide-sidebar top-navbar ls-bottom-footer-fixed' } %}
+
+{% set navbarTpl = "src/html/themes/" + config.theme + "/_navbar-front.html" %}
+{% include navbarTpl { navbarOptions: 'navbar-default navbar-fixed-top' } %}
+
+<div id="content">{% block content %}{% endblock %}</div>
+
+{% include "lib/layout/html/_footer_copyright.html" %}
+
+{% include "lib/layout/html/_footer_scripts.html" %}

@@ -1,0 +1,41 @@
+{% include "lib/real-estate/html/_front-listing-cover.html" %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			{% include "lib/real-estate/html/_front-listing-filters.html" %}
+		</div>
+		<div class="col-md-9">
+
+			{% include "lib/real-estate/html/_front-listing-top.html" %}
+
+			<div class="row gridalicious" data-toggle="gridalicious" data-width="200">
+				{% if angular %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front.property", image: "photodune-378874-real-estate-xs.jpg", price: "277,028.00", caretStyle: "primary" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front.property", image: "photodune-195203-houses-xs.jpg", price: "82,331.00" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front.property", image: "photodune-196089-house-xs.jpg", price: "81,662.00", type: "individual" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front.property", title: "Residential Home", image: "photodune-197173-residential-home-xs.jpg", price: "132,021.00", caretStyle: "primary", caretText: "Rent", type: "individual" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front.property", title: "Superb Backyard", image: "photodune-3979102-superb-backyard-xs.jpg", price: "175,654.00", caretStyle: "primary", caretText: "Rent" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front.property", title: "Apartment", image: "photodune-2238345-apartments-xs.jpg", price: "187,285.00", type: "individual" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front.property", title: "Luxury Mansion", image: "photodune-1112879-modern-kitchen-in-luxury-mansion-xs.jpg", price: "72,152.00" } %}
+				{% else %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front-property.html", image: "photodune-378874-real-estate-xs.jpg", price: "277,028.00", caretStyle: "primary" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front-property.html", image: "photodune-195203-houses-xs.jpg", price: "82,331.00" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front-property.html", image: "photodune-196089-house-xs.jpg", price: "81,662.00", type: "individual" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front-property.html", title: "Residential Home", image: "photodune-197173-residential-home-xs.jpg", price: "132,021.00", caretStyle: "primary", caretText: "Rent", type: "individual" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front-property.html", title: "Superb Backyard", image: "photodune-3979102-superb-backyard-xs.jpg", price: "175,654.00", caretStyle: "primary", caretText: "Rent" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front-property.html", title: "Apartment", image: "photodune-2238345-apartments-xs.jpg", price: "187,285.00", type: "individual" } %}
+					{% include "lib/real-estate/html/_listing-panel-grid.html" { propertyUrl: "front-property.html", title: "Luxury Mansion", image: "photodune-1112879-modern-kitchen-in-luxury-mansion-xs.jpg", price: "72,152.00" } %}
+				{% endif %}
+			</div>
+
+			<ul class="pagination margin-top-none">
+				<li class="disabled"><a href="#">&laquo;</a></li>
+				<li class="active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">&raquo;</a></li>
+			</ul>
+		</div>
+	</div>
+</div>

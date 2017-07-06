@@ -1,0 +1,35 @@
+{% include "lib/real-estate/html/_front-listing-cover.html" %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			{% include "lib/real-estate/html/_front-listing-filters.html" %}
+		</div>
+		<div class="col-md-9">
+
+			{% include "lib/real-estate/html/_front-listing-top.html" %}
+
+			{% if angular %}
+				{% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: "front.property", image: "photodune-378874-real-estate-xs.jpg", title: "The Dwelling Mansion, Caracas", text: "The apartment boasts a fully equipped eat-in kitchen, washing machine, central heating and an en-suite bathroom with shower. The bathroom is in the main bedroom so it's suitable and comfortable for family and friends ..." } %}
+				{% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: "front.property", image: "photodune-195203-houses-xs.jpg", title: "Cozy Family House, Paris", text: "On the second floor there are two bedrooms and a bathroom. One bedroom with a single bed and the second with a double bed, the second bedroom is also available with two single beds. There is also a studio couch bed ..." } %}
+				{% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: "front.property", image: "photodune-196089-house-xs.jpg" } %}
+				{% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: "front.property", image: "photodune-197173-residential-home-xs.jpg" } %}
+				{% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: "front.property", image: "photodune-3979102-superb-backyard-xs.jpg" } %}
+			{% else %}
+				{% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: "front-property.html", image: "photodune-378874-real-estate-xs.jpg", title: "The Dwelling Mansion, Caracas", text: "The apartment boasts a fully equipped eat-in kitchen, washing machine, central heating and an en-suite bathroom with shower. The bathroom is in the main bedroom so it's suitable and comfortable for family and friends ..." } %}
+				{% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: "front-property.html", image: "photodune-195203-houses-xs.jpg", title: "Cozy Family House, Paris", text: "On the second floor there are two bedrooms and a bathroom. One bedroom with a single bed and the second with a double bed, the second bedroom is also available with two single beds. There is also a studio couch bed ..." } %}
+				{% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: "front-property.html", image: "photodune-196089-house-xs.jpg" } %}
+				{% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: "front-property.html", image: "photodune-197173-residential-home-xs.jpg" } %}
+				{% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: "front-property.html", image: "photodune-3979102-superb-backyard-xs.jpg" } %}
+			{% endif %}
+
+			<ul class="pagination margin-top-none">
+				<li class="disabled"><a href="#">&laquo;</a></li>
+				<li class="active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">&raquo;</a></li>
+			</ul>
+		</div>
+	</div>
+</div>

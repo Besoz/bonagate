@@ -1,0 +1,56 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-main {{ navbarOptions or 'navbar-default navbar-fixed-top' }}" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="front-home-slider.html">{{ site.name }}</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="main-nav">
+			<ul class="nav navbar-nav">
+				<li class="dropdown active">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Website <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Website pages</li>
+						<li{% if page.slug == "front-home-slider" %} class="active"{% endif %}><a href="front-home-slider.html">Home + Slider</a></li>
+						<li{% if page.slug == "front-home-map" %} class="active"{% endif %}><a href="front-home-map.html">Home + Map</a></li>
+						<li{% if page.slug == "front-listing-list" %} class="active"{% endif %}><a href="front-listing-list.html">Listing - List</a></li>
+						<li{% if page.slug == "front-listing-grid" %} class="active"{% endif %}><a href="front-listing-grid.html">Listing - Grid</a></li>
+						<li{% if page.slug == "front-property" %} class="active"{% endif %}><a href="front-property.html">Property</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">App <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Application pages</li>
+						<li><a href="index.html">Full Screen Map</a></li>
+						<li><a href="map-listing-list.html">Map Listing - List</a></li>
+						<li><a href="map-listing-grid.html">Map Listing - Grid</a></li>
+						<li><a href="map-property.html">Map + Property</a></li>
+						<li><a href="map-edit.html">Map + Edit</a></li>
+						<li><a href="listing.html">Listing - List</a></li>
+						<li><a href="listing-grid.html">Listing - Grid</a></li>
+						<li><a href="listing-map.html">Listing - Map</a></li>
+						<li><a href="property.html">Property</a></li>
+					</ul>
+				</li>
+			</ul>
+			<form class="navbar-form navbar-left margin-none{% if rtl %} flip{% endif %}">
+				{% include "lib/navbar/html/_search_1.html" { btnClass: "btn-inverse" } %}
+			</form>
+			<ul class="nav navbar-nav navbar-right{% if rtl %} flip{% endif %}">
+				{% include "lib/navbar/html/_login.html" %}
+				{% include "lib/navbar/html/_signup.html" %}
+				{% include "lib/navbar/html/_user.html" %}
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+
+	</div>
+</nav>

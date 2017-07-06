@@ -1,0 +1,6 @@
+{% extends "lib/real-estate/html/_layout-property.html" %}
+
+{% block content %}
+    {% set tpl = "lib/real-estate/html/pages/" + page.basename %}
+    {% include tpl %}
+{% endblock %}
