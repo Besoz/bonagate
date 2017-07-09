@@ -138,8 +138,19 @@ angular
           deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 'wizardController', 
           'propertiesServices', 'propertyDetailsServices')
         }
+      }).state('app.property.view', {
+        url: '/:propertyId',
+        templateUrl: "assets/app.dashboard/pages/property/view/form_wizard.html",
+        controller: "PropertyViewController",
+        controllerAs: 'propCtrl',
+        resolve: {
+          propertyRequest: function (GeneralDataServices, $stateParams) {
+            return GeneralDataServices.get('properties', $stateParams.propertyId);
+          },
+          deps: mLoadSequence('ngMap', 'ui.select', 'propertyViewController', 'propertiesServices')
+        }
       }).state('app.property.edit', {
-        url: '/edit/:propertyId',
+        url: '/:propertyId/edit',
         templateUrl: "assets/app.dashboard/pages/property/edit/form_wizard.html",
         controller: "EditWizardController",
         controllerAs: 'wizardCtrl',

@@ -6,10 +6,10 @@ angular
   .module('app.dashboard')
   .controller('WizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest',
     'PropertyDetailsServices', 'PropertiesServices', 'propertyStatesRequest', 'propertyStatusesRequest',
-    'NgMap', 'FileUploader',
+    'NgMap', 'FileUploader', '$state', '$stateParams',
 
     function (toaster, $scope, propertyTypesRequest, serviceTypesRequest, PropertyDetailsServices,
-      PropertiesServices, propertyStatesRequest, propertyStatusesRequest, NgMap, FileUploader) {
+      PropertiesServices, propertyStatesRequest, propertyStatusesRequest, NgMap, FileUploader, $state, $stateParams) {
       var vm = this;
 
       vm.LOCATION_STEP = 4;
@@ -177,7 +177,14 @@ angular
           .then(function (res) {
             Object.assign(vm.property, res.data);
             // upload images
-            vm.uploaderImages.uploadAll();
+            if (vm.uploaderImages.queue.length == 0) {
+              $state.go('^.view', {
+                'propertyId': vm.property.id
+              });
+            } else {
+              vm.uploaderImages.uploadAll();
+            }
+
           })
           .catch(function (err) {
             console.log(err);
@@ -260,9 +267,12 @@ angular
       // uploaderImages.onCompleteItem = function (fileItem, response, status, headers) {
       //   console.info('onCompleteItem', fileItem, response, status, headers);
       // };
-      // uploaderImages.onCompleteAll = function () {
-      //   console.info('onCompleteAll');
-      // };
+      vm.uploaderImages.onCompleteAll = function () {
+        $state.go('^.view', {
+          'propertyId': vm.property.id
+        });
+      };
+
 
       // console.info('uploader', uploaderImages);
     }

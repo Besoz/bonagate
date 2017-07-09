@@ -6,12 +6,12 @@ angular
   .module('app.dashboard')
   .controller('EditWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest',
     'PropertyDetailsServices', 'PropertiesServices', 'propertyStatesRequest', 'propertyStatusesRequest',
-    'NgMap', 'FileUploader', 'propertyRequest',
+    'NgMap', 'FileUploader', 'propertyRequest', '$state', '$stateParams',
 
     function (toaster, $scope, propertyTypesRequest, serviceTypesRequest, PropertyDetailsServices,
-      PropertiesServices, propertyStatesRequest, propertyStatusesRequest, NgMap, FileUploader, 
-      propertyRequest) {
-      
+      PropertiesServices, propertyStatesRequest, propertyStatusesRequest, NgMap, FileUploader,
+      propertyRequest, $state, $stateParams) {
+
       var vm = this;
 
       vm.LOCATION_STEP = 4;
@@ -79,8 +79,8 @@ angular
       }
 
       function centerChanged() {
-        if (vm.map && vm.map.getCenter()){
-          vm.property.lat = vm.map.getCenter().lat() 
+        if (vm.map && vm.map.getCenter()) {
+          vm.property.lat = vm.map.getCenter().lat()
           vm.property.lng = vm.map.getCenter().lng();
         }
       }
@@ -159,7 +159,7 @@ angular
               vm.map = evtMap;
               addGeoLocationMarker(vm.map);
               vm.map.setCenter(google.maps.LatLng(vm.property.lat,
-              vm.property.lng));
+                vm.property.lng));
             });
             break;
           default:
@@ -182,7 +182,14 @@ angular
           .then(function (res) {
             Object.assign(vm.property, res.data);
             // upload images
-            vm.uploaderImages.uploadAll();
+            if (vm.uploaderImages.queue.length == 0) {
+              $state.go('^.view', {
+                'propertyId': $stateParams.propertyId
+              });
+            } else {
+              vm.uploaderImages.uploadAll();
+            }
+
           })
           .catch(function (err) {
             console.log(err);
@@ -263,9 +270,11 @@ angular
       // uploaderImages.onCompleteItem = function (fileItem, response, status, headers) {
       //   console.info('onCompleteItem', fileItem, response, status, headers);
       // };
-      // uploaderImages.onCompleteAll = function () {
-      //   console.info('onCompleteAll');
-      // };
+      vm.uploaderImages.onCompleteAll = function () {
+        $state.go('^.view', {
+          'propertyId': $stateParams.propertyId
+        });
+      };
 
       // console.info('uploader', uploaderImages);
     }
