@@ -15,7 +15,8 @@ class PagesController < ApplicationController
 
   def change_locale
     I18n.locale = params[:locale] || I18n.default_locale
-    current_user.update_attributes(locale: params[:locale])
+    current_user.update_attributes(locale: params[:locale]) unless current_user.nil?
+    cookies.permanent[:locale] = I18n.locale.to_s
     render json: "",status: :ok
   end
 end

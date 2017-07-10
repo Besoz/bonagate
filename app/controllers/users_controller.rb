@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   layout "cliptheme-layout"
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :require_user, except: [:new, :create]
+  before_action :require_user, except: [:new, :create, :create_user]
 
-  load_and_authorize_resource  :except => [:new, :create]
+  load_and_authorize_resource  :except => [:new, :create, :create_user]
 
   # GET /users
   # GET /users.json
@@ -96,6 +96,19 @@ class UsersController < ApplicationController
     
   end
 
+  # POST /create_user
+  # POST /create_user.json
+  def create_user
+    @user = User.new(normal_user_params)
+    @user.role = :user
+
+    if @user.save
+      render '/users/create_user.json.jbuilder'
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -131,6 +144,12 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation,
                                    :confirmed, :approved, :active,
+                                   :first_name, :last_name, :phone,
+                                   :avatar)
+    end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def normal_user_params
+      params.require(:user).permit(:email, :password, :password_confirmation,
                                    :first_name, :last_name, :phone,
                                    :avatar)
     end

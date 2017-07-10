@@ -74,7 +74,9 @@
       "font-awesome": "~4.2.0",
       "themify-icons": "~0.1.0",
       "bootstrap": "~3.3.2",
-      "bootstrap-rtl": "~3.3.1"
+      "bootstrap-rtl": "~3.3.1",
+
+      "lodash": "~4.17.4"
     }
   }
 }

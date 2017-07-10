@@ -11,12 +11,19 @@
   function decoratorService() {
 
     var service = {
-      getErrorsAlertsArr: getErrorsAlertsArr
+      getErrorsAlertsArr: getErrorsAlertsArr,
+      getErrorsTextArray: getErrorsTextArray
     };
 
     return service;
 
     ////////////
+
+    function getErrorsTextArray(res){
+      return _.reduce(res.data, function(errorList, attributeErrors, attributeName) {
+        return _.concat(errorList, attributeErrors)
+      }, [])
+    }
 
     function getErrorsAlertsArr(errors) {
 
