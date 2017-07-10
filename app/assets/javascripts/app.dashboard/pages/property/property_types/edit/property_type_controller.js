@@ -1,20 +1,18 @@
-(function() {
+(function () {
 
   'use strict';
 
   angular.module('app.dashboard')
     .controller('PropertyTypeController', PropertyTypeController);
 
-  PropertyTypeController.$inject = ['PropertyTypesServices', 'propertyType', 'formHelpers',
-    'toaster', '$translate', 'decoratorService', '$filter',
+  PropertyTypeController.$inject = ['PropertyTypesServices', 'propertyTypeRequest',
+    'propertyDetailsRequest', 'toaster', '$translate', 'decoratorService', '$filter'
   ];
 
-  function PropertyTypeController(PropertyTypesServices, propertyType, formHelpers,
-    toaster, $translate, decoratorService, $filter) {
+  function PropertyTypeController(PropertyTypesServices, propertyTypeRequest,
+    propertyDetailsRequest, toaster, $translate, decoratorService, $filter) {
 
     var vm = this;
-
-    vm.dismiss = cancel;
 
     // creating new property type
     vm.propertyType;
@@ -30,10 +28,9 @@
     function activate() {
       vm.typeCreationErrors = [];
 
-      vm.propertyType = propertyType;
+      vm.propertyType = propertyTypeRequest.data;
 
-      vm.stateOptions = formHelpers.stateOptions;
-      vm.allPropertyDetails = formHelpers.propertyDetails;
+      vm.allPropertyDetails = propertyDetailsRequest.data.list;
 
       // joining type's details' with all details
       for (var i = vm.allPropertyDetails.length - 1; i >= 0; i--) {
@@ -43,7 +40,7 @@
     }
 
     function getSelectedDetails() {
-      return $.grep(vm.allPropertyDetails, function(detail) {
+      return $.grep(vm.allPropertyDetails, function (detail) {
         return detail.checked == true;
       })
     }
@@ -68,16 +65,16 @@
     function createPropertyType(form) {
 
       PropertyTypesServices.createPropertyType(vm.propertyType)
-        .then(function(res) {
+        .then(function (res) {
 
           var propertydTypeStr = $filter('translate')('activerecord.models.property_type');
           var title = $filter('translate')('dashboard.success');
-          var msg = $filter('translate')('dashboard.recored_created', { model: propertydTypeStr })
+          var msg = $filter('translate')('dashboard.recored_created', {
+            model: propertydTypeStr
+          })
           toaster.pop("success", title, msg);
 
-          closeModalAndReturnResponse(res.data);
-
-        }).catch(function(err) {
+        }).catch(function (err) {
           // vm.typeCreationErrors = decoratorService.getErrorsAlertsArr(err.data);
         })
     }
@@ -85,26 +82,20 @@
     function updatePropertyType(form) {
 
       PropertyTypesServices.updatePropertyType(vm.propertyType)
-        .then(function(res) {
+        .then(function (res) {
 
           var propertydTypeStr = $filter('translate')('activerecord.models.property_type');
           var title = $filter('translate')('dashboard.success');
-          toaster.pop("success", title, $filter('translate')('dashboard.recored_updated', { model: propertydTypeStr }));
+          toaster.pop("success", title, $filter('translate')('dashboard.recored_updated', {
+            model: propertydTypeStr
+          }));
 
           closeModalAndReturnResponse(res.data);
 
-        }).catch(function(err) {
+        }).catch(function (err) {
           // vm.typeCreationErrors = decoratorService.getErrorsAlertsArr(err.data);
         })
     }
-
-    function closeModalAndReturnResponse(object) {
-      $modalInstance.close(object);
-    };
-
-    function cancel() {
-      $modalInstance.dismiss('cancel');
-    };
 
   }
 

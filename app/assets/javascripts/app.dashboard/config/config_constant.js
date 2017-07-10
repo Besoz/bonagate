@@ -49,10 +49,10 @@ angular
       'propertyDetailsServices': 'assets/app.dashboard/pages/property/property_details/property_details_services.js',
       'propertyDetailController': 'assets/app.dashboard/pages/property/property_details/property_detail_controller.js',
 
-      //*** property details scripts
+      //*** property types scripts
       'propertyTypesController': 'assets/app.dashboard/pages/property/property_types/property_types_controller.js',
       'propertyTypesServices': 'assets/app.dashboard/pages/property/property_types/property_types_services.js',
-      'propertyTypeController': 'assets/app.dashboard/pages/property/property_types/property_type_controller.js',
+      'propertyTypeController': 'assets/app.dashboard/pages/property/property_types/edit/property_type_controller.js',
 
       //*** property details scripts
       'propertyServiceTypesController': 'assets/app.dashboard/pages/property/property_service_types/property_service_types_controller.js',
@@ -80,7 +80,6 @@ angular
 
        //*** property edit scripts
       'editWizardController': 'assets/app.dashboard/pages/property/edit/wizard_controller.js',
-
 
        //*** property listing scripts
       'propertyListController': 'assets/app.dashboard/pages/property/property_list/property_list_controller.js',
