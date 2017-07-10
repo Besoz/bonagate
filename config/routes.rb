@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     member do
       put 'upload_image'
     end
+    collection do
+      get 'search'
+    end
   end
   resources :companies
   resources :companies

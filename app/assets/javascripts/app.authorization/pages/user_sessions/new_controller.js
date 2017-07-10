@@ -2,9 +2,9 @@
   angular.module('app.authorization')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$http', '$window', 'redirectService', 'decoratorService'];
+  LoginController.$inject = ['$http', '$window', 'RedirectService', 'decoratorService'];
 
-  function LoginController($http, $window, redirectService, decoratorService) {
+  function LoginController($http, $window, RedirectService, decoratorService) {
     var vm = this;
 
     vm.userEmail = '';
@@ -26,7 +26,7 @@
         })
         .then(function(res) {
 
-          $window.location.href = redirectService.afterLoginRedirectUrl(res.data);
+          $window.location.href = RedirectService.afterLoginRedirectUrl(res.data);
           console.log("res");
           console.log(res);
 

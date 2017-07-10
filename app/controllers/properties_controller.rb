@@ -10,6 +10,17 @@ class PropertiesController < ApplicationController
     @properties = Property.all  
   end
 
+  # GET /properties/search
+  # GET /properties/search.json
+  def search
+    @properties = Property.all
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render :search }
+    end
+  end
+
   # GET /properties/1
   # GET /properties/1.json
   def show

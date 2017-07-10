@@ -3,10 +3,10 @@
     .controller('RegisterationController', RegisterationController);
 
   RegisterationController.$inject = ['$http', '$window', '$location',
-    'redirectService', 'decoratorService'
+    'RedirectService', 'decoratorService'
   ];
 
-  function RegisterationController($http, $window, $location, redirectService,
+  function RegisterationController($http, $window, $location, RedirectService,
     decoratorService) {
 
     var vm = this;
@@ -79,7 +79,7 @@
         .then(function(res) {
 
           //todo use redirect service
-          $window.location.href = redirectService.afterSignupRedirectUrl();
+          $window.location.href = RedirectService.afterSignupRedirectUrl();
 
           console.log("res");
           console.log(res);

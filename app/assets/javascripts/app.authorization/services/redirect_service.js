@@ -1,15 +1,18 @@
 // service
-(function() {
+(function () {
   'use strict';
 
   angular
     .module('app.authorization')
-    .service('redirectService', redirectService);
+    .service('RedirectService', RedirectService);
 
-  function redirectService() {
+    RedirectService.$inject = ['$window']
+
+  function RedirectService($window) {
     var service = {
       afterLoginRedirectUrl: afterLoginRedirectUrl,
-      afterSignupRedirectUrl: afterSignupRedirectUrl
+      afterSignupRedirectUrl: afterSignupRedirectUrl,
+      goToRegisterationPage: goToRegPage
     };
     return service;
 
@@ -21,6 +24,10 @@
 
     function afterSignupRedirectUrl() {
       return '/sign_in';
+    }
+
+    function goToRegPage() {
+      $window.location.href = '/users/new';
     }
   }
 })();

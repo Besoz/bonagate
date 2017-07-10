@@ -1,0 +1,23 @@
+{% if angular %}
+	{% include "src/html/themes/angular/front/_navbar-front.html" { navbarOptions: 'navbar-skin-cover navbar-static-top navbar-absolute-top navbar-size-large' } %}
+{% else %}
+
+    {% if rtl %}
+	    {% set navbarTpl = "src/html/themes/html/_navbar-front.html" %}
+    {% else %}
+        {% set navbarTpl = "src/html/themes/" + config.theme + "/_navbar-front.html" %}
+    {% endif %}
+
+	{% include navbarTpl { navbarOptions: 'navbar-skin-cover navbar-static-top navbar-absolute-top navbar-size-large' } %}
+{% endif %}
+
+{% include "lib/real-estate/html/_front-home-carousel.html" %}
+
+<div id="content">
+
+	{% include "lib/real-estate/html/_front-home-section-1.html" %}
+
+	{% include "lib/real-estate/html/_front-footer-section.html" %}
+
+</div>
+<!-- // END #content -->

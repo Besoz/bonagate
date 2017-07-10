@@ -1,0 +1,34 @@
+<aside class="sidebar{% if sidebarOptions %} {{ sidebarOptions }}{% endif %}"{% if sidebarData %} {{ sidebarData }}{% endif %}>
+    <div data-scrollable>
+
+        {% include "lib/real-estate/html/_sidebar-map-listing/_featured.html" %}
+
+        <h4 class="category">Properties</h4>
+        <div class="sidebar-block sidebar-block-full">
+            {% if angular %}
+                {% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: 'property.map', image: "photodune-378874-real-estate-xs.jpg" } %}
+                {% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: 'property.map', image: "photodune-195203-houses-xs.jpg" } %}
+                {% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: 'property.map', image: "photodune-196089-house-xs.jpg" } %}
+                {% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: 'property.map', image: "photodune-197173-residential-home-xs.jpg" } %}
+                {% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: 'property.map', image: "photodune-3979102-superb-backyard-xs.jpg" } %}
+            {% else %}
+                {% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: 'map-property.html', image: "photodune-378874-real-estate-xs.jpg" } %}
+                {% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: 'map-property.html', image: "photodune-195203-houses-xs.jpg" } %}
+                {% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: 'map-property.html', image: "photodune-196089-house-xs.jpg" } %}
+                {% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: 'map-property.html', image: "photodune-197173-residential-home-xs.jpg" } %}
+                {% include "lib/real-estate/html/_listing-panel.html" { propertyUrl: 'map-property.html', image: "photodune-3979102-superb-backyard-xs.jpg" } %}
+            {% endif %}
+        </div>
+
+        <div class="sidebar-block equal-padding">
+            <ul class="pagination margin-none">
+                <li class="disabled"><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div>
+
+    </div>
+</aside>

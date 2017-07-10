@@ -1,27 +1,480 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Properties</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Address</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div id="content">
 
-  <tbody>
-    <% @properties.each do |property| %>
-      <tr>
-        <td><%= property.address %></td>
-        <td><%= link_to 'Show', property %></td>
-        <td><%= link_to 'Edit', edit_property_path(property) %></td>
-        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <section class="cover overlay height-200 height-270-xs">
+      <img src="images/photodune-186709-residential-street-m.jpg" alt="cover" />
+      <div class="overlay overlay-full overlay-bg-black bg-transparent">
+        <div class="container">
+          <h1 class="text-h1 text-overlay">Properties</h1>
+        </div>
+      </div>
+      <div class="overlay overlay-bg-black">
+        <div class="v-bottom">
+          <div class="container">
+            <p class="text-overlay">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur debitis doloremque dolorum error excepturi illum ipsa ipsam modi. <span class="hidden-sm hidden-xs">Nesciunt nulla obcaecati porro quibusdam repellendus reprehenderit saepe sequi, velit veniam voluptates!</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<br>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+            <div class="panel-heading panel-collapse-trigger">
+              <h4 class="panel-title">Location</h4>
+            </div>
+            <div class="panel-body">
 
-<%= link_to 'New Property', new_property_path %>
+              <div class="form-group">
+                <select style="width: 100%;" data-toggle="select2">
+                  <optgroup label="Alaskan/Hawaiian Time Zone">
+                    <option value="AK">Alaska</option>
+                    <option value="HI">Hawaii</option>
+                  </optgroup>
+                  <optgroup label="Pacific Time Zone">
+                    <option value="CA">California</option>
+                    <option value="NV">Nevada</option>
+                    <option value="OR">Oregon</option>
+                    <option value="WA">Washington</option>
+                  </optgroup>
+                  <optgroup label="Mountain Time Zone">
+                    <option value="AZ">Arizona</option>
+                    <option value="CO">Colorado</option>
+                    <option value="ID">Idaho</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="UT">Utah</option>
+                    <option value="WY">Wyoming</option>
+                  </optgroup>
+                  <optgroup label="Central Time Zone">
+                    <option value="AL">Alabama</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TX">Texas</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="WI">Wisconsin</option>
+                  </optgroup>
+                  <optgroup label="Eastern Time Zone">
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="IN">Indiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="OH">Ohio</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WV">West Virginia</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <div class="checkbox checkbox-primary margin-none">
+                <input id="radius50" type="checkbox" checked />
+                <label for="radius50">50km radius</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default" data-toggle="panel-collapse" data-open="false">
+            <div class="panel-heading panel-collapse-trigger">
+              <h4 class="panel-title">Date</h4>
+            </div>
+            <div class="panel-body">
+
+              <div class="form-group">
+                <label class="label-block" for="check-in">Check In</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                  <input id="check-in" class="datepicker form-control" type="text" value="29/05/2015" />
+                </div>
+              </div>
+              <div class="form-group margin-none">
+                <label class="label-block" for="check-out">Check Out</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                  <input id="check-out" class="datepicker form-control" type="text" value="dd/mm/yyyy" />
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+            <div class="panel-heading panel-collapse-trigger">
+              <h4 class="panel-title">Lodging</h4>
+            </div>
+            <div class="panel-body">
+
+              <div class="form-group">
+                <label for="guests">Guests:</label>
+                <input id="guests" data-toggle="touch-spin" data-verticalbuttons="true" type="text" value="3" name="guests" class="form-control" />
+              </div>
+              <div class="form-group margin-none">
+                <p class="help-block margin-none"><a href="#lodging" data-toggle="collapse">+ more</a></p>
+              </div>
+
+              <div class="collapse" id="lodging">
+                <br/>
+                <div class="form-group">
+                  <label for="bedrooms">Bedrooms:</label>
+                  <input id="bedrooms" data-toggle="touch-spin" data-verticalbuttons="true" type="text" value="3" name="guests" class="form-control" />
+                </div>
+                <div class="form-group margin-none">
+                  <label for="bathrooms">Bathrooms:</label>
+                  <input id="bathrooms" data-toggle="touch-spin" data-verticalbuttons="true" type="text" value="2" name="guests" class="form-control" />
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+            <div class="panel-heading panel-collapse-trigger">
+              <h4 class="panel-title">Price per night</h4>
+            </div>
+            <div class="panel-body">
+
+              <input data-slider="default" type="text" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]" data-slider-handle="square" />
+
+            </div>
+          </div>
+
+          <div class="row text-center">
+            <div class="col-xs-6">
+              <button class="btn btn-block btn-success">Search Now!</button>
+            </div>
+            <div class="col-xs-6">
+              <a href="" class="btn btn-link"><i class="fa fa-fw fa-times"></i> reset filters</a>
+            </div>
+          </div>
+          <br/>
+        </div>
+        <div class="col-md-9">
+
+          <div class="row">
+            <div class="col-xs-6">
+              <h4><span class="text-primary">280</span> Results</h4>
+            </div>
+            <div class="col-xs-6 text-right">
+              <div class="dropdown display-inline-block">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                  Sort by:
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+              <div class="btn-group display-inline-block">
+
+                <a class="btn btn-primary active" href="front-listing-list.html"><i class="fa fa-list"></i></a>
+                <a class="btn btn-primary" href="front-listing-grid.html"><i class="fa fa-th"></i></a>
+
+              </div>
+            </div>
+          </div>
+          <br/>
+
+          <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+            <div class="panel-heading panel-collapse-trigger">
+              <h4 class="panel-title">Map View</h4>
+            </div>
+            <div class="panel-body relative height-350">
+
+              <div id="google-fs-realestate" data-toggle="google-maps" data-file="js/data/google_maps/markers-listing-closed.json" data-center="57.698519366788865,11.983302806854681" data-style="paper" class="maps-google-fs"></div>
+              <script id="real-estate-map-pop-1" type="text/x-handlebars-template">
+                <div class="padding-none full">
+                  <div class="ribbon-heading text-h5 {{ ribbon_mark_class }} absolute leftinline margin-none">{{ ribbon_mark_text }}</div>
+                  <div class="cover overlay cover-image-full margin-none">
+                    <a href="{{ details_url }}" class="thumb" data-height="150px">
+                      <img src="{{ image }}" alt="image" class="img-responsive">
+                    </a>
+                  </div>
+                  <div class="list-group margin-none">
+                    <div class="list-group-item">
+                      <a href="{{ details_url }}" class="btn btn-primary btn-circle pull-right">
+                        <i class="fa fa-shopping-cart"></i>
+                      </a>
+                      <h4 class="margin-v-0-5">{{ title }}</h4>
+                      <p class="small">
+                        <span class="fa fa-fw fa-star text-yellow-800"></span>
+                        <span class="fa fa-fw fa-star text-yellow-800"></span>
+                        <span class="fa fa-fw fa-star text-yellow-800"></span>
+                        <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                        <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                      </p>
+                      <p>{{ description }}</p>
+                      <label class="label label-grey-100">&euro;{{ price }}</label>&nbsp;
+                      <small>
+
+                        <i class="fa fa-fw icon-home-fill-1"></i> Agency
+
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </script>
+
+              <script id="real-estate-map-pop_home" type="text/x-handlebars-template">
+                <div class="padding-none">
+                  <div class="ribbon-heading text-h5 {{ ribbon_mark_class }} absolute left inline margin-none">
+                    {{ ribbon_mark_text }}
+                  </div>
+                  <div class="cover cover-image-full margin-none">
+                    <a href="{{ details_url }}" class="thumb" data-height="150px">
+                      <img src="{{ image }}" alt="image" class="img-responsive">
+                    </a>
+                  </div>
+                  <div class="text-center">
+                    <h4 class="text-primary margin-bottom-none">{{ title }}</h4>
+                    <p class="h5 text-muted margin-v-5-15">{{ location }}</p>
+                  </div>
+                </div>
+              </script>
+
+              <script id="real-estate-map-pop_profile" type="text/x-handlebars-template">
+                <div class="text-center">
+                  <p>
+                    <img src="{{ image }}" alt="" class="img-circle" />
+                  </p>
+                  <h4><a href="{{ details_url }}" class="text-grey-700">{{ name }}</a></h4>
+                  <a href="mailto:{{ email }}">{{ email }}</a>
+                  <br/>
+                  <p class="text-muted"><i class="fa fa-user fa-fw"></i>Agent <i class="fa fa-home fa-fw"></i>{{ no_properties }} Properties</p>
+                </div>
+              </script>
+
+              <script id="real-estate-map-pop_icon" type="text/x-handlebars-template">
+                <div>
+                  <div class="text-center">
+                    <div class="h1 text-grey-300">
+                      <i class="{{ inner_icon }}"></i>
+                    </div>
+                    <p><a href="{{ details_url }}" class="h4 text-primary">{{ name }}</a></p>
+                    <p>{{ location }}</p>
+                  </div>
+                </div>
+              </script>
+
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="media media-clearfix-xs media-clearfix-sm">
+                <div class="media-left">
+                  <p>
+                    <a href="front-property.html">
+                      <img src="images/photodune-378874-real-estate-xs.jpg" alt="property" width="150" class="media-object" />
+                    </a>
+                  </p>
+                  <div class="text-center small">
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right">
+                    <a href="front-property.html" class="text-primary"><i class="fa fa-comments fa-fw"></i> <strong>5</strong></a>
+                    <a href="front-property.html" class="text-grey-400"><i class="fa fa-star-o fa-fw"></i></a>
+                  </div>
+                  <h4 class="media-heading margin-v-0-10">
+                    <a href="front-property.html">The Dwelling Mansion, Caracas</a>
+                    <small class="text-grey-400"><i class="fa fa-clock-o fa-fw"></i> 5 days ago</small>
+                  </h4>
+                  <p>
+                    <span class="label label-grey-100"><i class="fa fa-home fa-fw"></i>3 Bedrooms</span>
+                    <span class="label label-grey-100"><i class="fa fa-fw icon icon-toilet"></i> 1 Bathrooms</span>
+                    <span class="label label-grey-100"><i class="icon icon-shovel "></i> Garden</span>
+                  </p>
+                  <p class="margin-none">The apartment boasts a fully equipped eat-in kitchen, washing machine, central heating and an en-suite bathroom with shower. The bathroom is in the main bedroom so it&#39;s suitable and comfortable for family and friends ...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="media media-clearfix-xs media-clearfix-sm">
+                <div class="media-left">
+                  <p>
+                    <a href="front-property.html">
+                      <img src="images/photodune-195203-houses-xs.jpg" alt="property" width="150" class="media-object" />
+                    </a>
+                  </p>
+                  <div class="text-center small">
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right">
+                    <a href="front-property.html" class="text-primary"><i class="fa fa-comments fa-fw"></i> <strong>5</strong></a>
+                    <a href="front-property.html" class="text-grey-400"><i class="fa fa-star-o fa-fw"></i></a>
+                  </div>
+                  <h4 class="media-heading margin-v-0-10">
+                    <a href="front-property.html">Cozy Family House, Paris</a>
+                    <small class="text-grey-400"><i class="fa fa-clock-o fa-fw"></i> 5 days ago</small>
+                  </h4>
+                  <p>
+                    <span class="label label-grey-100"><i class="fa fa-home fa-fw"></i>3 Bedrooms</span>
+                    <span class="label label-grey-100"><i class="fa fa-fw icon icon-toilet"></i> 1 Bathrooms</span>
+                    <span class="label label-grey-100"><i class="icon icon-shovel "></i> Garden</span>
+                  </p>
+                  <p class="margin-none">On the second floor there are two bedrooms and a bathroom. One bedroom with a single bed and the second with a double bed, the second bedroom is also available with two single beds. There is also a studio couch bed ...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="media media-clearfix-xs media-clearfix-sm">
+                <div class="media-left">
+                  <p>
+                    <a href="front-property.html">
+                      <img src="images/photodune-196089-house-xs.jpg" alt="property" width="150" class="media-object" />
+                    </a>
+                  </p>
+                  <div class="text-center small">
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right">
+                    <a href="front-property.html" class="text-primary"><i class="fa fa-comments fa-fw"></i> <strong>5</strong></a>
+                    <a href="front-property.html" class="text-grey-400"><i class="fa fa-star-o fa-fw"></i></a>
+                  </div>
+                  <h4 class="media-heading margin-v-0-10">
+                    <a href="front-property.html">Property Name</a>
+                    <small class="text-grey-400"><i class="fa fa-clock-o fa-fw"></i> 5 days ago</small>
+                  </h4>
+                  <p>
+                    <span class="label label-grey-100"><i class="fa fa-home fa-fw"></i>3 Bedrooms</span>
+                    <span class="label label-grey-100"><i class="fa fa-fw icon icon-toilet"></i> 1 Bathrooms</span>
+                    <span class="label label-grey-100"><i class="icon icon-shovel "></i> Garden</span>
+                  </p>
+                  <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet consectetur cupiditate, dolor ducimus eos error, iste modi nulla provident quisquam sapiente sint vero? Ab commodi id quibusdam recusandae veniam!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="media media-clearfix-xs media-clearfix-sm">
+                <div class="media-left">
+                  <p>
+                    <a href="front-property.html">
+                      <img src="images/photodune-197173-residential-home-xs.jpg" alt="property" width="150" class="media-object" />
+                    </a>
+                  </p>
+                  <div class="text-center small">
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right">
+                    <a href="front-property.html" class="text-primary"><i class="fa fa-comments fa-fw"></i> <strong>5</strong></a>
+                    <a href="front-property.html" class="text-grey-400"><i class="fa fa-star-o fa-fw"></i></a>
+                  </div>
+                  <h4 class="media-heading margin-v-0-10">
+                    <a href="front-property.html">Property Name</a>
+                    <small class="text-grey-400"><i class="fa fa-clock-o fa-fw"></i> 5 days ago</small>
+                  </h4>
+                  <p>
+                    <span class="label label-grey-100"><i class="fa fa-home fa-fw"></i>3 Bedrooms</span>
+                    <span class="label label-grey-100"><i class="fa fa-fw icon icon-toilet"></i> 1 Bathrooms</span>
+                    <span class="label label-grey-100"><i class="icon icon-shovel "></i> Garden</span>
+                  </p>
+                  <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet consectetur cupiditate, dolor ducimus eos error, iste modi nulla provident quisquam sapiente sint vero? Ab commodi id quibusdam recusandae veniam!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="media media-clearfix-xs media-clearfix-sm">
+                <div class="media-left">
+                  <p>
+                    <a href="front-property.html">
+                      <img src="images/photodune-3979102-superb-backyard-xs.jpg" alt="property" width="150" class="media-object" />
+                    </a>
+                  </p>
+                  <div class="text-center small">
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <div class="pull-right">
+                    <a href="front-property.html" class="text-primary"><i class="fa fa-comments fa-fw"></i> <strong>5</strong></a>
+                    <a href="front-property.html" class="text-grey-400"><i class="fa fa-star-o fa-fw"></i></a>
+                  </div>
+                  <h4 class="media-heading margin-v-0-10">
+                    <a href="front-property.html">Property Name</a>
+                    <small class="text-grey-400"><i class="fa fa-clock-o fa-fw"></i> 5 days ago</small>
+                  </h4>
+                  <p>
+                    <span class="label label-grey-100"><i class="fa fa-home fa-fw"></i>3 Bedrooms</span>
+                    <span class="label label-grey-100"><i class="fa fa-fw icon icon-toilet"></i> 1 Bathrooms</span>
+                    <span class="label label-grey-100"><i class="icon icon-shovel "></i> Garden</span>
+                  </p>
+                  <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet consectetur cupiditate, dolor ducimus eos error, iste modi nulla provident quisquam sapiente sint vero? Ab commodi id quibusdam recusandae veniam!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ul class="pagination margin-top-none">
+            <li class="disabled"><a href="#">&laquo;</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">&raquo;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

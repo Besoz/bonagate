@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-xs-6">
+        <h4><span class="text-primary">280</span> Results</h4>
+    </div>
+    <div class="col-xs-6 {% if rtl %}text-left{% else %}text-right{% endif %}">
+        <div class="dropdown display-inline-block">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                Sort by:
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu pull-right{% if rtl %} flip{% endif %}">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li><a href="#">Separated link</a></li>
+            </ul>
+        </div>
+        <div class="btn-group display-inline-block">
+            {% if angular %}
+            <a class="btn btn-primary" ng-class="{ 'active': $state.is('front.listing') }" ui-sref="front.listing"><i class="fa fa-list"></i></a>
+            <a class="btn btn-primary" ng-class="{ 'active': $state.is('front.listing-grid') }" ui-sref="front.listing-grid"><i class="fa fa-th"></i></a>
+            {% else %}
+            <a class="btn btn-primary{% if page.slug == 'front-listing-list' %} active{% endif %}" href="front-listing-list.html"><i class="fa fa-list"></i></a>
+            <a class="btn btn-primary{% if page.slug == 'front-listing-grid' %} active{% endif %}" href="front-listing-grid.html"><i class="fa fa-th"></i></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<br/>
+
+<div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+    <div class="panel-heading panel-collapse-trigger">
+        <h4 class="panel-title">Map View</h4>
+    </div>
+    <div class="panel-body relative height-350">
+
+        <div id="google-fs-realestate" data-toggle="google-maps" data-file="js/data/google_maps/markers-listing-closed.json" data-center="57.698519366788865,11.983302806854681" data-style="paper" class="maps-google-fs"></div>
+        {% include "lib/real-estate/html/_map_popup_templates.html" %}
+
+    </div>
+</div>

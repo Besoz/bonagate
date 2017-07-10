@@ -1,0 +1,7 @@
+<div class="maps-google-fs" id="google-fs-realestate" data-style="nature" data-toggle="google-maps" data-file="js/data/google_maps/markers-listing.json" data-zoom-position="TOP_RIGHT"></div>
+
+{% include "lib/real-estate/html/_map_popup_templates.html" %}
+
+<div class="map-overlay-sidebar overflow-hidden absolute top bottom{% if rtl %} right{% else %} left{% endif %}" data-target="#google-fs-realestate" data-toggle="map-style-switch"></div>
+
+{% include "lib/maps/html/_map_templates.html" %}

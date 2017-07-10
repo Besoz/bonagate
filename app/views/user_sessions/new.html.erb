@@ -49,7 +49,7 @@
             </div>
             <div class="new-account">
               <%= t('pages.Don\'t have an account yet') %>?
-                <a ui-sref="login.registration">
+                <a ng-click='redirectService.goToRegisterationPage()'>
                   <%= t('pages.Create an account') %>?
                 </a>
             </div>

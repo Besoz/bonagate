@@ -139,7 +139,7 @@ angular
           'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.view', {
-        url: '/:propertyId',
+        url: '/:propertyId/view',
         templateUrl: "assets/app.dashboard/pages/property/view/form_wizard.html",
         controller: "PropertyViewController",
         controllerAs: 'propCtrl',
@@ -194,7 +194,7 @@ angular
           detailsRequest: function ($http) {
             return $http.get('/property_details.json');
           },
-          deps: mLoadSequence('ngTable', 'ui.select', "propertyDetailController",
+          deps: mLoadSequence('ngTable', 'checklist-model', 'ui.select', "propertyDetailController",
             "propertyDetailsServices", "propertyDetailsController")
         }
       }).state('app.property.types', {
