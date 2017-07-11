@@ -5,11 +5,11 @@
   angular.module('app.dashboard')
     .controller('PropertyTypeController', PropertyTypeController);
 
-  PropertyTypeController.$inject = ['PropertyTypesServices', 'propertyType', 'formHelpers',
+  PropertyTypeController.$inject = ['PropertyTypesServices', 'propertyType', 'formHelpersRequest.dataRequest',
     'toaster', '$translate', 'decoratorService', '$filter',
   ];
 
-  function PropertyTypeController(PropertyTypesServices, propertyType, formHelpers,
+  function PropertyTypeController(PropertyTypesServices, propertyType, formHelpersRequest,
     toaster, $translate, decoratorService, $filter) {
 
     var vm = this;
@@ -32,8 +32,8 @@
 
       vm.propertyType = propertyType;
 
-      vm.stateOptions = formHelpers.stateOptions;
-      vm.allPropertyDetails = formHelpers.propertyDetails;
+      vm.stateOptions = formHelpersRequest.data.stateOptions;
+      vm.allPropertyDetails = formHelpersRequest.data.propertyDetails;
 
       // joining type's details' with all details
       for (var i = vm.allPropertyDetails.length - 1; i >= 0; i--) {

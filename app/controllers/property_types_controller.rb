@@ -15,6 +15,9 @@ class PropertyTypesController < ApplicationController
   # GET /property_types/new
   def new
     @property_type = PropertyType.new
+    respond_to do |format|
+      format.json { render 'property_types/_form_helper.json.jbuilder' }
+    end
   end
 
   # GET /property_types/1/edit

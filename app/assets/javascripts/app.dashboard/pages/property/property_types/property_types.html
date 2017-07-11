@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="row">
-        <button class="btn btn-wide btn-primary" ng-click="typesCtrl.create()">
+        <button class="btn btn-wide btn-primary" ng-click="$state.go('^.new')">
           <i class="ti-plus"></i>
           <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_type'|translate}}'}" />
         </button>

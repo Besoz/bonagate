@@ -6,11 +6,13 @@
     .controller('PropertyTypeController', PropertyTypeController);
 
   PropertyTypeController.$inject = ['PropertyTypesServices', 'propertyTypeRequest',
-    'propertyDetailsRequest', 'toaster', '$translate', 'decoratorService', '$filter'
+    'formHelpersRequest', 'toaster', '$translate', 'decoratorService', '$filter', 
+    '$state'
   ];
 
   function PropertyTypeController(PropertyTypesServices, propertyTypeRequest,
-    propertyDetailsRequest, toaster, $translate, decoratorService, $filter) {
+    formHelpersRequest, toaster, $translate, decoratorService, $filter, 
+    $state) {
 
     var vm = this;
 
@@ -28,9 +30,10 @@
     function activate() {
       vm.typeCreationErrors = [];
 
-      vm.propertyType = propertyTypeRequest.data;
+      vm.propertyType = propertyTypeRequest.data || {};
+      vm.propertyType.state_options = formHelpersRequest.data.state_options;
 
-      vm.allPropertyDetails = propertyDetailsRequest.data.list;
+      vm.allPropertyDetails = formHelpersRequest.data.property_details;
 
       // joining type's details' with all details
       for (var i = vm.allPropertyDetails.length - 1; i >= 0; i--) {
@@ -74,6 +77,8 @@
           })
           toaster.pop("success", title, msg);
 
+          $state.go('^.list')
+
         }).catch(function (err) {
           // vm.typeCreationErrors = decoratorService.getErrorsAlertsArr(err.data);
         })
@@ -90,7 +95,7 @@
             model: propertydTypeStr
           }));
 
-          closeModalAndReturnResponse(res.data);
+          $state.go('^.list')
 
         }).catch(function (err) {
           // vm.typeCreationErrors = decoratorService.getErrorsAlertsArr(err.data);

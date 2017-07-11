@@ -1,0 +1,2 @@
+json.state_options PropertyType.state.values
+json.property_details PropertyDetail.all

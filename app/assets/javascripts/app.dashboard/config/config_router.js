@@ -231,8 +231,8 @@ angular
         controller: "PropertyTypeController",
         controllerAs: 'typeCtrl',
         resolve: {
-          propertyDetailsRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_details');
+          formHelpersRequest: function ($http) {
+            return $http.get('/property_types/new.json');
           },
           propertyTypeRequest: function (GeneralDataServices, $stateParams) {
             return GeneralDataServices.get('property_types', $stateParams.typeId);
@@ -246,11 +246,14 @@ angular
         controller: "PropertyTypeController",
         controllerAs: 'typeCtrl',
         resolve: {
-          propertyDetailsRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_details');
+
+          propertyTypeRequest: function ($q) {
+            return $q.when({
+              data: null
+            });
           },
-          propertyTypeRequest: function () {
-            return {};
+          formHelpersRequest: function ($http) {
+            return $http.get('/property_types/new.json');
           },
           deps: mLoadSequence('ui.select', "propertyTypeController",
             "propertyTypesServices")
