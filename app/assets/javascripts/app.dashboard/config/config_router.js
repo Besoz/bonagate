@@ -145,7 +145,7 @@ angular
         controllerAs: 'propCtrl',
         resolve: {
           propertyRequest: function (GeneralDataServices, $stateParams) {
-            return GeneralDataServices.get('properties', $stateParams.propertyId);
+            return GeneralDataServices.show('properties', $stateParams.propertyId);
           },
           deps: mLoadSequence('ngMap', 'ui.select', 'propertyViewController', 'propertiesServices')
         }
@@ -156,7 +156,7 @@ angular
         controllerAs: 'wizardCtrl',
         resolve: {
           propertyRequest: function (GeneralDataServices, $stateParams) {
-            return GeneralDataServices.get('properties', $stateParams.propertyId);
+            return GeneralDataServices.show('properties', $stateParams.propertyId);
           },
           propertyTypesRequest: function (GeneralDataServices) {
             return GeneralDataServices.index('property_types');

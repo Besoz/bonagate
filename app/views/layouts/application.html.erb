@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <!-- class="hide-sidebar top-navbar ls-bottom-footer-fixed" -->
 <html class="hide-sidebar top-navbar ls-bottom-footer-fixed"
-      ng-app="app" lang="en">
+      ng-app="app" ng-controller="AppController as AppCtrl" lang="en">
 <!-- ng-app="app" -->
   <head>
     <meta charset="utf-8">
@@ -11,6 +11,8 @@
     <title><%= 'Real Estate' %></title>
 
     <%= stylesheet_link_tag "#{I18n.locale}", :media => "all" %>
+    <!-- Angular Toaster css -->
+    <link rel="stylesheet" href="../assets/bower_components/AngularJS-Toaster/toaster.css">
     <!-- rails tag removed for confliction with the theme
     javascript_include_tag 'application'  
     -->
@@ -55,26 +57,42 @@
     <script src="assets/app.realestate/vendor/all.js"></script>
     <!-- REAL ESTATE THEME -->
 
+    <!-- Lodash -->
+    <script src="../assets/bower_components/lodash/dist/lodash.min.js"></script>
+    <!-- Lodash -->
+
     <!-- Angular -->
     <script src="../assets/bower_components/angular/angular.min.js"></script>
     <script src="../assets/bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="../assets/bower_components/angular-animate/angular-animate.min.js"></script>
     <!-- Angular -->
 
     <!-- Angular Translate -->
     <script src="../assets/bower_components/angular-translate/angular-translate.min.js"></script>
     <script src="../assets/bower_components/angular-translate-loader-url/angular-translate-loader-url.min.js"></script>
     <script src="../assets/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
-    <script src="../assets/bower_components/angular-translate-storage-local/angular-translate-storage-local.min.js"></script>
-    <script src="../assets/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
     <!-- Angular Translate -->
+
+    <!-- Angular Toaster -->
+    <script src="../assets/bower_components/AngularJS-Toaster/toaster.js"></script>
+    <!-- Angular Toaster -->
+
+    <!-- shared utils module -->
+    <script src="../assets/app.shared/app_module.js"></script>
+    <script src="../assets/app.shared/services/decorator_service.js"></script>
+    <script src="assets/app.shared/services/general_data_service.js"></script>
 
     <!-- app module -->
     <script src="assets/app.realestate/modules/app.js"></script>
     <!-- app module -->
 
+    <!-- app controller -->
+    <script src="assets/app.realestate/controllers/app.controller.js"></script>
+
     <!-- app config -->
     <script src="assets/app.realestate/config/config_translation.js"></script>
-    <!-- app config -->
+
+    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
 
     <%= render partial: '/layouts/header',
                formats: :html,

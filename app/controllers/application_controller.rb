@@ -17,7 +17,12 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     if UserSession.find
-      I18n.locale = current_user.try(:locale) || I18n.default_locale
+      I18n.locale = current_user.try(:locale) ||
+      cookies[:locale] ||
+      I18n.default_locale
+    else
+      I18n.locale = cookies[:locale] ||
+      I18n.default_locale
     end
   end
   
