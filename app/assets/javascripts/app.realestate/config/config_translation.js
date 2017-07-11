@@ -20,7 +20,7 @@
             $translateProvider.preferredLanguage(config.locale);
 
             // Store the language in the local storage
-            $translateProvider.useLocalStorage();
+            // $translateProvider.useLocalStorage();
 
         }
     ]);
