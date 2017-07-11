@@ -69,6 +69,11 @@ angular
       'propertyStatusesServices': 'assets/app.dashboard/pages/property/property_statuses/property_statuses_services.js',
       'propertyStatusController': 'assets/app.dashboard/pages/property/property_statuses/property_status_controller.js',
 
+      //*** property detail category scripts
+      'detailCategoryController': 'assets/app.dashboard/pages/property/property_detail_categories/detail_category_controller.js',
+      'detailCategoriesServices': 'assets/app.dashboard/pages/property/property_detail_categories/detail_categories_services.js',
+      'detailCategoriesController': 'assets/app.dashboard/pages/property/property_detail_categories/detail_categories_controller.js',
+
       //*** property services scripts
       'propertiesServices': 'assets/app.dashboard/pages/property/properties_services.js',
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170622143458) do
+ActiveRecord::Schema.define(version: 20170711083633) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -67,6 +67,14 @@ ActiveRecord::Schema.define(version: 20170622143458) do
   add_index "properties", ["property_state_id"], name: "fk_rails_ab7c95c33f", using: :btree
   add_index "properties", ["property_status_id"], name: "fk_rails_ebe018537f", using: :btree
   add_index "properties", ["property_type_id"], name: "index_properties_on_property_type_id", using: :btree
+
+  create_table "property_detail_categories", force: :cascade do |t|
+    t.string   "name_en",    limit: 255
+    t.string   "name_ar",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "state",      limit: 255
+  end
 
   create_table "property_detail_instances", force: :cascade do |t|
     t.integer  "property_id",        limit: 4
