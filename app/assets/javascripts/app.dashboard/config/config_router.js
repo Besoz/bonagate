@@ -197,6 +197,18 @@ angular
           deps: mLoadSequence('ngTable', 'ui.select', "propertyDetailController",
             "propertyDetailsServices", "propertyDetailsController")
         }
+      }).state('app.property.detail-category', {
+        url: '/detail-categories',
+        templateUrl: "assets/app.dashboard/pages/property/property_detail_categories/detail_categories.html",
+        controller: "DetailCategoriesController",
+        controllerAs: 'categoriesCtrl',
+        resolve: {
+          categoriesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_detail_categories');
+          },
+          deps: mLoadSequence('ngTable', 'ui.select', "detailCategoryController",
+            "detailCategoriesServices", "detailCategoriesController")
+        }
       }).state('app.property.types', {
         url: '/property_types',
         abstract: true,

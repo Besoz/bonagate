@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :property_detail_categories
   root to: 'pages#index'
 
   resources :user_invitations do

@@ -55,6 +55,8 @@ gem "default_value_for", "~> 3.0.0"
 
 gem 'state_machine', :require => 'state_machine/core'
 
+gem 'rails-translate'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

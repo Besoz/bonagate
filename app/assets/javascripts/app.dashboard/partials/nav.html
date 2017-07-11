@@ -64,6 +64,11 @@
         </a>
       </li>
       <li ui-sref-active="active" ng-if="currentUser.admin()">
+        <a ui-sref="app.property.detail-category">
+          <span class="title" translate="sidebar.nav.property.DETAIL_CATEGORY"></span>
+        </a>
+      </li>
+      <li ui-sref-active="active" ng-if="currentUser.admin()">
         <a ui-sref="app.property.details">
           <span class="title" translate="sidebar.nav.property.DETAIL"></span>
         </a>
