@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     member do
       put 'upload_image'
     end
+    collection do
+      get 'search'
+    end
   end
   resources :companies
   resources :companies
@@ -30,7 +33,11 @@ Rails.application.routes.draw do
       match "/current_user", to: "user_sessions#show_current_user", via: :get
     end
   end
-  resources :users
+  resources :users do
+    collection do
+      post 'create_user'
+    end
+  end
 
   delete '/sign_out', to: 'user_sessions#destroy', as: :sign_out
   get '/sign_in', to: 'user_sessions#new', as: :sign_in

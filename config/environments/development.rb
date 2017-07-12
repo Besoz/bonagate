@@ -42,3 +42,5 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :letter_opener
 
 end
+
+GOOGLE_MAPS_API_KEY = 'AIzaSyDMDQu2IH-WV-RnZj35aDr7yvauocBZgQk'

@@ -1,0 +1,31 @@
+<div class="bg-white">
+    <div class="container">
+
+        <div class="page-section">
+            <div class="text-center">
+                <i class="fa fa-home fa-5x text-grey-300"></i>
+                <h1 class="text-h2">Looking for a new house in the new year?</h1>
+                <hr/>
+                <p class="lead">Check out the local architecture, meet your would be neighbors, find real estate, homes for sale, properties for rent, school and neighborhood information and much more.</p>
+            </div>
+            <br/>
+
+            {% if angular %}
+                {% include "src/html/themes/angular/_carousel-related-properties.html" { propertyUrl: 'front.property', dataItems: 5 } %}
+            {% else %}
+                {% include "lib/real-estate/html/_carousel-related-properties.html" { propertyUrl: 'front-property.html', dataItems: 5 } %}
+            {% endif %}
+        </div>
+
+        <div class="page-section">
+            {% include "lib/real-estate/html/_front-featured-properties.html" %}
+            <br/>
+
+            {% include "lib/real-estate/html/_front-testimonials.html" %}
+        </div>
+
+    </div>
+    <!-- // END .container -->
+
+</div>
+<!-- // END .bg-white -->

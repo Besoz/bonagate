@@ -7,6 +7,7 @@ class Ability
     alias_action :create, :read, :update, :destroy, :to => :crud
     alias_action :index, :create, :read, :update, :destroy, :to => :crud_all
 
+    can [:index, :read, :search], Property
 
     user ||= User.new # guest user (not logged in)
     if user.admin?

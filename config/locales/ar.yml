@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ar:
+  language_name: عربي
   # star: registartion page #
   Enter your account details below: Enter your account details belowِق
   Sign Up: Sign Upسس
@@ -332,6 +333,7 @@ ar:
     app:
       name: بونجات
   topbar:
+    LANGUAGE_NAME: عربي
     messages:
       MAIN: Messaggi
       HEADER: Messaggi non letti

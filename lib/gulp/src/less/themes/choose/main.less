@@ -1,0 +1,21 @@
+// Load theme common
+@import "_theme";
+
+// CUSTOM
+a.navbar-brand {
+	background: #333333;
+	color:#fff;
+}
+.alert-choose {
+	background: #f5f5f5;
+	padding: 10px;
+	border-radius: 5px;
+	border-left:8px solid @success-color;
+	i {
+		@media (max-width: @screen-sm) {
+			display: none;
+		}
+		vertical-align: middle;
+	}
+}
+.panel .panel-body img { margin-bottom:@grid-gutter-width/2;}

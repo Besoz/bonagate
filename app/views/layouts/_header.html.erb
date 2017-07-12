@@ -1,0 +1,140 @@
+
+  <script src="assets/app.realestate/controllers/login.controller.js"></script>
+
+  <% if current_user.nil? %>
+    <script src="assets/app.realestate/controllers/register.controller.js"></script>
+  <% else %>
+  <% end %>
+
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="#sidebar-menu" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a ng-show="$state.is('property.map') || $state.is('discover.map-full') || $state.is('discover.map-listing-list') || $state.is('discover.map-listing-grid')" href="#sidebar-map" data-toggle="sidebar-menu" class="toggle pull-right visible-xs"><i class="fa fa-map-marker"></i></a>
+        <a ng-show="$state.is('property.edit')" href="#sidebar-edit" data-toggle="sidebar-menu" class="toggle pull-right visible-xs"><i class="fa fa-pencil"></i></a>
+        <a class="navbar-brand" ui-sref="discover.map-full"><i class="md fa-fw md-home text-primary"></i> <%= t('dashboard.app.name') %></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="nav navbar-nav">   
+          <li class="dropdown">    
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+             <%= t('language_name') %> <span class="caret"></span></a>    
+            <ul class="dropdown-menu">    
+              <li><a ng-click="AppCtrl.setLocale('en')">English</a></li>   
+              <li><a ng-click="AppCtrl.setLocale('ar')">عربي</a></li>   
+            </ul>   
+          </li>   
+        </ul>
+        <ul class="nav navbar-nav navbar-right" ng-class='{"flip": AppCtrl.ar}'>
+          <% if current_user.nil? %>
+            <!-- Login -->
+            <li class="dropdown" id="login-dropdown">
+              <a href="#" class="dropdown-toggle" id="login-toggle" data-toggle="dropdown">
+                <i class="fa fa-fw fa-lock"></i> Login
+              </a>
+              <div class="dropdown-menu dropdown-size-280" ng-controller="LoginController as LoginCtrl">
+                <form>
+
+                  <div class="alert alert-danger" type="danger" ng-if="LoginCtrl.loginErrors.length > 0">
+                    <ul>
+                      <li ng-repeat="error in LoginCtrl.loginErrors">
+                        {{error}}
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                      <input type="text" class="form-control" placeholder="<%= User.human_attribute_name('email')%>" ng-model="LoginCtrl.userEmail">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+                      <input type="password" class="form-control" placeholder="<%= User.human_attribute_name('password')%>" ng-model="LoginCtrl.userPassword">
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary" ng-click="LoginCtrl.login()">Login <i class="fa fa-sign-in"></i></button>
+                  </div>
+                </form>
+              </div>
+            </li>
+            <!-- // END login -->
+            <!-- Sign up -->
+            <li class="dropdown" id="signup-dropdown" ng-controller="RegisterController as RegisterCtrl">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-fw fa-plus"></i> Sign Up
+              </a>
+              <div class="dropdown-menu dropdown-size-280" id="signup-toggle">
+
+                <div class="alert alert-danger" type="danger" ng-if="RegisterCtrl.regErrors.length > 0">
+                  <ul>
+                    <li ng-repeat="error in RegisterCtrl.regErrors">
+                      {{error}}
+                    </li>
+                  </ul>
+                </div>
+
+                <form>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group form-control-default">
+                        <label for="exampleInputFirstName">First name</label>
+                        <input ng-model="RegisterCtrl.first_name" class="form-control" id="exampleInputFirstName" placeholder="Your first name">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group form-control-default">
+                        <label for="exampleInputLastName">Last name</label>
+                        <input class="form-control" ng-model="RegisterCtrl.last_name" id="exampleInputLastName" placeholder="Your last name">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group form-control-default required">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" ng-model="RegisterCtrl.email" id="exampleInputEmail1" placeholder="Enter email">
+                  </div>
+                  <div class="form-group form-control-default required">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" ng-model="RegisterCtrl.password" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <div class="form-group form-control-default required">
+                    <label for="exampleInputPassword2">Confirm Password</label>
+                    <input type="password" class="form-control" ng-model="RegisterCtrl.password_confirmation" id="exampleInputPassword2" placeholder="Password">
+                  </div>
+                  <button type="submit" class="btn btn-primary" ng-click="RegisterCtrl.register()">Submit</button>
+                </form>
+              </div>
+            </li>
+            <!-- // END sign up -->
+          <% else %>
+            <!-- user -->
+            <li class="dropdown user" ng-controller="LoginController as LoginCtrl">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="<%= current_user.avatar %>" alt="" class="img-circle" /> <%= current_user.first_name %><span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
+                <li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>
+                <li><a ng-click="LoginCtrl.logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
+              </ul>
+            </li>
+          <% end %>
+          <!-- // END user -->
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+
+    </div>
+  </nav>

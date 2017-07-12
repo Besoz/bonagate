@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  language_name: English
   activerecord:
     models:
       user: user
@@ -383,6 +384,7 @@ en:
       'true': 'yes'
       'false': 'no'   
   topbar:
+    LANGUAGE_NAME: English
     messages:
       MAIN: Messages
       HEADER: Unread messages
