@@ -64,6 +64,10 @@
                             return $rootScope.currentUser.role == "company_user" &&
                                 $rootScope.currentUser.company.role == "company_admin";
                         };
+
+                        $rootScope.currentUser.admin = function () {
+                            return $rootScope.currentUser.role == "admin";
+                        };
                     })
                     .catch(function (err) {
                         // todo consider no current user

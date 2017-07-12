@@ -1,0 +1,286 @@
+<!-- start: PAGE TITLE -->
+<!-- end: PAGE TITLE -->
+<!-- start: WIZARD DEMO -->
+<div class="container-fluid container-fullw bg-white">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- start: WIZARD FORM -->
+      <form name="Form" id="form" novalidate>
+        <div id="wizard" class="swMain">
+          <!-- start: WIZARD SEPS -->
+          <!-- end: WIZARD SEPS -->
+          <!-- start: WIZARD STEP 1 -->
+          <div id="step-1">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-6">
+                  <div class="padding-30">
+                    <h2 class="StepTitle"> Choose property type</h2>
+                    <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
+                      <label class="control-label">
+                        {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span>
+                      </label>
+                      <ui-select ng-model="propCtrl.property.type" theme="bootstrap" name="service_type" required>
+                        <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                          {{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in propCtrl.propertyTypes | filter: $select.search">
+                          <div ng-bind-html="item.name | highlight: $select.search"></div>
+                          <small ng-bind-html="item.code | highlight: $select.search"></small>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="padding-30">
+                    <h2 class="StepTitle"> Choose service type</h2>
+                    <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
+                      <label class="control-label">
+                        {{'activerecord.models.property_service_type'|translate}} <span class="symbol required"></span>
+                      </label>
+                      <ui-select ng-model="propCtrl.property.service_type" theme="bootstrap" name="type">
+                        <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                          {{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in propCtrl.serviceTypes | filter: $select.search">
+                          <div ng-bind-html="item.name | highlight: $select.search"></div>
+                          <small ng-bind-html="item.code | highlight: $select.search"></small>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end: WIZARD STEP 1 -->
+          <!-- start: WIZARD STEP 2 -->
+          <div id="step-2">
+            <div class="row">
+              <div class="col-md-6">
+                <fieldset>
+                  <legend>
+                    Account Credential
+                  </legend>
+                  <div ng-repeat="detail_instance in propCtrl.property.property_detail_instances">
+                    <div class="form-group">
+                      <label class="control-label">
+                        {{detail_instance.property_detail.name}}
+                      </label>
+                      <!-- start: value_type == 'string' -->
+                      <input ng-if="detail_instance.property_detail.value_type == 'string'" ng-model="propCtrl.property.property_detail_instances[$index].value"
+                        placeholder="{{detail.name}}" class="form-control" name="{{detail.code}}">
+                      <!-- end: value_type == 'string' -->
+                      <!-- start: value_type == 'text' -->
+                      <textarea ng-if="detail_instance.property_detail.value_type == 'text'" ng-model="propCtrl.property.property_detail_instances[$index].value"
+                        placeholder="Default Text" id="form-field-22" class="form-control"></textarea>
+                      <!-- end: value_type == 'text' -->
+                      <!-- start: value_type == 'select' -->
+                      <ui-select ng-if="detail_instance.property_detail.value_type == 'select'" ng-model="propCtrl.property.property_detail_instances[$index].value"
+                        theme="bootstrap">
+                        <ui-select-match placeholder="Select in the list...">
+                          {{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in detail_instance.property_detail.value_options | filter: $select.search">
+                          <div ng-bind-html="item | highlight: $select.search"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                      <!-- end: value_type == 'select' -->
+                      <!-- start: value_type == 'multi_select' -->
+                      <ui-select ng-if="detail_instance.property_detail.value_type == 'multi_select'" multiple ng-model="propCtrl.property.property_detail_instances[$index].value"
+                        theme="bootstrap" ng-disabled="disabled" close-on-select="false">
+                        <ui-select-match placeholder="Select colors...">
+                          {{$item}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="option in detail_instance.property_detail.value_options | filter:$select.search">
+                          {{option}}
+                        </ui-select-choices>
+                      </ui-select>
+                      <!-- end: value_type == 'multi_select' -->
+                      <!-- start: value_type == 'bool' -->
+                      <input ng-if="detail_instance.property_detail.value_type == 'bool'" ng-model="propCtrl.property.property_detail_instances[$index].value"
+                        type="checkbox" id="checkbox1">
+                      <!-- end: value_type == 'bool'-->
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-md-6">
+                <fieldset>
+                  <legend>
+                    Account Credential
+                  </legend>
+                  <ui-select ng-model="propCtrl.property.state" theme="bootstrap">
+                    <ui-select-match placeholder="Select in the list...">
+                      {{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in propCtrl.states | filter: $select.search">
+                      <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                  <ui-select ng-model="propCtrl.property.status" theme="bootstrap">
+                    <ui-select-match placeholder="Select in the list...">
+                      {{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in propCtrl.statuses | filter: $select.search">
+                      <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                  </ui-select>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+          <!-- end: WIZARD STEP 2-->
+          <!-- start: WIZARD STEP 3 -->
+          <div id="step-3">
+            <!-- end: UPLOADS ONLY IMAGES -->
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th width="50%">Name</th>
+                    <th ng-show="propCtrl.uploaderImages.isHTML5">Size</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in propCtrl.property.images">
+                    <td><strong>{{ item.avatar}}</strong>
+                      <!-- Image preview -->
+                      <!--auto width-->
+                      <img ng-src="{{item.avatar}}" alt="property" height="100" class="media-object">
+                    </td>
+                    <td ng-show="propCtrl.uploaderImages.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+    
+                    <td nowrap>
+                      <button type="button" class="btn btn-warning btn-xs" 
+                      ng-click="propCtrl.property.deleted_images_ids.splice(propCtrl.property.deleted_images_ids.indexOf(item.id), 1)" 
+                      ng-disabled="!propCtrl.property.deleted_images_ids.includes(item.id)">
+                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                      </button>
+                      <button type="button" class="btn btn-danger btn-xs" 
+                        ng-click="propCtrl.property.deleted_images_ids.push(item.id)" 
+                        ng-disabled="propCtrl.property.deleted_images_ids.includes(item.id)">
+                        <span class="glyphicon glyphicon-trash"></span> Delete
+                      </button></td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- end: WIZARD STEP 3 -->
+
+          <!-- start: WIZARD STEP 4 -->
+          <div id="step-4">
+            <div class="row">
+              <div class="col-md-12">
+                <!--start: Map-->
+                <map on-center_changed="propCtrl.form.map.centerChanged()" zoom="20" map-type-id="MapTypeId.ROADMAP">
+                  <marker position="{{[propCtrl.property.lat, propCtrl.property.lng]}}" 
+                  centered="true" draggable="true"></marker>
+                  <custom-control id="go-home" position="TOP_RIGHT" index="1" 
+                  on-click="propCtrl.form.map.goCurrentLocation()">
+                    <a href class="btn btn-primary btn-xs margin-top-15 margin-right-5">
+                      goCurrentLocation
+                    </a>
+                  </custom-control>
+                </map>
+                <div class="col-md-6">
+                  <fieldset>
+                    <legend>
+                      Location
+                    </legend>
+                    <div class="form-group">
+                      <label>country</label>
+                      <select class="cs-select cs-skin-slide" name="country" ng-model="propCtrl.property.country">
+                        <option value="" disabled>country</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>city</label>
+                      <select class="cs-select cs-skin-slide" name="country" ng-model="propCtrl.property.city">
+                        <option value="" disabled>city</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>area</label>
+                      <select class="cs-select cs-skin-slide" name="country" ng-model="propCtrl.property.area">
+                        <option value="" disabled>area</option>
+                        <option value="2015">2015</option>roy
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                      </select>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="col-md-6">
+                  <fieldset>
+                    <legend>
+                      Address
+                    </legend>
+                    <div class="form-group">
+                      <label>street</label>
+                      <input type="number" class="form-control" name="street" ng-model="propCtrl.property.street">
+                    </div>
+                    <div class="form-group">
+                      <label>number</label>
+                      <input type="number" class="form-control" name="number" ng-model="propCtrl.property.number">
+                    </div>
+                    <div class="form-group">
+                      <label>floor</label>
+                      <input type="number" class="form-control" name="floor" ng-model="propCtrl.property.floor">
+                    </div>
+                    <div class="form-group">
+                      <label>notes</label>
+                      <textarea type="text" class="form-control" name="notes" ng-model="propCtrl.property.address">
+
+                      </textarea>
+                    </div>
+                  </fieldset>
+                </div>
+                <!--end: Map-->
+              </div>
+            </div>
+          </div>
+          <!-- end: WIZARD STEP 4 -->
+
+          <!-- start: WIZARD STEP 5 -->
+          <div id="step-5" >
+            <div class="row">
+              <div class="col-md-12">
+                <div class="text-center">
+                  <a class="btn btn-primary btn-o" href ng-click="$state.go('^.edit', {'propertyId': $stateParams.propertyId})">
+                    Edit
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end: WIZARD STEP 5 -->
+
+          <pre class="code margin-top-20">{{ propCtrl.property | json }}</pre>
+
+
+        </div>
+      </form>
+      <!-- end: WIZARD FORM -->
+    </div>
+  </div>
+</div>
+<!-- start: WIZARD DEMO -->

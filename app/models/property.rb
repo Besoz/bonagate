@@ -18,6 +18,8 @@ class Property < ActiveRecord::Base
 
   has_many :service_type_instances
 
+  has_many :property_images, :dependent => :destroy
+
   # validates :service_type_instances, :length => { :minimum => 1 }
 
   validates :company_id, :property_status_id, :property_type_id,

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   end
   resources :property_types
   resources :properties do
+    member do
+      put 'upload_image'
+    end
     collection do
       get 'search'
     end
