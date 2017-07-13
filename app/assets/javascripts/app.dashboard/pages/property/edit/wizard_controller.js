@@ -47,7 +47,6 @@ angular
         vm.statuses = propertyStatusesRequest.data.list;
 
         vm.property = propertyRequest.data;
-        vm.property.property_detail_instances_attributes = [];
 
         vm.property.deleted_images_ids = [];
       }

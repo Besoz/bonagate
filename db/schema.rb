@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711083633) do
+ActiveRecord::Schema.define(version: 20170712192203) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -76,6 +76,16 @@ ActiveRecord::Schema.define(version: 20170711083633) do
     t.string   "state",      limit: 255
   end
 
+  create_table "property_detail_instance_value_options", force: :cascade do |t|
+    t.integer  "property_detail_instance_id",     limit: 4
+    t.integer  "property_detail_value_option_id", limit: 4
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  add_index "property_detail_instance_value_options", ["property_detail_instance_id"], name: "index_detail_instance_value_options_on_detail_instance_id", using: :btree
+  add_index "property_detail_instance_value_options", ["property_detail_value_option_id"], name: "index_detail_instance_value_options_on_detail_value_option_id", using: :btree
+
   create_table "property_detail_instances", force: :cascade do |t|
     t.integer  "property_id",        limit: 4
     t.integer  "property_detail_id", limit: 4
@@ -94,6 +104,16 @@ ActiveRecord::Schema.define(version: 20170711083633) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
+
+  create_table "property_detail_value_options", force: :cascade do |t|
+    t.string   "name_en",            limit: 255
+    t.string   "name_ar",            limit: 255
+    t.integer  "property_detail_id", limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "property_detail_value_options", ["property_detail_id"], name: "index_property_detail_value_options_on_property_detail_id", using: :btree
 
   create_table "property_details", force: :cascade do |t|
     t.string   "code",          limit: 255
@@ -249,8 +269,11 @@ ActiveRecord::Schema.define(version: 20170711083633) do
   add_foreign_key "properties", "property_states"
   add_foreign_key "properties", "property_statuses"
   add_foreign_key "properties", "property_types"
+  add_foreign_key "property_detail_instance_value_options", "property_detail_instances"
+  add_foreign_key "property_detail_instance_value_options", "property_detail_value_options"
   add_foreign_key "property_detail_instances", "properties"
   add_foreign_key "property_detail_instances", "property_details"
+  add_foreign_key "property_detail_value_options", "property_details"
   add_foreign_key "property_images", "properties"
   add_foreign_key "property_type_details", "property_details"
   add_foreign_key "property_type_details", "property_types"

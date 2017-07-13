@@ -1,7 +1,7 @@
 class PropertyDetailsController < ApplicationController
   before_action :set_property_detail, only: [:show, :edit, :update, :destroy]
 
-  include PropertyTypesHelper
+  include PropertyDetailsHelper
 
   # GET /property_details
   # GET /property_details.json
@@ -70,8 +70,10 @@ class PropertyDetailsController < ApplicationController
     # check if value options or value type will change and the details is already used
 
     value_type_changed = @property_detail.value_type != property_detail_params[:value_type]
-    value_options_changed =
-      (JSON.parse(@property_detail.value_options) != property_detail_params[:value_options])
+    
+    value_options_changed = value_options_changed?(
+      @property_detail.property_detail_value_options, 
+      property_detail_params[:property_detail_value_options_attributes])
 
     if((value_type_changed || value_options_changed) && 
       !Property.get_affected_with_property_detail(@property_detail.id).empty?)
@@ -114,8 +116,8 @@ class PropertyDetailsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_detail_params
-    params.require(:property_detail).permit(:id, :code, :name, :value_type, 
-    :details_ids, :value_options => [])
+    params.require(:property_detail).permit(:id, :code, :name, :value_type, :details_ids, :value_options => [],
+    property_detail_value_options_attributes: [:id, :name_en, :name_ar, :_destroy])
   end
 
   def property_detail_extended_params

@@ -99,7 +99,11 @@ class PropertiesController < ApplicationController
   def property_params
     params.require(:property).permit(:address, :company_id, :property_type_id, :property_status_id,
                                      :property_state_id, :lat, :lng, :country, :city, :area, :street, 
-                                     :number, :floor, {property_images_attributes: :avatar},
-                                     property_detail_instances_attributes: [:property_detail_id, :value, value: []])
+                                     :number, :floor,
+                                     {property_images_attributes: :avatar},
+                                     {property_detail_instance_value_options_attributes: :property_detail_value_option_id},
+                                     property_detail_instances_attributes: [:id, :property_detail_id, :value, 
+                                     property_detail_instance_value_options_attributes: 
+                                     [:property_detail_value_option_id]])
   end
 end

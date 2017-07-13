@@ -1,0 +1,1 @@
+json.extract! instance_value_option, :id, :property_detail_value_option_id

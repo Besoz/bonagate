@@ -15,7 +15,7 @@
           <div class="form-group" ng-class="{'has-error':Form.firstName.$dirty && Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
             <label class="control-label">
             {{'activerecord.attributes.property_detail.name'|translate}} <span class="symbol required"></span>
-          </label>
+            </label>
             <input type="text" placeholder="{{'activerecord.attributes.property_detail.name'|translate}}" class="form-control" name="firstName"
               ng-model="detailCtrl.propertyDetail.name" required />
             <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.name'|translate}}'}" /></span>
@@ -23,7 +23,7 @@
           <div class="form-group" ng-class="{'has-error':Form.code.$dirty && Form.code.$invalid, 'has-success':Form.code.$valid}">
             <label class="control-label">
             {{'activerecord.attributes.property_detail.code'|translate}} <span class="symbol required"></span>
-          </label>
+            </label>
             <input placeholder="{{'activerecord.attributes.property_detail.code'|translate}}" class="form-control" name="code" ng-model="detailCtrl.propertyDetail.code"
               required>
             <span class="error text-small block" ng-if="Form.code.$dirty && Form.code.$error.required" translate="errors.messages.required"
@@ -34,7 +34,7 @@
           <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
             <label class="control-label">
             {{'activerecord.attributes.property_detail.value_type'|translate}} <span class="symbol required"></span>
-          </label>
+            </label>
             <ui-select ng-model="detailCtrl.propertyDetail.value_type" theme="bootstrap" name="type" required>
               <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
                 {{'dashboard.value_types.'+ $select.selected | translate}}
@@ -48,45 +48,45 @@
             <div class="panel panel-transparent">
               <div class="panel-heading">
                 <div class="panel-title">
-                  {{'activerecord.attributes.property_detail.value_options'}}
+                  {{'activerecord.attributes.property_detail.property_detail_value_options_attributes'}}
                 </div>
               </div>
               <div class="panel-body">
-                <div class="list-group" ng-init="detailCtrl.propertyDetail.value_options = detailCtrl.propertyDetail.value_options || []">
-                  <div ng-repeat="option in detailCtrl.propertyDetail.value_options track by $index">
+                <div class="list-group" ng-init="detailCtrl.propertyDetail.property_detail_value_options_attributes = detailCtrl.propertyDetail.property_detail_value_options_attributes || []">
+                  <div ng-repeat="option in detailCtrl.propertyDetail.property_detail_value_options_attributes track by $index">
                     <div class="input-group">
-                      <input type="text" class="form-control" ng-model="option">
-                      <span class="input-group-btn">
-                        <button type="button" class="btn btn-danger" ng-click="
-                          detailCtrl.propertyDetail.value_options.splice($index, 1)">
-                          <i class="fa fa-minus"></i>
-                        </button> 
-                      </span>
+                      <div onLoad="option=option" ng-include src="'assets/app.dashboard/pages/property/property_details/value_option/value_option.html'"></div>
                     </div>
                   </div>
-                </div>
-                <div class="input-group">
-                  <input type="text" class="form-control" ng-model='x'>
-                  <span class="input-group-btn ">
+                  <div class="input-group">
+                    <input type="text" class="form-control" ng-model='x'>
+                    <span class="input-group-btn ">
                     <button type="button" class="btn btn-primary " ng-click="detailCtrl.propertyDetail.value_options.push(x) ">
                       <i class="fa fa-plus "></i>
                     </button> 
                   </span>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <span class="input-group-btn ">
+            <button type="button" class="btn btn-primary " ng-click="detailCtrl.propertyDetail.property_detail_value_options_attributes.push({}) ">
+              <i class="fa fa-plus "></i>
+            </button> 
+				    /span>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="form-group ">
-            <div class="pull-right ">
-            <button type="submit" class="btn btn-primary">
+            <div class="form-group ">
+              <div class="pull-right ">
+                <button type="submit" class="btn btn-primary">
               <div ng-if="!(detailCtrl.propertyDetail.id) " translate="helpers.submit.create" translate-values="{model: '{{ 'activerecord.models.property_detail '|translate}}'} " />
               <div ng-if="detailCtrl.propertyDetail.id " translate="helpers.submit.update" translate-values="{model: '{{ 'activerecord.models.property_detail '|translate}}'} " />
             </button>
-            <button type="button" ng-click="detailCtrl.dismiss() " class="btn btn-o btn-primary ">
+                <button type="button" ng-click="detailCtrl.dismiss() " class="btn btn-o btn-primary ">
               <div translate="dashboard.cancel " />
             </button>
+              </div>
             </div>
-          </div>
         </fieldset>
         <pre class="code margin-top-20 ">{{ detailCtrl.propertyDetail | json }}</pre>
       </form>
@@ -95,9 +95,9 @@
       <div>affected property types</div>
       <div ng-repeat="type in detailCtrl.propertyDetail.affected_types track by $index">
         <label>
-             <input type="checkbox" checklist-model="detailCtrl.propertyDetail.types_need_update" 
-            checklist-value="type"> {{type.name}}         
-        </label>
+            <input type="checkbox" checklist-model="detailCtrl.propertyDetail.types_need_update" 
+          checklist-value="type"> {{type.name}}         
+      </label>
         <pre class="code margin-top-20 ">{{ type | json }}</pre>
       </div>
 

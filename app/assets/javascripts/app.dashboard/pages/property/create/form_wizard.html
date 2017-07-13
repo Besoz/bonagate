@@ -127,32 +127,38 @@
                         ng-init="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_id = detail.id"
                         placeholder="{{detail.name}}" class="form-control" name="{{detail.code}}">
                       <!-- end: value_type == 'string' -->
+                      <!-- start: value_type == 'number' -->
+                      <input type="number" ng-if="detail.value_type == 'number'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
+                        ng-init="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_id = detail.id"
+                        placeholder="{{detail.name}}" class="form-control" name="{{detail.code}}">
+                      <!-- end: value_type == 'string' -->
                       <!-- start: value_type == 'text' -->
                       <textarea ng-if="detail.value_type == 'text'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
                         ng-init="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_id = detail.id"
                         placeholder="Default Text" id="form-field-22" class="form-control"></textarea>
                       <!-- end: value_type == 'text' -->
                       <!-- start: value_type == 'select' -->
-                      <ui-select ng-if="detail.value_type == 'select'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
+                      <ui-select ng-if="detail.value_type == 'select'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_instance_value_options_attributes[0]"
                         ng-init="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_id = detail.id"
                         theme="bootstrap">
                         <ui-select-match placeholder="Select in the list...">
                           {{$select.selected.name}}
                         </ui-select-match>
-                        <ui-select-choices repeat="item in detail.value_options | filter: $select.search">
-                          <div ng-bind-html="item | highlight: $select.search"></div>
+                        <ui-select-choices repeat="item in detail.property_detail_value_options_attributes | filter: $select.search">
+                          <div ng-bind-html="item.name_en | highlight: $select.search"></div>
+                          <small ng-bind-html="item.name_ar | highlight: $select.search"></small>
                         </ui-select-choices>
                       </ui-select>
                       <!-- end: value_type == 'select' -->
                       <!-- start: value_type == 'multi_select' -->
-                      <ui-select ng-if="detail.value_type == 'multi_select'" multiple ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
+                      <ui-select ng-if="detail.value_type == 'multi_select'" multiple ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_instance_value_options_attributes"
                         ng-init="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_id = detail.id"
                         theme="bootstrap" ng-disabled="disabled" close-on-select="false">
                         <ui-select-match placeholder="Select colors...">
-                          {{$item}}
+                          {{$item.name}}
                         </ui-select-match>
-                        <ui-select-choices repeat="option in detail.value_options | filter:$select.search">
-                          {{option}}
+                        <ui-select-choices repeat="option in detail.property_detail_value_options_attributes | filter:$select.search">
+                          {{option.name}}
                         </ui-select-choices>
                       </ui-select>
                       <!-- end: value_type == 'multi_select' -->

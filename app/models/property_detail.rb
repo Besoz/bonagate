@@ -7,6 +7,9 @@ class PropertyDetail < ActiveRecord::Base
 
   validates :code, uniqueness: true
 
-  enumerize :value_type, in: [:string, :text, :bool, :select, :multi_select],
+  enumerize :value_type, in: [:string, :number, :text, :bool, :select, :multi_select],
     default: :string , predicates: true, scope: true, i18n_scope: "value_types"
+      
+  has_many :property_detail_value_options
+  accepts_nested_attributes_for :property_detail_value_options, allow_destroy: true
 end

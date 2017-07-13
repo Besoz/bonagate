@@ -235,7 +235,7 @@ angular
             return $http.get('/property_types/new.json');
           },
           propertyTypeRequest: function (GeneralDataServices, $stateParams) {
-            return GeneralDataServices.get('property_types', $stateParams.typeId);
+            return GeneralDataServices.show('property_types', $stateParams.typeId);
           },
           deps: mLoadSequence('ui.select', "propertyTypeController",
             "propertyTypesServices")
