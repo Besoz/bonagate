@@ -32,8 +32,9 @@
 
       vm.propertyType = propertyTypeRequest.data || {};
       vm.propertyType.state_options = formHelpersRequest.data.state_options;
-
+      
       vm.allPropertyDetails = formHelpersRequest.data.property_details;
+      vm.formHelpers = formHelpersRequest.data;
 
       // joining type's details' with all details
       for (var i = vm.allPropertyDetails.length - 1; i >= 0; i--) {

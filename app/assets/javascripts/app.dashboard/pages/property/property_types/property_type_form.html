@@ -11,21 +11,25 @@
           <div class="col-md-6">
             <fieldset>
               <legend>
-                <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_type'|translate}}'}" />
+                <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_type'|translate}}'}"
+                />
               </legend>
               <div class="form-group" ng-class="{'has-error':Form.firstName.$dirty && Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
                 <label class="control-label">
                   {{'activerecord.attributes.property_type.name'|translate}} <span class="symbol required"></span>
                 </label>
-                <input type="text" placeholder="{{'activerecord.attributes.property_type.name'|translate}}" class="form-control" name="firstName" ng-model="typeCtrl.propertyType.name" required />
+                <input type="text" placeholder="{{'activerecord.attributes.property_type.name'|translate}}" class="form-control" name="firstName"
+                  ng-model="typeCtrl.propertyType.name" required />
                 <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_type.name'|translate}}'}" /></span>
               </div>
               <div class="form-group" ng-class="{'has-error':Form.code.$dirty && Form.code.$invalid, 'has-success':Form.code.$valid}">
                 <label class="control-label">
                   {{'activerecord.attributes.property_type.code'|translate}} <span class="symbol required"></span>
                 </label>
-                <input placeholder="{{'activerecord.attributes.property_type.code'|translate}}" class="form-control" name="code" ng-model="typeCtrl.propertyType.code" required>
-                <span class="error text-small block" ng-if="Form.code.$dirty && Form.code.$error.required" translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_type.code'|translate}}'}"> .</span>
+                <input placeholder="{{'activerecord.attributes.property_type.code'|translate}}" class="form-control" name="code" ng-model="typeCtrl.propertyType.code"
+                  required>
+                <span class="error text-small block" ng-if="Form.code.$dirty && Form.code.$error.required" translate="errors.messages.required"
+                  translate-values="{attribute:'{{ 'activerecord.attributes.property_type.code'|translate}}'}"> .</span>
                 <!--           <span class="error text-small block" ng-if="Form.code.$error.email" translate="errors.messages.invalid" translate-values="{attribute:'{{ 'activerecord.attributes.property_type.code'|translate}}'}">.</span> -->
                 <!-- <span class="success text-small" ng-if="Form.code.$valid">It's a valid e-mail!</span> -->
               </div>
@@ -62,11 +66,14 @@
                   <h5 class="panel-title">{{'activerecord.models.property_detail' | translate}}</h5>
                 </div>
                 <div class="panel-body">
-                  <div ng-repeat="detail in typeCtrl.allPropertyDetails" class="checkbox clip-check check-primary">
-                    <input type="checkbox" id="checkbox{{detail.id}}" value="1" ng-model="detail.checked" ng-disabled="detail.state != 'active'">
-                    <label for="checkbox{{detail.id}}">
+                  <div ng-repeat="(category, details) in typeCtrl.allPropertyDetails" class="checkbox clip-check check-primary">
+                    <div>{category}}</div>
+                    <div ng-repeat="detail in details" class="checkbox clip-check check-primary">
+                      <input type="checkbox" id="checkbox{{detail.id}}" value="1" ng-model="detail.checked" ng-disabled="detail.state != 'active'">
+                      <label for="checkbox{{detail.id}}">
                       {{ detail.name}}
-                    </label>
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
