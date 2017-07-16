@@ -11,11 +11,6 @@ class PropertyDetailInstance < ActiveRecord::Base
 
 
   def assign_detail_instance_value_options
-    puts "jjjjjjjjjjjjjjjjjjjjjjjjjjjj"
-    # puts self.property_detail_instance_value_options.to_json
-    puts self.property_detail_instance_value_options.to_json
-    self.property_detail_instance_value_options = property_detail_instance_value_options.select {|obj| obj.id == nil }
-    puts self.property_detail_instance_value_options.to_json
-
+    self.property_detail_instance_value_options.where.not(id: nil).destroy_all
   end
 end
