@@ -82,7 +82,8 @@
           },
           formHelpers: function () {
             return {
-              valueTypeOptions: detailsRequest.data.value_type_options
+              valueTypeOptions: detailsRequest.data.value_type_options,
+              categories: detailsRequest.data.categories
             }
           }
         }

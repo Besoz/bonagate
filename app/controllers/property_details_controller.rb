@@ -71,11 +71,11 @@ class PropertyDetailsController < ApplicationController
 
     value_type_changed = @property_detail.value_type != property_detail_params[:value_type]
     
-    value_options_changed = value_options_changed?(
-      @property_detail.property_detail_value_options, 
-      property_detail_params[:property_detail_value_options_attributes])
+    # value_options_changed = value_options_changed?(
+    #   @property_detail.property_detail_value_options, 
+    #   property_detail_params[:property_detail_value_options_attributes])
 
-    if((value_type_changed || value_options_changed) && 
+    if((value_type_changed) && 
       !Property.get_affected_with_property_detail(@property_detail.id).empty?)
 
       affected_properties = Property.get_affected_with_property_detail(@property_detail.id)
@@ -116,7 +116,8 @@ class PropertyDetailsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_detail_params
-    params.require(:property_detail).permit(:id, :code, :name, :value_type, :details_ids, :value_options => [],
+    params.require(:property_detail).permit(:id, :code, :name, :value_type, :details_ids, 
+    :property_detail_category_id, :value_options => [], 
     property_detail_value_options_attributes: [:id, :name_en, :name_ar, :_destroy])
   end
 

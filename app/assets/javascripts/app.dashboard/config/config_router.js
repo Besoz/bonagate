@@ -191,8 +191,8 @@ angular
         controller: "PropertyDetailsController",
         controllerAs: 'detailsCtrl',
         resolve: {
-          detailsRequest: function ($http) {
-            return $http.get('/property_details.json');
+          detailsRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_details');
           },
           deps: mLoadSequence('ngTable', 'checklist-model', 'ui.select', "propertyDetailController",
             "propertyDetailsServices", "propertyDetailsController")
