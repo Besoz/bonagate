@@ -55,8 +55,6 @@
 
       vm.typeCreationErrors = [];
 
-      vm.propertyType.property_details_attributes = getSelectedDetails();
-
       if (vm.propertyType && vm.propertyType.id) {
         // already exist needs update\
         updatePropertyType(form);

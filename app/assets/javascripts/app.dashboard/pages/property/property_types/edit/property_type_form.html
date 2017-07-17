@@ -66,7 +66,7 @@
                   <div ng-repeat="(category, details) in typeCtrl.allPropertyDetails" class="checkbox clip-check check-primary">
                     <div>{{typeCtrl.formHelpers.categories[category].name}}</div>
                     <div ng-repeat="detail in details" class="checkbox clip-check check-primary">
-                      <input type="checkbox" id="checkbox{{detail.id}}" value="1" ng-model="detail.checked">
+                      <input type="checkbox" id="checkbox{{detail.id}}" checklist-model="typeCtrl.propertyType.property_details_attributes" checklist-value="detail">
                       <label for="checkbox{{detail.id}}">
                       {{ detail.name}}
                       </label>
@@ -76,8 +76,10 @@
               </div>
             </fieldset>
           </div>
+
         </div>
       </form>
+      <pre class="code margin-top-20">{{ typeCtrl | json }}</pre>
     </div>
   </div>
 </div>

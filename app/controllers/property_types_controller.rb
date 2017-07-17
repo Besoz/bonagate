@@ -45,6 +45,7 @@ class PropertyTypesController < ApplicationController
   # PATCH/PUT /property_types/1.json
   def update
     @property_type.assign_attributes(property_type_params.except(:property_details_attributes))
+    puts property_type_params[:property_details_attributes].to_json
     @property_type.set_property_details property_type_params[:property_details_attributes]
 
     respond_to do |format|

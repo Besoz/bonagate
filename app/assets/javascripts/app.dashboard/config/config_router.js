@@ -237,7 +237,7 @@ angular
           propertyTypeRequest: function (GeneralDataServices, $stateParams) {
             return GeneralDataServices.show('property_types', $stateParams.typeId);
           },
-          deps: mLoadSequence('ui.select', "propertyTypeController",
+          deps: mLoadSequence('checklist-model', 'ui.select', "propertyTypeController",
             "propertyTypesServices")
         }
       }).state('app.property.types.new', {
