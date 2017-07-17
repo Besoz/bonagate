@@ -131,23 +131,24 @@
                         placeholder="Default Text" id="form-field-22" class="form-control"></textarea>
                       <!-- end: value_type == 'text' -->
                       <!-- start: value_type == 'select' -->
-                      <ui-select ng-if="detail_instance.property_detail.value_type == 'select'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_instance_value_options_attributes[0]"
+                      <ui-select ng-if="detail_instance.property_detail.value_type == 'select'" 
+                        ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_value_option_ids[0]"
                         theme="bootstrap">
                         <ui-select-match placeholder="Select in the list...">
                           {{$select.selected.name}}
                         </ui-select-match>
-                        <ui-select-choices repeat="item in detail_instance.property_detail.property_detail_value_options_attributes | filter: $select.search">
-                          <div ng-bind-html="item.name | highlight: $select.search"></div>
+                        <ui-select-choices repeat="option.id as option in detail_instance.property_detail.property_detail_value_options_attributes | filter:$select.search">
+                          <div ng-bind-html="option.name | highlight: $select.search"></div>
                         </ui-select-choices>
                       </ui-select>
                       <!-- end: value_type == 'select' -->
                       <!-- start: value_type == 'multi_select' -->
-                      <ui-select ng-if="detail_instance.property_detail.value_type == 'multi_select'" multiple ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_instance_value_options_attributes"
+                      <ui-select ng-if="detail_instance.property_detail.value_type == 'multi_select'" multiple ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_value_option_ids"
                         theme="bootstrap" ng-disabled="disabled" close-on-select="false">
                         <ui-select-match placeholder="Select colors...">
                           {{$item.name}}
                         </ui-select-match>
-                        <ui-select-choices repeat="option in detail_instance.property_detail.property_detail_value_options_attributes | filter:$select.search">
+                        <ui-select-choices repeat="option.id as option in detail_instance.property_detail.property_detail_value_options_attributes | filter:$select.search">
                           {{option.name}}
                         </ui-select-choices>
                       </ui-select>
@@ -319,19 +320,16 @@
                       <img ng-src="{{item.avatar}}" alt="property" height="100" class="media-object">
                     </td>
                     <td ng-show="wizardCtrl.uploaderImages.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-    
+
                     <td nowrap>
-                      <button type="button" class="btn btn-warning btn-xs" 
-                      ng-click="wizardCtrl.property.deleted_images_ids.splice(wizardCtrl.property.deleted_images_ids.indexOf(item.id), 1)" 
-                      ng-disabled="!wizardCtrl.property.deleted_images_ids.includes(item.id)">
+                      <button type="button" class="btn btn-warning btn-xs" ng-click="wizardCtrl.property.deleted_images_ids.splice(wizardCtrl.property.deleted_images_ids.indexOf(item.id), 1)"
+                        ng-disabled="!wizardCtrl.property.deleted_images_ids.includes(item.id)">
                         <span class="glyphicon glyphicon-ban-circle"></span> Cancel
                       </button>
-                      <button type="button" class="btn btn-danger btn-xs" 
-                        ng-click="wizardCtrl.property.deleted_images_ids.push(item.id)" 
-                        ng-disabled="wizardCtrl.property.deleted_images_ids.includes(item.id)">
+                      <button type="button" class="btn btn-danger btn-xs" ng-click="wizardCtrl.property.deleted_images_ids.push(item.id)" ng-disabled="wizardCtrl.property.deleted_images_ids.includes(item.id)">
                         <span class="glyphicon glyphicon-trash"></span> Delete
                       </button></td>
-                    </tr>
+                  </tr>
                 </tbody>
               </table>
             </div>

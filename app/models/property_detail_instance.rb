@@ -1,6 +1,6 @@
 class PropertyDetailInstance < ActiveRecord::Base
 
-  after_validation :assign_detail_instance_value_options
+  # after_validation :assign_detail_instance_value_options
 
   belongs_to :property
   belongs_to :property_detail

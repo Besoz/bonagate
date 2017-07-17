@@ -11,5 +11,7 @@ end
 json.url property_detail_instance_url(property_detail_instance, format: :json)
 json.property_detail property_detail_instance.property_detail, 
 	partial: 'property_details/property_detail_min', as: :property_detail
-json.property_detail_instance_value_options_attributes property_detail_instance.property_detail_instance_value_options, 
-	partial: 'property_detail_instances/instance_value_option', as: :instance_value_option
+# json.property_detail_instance_value_options_attributes property_detail_instance.property_detail_instance_value_options, 
+# 	partial: 'property_detail_instances/instance_value_option', as: :instance_value_option
+
+json.property_detail_value_option_ids property_detail_instance.property_detail_value_options.pluck(:id)

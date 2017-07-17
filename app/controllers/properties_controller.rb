@@ -103,6 +103,7 @@ class PropertiesController < ApplicationController
                                      {property_images_attributes: :avatar},
                                      {property_detail_instance_value_options_attributes: :property_detail_value_option_id},
                                      property_detail_instances_attributes: [:id, :property_detail_id, :value, 
+                                     property_detail_value_option_ids: [],
                                      property_detail_instance_value_options_attributes: 
                                      [:property_detail_value_option_id]])
   end
