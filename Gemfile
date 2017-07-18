@@ -70,4 +70,6 @@ group :development, :test do
   gem 'rubocop', '~> 0.48.1', require: false
 
   gem "letter_opener"
+
+   gem "rails-erd"
 end
