@@ -48,6 +48,13 @@ angular
 
         vm.property = propertyRequest.data;
 
+        vm.property.property_details_ids = [];
+        if (vm.property.id) {
+          vm.property.property_details_ids = vm.property.property_detail_instances_attributes.map(function (obj) {
+            return obj.property_detail_id;
+          });
+        }
+        
         vm.property.deleted_images_ids = [];
       }
 
@@ -169,6 +176,23 @@ angular
         PropertyDetailsServices.getPropertyDetailsByIDS(vm.property.type.details_ids)
           .then(function (res) {
             vm.property.property_details = res.data.list
+
+            var type_details_ids = vm.property.type.property_details_attributes.map(function (obj) {
+              return obj.id;
+            });
+
+            vm.property.type.new_property_details_attributes = vm.property.type.property_details_attributes.filter(function (x) {
+              return vm.property.property_details_ids.indexOf(x.id) < 0
+            });
+
+            var i = 0;
+            for (i = 0; i < vm.property.property_detail_instances_attributes.length; i++) {
+              var detail_id = vm.property.property_detail_instances_attributes[i].property_detail_id;
+              if (type_details_ids.indexOf(detail_id) < 0) {
+                vm.property.property_detail_instances_attributes[i].removed = true;
+              }
+            }
+
           }).catch(function (err) {
             console.log(err)
           })

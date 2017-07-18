@@ -173,6 +173,35 @@ angular
           deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select',
             'editWizardController', 'propertiesServices', 'propertyDetailsServices')
         }
+      }).state('app.property.new', {
+        url: '/new',
+        templateUrl: "assets/app.dashboard/pages/property/edit/form_wizard.html",
+        controller: "EditWizardController",
+        controllerAs: 'wizardCtrl',
+        resolve: {
+          // propertyRequest: function (GeneralDataServices, $stateParams) {
+          //   return GeneralDataServices.show('properties', $stateParams.propertyId);
+          // },
+          propertyRequest: function ($q) {
+            return $q.when({
+              data: {}
+            });
+          },
+          propertyTypesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_types');
+          },
+          serviceTypesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_service_types');
+          },
+          propertyStatesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_states');
+          },
+          propertyStatusesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_statuses');
+          },
+          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select',
+            'editWizardController', 'propertiesServices', 'propertyDetailsServices')
+        }
       }).state('app.property.list', {
         url: '/list',
         templateUrl: "assets/app.dashboard/pages/property/property_list/property_list.html",

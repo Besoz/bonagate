@@ -118,7 +118,7 @@
                     Account Credential
                   </legend>
                   <div ng-repeat="detail_instance in wizardCtrl.property.property_detail_instances_attributes">
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error': detail_instance.removed}">
                       <label class="control-label">
                         {{detail_instance.property_detail.name}}
                       </label>
@@ -155,6 +155,59 @@
                       <!-- end: value_type == 'multi_select' -->
                       <!-- start: value_type == 'bool' -->
                       <input ng-if="detail_instance.property_detail.value_type == 'bool'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
+                        type="checkbox" id="checkbox1">
+                      <!-- end: value_type == 'bool'-->
+                    </div>
+                  </div>
+ 
+                  <div ng-repeat="detail in wizardCtrl.property.type.new_property_details_attributes">
+                    <div class="form-group">
+                      <label class="control-label">
+                        {{detail.name}}
+                      </label>
+                      <!-- start: value_type == 'string' -->
+                      <input ng-if="detail.value_type == 'string'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
+                        ng-init="wizardCtrl.property.property_detail_instances_attributes[$index+wizardCtrl.property.property_detail_instances_attributes.length].property_detail_id = detail.id"
+                        placeholder="{{detail.name}}" class="form-control" name="{{detail.code}}">
+                      <!-- end: value_type == 'string' -->
+                      <!-- start: value_type == 'number' -->
+                      <input type="number" ng-if="detail.value_type == 'number'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
+                        ng-init="wizardCtrl.propertyproperty_detail_instances_attributes[$index+wizardCtrl.property.property_detail_instances_attributes.length].property_detail_id = detail.id"
+                        placeholder="{{detail.name}}" class="form-control" name="{{detail.code}}">
+                      <!-- end: value_type == 'string' -->
+                      <!-- start: value_type == 'text' -->
+                      <textarea ng-if="detail.value_type == 'text'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
+                        ng-init="wizardCtrl.propertyproperty_detail_instances_attributes[$index+wizardCtrl.property.property_detail_instances_attributes.length].property_detail_id = detail.id"
+                        placeholder="Default Text" id="form-field-22" class="form-control"></textarea>
+                      <!-- end: value_type == 'text' -->
+                      <!-- start: value_type == 'select' -->
+                      <ui-select ng-if="detail.value_type == 'select'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_instance_value_options_attributes[0]"
+                        ng-init="wizardCtrl.propertyproperty_detail_instances_attributes[$index+wizardCtrl.property.property_detail_instances_attributes.length].property_detail_id = detail.id"
+                        theme="bootstrap">
+                        <ui-select-match placeholder="Select in the list...">
+                          {{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in detail.property_detail_value_options_attributes | filter: $select.search">
+                          <div ng-bind-html="item.name_en | highlight: $select.search"></div>
+                          <small ng-bind-html="item.name_ar | highlight: $select.search"></small>
+                        </ui-select-choices>
+                      </ui-select>
+                      <!-- end: value_type == 'select' -->
+                      <!-- start: value_type == 'multi_select' -->
+                      <ui-select ng-if="detail.value_type == 'multi_select'" multiple ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_instance_value_options_attributes"
+                        ng-init="wizardCtrl.propertyproperty_detail_instances_attributes[$index+wizardCtrl.property.property_detail_instances_attributes.length].property_detail_id = detail.id"
+                        theme="bootstrap" ng-disabled="disabled" close-on-select="false">
+                        <ui-select-match placeholder="Select colors...">
+                          {{$item.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="option in detail.property_detail_value_options_attributes | filter:$select.search">
+                          {{option.name}}
+                        </ui-select-choices>
+                      </ui-select>
+                      <!-- end: value_type == 'multi_select' -->
+                      <!-- start: value_type == 'bool' -->
+                      <input ng-if="detail.value_type == 'bool'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
+                        ng-init="wizardCtrl.propertyproperty_detail_instances_attributes[$index+wizardCtrl.property.property_detail_instances_attributes.length].property_detail_id = detail.id"
                         type="checkbox" id="checkbox1">
                       <!-- end: value_type == 'bool'-->
                     </div>
