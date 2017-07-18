@@ -71,20 +71,20 @@ class PropertyDetailsController < ApplicationController
 
     value_type_changed = @property_detail.value_type != property_detail_params[:value_type]
     
-    # value_options_changed = value_options_changed?(
-    #   @property_detail.property_detail_value_options, 
-    #   property_detail_params[:property_detail_value_options_attributes])
+    value_options_used = value_options_used(
+      property_detail_params[:property_detail_value_options_attributes])
 
-    if((value_type_changed) && 
-      !Property.get_affected_with_property_detail(@property_detail.id).empty?)
+      puts "lllllllllllllllllllllll"
+      puts value_options_used.to_json
 
-      affected_properties = Property.get_affected_with_property_detail(@property_detail.id)
+    if(value_type_changed || value_options_used.length > 0)
+
       affected_types = PropertyType.get_affected_with_property_detail(@property_detail.id)
 
-      response = {affected_properties: affected_properties, affected_types: affected_types}
+      response = {affected_properties: value_options_used, affected_types: affected_types}
 
       puts response.to_json
-      render json: response, status: :multi_status
+      render 'property_details/_value_option_effected_data.json.jbuilder',locals: {affected_properties: value_options_used, affected_types: affected_types}, status: :multi_status
     else
       respond_to do |format|
         if @property_detail.update(property_detail_params)
