@@ -63,7 +63,7 @@
                   <h5 class="panel-title">{{'activerecord.models.property_detail' | translate}}</h5>
                 </div>
                 <div class="panel-body">
-                  <div ng-repeat="(category, details) in typeCtrl.allPropertyDetails" class="checkbox clip-check check-primary">
+                  <div ng-repeat="(category, details) in typeCtrl.formHelpers.property_details" class="checkbox clip-check check-primary">
                     <div>{{typeCtrl.formHelpers.categories[category].name}}</div>
                     <div ng-repeat="detail in details" class="checkbox clip-check check-primary">
                       <input type="checkbox" id="checkbox{{detail.id}}" checklist-model="typeCtrl.propertyType.property_details_attributes" checklist-value="detail">

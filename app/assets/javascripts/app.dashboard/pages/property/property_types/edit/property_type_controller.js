@@ -23,7 +23,6 @@
     vm.submitPropertyType = submitPropertyType;
 
     vm.stateOptions;
-    vm.allPropertyDetails;
 
     activate();
 
@@ -33,22 +32,8 @@
       vm.propertyType = propertyTypeRequest.data || {};
       vm.propertyType.state_options = formHelpersRequest.data.state_options;
       
-      vm.allPropertyDetails = formHelpersRequest.data.property_details;
       vm.formHelpers = formHelpersRequest.data;
-
-      // joining type's details' with all details
-      for (var i = vm.allPropertyDetails.length - 1; i >= 0; i--) {
-        vm.allPropertyDetails[i].checked = vm.propertyType && vm.propertyType.details_ids &&
-          vm.propertyType.details_ids.includes(vm.allPropertyDetails[i].id);
-      }
     }
-
-    function getSelectedDetails() {
-      return $.grep(vm.allPropertyDetails, function (detail) {
-        return detail.checked == true;
-      })
-    }
-
     function submitPropertyType(form) {
 
       if (!form.$valid) return;
