@@ -6,15 +6,20 @@ angular
   .module('app.dashboard')
   .controller('EditWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest',
     'PropertyDetailsServices', 'PropertiesServices', 'propertyStatesRequest', 'propertyStatusesRequest',
-    'NgMap', 'FileUploader', 'propertyRequest', '$state', '$stateParams',
+    'NgMap', 'FileUploader', 'propertyRequest', '$state', '$stateParams', 'FormValidationService',
+    'PropertyWizardServices',
 
     function (toaster, $scope, propertyTypesRequest, serviceTypesRequest, PropertyDetailsServices,
       PropertiesServices, propertyStatesRequest, propertyStatusesRequest, NgMap, FileUploader,
-      propertyRequest, $state, $stateParams) {
+      propertyRequest, $state, $stateParams, FormValidationService, PropertyWizardServices) {
 
       var vm = this;
 
+      vm.TYPE_STEP = 1;
+      vm.DETAILS_STEP = 2;
+      vm.IMAGES_STEP = 3;
       vm.LOCATION_STEP = 4;
+      vm.PUBLISH_STEP = 5;
 
       vm.currentStep;
       vm.form;
@@ -46,16 +51,14 @@ angular
         vm.states = propertyStatesRequest.data.list;
         vm.statuses = propertyStatusesRequest.data.list;
 
-        vm.property = propertyRequest.data;
+        vm.property = propertyRequest.data || {
+          deleted_images_ids: [],
+          property_detail_instances_attributes: []/////
+        };
+        vm.property.property_detail_instances_ids = vm.property.property_detail_instances_attributes.map(function (obj) {
+          return obj.property_detail_id;
+        });
 
-        vm.property.property_details_ids = [];
-        if (vm.property.id) {
-          vm.property.property_details_ids = vm.property.property_detail_instances_attributes.map(function (obj) {
-            return obj.property_detail_id;
-          });
-        }
-        
-        vm.property.deleted_images_ids = [];
       }
 
       function addGeoLocationMarker(map) {
@@ -102,22 +105,7 @@ angular
         if (form.$valid) {
           nextStep();
         } else {
-          var field = null,
-            firstError = null;
-          for (field in form) {
-            if (field[0] != '$') {
-              if (firstError === null && !form[field].$valid) {
-                firstError = form[field].$name;
-              }
-
-              if (form[field].$pristine) {
-                form[field].$dirty = true;
-              }
-            }
-          }
-
-          angular.element('.ng-invalid[name=' + firstError + ']').focus();
-          errorMessage();
+          showErrorMessage(form);
         }
       }
 
@@ -143,7 +131,7 @@ angular
 
             loadStep(nextStep); // special step handling
           } else
-            errorMessage();
+            showErrorMessage(form);
         }
       }
 
@@ -151,7 +139,7 @@ angular
       function loadStep(stepNumber) {
         switch (stepNumber) {
           case 2:
-            loadPropertyForm();
+            PropertyWizardServices.processPropertyDetails(vm.property);
             break;
           default:
         }
@@ -172,30 +160,8 @@ angular
         }
       }
 
-      function loadPropertyForm() {
-        PropertyDetailsServices.getPropertyDetailsByIDS(vm.property.type.details_ids)
-          .then(function (res) {
-            vm.property.property_details = res.data.list
-
-            var type_details_ids = vm.property.type.property_details_attributes.map(function (obj) {
-              return obj.id;
-            });
-
-            vm.property.type.new_property_details_attributes = vm.property.type.property_details_attributes.filter(function (x) {
-              return vm.property.property_details_ids.indexOf(x.id) < 0
-            });
-
-            var i = 0;
-            for (i = 0; i < vm.property.property_detail_instances_attributes.length; i++) {
-              var detail_id = vm.property.property_detail_instances_attributes[i].property_detail_id;
-              if (type_details_ids.indexOf(detail_id) < 0) {
-                vm.property.property_detail_instances_attributes[i].removed = true;
-              }
-            }
-
-          }).catch(function (err) {
-            console.log(err)
-          })
+      function processPropertyDetails() {
+        
       }
 
       function submit() {
@@ -225,9 +191,7 @@ angular
         vm.property.property_state_id = vm.property.state.id;
       }
 
-      function reset() {
-
-      }
+      function reset() {}
 
       function nextStep() {
         vm.currentStep++;
@@ -241,7 +205,8 @@ angular
         vm.currentStep = i;
       };
 
-      function errorMessage(i) {
+      function showErrorMessage(form) {
+        FormValidationService.validateForm(form);
         toaster.pop('error', 'Error', 'please complete the form in this step before proceeding');
       };
 

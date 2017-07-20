@@ -184,7 +184,7 @@ angular
           // },
           propertyRequest: function ($q) {
             return $q.when({
-              data: {}
+              data: null
             });
           },
           propertyTypesRequest: function (GeneralDataServices) {
@@ -199,7 +199,7 @@ angular
           propertyStatusesRequest: function (GeneralDataServices) {
             return GeneralDataServices.index('property_statuses');
           },
-          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select',
+          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 'propertyWizardServices',
             'editWizardController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.list', {

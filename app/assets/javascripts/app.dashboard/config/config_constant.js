@@ -85,6 +85,7 @@ angular
 
        //*** property edit scripts
       'editWizardController': 'assets/app.dashboard/pages/property/edit/wizard_controller.js',
+      'propertyWizardServices': 'assets/app.dashboard/pages/property/edit/property_wizard_services.js',
 
        //*** property listing scripts
       'propertyListController': 'assets/app.dashboard/pages/property/property_list/property_list_controller.js',
