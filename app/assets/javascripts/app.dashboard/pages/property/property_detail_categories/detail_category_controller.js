@@ -19,11 +19,9 @@
     // creating new category
     vm.detailCategory;
     vm.categoryCreationErrors;
-    vm.propertyDetailsIds;
     vm.submitDetailCategory = submitDetailCategory;
 
     vm.stateOptions;
-    vm.allPropertyDetails;
 
     activate();
 
@@ -33,19 +31,6 @@
       vm.detailCategory = detailCategory;
 
       vm.stateOptions = formHelpers.stateOptions;
-      vm.allPropertyDetails = formHelpers.propertyDetails;
-
-      // joining category's details' with all details
-      for (var i = vm.allPropertyDetails.length - 1; i >= 0; i--) {
-        vm.allPropertyDetails[i].checked = vm.detailCategory && vm.detailCategory.details_ids &&
-          vm.detailCategory.details_ids.includes(vm.allPropertyDetails[i].id);
-      }
-    }
-
-    function getSelectedDetails() {
-      return $.grep(vm.allPropertyDetails, function(detail) {
-        return detail.checked == true;
-      })
     }
 
     function submitDetailCategory(form) {
@@ -53,8 +38,6 @@
       if (!form.$valid) return;
 
       vm.categoryCreationErrors = [];
-
-      vm.detailCategory.property_details_attributes = getSelectedDetails();
 
       if (vm.detailCategory && vm.detailCategory.id) {
         // already exist needs update\
