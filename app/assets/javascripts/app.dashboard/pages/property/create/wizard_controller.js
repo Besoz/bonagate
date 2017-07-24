@@ -204,7 +204,7 @@ angular
       }
 
       function nextStep() {
-        vm.currentStep++;
+        goTo(vm.currentStep++);
       };
 
       function prevStep() {
