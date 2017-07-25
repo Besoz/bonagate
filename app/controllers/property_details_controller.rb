@@ -10,13 +10,13 @@ class PropertyDetailsController < ApplicationController
     puts params.to_json
   end
 
-  def index_by_ids
+  def index_by_id
     puts params.to_json
-    @property_details = PropertyDetail.where(id: params[:details_ids])
+    @property_details = PropertyDetail.all.index_by(&:id)
 
     respond_to do |format|
       format.html { }
-      format.json { render :index }
+      format.json { render :index_by_id }
     end
   end
 

@@ -170,7 +170,10 @@ angular
           propertyStatusesRequest: function (GeneralDataServices) {
             return GeneralDataServices.index('property_statuses');
           },
-          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select',
+          propertyDetailsRequest: function ($http) {
+            return $http.get('property_details/index_by_id.json');
+          },
+          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
             'editWizardController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.new', {
@@ -198,6 +201,9 @@ angular
           },
           propertyStatusesRequest: function (GeneralDataServices) {
             return GeneralDataServices.index('property_statuses');
+          },
+          propertyDetailsRequest: function ($http) {
+            return $http.get('property_details/index_by_id.json');
           },
           deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 'propertyWizardServices',
             'editWizardController', 'propertiesServices', 'propertyDetailsServices')

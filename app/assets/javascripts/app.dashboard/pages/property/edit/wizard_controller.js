@@ -7,11 +7,12 @@ angular
   .controller('EditWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest',
     'PropertyDetailsServices', 'PropertiesServices', 'propertyStatesRequest', 'propertyStatusesRequest',
     'NgMap', 'FileUploader', 'propertyRequest', '$state', '$stateParams', 'FormValidationService',
-    'PropertyWizardServices',
+    'PropertyWizardServices', 'propertyDetailsRequest',
 
     function (toaster, $scope, propertyTypesRequest, serviceTypesRequest, PropertyDetailsServices,
       PropertiesServices, propertyStatesRequest, propertyStatusesRequest, NgMap, FileUploader,
-      propertyRequest, $state, $stateParams, FormValidationService, PropertyWizardServices) {
+      propertyRequest, $state, $stateParams, FormValidationService, PropertyWizardServices,
+      propertyDetailsRequest) {
 
       var vm = this;
 
@@ -50,14 +51,12 @@ angular
         vm.serviceTypes = serviceTypesRequest.data.list;
         vm.states = propertyStatesRequest.data.list;
         vm.statuses = propertyStatusesRequest.data.list;
+        vm.propertyDetails = propertyDetailsRequest.data.hash
 
         vm.property = propertyRequest.data || {
           deleted_images_ids: [],
           property_detail_instances_attributes: []/////
         };
-        vm.property.property_detail_instances_ids = vm.property.property_detail_instances_attributes.map(function (obj) {
-          return obj.property_detail_id;
-        });
 
       }
 

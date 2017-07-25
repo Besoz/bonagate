@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :property_detail_instances
   resources :property_details do
     collection do
-      post 'index_by_ids'
+      get 'index_by_id'
     end
   end
   resources :property_types
