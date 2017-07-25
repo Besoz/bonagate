@@ -9,6 +9,10 @@ class Ability
 
     can [:index, :read, :search], Property
 
+    if user
+      can :user_profile, User
+    end
+
     user ||= User.new # guest user (not logged in)
     if user.admin?
       can :manage, :all

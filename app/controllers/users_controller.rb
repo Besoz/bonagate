@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout "cliptheme-layout"
+  layout "cliptheme-layout", :only => [:new]
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user, except: [:new, :create, :create_user]
@@ -14,6 +14,13 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+  end
+
+  # GET /user_profile
+  # GET /user_profile.json
+  def user_profile
+    @tab = params[:tab] || 'favorites'
+    @user = current_user
   end
 
   # GET /users/new

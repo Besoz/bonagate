@@ -1,8 +1,8 @@
 
-  <script src="assets/app.realestate/controllers/login.controller.js"></script>
+  <script src="/assets/app.realestate/controllers/login.controller.js"></script>
 
   <% if current_user.nil? %>
-    <script src="assets/app.realestate/controllers/register.controller.js"></script>
+    <script src="/assets/app.realestate/controllers/register.controller.js"></script>
   <% else %>
   <% end %>
 
@@ -125,8 +125,7 @@
                 <img src="<%= current_user.avatar %>" alt="" class="img-circle" /> <%= current_user.first_name %><span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>
+                <li><a href="/user_profile"><i class="fa fa-user"></i>Profile</a></li>
                 <li><a ng-click="LoginCtrl.logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
               </ul>
             </li>

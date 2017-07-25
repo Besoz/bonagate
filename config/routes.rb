@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   get '/translation', to: 'pages#translation', as: :translation
   put '/change_locale', to: 'pages#change_locale', as: :change_locale
 
+  get '/user_profile/:tab', to: 'users#user_profile', as: :user_profile
+  get "/user_profile" , to: redirect('/user_profile/favorites')
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
