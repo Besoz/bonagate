@@ -44,6 +44,15 @@
               </ui-select-choices>
             </ui-select>
           </div>
+          <div class="form-group" >  <!-- ng-class="{'has-error':Form.mandatory.$dirty && Form.mandatory.$invalid, 'has-success':Form.mandatory.$valid}" -->
+             <div class="checkbox clip-check check-primary checkbox-inline">
+                <input type="checkbox" id="checkbox1" value="1" name="mandatory" ng-model="detailCtrl.propertyDetail.mandatory">
+                <label for="checkbox1">
+                  Mandatory Property Detail
+                </label>
+              </div>
+            <!-- span class="error text-small block" ng-if="Form.mandatory.$dirty && Form.mandatory.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.mandatory'|translate}}'}" /></span -->
+          </div>
           <div ng-if="detailCtrl.propertyDetail.value_type == 'select' || detailCtrl.propertyDetail.value_type == 'multi_select'">
             <div class="panel panel-transparent">
               <div class="panel-heading">

@@ -32,31 +32,6 @@ angular
       // 'jquery-nestable-plugin': ['../assets/bower_components/jquery-nestable-rtl/jquery.nestable.rtl.js'],
       'touchspin-plugin': ['../assets/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js', '../assets/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'],
 
-      //*** Controllers
-      'iconsCtrl': 'assets/controllers/iconsCtrl.js',
-      'vAccordionCtrl': 'assets/controllers/vAccordionCtrl.js',
-      'ckeditorCtrl': 'assets/controllers/ckeditorCtrl.js',
-      'laddaCtrl': 'assets/controllers/laddaCtrl.js',
-      'ngTableCtrl': 'assets/controllers/ngTableCtrl.js',
-      'cropCtrl': 'assets/controllers/cropCtrl.js',
-      'asideCtrl': 'assets/controllers/asideCtrl.js',
-      'toasterCtrl': 'assets/controllers/toasterCtrl.js',
-      'sweetAlertCtrl': 'assets/controllers/sweetAlertCtrl.js',
-      'mapsCtrl': 'assets/controllers/mapsCtrl.js',
-      'chartsCtrl': 'assets/controllers/chartsCtrl.js',
-      'calendarCtrl': 'assets/controllers/calendarCtrl.js',
-      'nestableCtrl': 'assets/controllers/nestableCtrl.js',
-      'validationCtrl': ['assets/controllers/validationCtrl.js'],
-      'userCtrl': ['assets/controllers/userCtrl.js'],
-      'selectCtrl': 'assets/controllers/selectCtrl.js',
-      'wizardCtrl': 'assets/controllers/wizardCtrl.js',
-      'uploadCtrl': 'assets/controllers/uploadCtrl.js',
-      'treeCtrl': 'assets/controllers/treeCtrl.js',
-      'inboxCtrl': 'assets/controllers/inboxCtrl.js',
-      'xeditableCtrl': 'assets/controllers/xeditableCtrl.js',
-      'chatCtrl': 'assets/controllers/chatCtrl.js',
-
-
       //*** App scripts
       'mainCtrl': 'assets/app.dashboard/pages/mainCtrl.js',
 
@@ -94,9 +69,21 @@ angular
       'propertyStatusesServices': 'assets/app.dashboard/pages/property/property_statuses/property_statuses_services.js',
       'propertyStatusController': 'assets/app.dashboard/pages/property/property_statuses/property_status_controller.js',
 
+      //*** property services scripts
+      'propertiesServices': 'assets/app.dashboard/pages/property/properties_services.js',
+
       //*** property creation scripts
       'wizardController': 'assets/app.dashboard/pages/property/create/wizard_controller.js',
-      'propertiesServices': 'assets/app.dashboard/pages/property/create/properties_services.js',
+
+      //*** property view scripts
+      'propertyViewController': 'assets/app.dashboard/pages/property/view/wizard_controller.js',
+
+       //*** property edit scripts
+      'editWizardController': 'assets/app.dashboard/pages/property/edit/wizard_controller.js',
+
+
+       //*** property listing scripts
+      'propertyListController': 'assets/app.dashboard/pages/property/property_list/property_list_controller.js',
 
       //*** Filters
       'htmlToPlaintext': 'assets/app.cliptwo/filters/htmlToPlaintext.js'

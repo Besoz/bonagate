@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613154054) do
+ActiveRecord::Schema.define(version: 20170717141716) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 20170613154054) do
     t.integer  "property_status_id", limit: 4,   null: false
     t.integer  "property_state_id",  limit: 4
     t.string   "state",              limit: 255
+    t.float    "lat",                limit: 53
+    t.float    "lng",                limit: 53
+    t.string   "country",            limit: 255
+    t.string   "city",               limit: 255
+    t.string   "area",               limit: 255
+    t.string   "street",             limit: 255
+    t.integer  "number",             limit: 4
+    t.integer  "floor",              limit: 4
   end
 
   add_index "properties", ["company_id"], name: "index_properties_on_company_id", using: :btree
@@ -87,9 +95,22 @@ ActiveRecord::Schema.define(version: 20170613154054) do
     t.string   "value_type",    limit: 255
     t.string   "state",         limit: 255
     t.string   "value_options", limit: 255
+    t.boolean  "mandatory",     limit: 1
   end
 
   add_index "property_details", ["code"], name: "index_property_details_on_code", unique: true, using: :btree
+
+  create_table "property_images", force: :cascade do |t|
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
+    t.integer  "property_id",         limit: 4
+  end
+
+  add_index "property_images", ["property_id"], name: "index_property_images_on_property_id", using: :btree
 
   create_table "property_service_type_instances", force: :cascade do |t|
     t.string   "unit",            limit: 255
@@ -223,6 +244,7 @@ ActiveRecord::Schema.define(version: 20170613154054) do
   add_foreign_key "properties", "property_types"
   add_foreign_key "property_detail_instances", "properties"
   add_foreign_key "property_detail_instances", "property_details"
+  add_foreign_key "property_images", "properties"
   add_foreign_key "property_type_details", "property_details"
   add_foreign_key "property_type_details", "property_types"
   add_foreign_key "shared_properties", "companies"
