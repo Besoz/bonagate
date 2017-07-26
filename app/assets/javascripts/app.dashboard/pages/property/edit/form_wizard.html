@@ -119,7 +119,7 @@
                   </legend>
                   <!--start: old Property detail instances-->
                   <div ng-repeat="(catId, detail_instances) in wizardCtrl.property.property_detail_instances_attributes | groupBy: 'category_id'">
-                    Group name: {{ catId }}
+                    {{ wizardCtrl.propertyDetailCategories[catId].name }}
                     <div ng-repeat="detail_instance in detail_instances">
                       <span ng-if="detail_instance.removed" class="input-group-btn">
                         <div class="checkbox clip-check check-danger">

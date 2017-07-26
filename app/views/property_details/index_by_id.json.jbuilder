@@ -1,6 +1,6 @@
 json.hash do
-  @property_details.each do |id, property_detail|
-    json.set! id do
+  @property_details.each do |property_detail|
+    json.set! property_detail.id do
       json.partial! 'property_details/property_detail_min', property_detail: property_detail
     end
   end

@@ -12,7 +12,7 @@ class PropertyDetailsController < ApplicationController
 
   def index_by_id
     puts params.to_json
-    @property_details = PropertyDetail.all.index_by(&:id)
+    @property_details = PropertyDetail.all
 
     respond_to do |format|
       format.html { }

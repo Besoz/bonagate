@@ -1,5 +1,5 @@
 class PropertyDetailCategoriesController < ApplicationController
-  before_action :set_property_detail_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_property_detail_category, only: %i[show edit update destroy]
 
   # GET /property_detail_categories
   # GET /property_detail_categories.json
@@ -7,10 +7,14 @@ class PropertyDetailCategoriesController < ApplicationController
     @property_detail_categories = PropertyDetailCategory.all
   end
 
+  # GET /property_detail_categories/index_by_id.json
+  def index_by_id
+    @property_detail_categories = PropertyDetailCategory.all
+  end
+
   # GET /property_detail_categories/1
   # GET /property_detail_categories/1.json
-  def show
-  end
+  def show; end
 
   # GET /property_detail_categories/new
   def new
@@ -18,8 +22,7 @@ class PropertyDetailCategoriesController < ApplicationController
   end
 
   # GET /property_detail_categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /property_detail_categories
   # POST /property_detail_categories.json
@@ -62,13 +65,14 @@ class PropertyDetailCategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_property_detail_category
-      @property_detail_category = PropertyDetailCategory.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def property_detail_category_params
-      params.require(:property_detail_category).permit(:name_en, :name_ar)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_property_detail_category
+    @property_detail_category = PropertyDetailCategory.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def property_detail_category_params
+    params.require(:property_detail_category).permit(:name_en, :name_ar)
+  end
 end

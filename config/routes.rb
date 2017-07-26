@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :property_detail_categories
   root to: 'pages#index'
+    
+  resources :property_detail_categories do
+    collection do
+      get 'index_by_id'
+    end
+  end
 
   resources :user_invitations do
     collection do
