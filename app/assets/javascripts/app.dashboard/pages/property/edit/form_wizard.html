@@ -118,67 +118,67 @@
                     Account Credential
                   </legend>
                   <!--start: old Property detail instances-->
-                  <div ng-repeat="detail_instance in wizardCtrl.property.property_detail_instances_attributes">
-
-
-                    <span ng-if="detail_instance.removed" class="input-group-btn">
+                  <div ng-repeat="(catId, detail_instances) in wizardCtrl.property.property_detail_instances_attributes | groupBy: 'category_id'">
+                    Group name: {{ catId }}
+                    <div ng-repeat="detail_instance in detail_instances">
+                      <span ng-if="detail_instance.removed" class="input-group-btn">
                         <div class="checkbox clip-check check-danger">
                           <input ng-model="detail_instance._destroy" type="checkbox" id="remove_instance_{{$index}}" value="1">
                           <label for="remove_instance_{{$index}}">
                             remove instance
                           </label>
                         </div>
-                    </span>
-                    <span ng-if="detail_instance.new &&  wizardCtrl.property.id" class="input-group-btn">
-                        <div class="checkbox clip-check check-success">
+                      </span>
+                      <span ng-if="detail_instance.new &&  wizardCtrl.property.id" class="input-group-btn">
+                          <div class="checkbox clip-check check-success">
                           <input ng-model="true" type="checkbox" id="remove_instance_{{$index}}" value="1">
                           <label for="remove_instance_{{$index}}">
                             new detail
                           </label>
                         </div>
-                    </span>
-                    <div class="form-group" ng-class="{'has-error': detail_instance.removed}">
-                      <label class="control-label">
+                      </span>
+                      <div class="form-group" ng-class="{'has-error': detail_instance.removed}">
+                        <label class="control-label">
                         {{wizardCtrl.propertyDetails[detail_instance.property_detail_id].name}}
-                      </label>
-                      <!-- start: value_type == 'string' -->
-                      <input ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'string'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
-                        placeholder="{{detail.name}}" class="form-control" name="{{detail.code}}">
-                      <!-- end: value_type == 'string' -->
+                        </label>
+                        <!-- start: value_type == 'string' -->
+                        <input ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'string'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
+                          placeholder="{{detail.name}}" class="form-control" name="{{detail.code}}">
+                        <!-- end: value_type == 'string' -->
 
-                      <!-- start: value_type == 'text' -->
-                      <textarea ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'text'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
-                        placeholder="Default Text" id="form-field-22" class="form-control"></textarea>
-                      <!-- end: value_type == 'text' -->
+                        <!-- start: value_type == 'text' -->
+                        <textarea ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'text'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
+                          placeholder="Default Text" id="form-field-22" class="form-control"></textarea>
+                        <!-- end: value_type == 'text' -->
 
-                      <!-- start: value_type == 'select' -->
-                      <ui-select ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'select'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_value_option_ids[0]"
-                        theme="bootstrap">
-                        <ui-select-match placeholder="Select in the list...">
-                          {{$select.selected.name}}
-                        </ui-select-match>
-                        <ui-select-choices repeat="option.id as option in wizardCtrl.propertyDetails[detail_instance.property_detail_id].property_detail_value_options_attributes | filter:$select.search">
-                          <div ng-bind-html="option.name | highlight: $select.search"></div>
-                        </ui-select-choices>
-                      </ui-select>
-                      <!-- end: value_type == 'select' -->
-                      <!-- start: value_type == 'multi_select' -->
-                      <ui-select ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'multi_select'" multiple ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_value_option_ids"
-                        theme="bootstrap" ng-disabled="disabled" close-on-select="false">
-                        <ui-select-match placeholder="Select colors...">
-                          {{$item.name}}
-                        </ui-select-match>
-                        <ui-select-choices repeat="option.id as option in wizardCtrl.propertyDetails[detail_instance.property_detail_id].property_detail_value_options_attributes | filter:$select.search">
-                          {{option.name}}
-                        </ui-select-choices>
-                      </ui-select>
-                      <!-- end: value_type == 'multi_select' -->
-                      <!-- start: value_type == 'bool' -->
-                      <input ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'bool'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
-                        type="checkbox" id="checkbox1">
-                      <!-- end: value_type == 'bool'-->
+                        <!-- start: value_type == 'select' -->
+                        <ui-select ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'select'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_value_option_ids[0]"
+                          theme="bootstrap">
+                          <ui-select-match placeholder="Select in the list...">
+                            {{$select.selected.name}}
+                          </ui-select-match>
+                          <ui-select-choices repeat="option.id as option in wizardCtrl.propertyDetails[detail_instance.property_detail_id].property_detail_value_options_attributes | filter:$select.search">
+                            <div ng-bind-html="option.name | highlight: $select.search"></div>
+                          </ui-select-choices>
+                        </ui-select>
+                        <!-- end: value_type == 'select' -->
+                        <!-- start: value_type == 'multi_select' -->
+                        <ui-select ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'multi_select'" multiple ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_value_option_ids"
+                          theme="bootstrap" ng-disabled="disabled" close-on-select="false">
+                          <ui-select-match placeholder="Select colors...">
+                            {{$item.name}}
+                          </ui-select-match>
+                          <ui-select-choices repeat="option.id as option in wizardCtrl.propertyDetails[detail_instance.property_detail_id].property_detail_value_options_attributes | filter:$select.search">
+                            {{option.name}}
+                          </ui-select-choices>
+                        </ui-select>
+                        <!-- end: value_type == 'multi_select' -->
+                        <!-- start: value_type == 'bool' -->
+                        <input ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'bool'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
+                          type="checkbox" id="checkbox1">
+                        <!-- end: value_type == 'bool'-->
+                      </div>
                     </div>
-
                   </div>
                   <!--end: old Property detail instances-->
                 </fieldset>

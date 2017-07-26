@@ -15,3 +15,4 @@ json.property_detail property_detail_instance.property_detail,
 # 	partial: 'property_detail_instances/instance_value_option', as: :instance_value_option
 
 json.property_detail_value_option_ids property_detail_instance.property_detail_value_options.pluck(:id)
+json.category_id property_detail_instance.property_detail.property_detail_category_id

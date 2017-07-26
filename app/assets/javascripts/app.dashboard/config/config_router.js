@@ -173,7 +173,7 @@ angular
           propertyDetailsRequest: function ($http) {
             return $http.get('property_details/index_by_id.json');
           },
-          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
+          deps: mLoadSequence('angular-filter','angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
             'editWizardController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.new', {
@@ -205,7 +205,7 @@ angular
           propertyDetailsRequest: function ($http) {
             return $http.get('property_details/index_by_id.json');
           },
-          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 'propertyWizardServices',
+          deps: mLoadSequence('angular-filter', 'angularFileUpload', 'ngMap', 'ui.select', 'propertyWizardServices',
             'editWizardController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.list', {

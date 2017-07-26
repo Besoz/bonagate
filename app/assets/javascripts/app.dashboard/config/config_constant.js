@@ -163,5 +163,9 @@ angular
     }, {
       name: 'checklist-model',
       files: ['../assets/bower_components/checklist-model/checklist-model.js']
+    }, {
+      name: 'angular-filter',
+      files: ['../assets/bower_components/angular-filter/dist/angular-filter.min.js']
     }]
   });
+  

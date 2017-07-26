@@ -44,10 +44,12 @@
       // add missing details to the property
       var i = 0;
       for (i = 0; i < newDetailsCount; i++) {
-        property.property_detail_instances_attributes[i+oldDetailsCount] = {}
-        property.property_detail_instances_attributes[i+oldDetailsCount].property_detail_id =
+        property.property_detail_instances_attributes[i + oldDetailsCount] = {}
+        property.property_detail_instances_attributes[i + oldDetailsCount].property_detail_id =
           property.type.new_property_details_attributes[i].id;
-        property.property_detail_instances_attributes[i+oldDetailsCount].new = true;
+        property.property_detail_instances_attributes[i + oldDetailsCount].category_id =
+          property.type.new_property_details_attributes[i].property_detail_category_id;
+        property.property_detail_instances_attributes[i + oldDetailsCount].new = true;
       }
 
       // marking details removed form the type but still used in the property
