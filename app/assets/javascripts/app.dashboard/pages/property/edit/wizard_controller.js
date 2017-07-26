@@ -61,6 +61,13 @@ angular
           property_detail_instances_attributes: [] /////
         };
 
+        vm.resetInstances = resetInstances;
+
+      }
+
+      function resetInstances(){
+        if(!vm.property.id)
+          vm.property.property_detail_instances_attributes = [];
       }
 
       function setPropertyLocation() {

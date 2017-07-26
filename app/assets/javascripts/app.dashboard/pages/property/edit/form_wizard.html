@@ -66,7 +66,8 @@
                       <label class="control-label">
                         {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span>
                       </label>
-                      <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="service_type" required>
+                      <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="service_type" 
+                        on-select="wizardCtrl.resetInstances()" required>
                         <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
                           {{$select.selected.name}}
                         </ui-select-match>
