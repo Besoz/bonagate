@@ -12,7 +12,10 @@
   function PropertyWizardServices() {
 
     var service = {
-      processPropertyDetails: processPropertyDetails
+      processPropertyDetails: processPropertyDetails,
+      addGeoLocationMarker: addGeoLocationMarker,
+      setPropertyLatLng: setPropertyLatLng,
+      moveMap: moveMap
     };
     return service;
 
@@ -62,6 +65,24 @@
       }
 
 
+    }
+
+    function addGeoLocationMarker(successCallbackFn, errorCallbackFn) {
+      var options = {
+        enableHighAccuracy: true
+      };
+      navigator.geolocation.getCurrentPosition(successCallbackFn,
+        errorCallbackFn, options);
+    }
+
+    function setPropertyLatLng(property, lat, lng) {
+      property.lat = lat;
+      property.lng = lng;
+    }
+
+    function moveMap(map, geolocalpoint) {
+      map.setCenter(geolocalpoint);
+      map.setZoom(20);
     }
 
 

@@ -115,7 +115,7 @@
               <div class="col-md-6">
                 <fieldset>
                   <legend>
-                    Account Credential
+                    Details
                   </legend>
                   <!--start: old Property detail instances-->
                   <div ng-repeat="(catId, detail_instances) in wizardCtrl.property.property_detail_instances_attributes | groupBy: 'category_id'">
@@ -364,12 +364,34 @@
               <div class="col-md-12">
                 <!--start: Map-->
                 <map on-center_changed="wizardCtrl.form.map.centerChanged()" zoom="20" map-type-id="MapTypeId.ROADMAP">
-                  <marker position="{{[wizardCtrl.property.lat, wizardCtrl.property.lng]}}" 
-                  centered="true" draggable="true"></marker>
+                  <marker ng-if="wizardCtrl.property.lat && wizardCtrl.property.lng" position="{{[wizardCtrl.property.lat, wizardCtrl.property.lng]}}">
+                  </marker>
+
+                  <marker ng-if="wizardCtrl.form.map.ngmap && wizardCtrl.form.map.ngmap.getCenter()" 
+                    position="{{[wizardCtrl.form.map.ngmap.getCenter().lat(), wizardCtrl.form.map.ngmap.getCenter().lng()]}}" 
+                    icon='http://labs.google.com/ridefinder/images/mm_20_yellow.png'>
+                  </marker>
+                  
+                  <marker ng-if="wizardCtrl.form.map.currentGeolocationPoint" position="{{[wizardCtrl.form.map.currentGeolocationPoint.lat(), wizardCtrl.form.map.currentGeolocationPoint.lng()]}}" 
+                    icon='http://labs.google.com/ridefinder/images/mm_20_green.png'>
+                  </marker>
+                  
                   <custom-control id="go-home" position="TOP_RIGHT" index="1" 
                   on-click="wizardCtrl.form.map.goCurrentLocation()">
                     <a href class="btn btn-primary btn-xs margin-top-15 margin-right-5">
-                      goCurrentLocation
+                      goto Current Location
+                    </a>
+                  </custom-control>
+                  <custom-control id="go-home" position="TOP_RIGHT" index="1" 
+                  on-click="wizardCtrl.form.map.setPropertyLocation()">
+                    <a href class="btn btn-primary btn-xs margin-top-15 margin-right-5">
+                      set property location
+                    </a>
+                  </custom-control>
+                  <custom-control id="go-home" position="TOP_RIGHT" index="1" 
+                  on-click="wizardCtrl.form.map.gotoPropertyLocation()">
+                    <a href class="btn btn-primary btn-xs margin-top-15 margin-right-5">
+                      goto property Location
                     </a>
                   </custom-control>
                 </map>

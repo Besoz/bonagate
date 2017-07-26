@@ -27,8 +27,6 @@ angular
 
       vm.property;
 
-      vm.map;
-
       activate();
 
       function activate() {
@@ -43,7 +41,11 @@ angular
           reset: reset,
           map: {
             centerChanged: centerChanged,
-            goCurrentLocation: goCurrentLocation
+            goCurrentLocation: goCurrentLocation,
+            setPropertyLocation: setPropertyLocation,
+            gotoPropertyLocation: gotoPropertyLocation,
+            ngmap: null,
+            currentGeolocationPoint: null
           }
         };
 
@@ -56,47 +58,48 @@ angular
 
         vm.property = propertyRequest.data || {
           deleted_images_ids: [],
-          property_detail_instances_attributes: []/////
+          property_detail_instances_attributes: [] /////
         };
 
       }
 
-      function addGeoLocationMarker(map) {
-        var options = {
-          enableHighAccuracy: true
-        };
-        navigator.geolocation.getCurrentPosition(function (pos) {
-
-            vm.geolocalpoint = new google.maps.LatLng(pos.coords.latitude,
-              pos.coords.longitude);
-
-            if (!vm.geolocationMarker) {
-              vm.geolocationMarker = new google.maps.Marker({
-                position: vm.geolocalpoint,
-                map: map,
-                title: 'Your geolocation',
-                icon: 'http://labs.google.com/ridefinder/images/mm_20_green.png'
-              });
-
-            } else {
-              vm.geolocationMarker.position = vm.geolocalpoint;
-            }
-          },
-          function (error) {
-            alert('Unable to get location: ' + error.message);
-          }, options);
-      }
-
-      function centerChanged() {
-        if (vm.map && vm.map.getCenter()) {
-          vm.property.lat = vm.map.getCenter().lat()
-          vm.property.lng = vm.map.getCenter().lng();
+      function setPropertyLocation() {
+        if(vm.form.map.ngmap && vm.form.map.ngmap.getCenter()){
+          vm.property.lat = vm.form.map.ngmap.getCenter().lat();
+          vm.property.lng = vm.form.map.ngmap.getCenter().lng();
         }
       }
 
+      function gotoPropertyLocation() {
+        if (vm.property.lat && vm.property.lng)
+          PropertyWizardServices.moveMap(vm.form.map.ngmap,
+            new google.maps.LatLng(vm.property.lat,
+              vm.property.lng));
+      }
+
+      // function addGeoLocationMarker(map) {
+      //   var options = {
+      //     enableHighAccuracy: true
+      //   };
+      //   navigator.geolocation.getCurrentPosition(function (pos) {
+      //       vm.form.map.currentGeolocationPoint = new google.maps.LatLng(pos.coords.latitude,
+      //         pos.coords.longitude);
+      //     },
+      //     function (error) {
+      //       alert('Unable to get location: ' + error.message);
+      //     }, options);
+      // }
+
+      function centerChanged() {
+        // if (vm.form.map.ngmap && vm.form.map.ngmap.getCenter()) {
+        //   vm.property.lat = vm.form.map.ngmap.getCenter().lat();
+        //   vm.property.lng = vm.form.map.ngmap.getCenter().lng();
+        // }
+      }
+
       function goCurrentLocation() {
-        vm.map.setCenter(vm.geolocalpoint);
-        vm.map.setZoom(20);
+        PropertyWizardServices.moveMap(vm.form.map.ngmap,
+          vm.form.map.currentGeolocationPoint);
       }
 
       function next(form) {
@@ -150,18 +153,23 @@ angular
         switch (stepNumber) {
           case vm.LOCATION_STEP:
             NgMap.getMap().then(function (evtMap) {
-              vm.map = evtMap;
-              addGeoLocationMarker(vm.map);
-              vm.map.setCenter(google.maps.LatLng(vm.property.lat,
-                vm.property.lng));
+              vm.form.map.ngmap = evtMap;
+              PropertyWizardServices.addGeoLocationMarker(function (pos) {
+                vm.form.map.currentGeolocationPoint = new google.maps.LatLng(pos.coords.latitude,
+                  pos.coords.longitude);
+                if (vm.property.id && vm.property.lat && vm.property.lng) {
+                  PropertyWizardServices.moveMap(vm.form.map.ngmap,
+                    new google.maps.LatLng(vm.property.lat,
+                      vm.property.lng));
+                } else {
+                  PropertyWizardServices.moveMap(vm.form.map.ngmap,
+                    vm.form.map.currentGeolocationPoint);
+                }
+              });
             });
             break;
           default:
         }
-      }
-
-      function processPropertyDetails() {
-        
       }
 
       function submit() {
@@ -225,39 +233,11 @@ angular
         }
       });
 
-      // CALLBACKS
-
-      // uploaderImages.onWhenAddingFileFailed = function (item /*{File|FileLikeObject}*/ , filter, options) {
-      //   console.info('onWhenAddingFileFailed', item, filter, options);
-      // };
-      // uploaderImages.onAfterAddingFile = function (fileItem) {
-      //   console.info('onAfterAddingFile', fileItem);
-      // };
-      // uploaderImages.onAfterAddingAll = function (addedFileItems) {
-      //   console.info('onAfterAddingAll', addedFileItems);
-      // };
       vm.uploaderImages.onBeforeUploadItem = function (item) {
         item.url = 'properties/' + vm.property.id + '/upload_image/';
         // console.info('onBeforeUploadItem', item);
       };
-      // uploaderImages.onProgressItem = function (fileItem, progress) {
-      //   console.info('onProgressItem', fileItem, progress);
-      // };
-      // uploaderImages.onProgressAll = function (progress) {
-      //   console.info('onProgressAll', progress);
-      // };
-      // uploaderImages.onSuccessItem = function (fileItem, response, status, headers) {
-      //   console.info('onSuccessItem', fileItem, response, status, headers);
-      // };
-      // uploaderImages.onErrorItem = function (fileItem, response, status, headers) {
-      //   // console.log('onErrorItem', fileItem, response, status, headers);
-      // };
-      // uploaderImages.onCancelItem = function (fileItem, response, status, headers) {
-      //   console.info('onCancelItem', fileItem, response, status, headers);
-      // };
-      // uploaderImages.onCompleteItem = function (fileItem, response, status, headers) {
-      //   console.info('onCompleteItem', fileItem, response, status, headers);
-      // };
+
       vm.uploaderImages.onCompleteAll = function () {
         $state.go('^.view', {
           'propertyId': $stateParams.propertyId
