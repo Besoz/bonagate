@@ -36,6 +36,9 @@ Rails.application.routes.draw do
     collection do
       post 'create_user'
     end
+    collection do
+      put 'change_password'
+    end
   end
 
   delete '/sign_out', to: 'user_sessions#destroy', as: :sign_out
