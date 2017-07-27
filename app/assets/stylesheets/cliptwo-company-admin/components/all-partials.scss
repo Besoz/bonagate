@@ -1,0 +1,42 @@
+//top-navabr.html
+.navbar .navbar-right {
+    margin-top: 0px;
+    &> {
+        li a {
+            border-radius: 0px;
+        }
+        li.current-user>a {
+            padding-top: 11px;
+            span.username {
+                line-height: 40px;
+                margin-top: 0px;
+                font-weight: bold;
+            }
+            i.ti-angle-down {
+                line-height: 40px;
+                margin-top: 1px;
+            }
+        }
+        li.language {
+            a {
+                padding: 12px 15px;
+                i.ti-world {
+                    float: left;
+                    margin-right: 5px;
+                    line-height: 40px;
+                    margin-top: 0px;
+                }
+                span.language-selected {
+                    line-height: 40px;
+                }
+            }
+        }
+    }
+}
+
+//sidebar>>nav
+#sidebar > div nav > ul
+{
+    margin: 0px;
+    border-top: 0px;
+}

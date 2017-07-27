@@ -10,5 +10,12 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
-Rails.application.config.assets.precompile += %w( en.css )
-Rails.application.config.assets.precompile += %w( ar.css )
+# user-section stylesheets
+Rails.application.config.assets.precompile += %w( realestate-user/all.css )
+Rails.application.config.assets.precompile += %w( realestate-user/en.css )
+Rails.application.config.assets.precompile += %w( realestate-user/ar.css )
+
+# admin and companies section stylesheets
+Rails.application.config.assets.precompile += %w( cliptwo-company-admin/all.css )
+Rails.application.config.assets.precompile += %w( cliptwo-company-admin/ar.css )
+Rails.application.config.assets.precompile += %w( cliptwo-company-admin/en.css )

@@ -1,0 +1,22 @@
+// components / all-partials.scss
+.navbar .navbar-right> {
+    li.current-user>a {
+        i.ti-angle-down {
+            float: left;
+            margin-left: 10px;
+        }
+    }
+    li.language {
+        a {
+            i.ti-world {
+                float: left;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+//sidebar>>nav
+#sidebar nav
+{
+    border-left: 0px;
+}
