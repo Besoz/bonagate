@@ -13,7 +13,7 @@
         <div id="wizard" class="swMain">
           <!-- start: WIZARD SEPS -->
           <ul>
-            <li ng-click="wizardCtrl.form.goTo(Form, 1)">
+            <li ng-click="wizardCtrl.form.goto(Form, 1)">
               <a href ng-class="{'selected' : wizardCtrl.currentStep >= 1, 'done' : wizardCtrl.currentStep > 1}">
                 <div class="stepNumber">
                   1
@@ -21,7 +21,7 @@
                 <span class="stepDesc text-small"> Personal Information </span>
               </a>
             </li>
-            <li ng-click="wizardCtrl.form.goTo(Form, 2)">
+            <li ng-click="wizardCtrl.form.goto(Form, 2)">
               <a href ng-class="{'selected' : wizardCtrl.currentStep >= 2, 'done' : wizardCtrl.currentStep > 2}">
                 <div class="stepNumber">
                   2
@@ -29,7 +29,7 @@
                 <span class="stepDesc text-small"> Details </span>
               </a>
             </li>
-            <li ng-click="wizardCtrl.form.goTo(Form, 3)">
+            <li ng-click="wizardCtrl.form.goto(Form, 3)">
               <a href ng-class="{'selected' : wizardCtrl.currentStep >= 3, 'done' : wizardCtrl.currentStep > 3}">
                 <div class="stepNumber">
                   3
@@ -37,7 +37,7 @@
                 <span class="stepDesc text-small"> Images </span>
               </a>
             </li>
-            <li ng-click="wizardCtrl.form.goTo(Form, 4)">
+            <li ng-click="wizardCtrl.form.goto(Form, 4)">
               <a href ng-class="{'selected' : wizardCtrl.currentStep >= 4, 'done' : wizardCtrl.currentStep > 4}">
                 <div class="stepNumber">
                   4
@@ -45,7 +45,7 @@
                 <span class="stepDesc text-small"> Location </span>
               </a>
             </li>
-            <li ng-click="wizardCtrl.form.goTo(Form, 5)">
+            <li ng-click="wizardCtrl.form.goto(Form, 5)">
               <a href ng-class="{'selected' : wizardCtrl.currentStep >= 5, 'done' : wizardCtrl.currentStep > 5}">
                 <div class="stepNumber">
                   5

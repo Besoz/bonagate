@@ -6,23 +6,30 @@
     .module('app.dashboard')
     .service('PropertyWizardServices', PropertyWizardServices);
 
-  PropertyWizardServices.$inject = [];
+  PropertyWizardServices.$inject = ['PropertiesServices', 'NgMap'];
 
 
-  function PropertyWizardServices() {
+  function PropertyWizardServices(PropertiesServices, NgMap) {
+    
+    var TYPE_STEP = 1;
+    var DETAILS_STEP = 2;
+    var IMAGES_STEP = 3;
+    var LOCATION_STEP = 4;
+    var PUBLISH_STEP = 5;
 
     var service = {
       processPropertyDetails: processPropertyDetails,
       addGeoLocationMarker: addGeoLocationMarker,
       setPropertyLatLng: setPropertyLatLng,
-      moveMap: moveMap
+      moveMap: moveMap,
+      next: next,
+      prev: prev,
+      goto: goto,
+      submit: submit
     };
     return service;
 
     ////////////
-
-
-
     function processPropertyDetails(property) {
 
 
@@ -85,6 +92,112 @@
       map.setZoom(20);
     }
 
+
+    function next(vm, form, scope) {
+      scope.toTheTop();
+
+      if (form.$valid) {
+        vm.currentStep++;
+      } else {
+        showErrorMessage(form);
+      }
+    }
+
+    function prev(vm, form, scope) {
+      scope.toTheTop();
+      vm.currentStep--;
+    }
+
+    function goto(vm, form, i, scope) {
+
+      var currentStep = parseInt(vm.currentStep);
+      var nextStep = parseInt(i)
+      // general setp handeling
+      intializeStep(vm, i);
+      if (currentStep > nextStep) {
+        scope.toTheTop();
+        vm.currentStep = i;
+
+      } else if (currentStep == nextStep - 1) {
+        if (form.$valid) {
+          scope.toTheTop();
+          vm.currentStep = i;
+
+          loadStep(vm, nextStep); // special step handling
+        } else
+          showErrorMessage(form);
+      }
+    }
+
+
+    // called when moving forward to the step
+    function loadStep(vm, stepNumber) {
+      switch (stepNumber) {
+        case 2:
+          processPropertyDetails(vm.property);
+          break;
+        default:
+      }
+    }
+
+
+    // called whenever opeing the step
+    function intializeStep(vm, stepNumber) {
+      switch (stepNumber) {
+        case LOCATION_STEP:
+          NgMap.getMap().then(function (evtMap) {
+            vm.form.map.ngmap = evtMap;
+            addGeoLocationMarker(function (pos) {
+              vm.form.map.currentGeolocationPoint = new google.maps.LatLng(pos.coords.latitude,
+                pos.coords.longitude);
+              if (vm.property.id && vm.property.lat && vm.property.lng) {
+                moveMap(vm.form.map.ngmap,
+                  new google.maps.LatLng(vm.property.lat,
+                    vm.property.lng));
+              } else {
+                moveMap(vm.form.map.ngmap,
+                  vm.form.map.currentGeolocationPoint);
+              }
+            });
+          });
+          break;
+        default:
+      }
+    }
+
+
+    function submit(vm, stateParams, state) {
+
+      decoratePropertyRequest(vm.property);
+
+      PropertiesServices.updateProperty(vm.property)
+        .then(function (res) {
+          Object.assign(vm.property, res.data);
+          // upload images
+          if (vm.uploaderImages.queue.length == 0) {
+            $state.go('^.view', {
+              'propertyId': $stateParams.propertyId
+            });
+          } else {
+            vm.uploaderImages.uploadAll();
+          }
+
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    }
+
+    function decoratePropertyRequest(property) {
+      property.property_type_id = property.type.id;
+      property.property_status_id = property.status.id;
+      property.property_state_id = property.state.id;
+    }
+
+    function showErrorMessage(form) {
+      FormValidationService.validateForm(form);
+      toaster.pop('error', 'Error', 'please complete the form in this step before proceeding');
+    };
 
 
   }
