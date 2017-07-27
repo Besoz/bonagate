@@ -57,10 +57,7 @@ class PropertiesController < ApplicationController
   def update    
     respond_to do |format|
       if @property.update(property_params)
-          puts "hhhhhhhhhhhhhhhhhhhhhh"
-          puts params[:property][:deleted_images_ids].to_json
         if(params[:property][:deleted_images_ids])
-          puts "hhhhhhhhhhhhhhhhhhhhhh"
           @property.property_images.where(id: params[:property][:deleted_images_ids]).destroy_all
         end
 

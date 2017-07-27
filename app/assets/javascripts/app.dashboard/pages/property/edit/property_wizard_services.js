@@ -169,27 +169,40 @@
       }
     }
 
+    function updateSuccesssCallback(res, vm, stateParams, state) {
+      Object.assign(vm.property, res.data);
+      // upload images
+      if (vm.imagesUploader.queue.length == 0) {
+        state.go('^.view', {
+          'propertyId': vm.property.id
+        });
+      } else {
+        vm.imagesUploader.uploadAll();
+      }
+    }
+
+    function updateErrorCallback(err) {
+      console.log(err);
+    }
 
     function submit(vm, stateParams, state) {
 
       decoratePropertyRequest(vm.property);
 
-      PropertiesServices.updateProperty(vm.property)
-        .then(function (res) {
-          Object.assign(vm.property, res.data);
-          // upload images
-          if (vm.imagesUploader.queue.length == 0) {
-            state.go('^.view', {
-              'propertyId': stateParams.propertyId
-            });
-          } else {
-            vm.imagesUploader.uploadAll();
-          }
+      if (vm.property.id) {
+        PropertiesServices.updateProperty(vm.property)
+          .then(function (res) {
+            updateSuccesssCallback(res, vm, stateParams, state);
+          })
+          .catch(updateErrorCallback);
+      } else {
+        PropertiesServices.createProperty(vm.property)
+          .then(function (res) {
+            updateSuccesssCallback(res, vm, stateParams, state);
+          })
+          .catch(updateErrorCallback);
+      }
 
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
     }
 
     function decoratePropertyRequest(property) {
