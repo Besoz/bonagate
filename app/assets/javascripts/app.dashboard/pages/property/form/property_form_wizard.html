@@ -13,7 +13,7 @@
         <div id="wizard" class="swMain">
           <!-- start: WIZARD SEPS -->
           <ul>
-            <li ng-click="wizardCtrl.form.goTo(Form, 1)">
+            <li ng-click="wizardCtrl.form.goto(Form, 1)">
               <a href ng-class="{'selected' : wizardCtrl.currentStep >= 1, 'done' : wizardCtrl.currentStep > 1}">
                 <div class="stepNumber">
                   1
@@ -21,7 +21,7 @@
                 <span class="stepDesc text-small"> Personal Information </span>
               </a>
             </li>
-            <li ng-click="wizardCtrl.form.goTo(Form, 2)">
+            <li ng-click="wizardCtrl.form.goto(Form, 2)">
               <a href ng-class="{'selected' : wizardCtrl.currentStep >= 2, 'done' : wizardCtrl.currentStep > 2}">
                 <div class="stepNumber">
                   2
@@ -29,7 +29,7 @@
                 <span class="stepDesc text-small"> Details </span>
               </a>
             </li>
-            <li ng-click="wizardCtrl.form.goTo(Form, 3)">
+            <li ng-click="wizardCtrl.form.goto(Form, 3)">
               <a href ng-class="{'selected' : wizardCtrl.currentStep >= 3, 'done' : wizardCtrl.currentStep > 3}">
                 <div class="stepNumber">
                   3
@@ -37,7 +37,7 @@
                 <span class="stepDesc text-small"> Images </span>
               </a>
             </li>
-            <li ng-click="wizardCtrl.form.goTo(Form, 4)">
+            <li ng-click="wizardCtrl.form.goto(Form, 4)">
               <a href ng-class="{'selected' : wizardCtrl.currentStep >= 4, 'done' : wizardCtrl.currentStep > 4}">
                 <div class="stepNumber">
                   4
@@ -45,7 +45,7 @@
                 <span class="stepDesc text-small"> Location </span>
               </a>
             </li>
-            <li ng-click="wizardCtrl.form.goTo(Form, 5)">
+            <li ng-click="wizardCtrl.form.goto(Form, 5)">
               <a href ng-class="{'selected' : wizardCtrl.currentStep >= 5, 'done' : wizardCtrl.currentStep > 5}">
                 <div class="stepNumber">
                   5
@@ -66,7 +66,8 @@
                       <label class="control-label">
                         {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span>
                       </label>
-                      <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="service_type" required>
+                      <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="service_type" on-select="wizardCtrl.resetInstances()"
+                        required>
                         <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
                           {{$select.selected.name}}
                         </ui-select-match>
@@ -115,50 +116,75 @@
               <div class="col-md-6">
                 <fieldset>
                   <legend>
-                    Account Credential
+                    Details
                   </legend>
-                  <div ng-repeat="detail_instance in wizardCtrl.property.property_detail_instances_attributes">
-                    <div class="form-group">
-                      <label class="control-label">
-                        {{detail_instance.property_detail.name}}
-                      </label>
-                      <!-- start: value_type == 'string' -->
-                      <input ng-if="detail_instance.property_detail.value_type == 'string'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
-                        placeholder="{{detail.name}}" class="form-control" name="{{detail.code}}">
-                      <!-- end: value_type == 'string' -->
-                      <!-- start: value_type == 'text' -->
-                      <textarea ng-if="detail_instance.property_detail.value_type == 'text'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
-                        placeholder="Default Text" id="form-field-22" class="form-control"></textarea>
-                      <!-- end: value_type == 'text' -->
-                      <!-- start: value_type == 'select' -->
-                      <ui-select ng-if="detail_instance.property_detail.value_type == 'select'" 
-                        ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_value_option_ids[0]"
-                        theme="bootstrap">
-                        <ui-select-match placeholder="Select in the list...">
-                          {{$select.selected.name}}
-                        </ui-select-match>
-                        <ui-select-choices repeat="option.id as option in detail_instance.property_detail.property_detail_value_options_attributes | filter:$select.search">
-                          <div ng-bind-html="option.name | highlight: $select.search"></div>
-                        </ui-select-choices>
-                      </ui-select>
-                      <!-- end: value_type == 'select' -->
-                      <!-- start: value_type == 'multi_select' -->
-                      <ui-select ng-if="detail_instance.property_detail.value_type == 'multi_select'" multiple ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].property_detail_value_option_ids"
-                        theme="bootstrap" ng-disabled="disabled" close-on-select="false">
-                        <ui-select-match placeholder="Select colors...">
-                          {{$item.name}}
-                        </ui-select-match>
-                        <ui-select-choices repeat="option.id as option in detail_instance.property_detail.property_detail_value_options_attributes | filter:$select.search">
-                          {{option.name}}
-                        </ui-select-choices>
-                      </ui-select>
-                      <!-- end: value_type == 'multi_select' -->
-                      <!-- start: value_type == 'bool' -->
-                      <input ng-if="detail_instance.property_detail.value_type == 'bool'" ng-model="wizardCtrl.property.property_detail_instances_attributes[$index].value"
-                        type="checkbox" id="checkbox1">
-                      <!-- end: value_type == 'bool'-->
+                  <!--start: old Property detail instances-->
+                  <div ng-repeat="(catId, detail_instances) in wizardCtrl.property.property_detail_instances_attributes | groupBy: 'category_id'">
+                    {{ wizardCtrl.propertyDetailCategories[catId].name }}
+                    <div ng-repeat="detail_instance in detail_instances">
+
+                      <span ng-if="detail_instance.removed" class="input-group-btn">
+                        <div class="checkbox clip-check check-danger">
+                          <input ng-model="detail_instance._destroy" type="checkbox" id="remove_instance_{{$index}}" value="1">
+                          <label for="remove_instance_{{$index}}">
+                            remove instance
+                          </label>
+                        </div>
+                      </span>
+                      <span ng-if="detail_instance.new &&  wizardCtrl.property.id" class="input-group-btn">
+                          <div class="checkbox clip-check check-success">
+                          <input ng-model="true" type="checkbox" id="remove_instance_{{$index}}" value="1">
+                          <label for="remove_instance_{{$index}}">
+                            new detail
+                          </label>
+                        </div>
+                      </span>
+                      <div class="form-group" ng-class="{'has-error': detail_instance.removed}">
+                        <label class="control-label">
+                        {{wizardCtrl.propertyDetails[detail_instance.property_detail_id].name}}
+                        </label>
+                        <!-- start: value_type == 'string' -->
+                        <input ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'string'" ng-model="detail_instance.value"
+                          placeholder="{{detail.name}}" class="form-control" name="{{detail.code}}">
+                        <!-- end: value_type == 'string' -->
+
+                        <!-- start: value_type == 'text' -->
+                        <textarea ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'text'" ng-model="detail_instance.value"
+                          placeholder="Default Text" id="form-field-22" class="form-control"></textarea>
+                        <!-- end: value_type == 'text' -->
+
+                        <!-- start: value_type == 'select' -->
+                        <ui-select  ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'select'" 
+                          ng-init="detail_instance.property_detail_value_option_ids = detail_instance.property_detail_value_option_ids || []"
+                          ng-model="detail_instance.property_detail_value_option_ids[0]"
+                          theme="bootstrap">
+                          <ui-select-match placeholder="Select in the list...">
+                            {{$select.selected.name}}
+                          </ui-select-match>
+                          <ui-select-choices repeat="option.id as option in wizardCtrl.propertyDetails[detail_instance.property_detail_id].property_detail_value_options_attributes | filter:$select.search">
+                            <div ng-bind-html="option.name | highlight: $select.search"></div>
+                          </ui-select-choices>
+                        </ui-select>
+                        <!-- end: value_type == 'select' -->
+                        <!-- start: value_type == 'multi_select' -->
+                        <ui-select ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'multi_select'" multiple ng-model="detail_instance.property_detail_value_option_ids"
+                          theme="bootstrap" ng-disabled="disabled" close-on-select="false">
+                          <ui-select-match placeholder="Select colors...">
+                            {{$item.name}}
+                          </ui-select-match>
+                          <ui-select-choices repeat="option.id as option in wizardCtrl.propertyDetails[detail_instance.property_detail_id].property_detail_value_options_attributes | filter:$select.search">
+                            {{option.name}}
+                          </ui-select-choices>
+                        </ui-select>
+                        <!-- end: value_type == 'multi_select' -->
+                        <!-- start: value_type == 'bool' -->
+                        <input ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'bool'" ng-model="detail_instance.value"
+                          type="checkbox" id="checkbox1">
+                        <!-- end: value_type == 'bool'-->
+                      </div>
                     </div>
                   </div>
+                  <!--end: old Property detail instances-->
                 </fieldset>
                 <div class="form-group">
                   <button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="wizardCtrl.form.prev(Form)">
@@ -207,21 +233,21 @@
                     with canvas preview
                   </p>
                   <!-- /// controller:  'UploadCtrl' -  localtion: assets/js/controllers/uploadCtrl.js /// -->
-                  <div nv-file-drop="" uploader="wizardCtrl.uploaderImages">
+                  <div nv-file-drop="" uploader="wizardCtrl.imagesUploader">
                     <div class="row">
                       <div class="col-md-3">
                         <h5>Select files</h5>
                         <div class="panel panel-white">
                           <div class="panel-body">
-                            <div ng-show="wizardCtrl.uploaderImages.isHTML5">
+                            <div ng-show="wizardCtrl.imagesUploader.isHTML5">
                               <!-- 3. nv-file-over uploader="link" over-class="className" -->
-                              <div class="well my-drop-zone" nv-file-over="" uploader="wizardCtrl.uploaderImages">
+                              <div class="well my-drop-zone" nv-file-over="" uploader="wizardCtrl.imagesUploader">
                                 Base drop zone
                               </div>
                             </div>
                             <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
                             <span class="btn btn-primary btn-o btn-file"> Select an image file
-                              <input type="file" nv-file-select="" uploader="wizardCtrl.uploaderImages" multiple />
+                              <input type="file" nv-file-select="" uploader="wizardCtrl.imagesUploader" multiple />
                             </span>
                             <br/>
                           </div>
@@ -230,32 +256,32 @@
                       <div class="col-md-9 file-upload" style="margin-bottom: 40px">
                         <h4>The queue</h4>
                         <p>
-                          Queue length: {{ wizardCtrl.uploaderImages.queue.length }}
+                          Queue length: {{ wizardCtrl.imagesUploader.queue.length }}
                         </p>
                         <div class="table-responsive">
                           <table class="table">
                             <thead>
                               <tr>
                                 <th width="50%">Name</th>
-                                <th ng-show="wizardCtrl.uploaderImages.isHTML5">Size</th>
-                                <th ng-show="wizardCtrl.uploaderImages.isHTML5">Progress</th>
+                                <th ng-show="wizardCtrl.imagesUploader.isHTML5">Size</th>
+                                <th ng-show="wizardCtrl.imagesUploader.isHTML5">Progress</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                               </tr>
                             </thead>
                             <tbody>
-                              <tr ng-repeat="item in wizardCtrl.uploaderImages.queue">
+                              <tr ng-repeat="item in wizardCtrl.imagesUploader.queue">
                                 <td><strong>{{ item.file.name }}</strong>
                                   <!-- Image preview -->
                                   <!--auto height-->
                                   <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
                                   <!--auto width-->
-                                  <div ng-show="wizardCtrl.uploaderImages.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                                  <div ng-show="wizardCtrl.imagesUploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
                                   <!--fixed width and height -->
                                   <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
                                 </td>
-                                <td ng-show="wizardCtrl.uploaderImages.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
-                                <td ng-show="wizardCtrl.uploaderImages.isHTML5">
+                                <td ng-show="wizardCtrl.imagesUploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                <td ng-show="wizardCtrl.imagesUploader.isHTML5">
                                   <div class="progress progress-xs margin-bottom-0">
                                     <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
                                   </div>
@@ -278,13 +304,13 @@
                           </table>
                         </div>
                         <div>
-                          <!--<button type="button" class="btn btn-primary btn-s" ng-click="wizardCtrl.uploaderImages.uploadAll()" ng-disabled="!wizardCtrl.uploaderImages.getNotUploadedItems().length">
+                          <!--<button type="button" class="btn btn-primary btn-s" ng-click="wizardCtrl.imagesUploader.uploadAll()" ng-disabled="!wizardCtrl.imagesUploader.getNotUploadedItems().length">
                             <span class="glyphicon glyphicon-upload"></span> Upload all
                           </button>
-                          <button type="button" class="btn btn-primary btn-o btn-s" ng-click="wizardCtrl.uploaderImages.cancelAll()" ng-disabled="!wizardCtrl.uploaderImages.isUploading">
+                          <button type="button" class="btn btn-primary btn-o btn-s" ng-click="wizardCtrl.imagesUploader.cancelAll()" ng-disabled="!wizardCtrl.imagesUploader.isUploading">
                             <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
                           </button>-->
-                          <button type="button" class="btn btn-primary btn-o btn-s" ng-click="wizardCtrl.uploaderImages.clearQueue()" ng-disabled="!wizardCtrl.uploaderImages.queue.length">
+                          <button type="button" class="btn btn-primary btn-o btn-s" ng-click="wizardCtrl.imagesUploader.clearQueue()" ng-disabled="!wizardCtrl.imagesUploader.queue.length">
                             <span class="glyphicon glyphicon-trash"></span> Remove all
                           </button>
                         </div>
@@ -308,7 +334,7 @@
                 <thead>
                   <tr>
                     <th width="50%">Name</th>
-                    <th ng-show="wizardCtrl.uploaderImages.isHTML5">Size</th>
+                    <th ng-show="wizardCtrl.imagesUploader.isHTML5">Size</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -319,7 +345,7 @@
                       <!--auto width-->
                       <img ng-src="{{item.avatar}}" alt="property" height="100" class="media-object">
                     </td>
-                    <td ng-show="wizardCtrl.uploaderImages.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                    <td ng-show="wizardCtrl.imagesUploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
 
                     <td nowrap>
                       <button type="button" class="btn btn-warning btn-xs" ng-click="wizardCtrl.property.deleted_images_ids.splice(wizardCtrl.property.deleted_images_ids.indexOf(item.id), 1)"
@@ -342,12 +368,34 @@
               <div class="col-md-12">
                 <!--start: Map-->
                 <map on-center_changed="wizardCtrl.form.map.centerChanged()" zoom="20" map-type-id="MapTypeId.ROADMAP">
-                  <marker position="{{[wizardCtrl.property.lat, wizardCtrl.property.lng]}}" 
-                  centered="true" draggable="true"></marker>
+                  <marker ng-if="wizardCtrl.property.lat && wizardCtrl.property.lng" position="{{[wizardCtrl.property.lat, wizardCtrl.property.lng]}}">
+                  </marker>
+
+                  <marker ng-if="wizardCtrl.form.map.ngmap && wizardCtrl.form.map.ngmap.getCenter()" 
+                    position="{{[wizardCtrl.form.map.ngmap.getCenter().lat(), wizardCtrl.form.map.ngmap.getCenter().lng()]}}" 
+                    icon='http://labs.google.com/ridefinder/images/mm_20_yellow.png'>
+                  </marker>
+                  
+                  <marker ng-if="wizardCtrl.form.map.currentGeolocationPoint" position="{{[wizardCtrl.form.map.currentGeolocationPoint.lat(), wizardCtrl.form.map.currentGeolocationPoint.lng()]}}" 
+                    icon='http://labs.google.com/ridefinder/images/mm_20_green.png'>
+                  </marker>
+                  
                   <custom-control id="go-home" position="TOP_RIGHT" index="1" 
                   on-click="wizardCtrl.form.map.goCurrentLocation()">
                     <a href class="btn btn-primary btn-xs margin-top-15 margin-right-5">
-                      goCurrentLocation
+                      goto Current Location
+                    </a>
+                  </custom-control>
+                  <custom-control id="go-home" position="TOP_RIGHT" index="1" 
+                  on-click="wizardCtrl.form.map.setPropertyLocation()">
+                    <a href class="btn btn-primary btn-xs margin-top-15 margin-right-5">
+                      set property location
+                    </a>
+                  </custom-control>
+                  <custom-control id="go-home" position="TOP_RIGHT" index="1" 
+                  on-click="wizardCtrl.form.map.gotoPropertyLocation()">
+                    <a href class="btn btn-primary btn-xs margin-top-15 margin-right-5">
+                      goto property Location
                     </a>
                   </custom-control>
                 </map>
@@ -441,7 +489,7 @@
                 <div>
                   Queue progress:
                   <div class="progress progress-xs margin-top-5 margin-bottom-20">
-                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': wizardCtrl.uploaderImages.progress + '%' }"></div>
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': wizardCtrl.imagesUploader.progress + '%' }"></div>
                   </div>
                 </div>
                 <div class="text-center">

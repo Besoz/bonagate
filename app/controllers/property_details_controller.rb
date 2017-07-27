@@ -10,13 +10,13 @@ class PropertyDetailsController < ApplicationController
     puts params.to_json
   end
 
-  def index_by_ids
+  def index_by_id
     puts params.to_json
-    @property_details = PropertyDetail.where(id: params[:details_ids])
+    @property_details = PropertyDetail.all
 
     respond_to do |format|
       format.html { }
-      format.json { render :index }
+      format.json { render :index_by_id }
     end
   end
 
@@ -73,9 +73,6 @@ class PropertyDetailsController < ApplicationController
     
     value_options_used = value_options_used(
       property_detail_params[:property_detail_value_options_attributes])
-
-      puts "lllllllllllllllllllllll"
-      puts value_options_used.to_json
 
     if(value_type_changed || value_options_used.length > 0)
 

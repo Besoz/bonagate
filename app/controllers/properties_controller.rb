@@ -57,10 +57,7 @@ class PropertiesController < ApplicationController
   def update    
     respond_to do |format|
       if @property.update(property_params)
-          puts "hhhhhhhhhhhhhhhhhhhhhh"
-          puts params[:property][:deleted_images_ids].to_json
         if(params[:property][:deleted_images_ids])
-          puts "hhhhhhhhhhhhhhhhhhhhhh"
           @property.property_images.where(id: params[:property][:deleted_images_ids]).destroy_all
         end
 
@@ -102,7 +99,7 @@ class PropertiesController < ApplicationController
                                      :number, :floor,
                                      {property_images_attributes: :avatar},
                                      {property_detail_instance_value_options_attributes: :property_detail_value_option_id},
-                                     property_detail_instances_attributes: [:id, :property_detail_id, :value, 
+                                     property_detail_instances_attributes: ['_destroy', :id, :property_detail_id, :value, 
                                      property_detail_value_option_ids: [],
                                      property_detail_instance_value_options_attributes: 
                                      [:property_detail_value_option_id]])

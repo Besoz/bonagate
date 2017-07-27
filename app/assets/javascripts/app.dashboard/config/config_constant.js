@@ -74,17 +74,11 @@ angular
       'detailCategoriesServices': 'assets/app.dashboard/pages/property/property_detail_categories/detail_categories_services.js',
       'detailCategoriesController': 'assets/app.dashboard/pages/property/property_detail_categories/detail_categories_controller.js',
 
-      //*** property services scripts
-      'propertiesServices': 'assets/app.dashboard/pages/property/properties_services.js',
-
-      //*** property creation scripts
-      'wizardController': 'assets/app.dashboard/pages/property/create/wizard_controller.js',
-
-      //*** property view scripts
-      'propertyViewController': 'assets/app.dashboard/pages/property/view/wizard_controller.js',
 
        //*** property edit scripts
-      'editWizardController': 'assets/app.dashboard/pages/property/edit/wizard_controller.js',
+      'propertFormController': 'assets/app.dashboard/pages/property/form/property_form_controller.js',
+      'propertyWizardServices': 'assets/app.dashboard/pages/property/form/property_wizard_services.js',
+      'propertiesServices': 'assets/app.dashboard/pages/property/form/properties_services.js',
 
        //*** property listing scripts
       'propertyListController': 'assets/app.dashboard/pages/property/property_list/property_list_controller.js',
@@ -162,5 +156,9 @@ angular
     }, {
       name: 'checklist-model',
       files: ['../assets/bower_components/checklist-model/checklist-model.js']
+    }, {
+      name: 'angular-filter',
+      files: ['../assets/bower_components/angular-filter/dist/angular-filter.min.js']
     }]
   });
+  
