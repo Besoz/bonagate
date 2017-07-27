@@ -6,11 +6,11 @@
     .module('app.dashboard')
     .service('PropertyWizardServices', PropertyWizardServices);
 
-  PropertyWizardServices.$inject = ['PropertiesServices', 'NgMap'];
+  PropertyWizardServices.$inject = ['PropertiesServices', 'NgMap', 'FileUploader'];
 
 
-  function PropertyWizardServices(PropertiesServices, NgMap) {
-    
+  function PropertyWizardServices(PropertiesServices, NgMap, FileUploader) {
+
     var TYPE_STEP = 1;
     var DETAILS_STEP = 2;
     var IMAGES_STEP = 3;
@@ -21,6 +21,10 @@
       processPropertyDetails: processPropertyDetails,
       addGeoLocationMarker: addGeoLocationMarker,
       setPropertyLatLng: setPropertyLatLng,
+      gotoPropertyLocation: gotoPropertyLocation,
+      setPropertyLocation: setPropertyLocation,
+      resetInstances: resetInstances,
+      intializeImageUploader: intializeImageUploader,
       moveMap: moveMap,
       next: next,
       prev: prev,
@@ -174,12 +178,12 @@
         .then(function (res) {
           Object.assign(vm.property, res.data);
           // upload images
-          if (vm.uploaderImages.queue.length == 0) {
-            $state.go('^.view', {
-              'propertyId': $stateParams.propertyId
+          if (vm.imagesUploader.queue.length == 0) {
+            state.go('^.view', {
+              'propertyId': stateParams.propertyId
             });
           } else {
-            vm.uploaderImages.uploadAll();
+            vm.imagesUploader.uploadAll();
           }
 
         })
@@ -199,6 +203,51 @@
       toaster.pop('error', 'Error', 'please complete the form in this step before proceeding');
     };
 
+    function gotoPropertyLocation(property, ngmap) {
+      if (property.lat && property.lng)
+        moveMap(ngmap,
+          new google.maps.LatLng(property.lat,
+            property.lng));
+    }
 
+    function setPropertyLocation(property, ngmap) {
+      if (ngmap && ngmap.getCenter()) {
+        property.lat = ngmap.getCenter().lat();
+        property.lng = ngmap.getCenter().lng();
+      }
+    }
+
+    function resetInstances(property) {
+      if (!property.id)
+        property.property_detail_instances_attributes = [];
+    }
+
+    function intializeImageUploader(vm, state, stateParams) {
+      vm.imagesUploader = new FileUploader({
+        alias: 'property[property_images_attributes[avatar]]',
+        method: 'put'
+      });
+
+      // FILTERS
+      vm.imagesUploader.filters.push({
+        name: 'imageFilter',
+        fn: function (item /*{File|FileLikeObject}*/ , options) {
+          var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+          return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+        }
+      });
+
+      vm.imagesUploader.onBeforeUploadItem = function (item) {
+        item.url = 'properties/' + vm.property.id + '/upload_image/';
+        // console.info('onBeforeUploadItem', item);
+      };
+
+      // TODO remove this
+      vm.imagesUploader.onCompleteAll = function () {
+        state.go('^.view', {
+          'propertyId': stateParams.propertyId
+        });
+      };
+    }
   }
 })();
