@@ -4,7 +4,7 @@
  */
 angular
   .module('app.dashboard')
-  .controller('EditWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest', 'propertyStatesRequest', 'propertyStatusesRequest',
+  .controller('FormWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest', 'propertyStatesRequest', 'propertyStatusesRequest',
     'propertyRequest', '$state', '$stateParams',
     'PropertyWizardServices', 'propertyDetailsRequest', 'propertyDetailCategoriesRequest',
 

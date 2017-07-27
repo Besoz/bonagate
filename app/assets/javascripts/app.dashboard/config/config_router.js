@@ -117,27 +117,6 @@ angular
         abstract: true,
         url: '/property',
         templateUrl: "assets/app.dashboard/partials/layout.html"
-      }).state('app.property.create', {
-        url: '/create',
-        templateUrl: "assets/app.dashboard/pages/property/create/form_wizard.html",
-        controller: "WizardController",
-        controllerAs: 'wizardCtrl',
-        resolve: {
-          propertyTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_types');
-          },
-          serviceTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_service_types');
-          },
-          propertyStatesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_states');
-          },
-          propertyStatusesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_statuses');
-          },
-          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 'wizardController',
-            'propertiesServices', 'propertyDetailsServices')
-        }
       }).state('app.property.view', {
         url: '/:propertyId/view',
         templateUrl: "assets/app.dashboard/pages/property/view/form_wizard.html",
@@ -151,8 +130,8 @@ angular
         }
       }).state('app.property.edit', {
         url: '/:propertyId/edit',
-        templateUrl: "assets/app.dashboard/pages/property/edit/form_wizard.html",
-        controller: "EditWizardController",
+        templateUrl: "assets/app.dashboard/pages/property/form/property_form_wizard.html",
+        controller: "FormWizardController",
         controllerAs: 'wizardCtrl',
         resolve: {
           propertyRequest: function (GeneralDataServices, $stateParams) {
@@ -177,12 +156,12 @@ angular
             return $http.get('property_detail_categories/index_by_id.json');
           },
           deps: mLoadSequence('angular-filter','angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
-            'editWizardController', 'propertiesServices', 'propertyDetailsServices')
+            'propertFormController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.new', {
         url: '/new',
-        templateUrl: "assets/app.dashboard/pages/property/edit/form_wizard.html",
-        controller: "EditWizardController",
+        templateUrl: "assets/app.dashboard/pages/property/form/property_form_wizard.html",
+        controller: "FormWizardController",
         controllerAs: 'wizardCtrl',
         resolve: {
           // propertyRequest: function (GeneralDataServices, $stateParams) {
@@ -212,7 +191,7 @@ angular
             return $http.get('property_detail_categories/index_by_id.json');
           },
           deps: mLoadSequence('angular-filter', 'angularFileUpload', 'ngMap', 'ui.select', 'propertyWizardServices',
-            'editWizardController', 'propertiesServices', 'propertyDetailsServices')
+            'propertFormController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.list', {
         url: '/list',
