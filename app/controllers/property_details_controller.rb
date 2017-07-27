@@ -74,9 +74,6 @@ class PropertyDetailsController < ApplicationController
     value_options_used = value_options_used(
       property_detail_params[:property_detail_value_options_attributes])
 
-      puts "lllllllllllllllllllllll"
-      puts value_options_used.to_json
-
     if(value_type_changed || value_options_used.length > 0)
 
       affected_types = PropertyType.get_affected_with_property_detail(@property_detail.id)
