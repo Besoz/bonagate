@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  property_detail_instance_id: 
+  property_detail_value_option_id: 
+
+two:
+  property_detail_instance_id: 
+  property_detail_value_option_id: 

@@ -68,6 +68,24 @@ ActiveRecord::Schema.define(version: 20170717141716) do
   add_index "properties", ["property_status_id"], name: "fk_rails_ebe018537f", using: :btree
   add_index "properties", ["property_type_id"], name: "index_properties_on_property_type_id", using: :btree
 
+  create_table "property_detail_categories", force: :cascade do |t|
+    t.string   "name_en",    limit: 255
+    t.string   "name_ar",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "state",      limit: 255
+  end
+
+  create_table "property_detail_instance_value_options", force: :cascade do |t|
+    t.integer  "property_detail_instance_id",     limit: 4
+    t.integer  "property_detail_value_option_id", limit: 4
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  add_index "property_detail_instance_value_options", ["property_detail_instance_id"], name: "index_detail_instance_value_options_on_detail_instance_id", using: :btree
+  add_index "property_detail_instance_value_options", ["property_detail_value_option_id"], name: "index_detail_instance_value_options_on_detail_value_option_id", using: :btree
+
   create_table "property_detail_instances", force: :cascade do |t|
     t.integer  "property_id",        limit: 4
     t.integer  "property_detail_id", limit: 4
@@ -87,18 +105,32 @@ ActiveRecord::Schema.define(version: 20170717141716) do
     t.datetime "updated_at",                     null: false
   end
 
+  create_table "property_detail_value_options", force: :cascade do |t|
+    t.string   "name_en",            limit: 255
+    t.string   "name_ar",            limit: 255
+    t.integer  "property_detail_id", limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "property_detail_value_options", ["property_detail_id"], name: "index_property_detail_value_options_on_property_detail_id", using: :btree
+
   create_table "property_details", force: :cascade do |t|
-    t.string   "code",          limit: 255
-    t.string   "name",          limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "value_type",    limit: 255
-    t.string   "state",         limit: 255
-    t.string   "value_options", limit: 255
-    t.boolean  "mandatory",     limit: 1
+    t.string   "code",                         limit: 255
+    t.string   "name",                         limit: 255
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "value_type",                   limit: 255
+    t.string   "state",                        limit: 255
+    t.string   "value_options",                limit: 255
+    t.integer  "property_details_category_id", limit: 4
+    t.integer  "property_detail_category_id",  limit: 4
+    t.boolean  "mandatory",                    limit: 1
   end
 
   add_index "property_details", ["code"], name: "index_property_details_on_code", unique: true, using: :btree
+  add_index "property_details", ["property_detail_category_id"], name: "index_property_details_on_property_detail_category_id", using: :btree
+  add_index "property_details", ["property_details_category_id"], name: "index_property_details_on_property_details_category_id", using: :btree
 
   create_table "property_images", force: :cascade do |t|
     t.datetime "created_at",                      null: false
@@ -242,8 +274,12 @@ ActiveRecord::Schema.define(version: 20170717141716) do
   add_foreign_key "properties", "property_states"
   add_foreign_key "properties", "property_statuses"
   add_foreign_key "properties", "property_types"
+  add_foreign_key "property_detail_instance_value_options", "property_detail_instances"
+  add_foreign_key "property_detail_instance_value_options", "property_detail_value_options"
   add_foreign_key "property_detail_instances", "properties"
   add_foreign_key "property_detail_instances", "property_details"
+  add_foreign_key "property_detail_value_options", "property_details"
+  add_foreign_key "property_details", "property_detail_categories"
   add_foreign_key "property_images", "properties"
   add_foreign_key "property_type_details", "property_details"
   add_foreign_key "property_type_details", "property_types"
