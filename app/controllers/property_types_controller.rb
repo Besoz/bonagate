@@ -15,6 +15,9 @@ class PropertyTypesController < ApplicationController
   # GET /property_types/new
   def new
     @property_type = PropertyType.new
+    respond_to do |format|
+      format.json { render 'property_types/_form_helper.json.jbuilder' }
+    end
   end
 
   # GET /property_types/1/edit
@@ -42,6 +45,7 @@ class PropertyTypesController < ApplicationController
   # PATCH/PUT /property_types/1.json
   def update
     @property_type.assign_attributes(property_type_params.except(:property_details_attributes))
+    puts property_type_params[:property_details_attributes].to_json
     @property_type.set_property_details property_type_params[:property_details_attributes]
 
     respond_to do |format|

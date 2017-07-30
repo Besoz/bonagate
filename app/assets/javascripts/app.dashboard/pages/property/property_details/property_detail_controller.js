@@ -24,12 +24,14 @@
     vm.detailCreationErrors = [];
 
     vm.valueTypeOptions;
+    vm.categories;
 
     activate();
 
     function activate() {
       vm.propertyDetail = propertyDetail;
       vm.valueTypeOptions = formHelpers.valueTypeOptions;
+      vm.categories = formHelpers.categories;
     }
 
     function submitPropertyDetail(form) {
