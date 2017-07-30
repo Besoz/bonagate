@@ -9,9 +9,10 @@
    <% else %>
    <div ng-init="ShwPropCtrl.isLiked = true"/>
    <% end %>
+    <button type="submit"  ng-click="ShowPropertyCtrl.ToggleFavorite(ShwPropCtrl.property.id)">{{btnTxt}}</button>
    <% end %>
 
-   <button type="submit"  ng-click="ShowPropertyCtrl.ToggleFavorite(ShwPropCtrl.property.id)">{{btnTxt}}</button>
+  
 
    <div id="content">
       <!-- {{ShowPropertyCtrl.test}} -->
