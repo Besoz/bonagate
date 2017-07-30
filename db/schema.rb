@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170716140501) do
+ActiveRecord::Schema.define(version: 20170717141716) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20170716140501) do
     t.string   "value_options",                limit: 255
     t.integer  "property_details_category_id", limit: 4
     t.integer  "property_detail_category_id",  limit: 4
+    t.boolean  "mandatory",                    limit: 1
   end
 
   add_index "property_details", ["code"], name: "index_property_details_on_code", unique: true, using: :btree

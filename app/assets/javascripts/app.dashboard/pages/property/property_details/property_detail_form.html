@@ -33,6 +33,29 @@
           </div>
           <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
             <label class="control-label">
+            {{'activerecord.attributes.property_detail.property_detail_category'|translate}} <span class="symbol required"></span>
+            </label>
+            <ui-select ng-model="detailCtrl.propertyDetail.property_detail_category_id" theme="bootstrap" name="type" required>
+              <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                {{ $select.selected.name | translate}}
+              </ui-select-match>
+              <ui-select-choices repeat="item.id as item in detailCtrl.categories | filter: $select.search">
+                <div ng-bind-html="item.name | highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="form-group">
+            <!-- ng-class="{'has-error':Form.mandatory.$dirty && Form.mandatory.$invalid, 'has-success':Form.mandatory.$valid}" -->
+            <div class="checkbox clip-check check-primary checkbox-inline">
+              <input type="checkbox" id="checkbox1" value="1" name="mandatory" ng-model="detailCtrl.propertyDetail.mandatory">
+              <label for="checkbox1">
+                  {{'activerecord.attributes.property_detail.mandatory'|translate}}
+                </label>
+            </div>
+            <!-- span class="error text-small block" ng-if="Form.mandatory.$dirty && Form.mandatory.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.mandatory'|translate}}'}" /></span -->
+          </div>
+          <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
+            <label class="control-label">
             {{'activerecord.attributes.property_detail.value_type'|translate}} <span class="symbol required"></span>
             </label>
             <ui-select ng-model="detailCtrl.propertyDetail.value_type" theme="bootstrap" name="type" required>
@@ -41,19 +64,6 @@
               </ui-select-match>
               <ui-select-choices repeat="item in detailCtrl.valueTypeOptions | filter: $select.search">
                 <div ng-bind-html="('dashboard.value_types.'+item | translate)| highlight: $select.search"></div>
-              </ui-select-choices>
-            </ui-select>
-          </div>
-          <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
-            <label class="control-label">
-            {{'activerecord.attributes.property_detail.property_detail_id'|translate}} <span class="symbol required"></span>
-            </label>
-            <ui-select ng-model="detailCtrl.propertyDetail.property_detail_category_id" theme="bootstrap" name="type" required>
-              <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
-                {{ $select.selected.name | translate}}
-              </ui-select-match>
-              <ui-select-choices repeat="item.id as item in detailCtrl.categories | filter: $select.search">
-                <div ng-bind-html="item.name | highlight: $select.search"></div>
               </ui-select-choices>
             </ui-select>
           </div>
