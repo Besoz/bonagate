@@ -156,7 +156,20 @@ angular
             return $http.get('property_detail_categories/index_by_id.json');
           },
           deps: mLoadSequence('angular-filter','angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
-            'propertFormController', 'propertiesServices', 'propertyDetailsServices')
+            'propertyFormController', 'propertiesServices', 'propertyDetailsServices')
+        }
+      }).state('app.property.payment', {
+        url: '/:propertyId/payment',
+        templateUrl: "assets/app.dashboard/pages/property/payment/payments.html",
+        controller: "PaymentsController",
+        controllerAs: 'paymentsCtrl',
+        resolve: {
+          propertyTypesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('payments');
+          },
+          deps: mLoadSequence('ngTable', 'angular-filter','angularFileUpload', 'paymentServices', 
+          'ui.select', 
+          "paymentController", "paymentsController")
         }
       }).state('app.property.new', {
         url: '/new',
@@ -191,7 +204,7 @@ angular
             return $http.get('property_detail_categories/index_by_id.json');
           },
           deps: mLoadSequence('angular-filter', 'angularFileUpload', 'ngMap', 'ui.select', 'propertyWizardServices',
-            'propertFormController', 'propertiesServices', 'propertyDetailsServices')
+            'propertyFormController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.list', {
         url: '/list',

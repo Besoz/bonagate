@@ -76,9 +76,14 @@ angular
 
 
        //*** property edit scripts
-      'propertFormController': 'assets/app.dashboard/pages/property/form/property_form_controller.js',
+      'propertyFormController': 'assets/app.dashboard/pages/property/form/property_form_controller.js',
       'propertyWizardServices': 'assets/app.dashboard/pages/property/form/property_wizard_services.js',
       'propertiesServices': 'assets/app.dashboard/pages/property/form/properties_services.js',
+
+       //*** property payment scripts
+      'paymentsController': 'assets/app.dashboard/pages/property/payment/payments_controller.js',
+      'paymentController': 'assets/app.dashboard/pages/property/payment/payment_controller.js',
+      'paymentServices': 'assets/app.dashboard/pages/property/payment/payment_services.js',
 
        //*** property listing scripts
       'propertyListController': 'assets/app.dashboard/pages/property/property_list/property_list_controller.js',

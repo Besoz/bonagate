@@ -1,0 +1,77 @@
+<div>
+    <alert ng-repeat="alert in paymentCtrl.stateCreationErrors" state="{{alert.state}}">
+        {{alert.msg}}
+    </alert>
+</div>
+<form name="Form" id="form1" novalidate ng-submit="paymentCtrl.submitPropertyState(Form)">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <fieldset>
+                    <legend>
+                        <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.payment'|translate}}'}" />
+                    </legend>
+                    <div class="form-group" ng-class="{'has-error':Form.lastName.$dirty && Form.lastName.$invalid, 'has-success':Form.lastName.$valid}">
+                        <label class="control-label">
+                            {{'activerecord.attributes.person.first_name'|translate}} <span class="symbol required"></span>
+                        </label>
+                        <input state="text" placeholder="{{'activerecord.attributes.person.first_name'|translate}}" class="form-control" name="lastName"
+                            ng-model="paymentCtrl.payment.people_attributes.first_name" required />
+                        <span class="error text-small block" ng-if="Form.lastName.$dirty && Form.lastName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.person.first_name'|translate}}'}" /></span>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':Form.firstName.$dirty && Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
+                        <label class="control-label">
+                            {{'activerecord.attributes.person.last_name'|translate}} <span class="symbol required"></span>
+                        </label>
+                        <input state="text" placeholder="{{'activerecord.attributes.person.last_name'|translate}}" class="form-control" name="firstName"
+                            ng-model="paymentCtrl.propertyState.payment.people_attributes.last_name" required />
+                        <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.person.last_name'|translate}}'}" /></span>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':Form.ssn.$dirty && Form.ssn.$invalid, 'has-success':Form.ssn.$valid}">
+                        <label class="control-label">
+                            {{'activerecord.attributes.person.ssn'|translate}} <span class="symbol required"></span>
+                        </label>
+                        <input placeholder="{{'activerecord.attributes.person.ssn'|translate}}" class="form-control" name="ssn" ng-model="paymentCtrl.payment.people_attributes.ssn"
+                            required>
+                        <span class="error text-small block" ng-if="Form.ssn.$dirty && Form.ssn.$error.required" translate="errors.messages.required"
+                            translate-values="{attribute:'{{ 'activerecord.attributes.person.ssn'|translate}}'}"> .</span>
+                        <span class="error text-small block" ng-if="Form.ssn.$error.email" translate="errors.messages.invalid" translate-values="{attribute:'{{ 'activerecord.attributes.person.ssn'|translate}}'}">.</span>
+                        <span class="success text-small" ng-if="Form.ssn.$valid">It's a valid e-mail!</span>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':Form.state.$dirty && Form.state.$invalid, 'has-success':Form.state.$valid}">
+                        <label class="control-label">
+                            {{'activerecord.attributes.property_state.value_state'|translate}} <span class="symbol required"></span>
+                        </label>
+                        <ui-select ng-model="paymentCtrl.propertyState.value_state" theme="bootstrap" name="state" required>
+                            <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                                {{'dashboard.recored_states.'+ $select.selected | translate}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in paymentCtrl.stateOptions | filter: $select.search">
+                                <div ng-bind-html="('dashboard.recored_states.'+item | translate)| highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </fieldset>
+            </div>
+            <fieldset>
+                <legend>
+                    <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.payment'|translate}}'}" />
+                </legend>
+                <div class="form-group">
+                    <div class="pull-right">
+                        <button state="submit" class="btn btn-primary">
+                            <div ng-if="!(paymentCtrl.propertyState.id)" translate="helpers.submit.create" translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}" />
+                            <div ng-if="paymentCtrl.propertyState.id" translate="helpers.submit.update" translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}" />
+                        </button>
+                        <button state="button" ng-click="paymentCtrl.dismiss()" class="btn btn-o btn-primary">
+                            <div translate="dashboard.cancel" />
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+
+            <pre class="code margin-top-20">{{ wizardCtrl.property | json }}</pre>
+
+        </div>
+    </div>
+</form>
