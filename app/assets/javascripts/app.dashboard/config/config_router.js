@@ -117,27 +117,6 @@ angular
         abstract: true,
         url: '/property',
         templateUrl: "assets/app.dashboard/partials/layout.html"
-      }).state('app.property.create', {
-        url: '/create',
-        templateUrl: "assets/app.dashboard/pages/property/create/form_wizard.html",
-        controller: "WizardController",
-        controllerAs: 'wizardCtrl',
-        resolve: {
-          propertyTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_types');
-          },
-          serviceTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_service_types');
-          },
-          propertyStatesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_states');
-          },
-          propertyStatusesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_statuses');
-          },
-          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 'wizardController', 
-          'propertiesServices', 'propertyDetailsServices')
-        }
       }).state('app.property.view', {
         url: '/:propertyId/view',
         templateUrl: "assets/app.dashboard/pages/property/view/form_wizard.html",
@@ -151,8 +130,8 @@ angular
         }
       }).state('app.property.edit', {
         url: '/:propertyId/edit',
-        templateUrl: "assets/app.dashboard/pages/property/edit/form_wizard.html",
-        controller: "EditWizardController",
+        templateUrl: "assets/app.dashboard/pages/property/form/property_form_wizard.html",
+        controller: "FormWizardController",
         controllerAs: 'wizardCtrl',
         resolve: {
           propertyRequest: function (GeneralDataServices, $stateParams) {
@@ -170,8 +149,49 @@ angular
           propertyStatusesRequest: function (GeneralDataServices) {
             return GeneralDataServices.index('property_statuses');
           },
-          deps: mLoadSequence('angularFileUpload', 'ngMap', 'ui.select', 
-          'editWizardController', 'propertiesServices', 'propertyDetailsServices')
+          propertyDetailsRequest: function ($http) {
+            return $http.get('property_details/index_by_id.json');
+          },
+          propertyDetailCategoriesRequest: function ($http) {
+            return $http.get('property_detail_categories/index_by_id.json');
+          },
+          deps: mLoadSequence('angular-filter','angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
+            'propertFormController', 'propertiesServices', 'propertyDetailsServices')
+        }
+      }).state('app.property.new', {
+        url: '/new',
+        templateUrl: "assets/app.dashboard/pages/property/form/property_form_wizard.html",
+        controller: "FormWizardController",
+        controllerAs: 'wizardCtrl',
+        resolve: {
+          // propertyRequest: function (GeneralDataServices, $stateParams) {
+          //   return GeneralDataServices.show('properties', $stateParams.propertyId);
+          // },
+          propertyRequest: function ($q) {
+            return $q.when({
+              data: null
+            });
+          },
+          propertyTypesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_types');
+          },
+          serviceTypesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_service_types');
+          },
+          propertyStatesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_states');
+          },
+          propertyStatusesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_statuses');
+          },
+          propertyDetailsRequest: function ($http) {
+            return $http.get('property_details/index_by_id.json');
+          },
+          propertyDetailCategoriesRequest: function ($http) {
+            return $http.get('property_detail_categories/index_by_id.json');
+          },
+          deps: mLoadSequence('angular-filter', 'angularFileUpload', 'ngMap', 'ui.select', 'propertyWizardServices',
+            'propertFormController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.list', {
         url: '/list',
@@ -191,13 +211,29 @@ angular
         controller: "PropertyDetailsController",
         controllerAs: 'detailsCtrl',
         resolve: {
-          detailsRequest: function ($http) {
-            return $http.get('/property_details.json');
+          detailsRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_details');
           },
           deps: mLoadSequence('ngTable', 'checklist-model', 'ui.select', "propertyDetailController",
             "propertyDetailsServices", "propertyDetailsController")
         }
+      }).state('app.property.detail-category', {
+        url: '/detail-categories',
+        templateUrl: "assets/app.dashboard/pages/property/property_detail_categories/detail_categories.html",
+        controller: "DetailCategoriesController",
+        controllerAs: 'categoriesCtrl',
+        resolve: {
+          categoriesRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('property_detail_categories');
+          },
+          deps: mLoadSequence('ngTable', 'ui.select', "detailCategoryController",
+            "detailCategoriesServices", "detailCategoriesController")
+        }
       }).state('app.property.types', {
+        url: '/property_types',
+        abstract: true,
+        templateUrl: "assets/app.dashboard/partials/layout.html"
+      }).state('app.property.types.list', {
         url: '/property_types',
         templateUrl: "assets/app.dashboard/pages/property/property_types/property_types.html",
         controller: "PropertyTypesController",
@@ -206,8 +242,41 @@ angular
           typesRequest: function (GeneralDataServices) {
             return GeneralDataServices.index('property_types');
           },
-          deps: mLoadSequence('ngTable', 'ui.select', "propertyTypeController",
+          deps: mLoadSequence('ngTable', 'ui.select',
             "propertyTypesServices", "propertyTypesController")
+        }
+      }).state('app.property.types.edit', {
+        url: '/:typeId/edit',
+        templateUrl: "assets/app.dashboard/pages/property/property_types/edit/property_type_form.html",
+        controller: "PropertyTypeController",
+        controllerAs: 'typeCtrl',
+        resolve: {
+          formHelpersRequest: function ($http) {
+            return $http.get('/property_types/new.json');
+          },
+          propertyTypeRequest: function (GeneralDataServices, $stateParams) {
+            return GeneralDataServices.show('property_types', $stateParams.typeId);
+          },
+          deps: mLoadSequence('checklist-model', 'ui.select', "propertyTypeController",
+            "propertyTypesServices")
+        }
+      }).state('app.property.types.new', {
+        url: '/new',
+        templateUrl: "assets/app.dashboard/pages/property/property_types/edit/property_type_form.html",
+        controller: "PropertyTypeController",
+        controllerAs: 'typeCtrl',
+        resolve: {
+
+          propertyTypeRequest: function ($q) {
+            return $q.when({
+              data: null
+            });
+          },
+          formHelpersRequest: function ($http) {
+            return $http.get('/property_types/new.json');
+          },
+          deps: mLoadSequence('ui.select', "propertyTypeController",
+            "propertyTypesServices")
         }
       }).state('app.property.statuses', {
         url: '/property_statuses',

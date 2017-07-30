@@ -26,6 +26,7 @@ en:
       user: user
       property_detail: property detail
       property_type: property type
+      property_detail_category: property detail category
     attributes:
       user:
         email: "email" 
@@ -50,8 +51,14 @@ en:
         code: code
       property_type:
         name: name
-        state: type
-        code: code        
+        state: state
+        code: code
+      property_detail_category:
+        name: name
+        state: state
+        code: code
+        name_en: english name
+        name_ar: arabic name       
     errors:
       messages:
         record_invalid: "Validation failed: %{errors}"
@@ -431,6 +438,7 @@ en:
         STATE: Property states
         SERVICE_TYPE: Property service types
         CREATE: Create property
+        DETAIL_CATEGORY: Detail Category
       element:
         USERS: Users
         MAIN: UI Elements

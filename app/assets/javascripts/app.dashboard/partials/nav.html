@@ -54,7 +54,7 @@
     </a>
     <ul class="sub-menu">
       <li ui-sref-active="active" ng-if="currentUser.companyUser()">
-        <a ui-sref="app.property.create">
+        <a ui-sref="app.property.new">
           <span class="title" translate="sidebar.nav.property.CREATE"></span>
         </a>
       </li>
@@ -64,12 +64,17 @@
         </a>
       </li>
       <li ui-sref-active="active" ng-if="currentUser.admin()">
+        <a ui-sref="app.property.detail-category">
+          <span class="title" translate="sidebar.nav.property.DETAIL_CATEGORY"></span>
+        </a>
+      </li>
+      <li ui-sref-active="active" ng-if="currentUser.admin()">
         <a ui-sref="app.property.details">
           <span class="title" translate="sidebar.nav.property.DETAIL"></span>
         </a>
       </li>
       <li ui-sref-active="active" ng-if="currentUser.admin()">
-        <a ui-sref="app.property.types">
+        <a ui-sref="app.property.types.list">
           <span class="title" translate="sidebar.nav.property.TYPE"></span>
         </a>
       </li>

@@ -1,0 +1,1 @@
+json.partial! "property_detail_categories/property_detail_category", property_detail_category: @property_detail_category

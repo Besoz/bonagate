@@ -14,7 +14,7 @@ class Property < ActiveRecord::Base
   has_many :property_details, through: :property_type
 
   has_many :property_detail_instances
-  accepts_nested_attributes_for :property_detail_instances
+  accepts_nested_attributes_for :property_detail_instances, allow_destroy: true
 
   has_many :service_type_instances
 
@@ -32,6 +32,10 @@ class Property < ActiveRecord::Base
 
 
   def self.get_affected_with_property_detail detail_id
+    Property.joins(:property_detail_instances).where(property_detail_instances: { property_detail_id: detail_id })
+  end
+
+   def self.get_affected_with_property_detail_value_option value_option_ids
     Property.joins(:property_detail_instances).where(property_detail_instances: { property_detail_id: detail_id })
   end
 
