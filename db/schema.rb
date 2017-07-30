@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717141716) do
+ActiveRecord::Schema.define(version: 20170727132646) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -180,6 +180,17 @@ ActiveRecord::Schema.define(version: 20170717141716) do
 
   add_index "shared_properties", ["company_id"], name: "index_shared_properties_on_company_id", using: :btree
   add_index "shared_properties", ["property_id"], name: "index_shared_properties_on_property_id", using: :btree
+
+  create_table "user_favorite_properties", force: :cascade do |t|
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "user_id",     limit: 4
+    t.integer  "property_id", limit: 4
+  end
+
+  add_index "user_favorite_properties", ["property_id"], name: "index_user_favorite_properties_on_property_id", using: :btree
+  add_index "user_favorite_properties", ["user_id", "property_id"], name: "index_user_favorite_properties_on_user_id_and_property_id", unique: true, using: :btree
+  add_index "user_favorite_properties", ["user_id"], name: "index_user_favorite_properties_on_user_id", using: :btree
 
   create_table "user_invitations", force: :cascade do |t|
     t.string   "random_key",     limit: 255

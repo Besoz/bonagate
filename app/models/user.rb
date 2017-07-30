@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   default_value_for :active, true
 
   has_many :property_detail_queries
+  
+  has_many :user_favorite_properties
+  has_many :properties , through: :user_favorite_properties
 
   enumerize :role, in: [:user, :admin, :company_user], default: :user , predicates: true, scope: true, i18n_scope: "roles"
 

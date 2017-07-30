@@ -1,9 +1,65 @@
-<p id="notice"><%= notice %></p>
+<script src="/assets/app.realestate/controllers/showProperty.controller.js"></script>
 
-<p>
-  <strong>Address:</strong>
-  <%= @property.address %>
-</p>
+<div ng-controller="ShowPropertyController as ShowPropertyCtrl" ng-init="ShwPropCtrl.property = <%= render partial: 'properties/property.json.jbuilder', locals: {property: @property}%>">
+   <!-- {{ShwPropCtrl.property}} -->
 
-<%= link_to 'Edit', edit_property_path(@property) %> |
-<%= link_to 'Back', properties_path %>
+   <% if !current_user.nil? %>
+   <% if !@property.users.include?(current_user) %>
+   <div ng-init="ShwPropCtrl.isLiked = false"/>
+   <% else %>
+   <div ng-init="ShwPropCtrl.isLiked = true"/>
+   <% end %>
+   <% end %>
+
+   <button type="submit"  ng-click="ShowPropertyCtrl.ToggleFavorite(ShwPropCtrl.property.id)">{{btnTxt}}</button>
+
+   <div id="content">
+      <!-- {{ShowPropertyCtrl.test}} -->
+      <div  class="  carousel slide cover overlay overflow-hidden margin-bottom-none " data-ride="carousel" style="margin-right: 10%; margin-left: 10%">
+         <div class="  carousel-inner" role="listbox">
+            <div ng-if="ShwPropCtrl.property.avatar" class="item active">
+               <img ng-src="{{ShwPropCtrl.property.avatar}}" class="width-100pc" >
+            </div>
+            <div ng-if="!ShwPropCtrl.property.avatar"  class="item active">
+               <img src="/images/photodune-186709-residential-street-m.jpg"  class="width-100pc" >	
+            </div>
+            <div ng-repeat="img in property.images"  ng-if="$index > 0" class="item">
+               <img ng-src="{{img.avatar}}" class="width-100pc" >
+            </div>
+         </div>
+         <div class=" overlay overlay-bg-black overlay-full-xs" style="padding: 0px">
+            <div class="v-bottom v-top-xs">
+               <div class="container">
+                  <div class="page-section">
+                     <h1 class="text-h1 text-overlay">{{ShwPropCtrl.property.address}}</h1>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="property-meta">
+         <ul>
+            <li class="property-meta-item">
+               <h4>Type: {{ShwPropCtrl.property.type.name}}</h4>
+            </li>
+            <li class="property-meta-item">
+               <h4>Status: {{ShwPropCtrl.property.status.name}}</h4>
+            </li>
+            <li class="property-meta-item">
+               <h4>State: {{ShwPropCtrl.property.state.name}}</h4>
+            </li>
+         </ul>
+      </div>
+      <div class="container" style="margin: 5%">
+         <h3>Features</h3>
+         <div class="row" ng-repeat="d in ShwPropCtrl.property.property_detail_instances">
+            <div class="col-sm-4">
+               <h4><strong>{{d.property_detail.name}}</strong></h4>
+            </div>
+            <div class="col-sm-8">
+               <h4>{{d.value}}</h4>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

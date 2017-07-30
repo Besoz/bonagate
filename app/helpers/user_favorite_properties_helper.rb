@@ -1,0 +1,2 @@
+module UserFavoritePropertiesHelper
+end

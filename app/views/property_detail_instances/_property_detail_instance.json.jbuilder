@@ -7,4 +7,4 @@ else
 	json.value property_detail_instance.value
 end
 json.url property_detail_instance_url(property_detail_instance, format: :json)
-json.property_detail property_detail_instance.property_detail, partial: 'property_details/property_detail_min', as: :property_detail
+json.property_detail property_detail_instance.property_detail, partial: 'property_details/property_detail_min.json.jbuilder', as: :property_detail

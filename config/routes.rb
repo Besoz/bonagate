@@ -47,6 +47,8 @@ Rails.application.routes.draw do
   get '/user_profile/:tab', to: 'users#user_profile', as: :user_profile
   get "/user_profile" , to: redirect('/user_profile/favorites')
 
+
+  resources :user_favorite_properties,  only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
