@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout "cliptheme-layout"
+  layout "cliptheme-layout", :only => [:new]
 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user, except: [:new, :create, :create_user]
@@ -14,6 +14,13 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+  end
+
+  # GET /user_profile
+  # GET /user_profile.json
+  def user_profile
+    @tab = params[:tab] || 'favorites'
+    @user = current_user
   end
 
   # GET /users/new
@@ -121,6 +128,23 @@ class UsersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # PATCH/PUT /users/change_password
+  # PATCH/PUT /users/change_password.json
+  def change_password
+    @user = current_user
+    if @user.valid_password? params[:user][:current_password]
+      @user.password = params[:user][:password]
+      @user.password_confirmation = params[:user][:password_confirmation]
+      if @user.changed? && @user.save
+        render '/users/show.json.jbuilder'
+      else
+        render json: @user.errors, status: :unprocessable_entity
+      end
+    else
+      render json: {error: t('authlogic.error_messages.old_password_invalid')}, status: :unprocessable_entity
     end
   end
 
