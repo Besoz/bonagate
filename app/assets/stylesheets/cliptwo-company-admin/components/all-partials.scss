@@ -18,7 +18,7 @@
             }
         }
         li.language {
-            a {
+            a.dropdown-toggle {
                 padding: 12px 15px;
                 i.ti-world {
                     float: left;
@@ -34,9 +34,24 @@
     }
 }
 
+.dropdown-menu.dropdown-light {
+    border-radius: 0px;
+}
+
 //sidebar>>nav
-#sidebar > div nav > ul
-{
+#sidebar>div nav>ul {
     margin: 0px;
     border-top: 0px;
+}
+
+//section title at any page
+#page-title {
+    padding: 20px 0px;
+}
+
+//modals at any the pages
+.modal-content
+{
+    background: #fff;
+    padding: 20px;
 }

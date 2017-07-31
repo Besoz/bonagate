@@ -26,6 +26,7 @@ en:
       user: user
       property_detail: property detail
       property_type: property type
+      property_status: property status
     attributes:
       user:
         email: "email" 
