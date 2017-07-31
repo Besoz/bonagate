@@ -3,8 +3,6 @@
 
 <div ng-controller="UserInfoController as vm">
 
-  <span ng-init="vm.currentUser = <%= render partial: '/users/user.json.jbuilder', :locals => { :user => @user } %>"></span>
-
   <div class="sidebar-block col-xs-12" ng-if="!vm.editMode" ng-cloak>
     <ul class="list-group list-group-menu">
       <li class="list-group-item">
