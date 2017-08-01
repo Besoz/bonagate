@@ -1,5 +1,5 @@
 <div>
-  <alert ng-repeat="alert in stateCtrl.stateCreationErrors" state="{{alert.state}}">
+  <alert ng-repeat="alert in stateCtrl.stateCreationErrors" type="{{alert.state}}">
     {{alert.msg}}
   </alert>
 </div>
@@ -14,7 +14,7 @@
           <label class="control-label">
             {{'activerecord.attributes.property_state.name'|translate}} <span class="symbol required"></span>
           </label>
-          <input state="text" placeholder="{{'activerecord.attributes.property_state.name'|translate}}" class="form-control" name="firstName" ng-model="stateCtrl.propertyState.name" required />
+          <input type="text" placeholder="{{'activerecord.attributes.property_state.name'|translate}}" class="form-control" name="firstName" ng-model="stateCtrl.propertyState.name" required />
           <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_state.name'|translate}}'}" /></span>
         </div>
         <div class="form-group" ng-class="{'has-error':Form.code.$dirty && Form.code.$invalid, 'has-success':Form.code.$valid}">
@@ -41,11 +41,11 @@
         </div>
         <div class="form-group">
           <div class="pull-right">
-            <button state="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary">
               <div ng-if="!(stateCtrl.propertyState.id)" translate="helpers.submit.create" translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}" />
               <div ng-if="stateCtrl.propertyState.id" translate="helpers.submit.update" translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}" />
             </button>
-            <button state="button" ng-click="stateCtrl.dismiss()" class="btn btn-o btn-primary">
+            <button type="button" ng-click="stateCtrl.dismiss()" class="btn btn-o btn-primary">
               <div translate="dashboard.cancel" />
             </button>
           </div>
