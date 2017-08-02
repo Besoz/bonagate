@@ -16,17 +16,19 @@
 
    <div id="content">
       <!-- {{ShowPropertyCtrl.test}} -->
-      <div  class="  carousel slide cover overlay overflow-hidden margin-bottom-none " data-ride="carousel" style="margin-right: 10%; margin-left: 10%">
+      <div id="carousel-example-generic"  class="  carousel slide cover overlay overflow-hidden margin-bottom-none " data-ride="carousel" >
          <div class="  carousel-inner" role="listbox">
             <div ng-if="ShwPropCtrl.property.avatar" class="item active">
                <img ng-src="{{ShwPropCtrl.property.avatar}}" class="width-100pc" >
             </div>
+            <!-- first image must have class active -->
             <div ng-if="!ShwPropCtrl.property.avatar"  class="item active">
-               <img src="/images/photodune-186709-residential-street-m.jpg"  class="width-100pc" >	
+               <img src="/images/photodune-186709-residential-street-m.jpg"  class="width-100pc" > 
             </div>
-            <div ng-repeat="img in property.images"  ng-if="$index > 0" class="item">
+            <div ng-repeat="img in ShwPropCtrl.property.images" ng-if="$index > 0" class="item">
                <img ng-src="{{img.avatar}}" class="width-100pc" >
             </div>
+            <!-- first image must have class active -->
          </div>
          <div class=" overlay overlay-bg-black overlay-full-xs" style="padding: 0px">
             <div class="v-bottom v-top-xs">
@@ -37,6 +39,10 @@
                </div>
             </div>
          </div>
+         <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
       </div>
       <div class="property-meta">
          <ul>

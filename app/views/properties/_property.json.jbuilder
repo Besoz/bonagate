@@ -18,3 +18,6 @@ end
 if(property.property_images)
     json.images property.property_images, partial: 'properties/property_image.json.jbuilder', as: :property_image
 end
+if(current_user)
+  json.is_favourite property.users.include?(current_user)
+end
