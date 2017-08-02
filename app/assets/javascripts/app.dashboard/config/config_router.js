@@ -275,7 +275,7 @@ angular
           formHelpersRequest: function ($http) {
             return $http.get('/property_types/new.json');
           },
-          deps: mLoadSequence('ui.select', "propertyTypeController",
+          deps: mLoadSequence('checklist-model', 'ui.select', "propertyTypeController",
             "propertyTypesServices")
         }
       }).state('app.property.statuses', {
