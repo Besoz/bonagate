@@ -10,7 +10,7 @@ class Ability
     can [:index, :read, :search], Property
 
     if user
-      can :user_profile, User
+      can [:change_password, :user_profile], User
     end
 
     user ||= User.new # guest user (not logged in)

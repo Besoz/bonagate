@@ -95,12 +95,15 @@
 
     <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
 
+    <% unless current_user.nil? %>
+        <span ng-init="$root.currentUser = <%= render partial: '/users/user.json.jbuilder', :locals => { :user => current_user } %>"></span>
+    <% end %>
+
     <%= render partial: '/layouts/header',
                formats: :html,
                handlers: :erb %>
 
     <%= yield %>
-
     <!-- render partial: '/layouts/footer',
                formats: :html,
                handlers: :erb  -->

@@ -131,6 +131,23 @@ class UsersController < ApplicationController
     end
   end
 
+  # PATCH/PUT /users/change_password
+  # PATCH/PUT /users/change_password.json
+  def change_password
+    @user = current_user
+    if @user.valid_password? params[:user][:current_password]
+      @user.password = params[:user][:password]
+      @user.password_confirmation = params[:user][:password_confirmation]
+      if @user.changed? && @user.save
+        render '/users/show.json.jbuilder'
+      else
+        render json: @user.errors, status: :unprocessable_entity
+      end
+    else
+      render json: {error: t('authlogic.error_messages.old_password_invalid')}, status: :unprocessable_entity
+    end
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy

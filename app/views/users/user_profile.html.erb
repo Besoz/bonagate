@@ -1,7 +1,7 @@
 <div>
   <div class="st-container">
-    <div class="col-md-1"></div>
-    <div class="col-md-10" style="background-color: white; padding: 10px">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10" style="background-color: white; padding: 10px">
 <!-- extra div for emulating position:fixed of the menu -->
         <div class="padding-top-none" id="content">
 
@@ -13,9 +13,15 @@
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left-m">
 
-                  <li class="active"><a href="listing.html"><i class="fa fa-star fa-fw"></i> Favorites </a></li>
-                  <li><a href="listing-map.html"><i class="fa fa-search fa-fw"></i> Searches </a></li>
-                  <li><a href="listing-grid.html"><i class="fa fa-user fa-fw"></i> User Info </a></li>
+                  <li class="<%= active_class 'favorites' %>">
+                    <a href="/user_profile/favorites"><i class="fa fa-star fa-fw"></i> Favorites </a>
+                  </li>
+                  <li class="<%= active_class 'searches' %>">
+                    <a href="/user_profile/searches"><i class="fa fa-search fa-fw"></i> Searches </a>
+                  </li>
+                  <li class="<%= active_class 'info' %>">
+                    <a href="/user_profile/info"><i class="fa fa-user fa-fw"></i> User Info </a>
+                  </li>
 
                 </ul>
               </div>
@@ -28,7 +34,17 @@
                        formats: :html,
                        handlers: :erb %>
 
-          <% else %>
+          <% elsif @tab == 'searches' %>
+
+            <%= render partial: '/users/searches',
+                       formats: :html,
+                       handlers: :erb %>
+
+          <% elsif @tab == 'info' %>
+
+            <%= render partial: '/users/info',
+                       formats: :html,
+                       handlers: :erb %>
 
           <% end %>
 
@@ -40,7 +56,7 @@
 
 
     </div>
-    <div class="col-md-1"></div>
+    <div class="col-xs-1"></div>
   </div>
 </div>
         <div data-scrollable>

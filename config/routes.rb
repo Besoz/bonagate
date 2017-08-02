@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       post 'create_user'
+      put 'change_password'
     end
   end
 
