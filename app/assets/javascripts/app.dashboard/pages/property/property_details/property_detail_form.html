@@ -4,22 +4,25 @@
   </alert>
 </div>
 <div class="row">
-  <div class="col-md-12">
     <div class="col-md-6">
       <form name="Form" id="form1" novalidate ng-submit="detailCtrl.submitPropertyDetail(Form)">
         <fieldset>
+          
+          <!-- title of the form -->
           <legend>
             <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_detail'|translate}}'}"
             />
           </legend>
+
           <div class="form-group" ng-class="{'has-error':Form.firstName.$dirty && Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
             <label class="control-label">
             {{'activerecord.attributes.property_detail.name'|translate}} <span class="symbol required"></span>
             </label>
-            <input type="text" placeholder="{{'activerecord.attributes.property_detail.name'|translate}}" class="form-control" name="firstName"
+            <input placeholder="{{'activerecord.attributes.property_detail.name'|translate}}" class="form-control" name="firstName"
               ng-model="detailCtrl.propertyDetail.name" required />
             <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.name'|translate}}'}" /></span>
           </div>
+
           <div class="form-group" ng-class="{'has-error':Form.code.$dirty && Form.code.$invalid, 'has-success':Form.code.$valid}">
             <label class="control-label">
             {{'activerecord.attributes.property_detail.code'|translate}} <span class="symbol required"></span>
@@ -31,12 +34,13 @@
             <!--           <span class="error text-small block" ng-if="Form.code.$error.email" translate="errors.messages.invalid" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.code'|translate}}'}">.</span> -->
             <!-- <span class="success text-small" ng-if="Form.code.$valid">It's a valid e-mail!</span> -->
           </div>
+
           <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
             <label class="control-label">
             {{'activerecord.attributes.property_detail.property_detail_category'|translate}} <span class="symbol required"></span>
             </label>
             <ui-select ng-model="detailCtrl.propertyDetail.property_detail_category_id" theme="bootstrap" name="type" required>
-              <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+              <ui-select-match placeholder="{{'activerecord.attributes.property_detail.property_detail_category'|translate}}">
                 {{ $select.selected.name | translate}}
               </ui-select-match>
               <ui-select-choices repeat="item.id as item in detailCtrl.categories | filter: $select.search">
@@ -44,6 +48,7 @@
               </ui-select-choices>
             </ui-select>
           </div>
+
           <div class="form-group">
             <!-- ng-class="{'has-error':Form.mandatory.$dirty && Form.mandatory.$invalid, 'has-success':Form.mandatory.$valid}" -->
             <div class="checkbox clip-check check-primary checkbox-inline">
@@ -54,9 +59,10 @@
             </div>
             <!-- span class="error text-small block" ng-if="Form.mandatory.$dirty && Form.mandatory.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.mandatory'|translate}}'}" /></span -->
           </div>
+
           <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
             <label class="control-label">
-            {{'activerecord.attributes.property_detail.value_type'|translate}} <span class="symbol required"></span>
+            {{'activerecord.attributes.property_detail.value_type' |translate}} <span class="symbol required"></span>
             </label>
             <ui-select ng-model="detailCtrl.propertyDetail.value_type" theme="bootstrap" name="type" required>
               <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
@@ -67,11 +73,12 @@
               </ui-select-choices>
             </ui-select>
           </div>
+
           <div ng-if="detailCtrl.propertyDetail.value_type == 'select' || detailCtrl.propertyDetail.value_type == 'multi_select'">
             <div class="panel panel-transparent">
               <div class="panel-heading">
                 <div class="panel-title">
-                  {{'activerecord.attributes.property_detail.property_detail_value_options_attributes'}}
+                  {{'activerecord.attributes.property_detail.property_detail_value_options_attributes' |translate}}
                 </div>
               </div>
               <div class="panel-body">
@@ -100,6 +107,7 @@
               </div>
             </div>
           </div>
+
           <div class="form-group ">
             <div class="pull-right ">
               <button type="submit" class="btn btn-primary">
@@ -111,6 +119,7 @@
                 </button>
             </div>
           </div>
+
         </fieldset>
         <pre class="code margin-top-20 ">{{ detailCtrl.propertyDetail | json }}</pre>
       </form>
@@ -130,5 +139,4 @@
         <pre class="code margin-top-20 ">{{ property | json }}</pre>
       </div>
     </div>
-  </div>
 </div>

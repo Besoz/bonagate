@@ -50,8 +50,14 @@
 }
 
 //modals at any the pages
-.modal-content
-{
+.modal-content {
     background: #fff;
     padding: 20px;
+}
+
+//all tables
+.rowTd {
+    .btn {
+        line-height: 12px;
+    }
 }

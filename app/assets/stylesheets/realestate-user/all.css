@@ -1,4 +1,5 @@
-body
-{
-	background: red;
-}
+/* Default Stylesheets for the website */
+
+/*
+*= require ../all/general.scss
+*/

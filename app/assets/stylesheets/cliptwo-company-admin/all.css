@@ -1,5 +1,6 @@
 /* Default Stylesheets for the website */
 
 /*
+*= require ../all/general.scss
 *= require ./components/all-partials.scss
 */

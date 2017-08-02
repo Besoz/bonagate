@@ -1,31 +1,49 @@
+<section id="page-title" class="ng-scope">
+    <div class="row">
+        <div class="col-sm-8">
+            <h1 class="mainTitle">
+              Detail Category
+            </h1>
+        </div>
+    </div>
+</section>
 <div class="container-fluid container-fullw">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <button class="btn btn-wide btn-primary" ng-click="categoriesCtrl.create()">
-          <i class="ti-plus"></i>
-          <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_detail_category'|translate}}'}" />
-        </button>
+    <div class="row margin-bottom-20">
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="" placeholder="Search detial Category">
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-wide btn-primary pull-right btn-squared" ng-click="categoriesCtrl.create()">
+                <i class="ti-plus"></i>
+                <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_detail_category'|translate}}'}" />
+            </button>
+        </div>
+    </div>
+    <div class="row">
         <!-- start: TABLE WITH FILTERS -->
         <div class="col-md-12">
-          <div>
             <!-- <strong>Filter:</strong> {{tableParams.filter()|json}} -->
-            <table ng-table="tableParams" show-filter="true" class="table table-striped">
-              <tr ng-repeat="detailCategory in categoriesCtrl.categoriesList">
-                <td data-title="'activerecord.attributes.property_detail_category.name' | translate " filter="{ 'name': 'text' }"> {{detailCategory.name}} </td>
-                <td data-title="'activerecord.attributes.property_detail_category.code' | translate ">{{detailCategory.code}} </td>
-                <td class="rowTd">
-                  <div class="pull-right margin-right-10">
-                    <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" 
-                    value="edit" ng-click="categoriesCtrl.edit($index)">
-                  </div>
-                </td>
-              </tr>
+            <table ng-table="tableParams" class="table table-striped table-bordered table-full-width">
+                <tr ng-repeat="detailCategory in categoriesCtrl.categoriesList">
+                    <td data-title="'activerecord.attributes.property_detail_category.name' | translate " filter="{ 'name': 'text' }">
+                        {{detailCategory.name}}
+                    </td>
+                    <td data-title="'activerecord.attributes.property_detail_category.code' | translate ">
+                        {{detailCategory.code}}
+                    </td>
+                    <td data-title="'activerecord.attributes.property_detail_category.state' | translate ">
+                        {{detailCategory.state}}
+                    </td>
+                    <td class="rowTd" data-title="'activerecord.attributes.property_detail_category.edit' | translate ">
+                        <div class="pull-right margin-right-10">
+                            <button type="button" class="btn btn-primary btn-squared" id="editRowBtn{{p.id}}" ng-click="categoriesCtrl.edit($index)">
+                                {{'activerecord.attributes.property_detail_category.edit' | translate }}
+                            </button>
+                        </div>
+                    </td>
+                </tr>
             </table>
-          </div>
         </div>
         <!-- end: TABLE WITH FILTERS -->
-      </div>
     </div>
-  </div>
 </div>
