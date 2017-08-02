@@ -7,15 +7,7 @@
 
 	function ShowPropertyController($scope, decoratorService, GeneralDataServices, $window) {
 		var vm = this;
-		vm.isLiked =false;
-		vm.btnTxts = ['Add to Favorites' , 'Remove from Favorites'];
-
-
-		$scope.$watch('ShwPropCtrl.isLiked', function () {
-			vm.isLiked = $scope.ShwPropCtrl.isLiked;
-			if(vm.isLiked) $scope.btnTxt  = vm.btnTxts[1];
-			else  $scope.btnTxt  = vm.btnTxts[0];
-		});
+		vm.btnTxts = ['fa fa-fw fa-star-o text-yellow-800 fa-5x' , 'fa fa-fw fa-star text-yellow-800 fa-5x'];
 		
 		vm.addToFavorite = function (id) {
 
@@ -24,9 +16,7 @@
 			.then(function(res) {
 				console.log(res);
 				if(res.status=='ok')
-					vm.isLiked = true;
-				$scope.btnTxt  = vm.btnTxts[1];			
-
+					vm.property.is_favourite =true;
 			}).catch(function(res) {
 			})
 		}
@@ -38,14 +28,14 @@
 			.then(function(res) {
 				console.log(res);
 				if(res.status=='ok')
-					vm.isLiked = false;
-				$scope.btnTxt  = vm.btnTxts[0];			
+					vm.property.is_favourite =false;
+		
 			}).catch(function(res) {
 			})
 		}
 
 		vm.ToggleFavorite = function (id) {
-			if (vm.isLiked) vm.removeFromFavorite(id);
+			if (vm.property.is_favourite) vm.removeFromFavorite(id);
 			else vm.addToFavorite(id);
 		}
 	}

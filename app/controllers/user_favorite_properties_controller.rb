@@ -3,7 +3,9 @@ class UserFavoritePropertiesController < ApplicationController
 	def create
 		puts "creating"
 		@property =  Property.find_by_id(params[:property_id]);
-		@user.properties << @property;
+		if !current_user.favorites_property?(@property)
+			@user.properties << @property
+		end
 		render json: { status: :ok}
 
 	end
