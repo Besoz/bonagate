@@ -348,7 +348,7 @@ en:
     recored_created: '%{model} successfully created'
     recored_updated: '%{model} successfully updated'
     success: success 
-    cancel: cancel
+    cancel: Cancel
     # end general
     
     # start: dashboard

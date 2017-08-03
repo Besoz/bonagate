@@ -7,7 +7,6 @@
     <div class="col-md-6">
       <form name="Form" id="form1" novalidate ng-submit="detailCtrl.submitPropertyDetail(Form)">
         <fieldset>
-          
           <!-- title of the form -->
           <legend>
             <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_detail'|translate}}'}"
@@ -110,11 +109,13 @@
 
           <div class="form-group ">
             <div class="pull-right ">
-              <button type="submit" class="btn btn-primary">
-                  <div ng-if="!(detailCtrl.propertyDetail.id)" translate="helpers.submit.create" translate-values="{model: '{{ 'activerecord.models.property_detail' | translate}}'}" />
-                  <div ng-if="detailCtrl.propertyDetail.id" translate="helpers.submit.update" translate-values="{model: '{{ 'activerecord.models.property_detail' | translate}}'}" />
+              <button type="submit" class="btn btn-primary btn-squared">
+                  <div ng-if="!(detailCtrl.propertyDetail.id)" translate="helpers.submit.create"/>
+                  <!-- translate-values="{model: '{{ 'activerecord.models.property_detail' | translate}}'}"  -->
+                  <div ng-if="detailCtrl.propertyDetail.id" translate="helpers.submit.update"/>
+                   <!-- translate-values="{model: '{{ 'activerecord.models.property_detail' | translate}}'}"  -->
                 </button>
-              <button type="button" ng-click="detailCtrl.dismiss() " class="btn btn-o btn-primary ">
+              <button type="button" ng-click="detailCtrl.dismiss() " class="btn-squared btn btn-danger ">
                   <div translate="dashboard.cancel " />
                 </button>
             </div>
