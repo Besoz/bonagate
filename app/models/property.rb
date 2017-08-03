@@ -3,6 +3,8 @@ class Property < ActiveRecord::Base
 
   enumerize :state, in: [:active, :inactive], default: :active , predicates: true, scope: true
 
+  default_value_for :publish, false
+
   belongs_to :company
   belongs_to :property_type
   belongs_to :property_state
@@ -24,6 +26,9 @@ class Property < ActiveRecord::Base
 
   validates :company_id, :property_status_id, :property_type_id,
     presence: true
+
+
+  scope :published, ->  { Property.where(publish: true) }
 
 
   def self.get_affected_with_property_detail detail_id

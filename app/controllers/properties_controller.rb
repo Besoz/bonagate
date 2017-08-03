@@ -2,19 +2,17 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy, 
   :upload_image]
 
+  #loaded items in @properties
   load_and_authorize_resource
 
   # GET /properties
   # GET /properties.json
   def index
-    @properties = Property.all  
   end
 
   # GET /properties/search
   # GET /properties/search.json
   def search
-    @properties = Property.all
-
     respond_to do |format|
       format.html { render :index }
       format.json { render :search }
@@ -96,7 +94,7 @@ class PropertiesController < ApplicationController
   def property_params
     params.require(:property).permit(:address, :company_id, :property_type_id, :property_status_id,
                                      :property_state_id, :lat, :lng, :country, :city, :area, :street, 
-                                     :number, :floor,
+                                     :number, :floor, :publish,
                                      {property_images_attributes: :avatar},
                                      {property_detail_instance_value_options_attributes: :property_detail_value_option_id},
                                      property_detail_instances_attributes: ['_destroy', :id, :property_detail_id, :value, 

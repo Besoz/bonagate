@@ -7,10 +7,8 @@ class Ability
     alias_action :create, :read, :update, :destroy, :to => :crud
     alias_action :index, :create, :read, :update, :destroy, :to => :crud_all
 
-    can [:index, :read, :search], Property
-
     if user
-      can [:change_password, :user_profile], User
+      
     end
 
     user ||= User.new # guest user (not logged in)
@@ -18,7 +16,6 @@ class Ability
       can :manage, :all
 
     elsif user.company_user?
-
       if(user.company_user.company_admin?)
 
         can :crud_all, Company, :id => user.company_user.company_id # to be changed company_user.company_id
@@ -43,6 +40,11 @@ class Ability
 
       can :crud_all, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id
       can :upload_image, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id
+      else
+        can [:change_password, :user_profile], User
+        can [:index, :read, :search], Property, Property.published do |property|
+          property.publish
+        end
     end
     #
     # The first argument to `can` is the action you are giving the user

@@ -173,7 +173,7 @@
       Object.assign(vm.property, res.data);
       // upload images
       if (vm.imagesUploader.queue.length == 0) {
-        state.go('^.view', {
+        state.go('^.list', {
           'propertyId': vm.property.id
         });
       } else {

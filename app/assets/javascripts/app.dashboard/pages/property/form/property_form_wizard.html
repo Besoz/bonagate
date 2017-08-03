@@ -1,4 +1,4 @@
-<!-- start: PAGE TITLE -->
+start: PAGE TITLE -->
 <!-- end: PAGE TITLE -->
 <!-- start: WIZARD DEMO -->
 <div class="container-fluid container-fullw bg-white">
@@ -485,6 +485,21 @@
           <div id="step-5" ng-if="wizardCtrl.currentStep == 5">
             <div class="row">
               <div class="col-md-12">
+                <!-- start: PROPERTY OPTIONS -->
+                <div>
+                  <!-- start: PUBLISH/UNPUBLISH -->
+                  <!-- <div class="checkbox clip-check check-primary"> -->
+                  <div>
+                    <label><input type="checkbox" ng-model="wizardCtrl.property.publish"/>Publish</label>
+                  </div>
+                  <!-- end: PUBLISH/UNPUBLISH -->
+                  <!-- share with companies -->
+                  <div>
+
+                  </div>
+
+                </div>
+                <!-- end: PROPERTY OPTIONS -->
                 <button class="btn btn-primary btn-o next-step btn-wide" ng-click="wizardCtrl.form.submit(Form)">Submit</button>
                 <div>
                   Queue progress:
@@ -520,4 +535,4 @@
     </div>
   </div>
 </div>
-<!-- start: WIZARD DEMO -->
+<!-- start: WIZARD DEMO
