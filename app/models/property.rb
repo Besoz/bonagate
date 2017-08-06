@@ -22,6 +22,8 @@ class Property < ActiveRecord::Base
 
   # validates :service_type_instances, :length => { :minimum => 1 }
 
+  has_many :payments
+
   validates :company_id, :property_status_id, :property_type_id,
     presence: true
 

@@ -120,6 +120,9 @@ angular
       name: 'angularFileUpload',
       files: ['../assets/bower_components/angular-file-upload/angular-file-upload.min.js']
     }, {
+      name: 'ngFileUpload',
+      files: ['../assets/bower_components/ng-file-upload/ng-file-upload-all.min.js']
+    }, {
       name: 'ngAside',
       files: ['../assets/bower_components/angular-aside/dist/js/angular-aside.min.js', '../assets/bower_components/angular-aside/dist/css/angular-aside.min.css']
     }, {

@@ -155,7 +155,7 @@ angular
           propertyDetailCategoriesRequest: function ($http) {
             return $http.get('property_detail_categories/index_by_id.json');
           },
-          deps: mLoadSequence('angular-filter','angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
+          deps: mLoadSequence('angular-filter', 'angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
             'propertyFormController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.payment', {
@@ -164,12 +164,11 @@ angular
         controller: "PaymentsController",
         controllerAs: 'paymentsCtrl',
         resolve: {
-          propertyTypesRequest: function (GeneralDataServices) {
+          paymentsRequest: function (GeneralDataServices) {
             return GeneralDataServices.index('payments');
           },
-          deps: mLoadSequence('ngTable', 'angular-filter','angularFileUpload', 'paymentServices', 
-          'ui.select', 
-          "paymentController", "paymentsController")
+          deps: mLoadSequence('ngTable', 'angular-filter', 'ngFileUpload', 'angularFileUpload', 'paymentServices',
+            'ui.select', "paymentController", "paymentsController")
         }
       }).state('app.property.new', {
         url: '/new',

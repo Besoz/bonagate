@@ -7,7 +7,7 @@ class PropertiesController < ApplicationController
   # GET /properties
   # GET /properties.json
   def index
-    @properties = Property.all  
+    @properties = Property.all
   end
 
   # GET /properties/search

@@ -9,40 +9,13 @@
 </section>
 <!-- end: PAGE TITLE -->
 <!-- start: YOUR CONTENT HERE -->
-<div class="container-fluid container-fullw">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="row">
-                <button class="btn btn-wide btn-primary" ng-click="paymentsCtrl.create()">
-          <i class="ti-plus"></i>
-          <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_service_type'|translate}}'}" />
-        </button>
-                <!-- start: TABLE WITH FILTERS -->
-                <div class="col-md-12">
-                    <div>
-                        <!-- <strong>Filter:</strong> {{tableParams.filter()|json}} -->
-                        <table ng-table="tableParams" show-filter="true" class="table table-striped">
-                            <tr ng-repeat="property in listCtrl.properties">
-                                <!--<td data-title="'activerecord.attributes.property_serviceType.name' | translate " filter="{ 'name': 'text' }"> {{propertyServiceType.name}} </td>-->
-                                <!--<td data-title="'activerecord.attributes.property_serviceType.code' | translate ">{{propertyServiceType.code}} </td>-->
-                                <td class="rowTd">
-                                    <div onLoad="property=property" ng-include src="'assets/app.dashboard/pages/property/property_list/property_list_item.html'"></div>
-                                    <div class="pull-right margin-right-10">
-                                        <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit" ng-click="$state.go('^.edit', { 'propertyId': property.id })">
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <!-- end: TABLE WITH FILTERS -->
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="container-fluid container-fullw">
     <div class="row">
+        <button class="btn btn-wide btn-primary" ng-click="paymentsCtrl.create()">
+            <i class="ti-plus"></i>
+            <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_service_type'|translate}}'}" />
+        </button>
         <div class="col-md-12">
             <h5 class="over-title margin-bottom-15">Inline <span class="text-bold">edit example</span></h5>
             <!-- /// controller:  'ngTableCtrl6' -  localtion: assets/js/controllers/ngTableCtrl.js /// -->
@@ -56,23 +29,47 @@
                 </div>
                 <strong>Sorting:</strong> {{tableParams.sorting()|json}}
                 <div class="table-responsive">
-                    <table ng-table="tableParams" class="table">
-                        <tbody ng-repeat="p in $data">
-                            <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
-                                <td class="rowTd" data-title="'ID'" sortable="'id'">{{p.id}}</td>
-                                <td class="rowTd" data-title="'Firstname'" sortable="'fn'">{{p.fn}}</td>
-                                <td class="rowTd" data-title="'Lastname'" sortable="'ln'">{{p.ln}}</td>
-                                <td class="rowTd" data-title="'Description'" sortable="'dc'">{{p.dc}}</td>
-                                <td class="rowTd" data-title="'Email'" sortable="'em'">{{p.em}}</td>
-                                <td class="rowTd" data-title="'Phone'" sortable="'ph'">{{p.ph}}</td>
+                    <table ng-table="tableParams" class="table table-bordered">
+                        <tbody ng-repeat="payment in paymentsCtrl.paymentsList track by $index" >
+                            <tr id="tr{{payment.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                                <td class="rowTd" data-title="'ID'" sortable="'id'">{{payment.id}}</td>
+                                <td class="rowTd" data-title="'Firstname'" sortable="'fn'">{{payment.person_attributes.first_name}}</td>
+                                <td class="rowTd" data-title="'Lastname'" sortable="'ln'">{{payment.person_attributes.last_name}}</td>
+                                <td class="rowTd" data-title="'SSN'" sortable="'ssn'">{{payment.person_attributes.ssn}}</td>
                                 <td class="rowTd">
                                     <div class="pull-right margin-right-10">
-                                        <input type=button class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit" ng-click="setEditId(p.id)">
+                                        <input type=button class="btn btn-primary btn-o btn-sm" id="addrecord{{payment.id}}" value="Add record" ng-click="editId = payment.id">
                                     </div>
                                 </td>
+                                <tr ng-show="editId==payment.id" ng-if="editId==payment.id">
+                                    <td colspan="7" onload="payment=payment" ng-include src="'assets/app.dashboard/pages/property/payment/payment_record_form.html'"></td>
+                                </tr>
                             </tr>
-                            <tr ng-show="editId===p.id" ng-if="editId===p.id">
-                                <td colspan="7" ng-include src="'assets/views/editRow.html'"></td>
+                            <tr ng-repeat="record in  paymentsCtrl.paymentsList[$index].payment_records">
+                                <td class="form-group" ng-class="{'has-error':Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid, 'has-success':Form.paymentrecord.value.$valid}">
+                                    <label class="control-label">
+                                    {{'activerecord.attributes.payment_record.value'|translate}} <span class="symbol required"></span>
+                                    </label>
+                                    <input type="number" placeholder="{{'activerecord.attributes.payment_record.last_name'|translate}}" class="form-control"
+                                        name="firstName" ng-model="record.value" required />
+                                    <span class="error text-small block" ng-if="Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.last_name'|translate}}'}" /></span>
+                                </td>
+
+                                <td class="form-group" ng-class="{'has-error':Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid, 'has-success':Form.paymentrecord.description.$valid}">
+                                    <label class="control-label">
+                                    {{'activerecord.attributes.payment_record.description'|translate}}
+                                    </label>
+                                    <input type="text" placeholder="{{'activerecord.attributes.payment_record.first_name'|translate}}" class="form-control" name="lastName"
+                                        ng-model="record.description" required />
+                                    <span class="error text-small block" ng-if="Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.first_name'|translate}}'}" /></span>
+                                </td>
+                                <td>
+                                    <embed ng-src="{{record.attachment}}">
+                                    <!--<img ngf-select ngf-src="record.attachment"
+                                        ngf-resize="{width: 20, height: 20, quality: 0.9}">-->
+                                        <!--<input class="button" ngf-select ng-model="record.attachment" type="file" ngf-min-height="100" ngf-resize="{width: 100, height: 100}"
+                                        />-->
+                                </td>
                             </tr>
                         </tbody>
                     </table>

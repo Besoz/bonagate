@@ -1,0 +1,37 @@
+<ng-form name="Form2" id="form2" novalidate ng-submit="paymentsCtrl.addPaymentRecord(paymentsCtrl.payment.new_record, Form2)">
+	<fieldset>
+		<legend>
+			<div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.payment_record'|translate}}'}"
+			/>
+		</legend>
+
+		<div class="form-group" ng-class="{'has-error':Form.paymentRecored.value.$dirty && Form.paymentRecored.value.$invalid, 'has-success':Form.paymentRecored.value.$valid}">
+			<label class="control-label">
+				{{'activerecord.attributes.payment_recored.value'|translate}} <span class="symbol required"></span>
+			</label>
+			<input type="number" placeholder="{{'activerecord.attributes.payment_recored.last_name'|translate}}" class="form-control"
+			    name="firstName" ng-model="paymentsCtrl.payment.new_record.value" required />
+			<span class="error text-small block" ng-if="Form.paymentRecored.value.$dirty && Form.paymentRecored.value.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_recored.last_name'|translate}}'}" /></span>
+		</div>
+
+		<div class="form-group" ng-class="{'has-error':Form.paymentRecored.description.$dirty && Form.paymentRecored.description.$invalid, 'has-success':Form.paymentRecored.description.$valid}">
+			<label class="control-label">
+				{{'activerecord.attributes.payment_recored.description'|translate}}
+			</label>
+			<input type="text" placeholder="{{'activerecord.attributes.payment_recored.first_name'|translate}}" class="form-control"
+			    name="lastName" ng-model="paymentsCtrl.payment.new_record.description" required />
+			<span class="error text-small block" ng-if="Form.paymentRecored.description.$dirty && Form.paymentRecored.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_recored.first_name'|translate}}'}" /></span>
+		</div>
+		<input class="button" ngf-select ng-model="paymentsCtrl.payment.new_record.attachment" type="file" ngf-min-height="100" ngf-resize="{width: 100, height: 100}"
+		    ngf-pattern="'image/*,application/pdf'">
+		<div class="form-group">
+			<div class="pull-right">
+				<button ng-click="paymentsCtrl.addPaymentRecord(paymentsCtrl.payment.new_record,$index, Form2)" class="btn btn-primary">
+					<div translate="helpers.submit.create" 
+					translate-values="{model:'{{ 'activerecord.models.payment_record'|translate}}'}" />
+				</button>
+			</div>
+		</div>
+	</fieldset>
+	<pre class="code margin-top-20">{{ paymentsCtrl.payment.new_record | json }}</pre>
+</ng-form>

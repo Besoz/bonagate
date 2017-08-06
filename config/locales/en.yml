@@ -27,6 +27,8 @@ en:
       property_detail: property detail
       property_type: property type
       property_detail_category: property detail category
+      payment: payment
+      payment_record: payment record
     attributes:
       user:
         email: "email" 

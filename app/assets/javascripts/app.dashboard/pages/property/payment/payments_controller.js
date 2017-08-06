@@ -5,53 +5,52 @@
     angular.module('app.dashboard')
         .controller('PaymentsController', PaymentsController);
 
-    PaymentsController.$inject = ['$modal'];
-    //   PaymentsController.$inject = ['$state', '$window', 'statesRequest', 'PaymentsServices',
+    PaymentsController.$inject = ['$modal', 'PaymentsServices', 'paymentsRequest', '$stateParams'];
+    //   PaymentsController.$inject = ['$state', '$window', 'paymentsRequest', 'PaymentsServices',
     //     '$rootScope', 'toaster', '$translate', 'decoratorService', '$filter', '$modal'
     //   ];
-    // $state, $window, statesRequest, PaymentsServices,
+    // $state, $window, paymentsRequest, PaymentsServices,
     //     $rootScope, toaster, $translate, decoratorService, $filter, $modal
-    function PaymentsController($modal) {
+    function PaymentsController($modal, PaymentsServices, paymentsRequest, $stateParams) {
 
         var vm = this;
 
-        vm.statesList;
-        vm.stateOptions;
+        vm.paymentsList;
+        vm.paymentCreationErrors;
 
-        // creating new property state
-        vm.newPayment;
-        // vm.createPayment = createPayment;
-        vm.stateCreationErrors;
-
-        // crud property state
+        // crud property payment
         vm.create = create;
         vm.edit = edit;
+        vm.addPaymentRecord = addPaymentRecord;
 
         activate();
 
         function activate() {
-            //   vm.statesList = statesRequest.data.list;
-            //   vm.stateOptions = statesRequest.data.state_options;
-            //   vm.stateCreationErrors = [];
+            vm.paymentsList = paymentsRequest.data;
+            //   vm.stateOptions = paymentsRequest.data.state_options;
+            vm.paymentCreationErrors = [];
         }
 
         function create() {
 
-            var modalInstance = openModal();
-
-            modalInstance.result.then(function (createdPropState) {
-                // vm.statesList.push(createdPropState);
-            }, function () {
-
+            var modalInstance = openModal({
+                property_id: $stateParams.propertyId
             });
+
+            modalInstance.result
+                .then(function (createdPayment) {
+                    vm.paymentsList.unshift(createdPayment);
+                }, function () {
+
+                });
         }
 
         function edit(index) {
 
-            var modalInstance = openModal(angular.copy(vm.statesList[index]));
+            var modalInstance = openModal(angular.copy(vm.paymentsList[index]));
 
-            modalInstance.result.then(function (updatedPropState) {
-                // vm.statesList[index] = updatedPropState;
+            modalInstance.result.then(function (updatedPayment) {
+                vm.paymentsList[index] = updatedPayment;
             }, function () {
 
             });
@@ -65,16 +64,26 @@
                 controller: 'PaymentController',
                 controllerAs: 'paymentCtrl',
                 resolve: {
-                  payment: function() {
-                    return payment;
-                  },
-                  formHelpers: function() {
-                    return { stateOptions: {} }
-                  }
+                    payment: function () {
+                        return payment;
+                    },
+                    formHelpers: function () {
+                        return {
+                            stateOptions: {}
+                        }
+                    }
                 }
             });
 
             return modalInstance;
+        }
+
+        function addPaymentRecord(record, paymentIndex) {
+            PaymentsServices
+                .addPaymentRecord(record, vm.paymentsList[paymentIndex].id)
+                .then(function (res) {
+                    vm.paymentsList[paymentIndex].payment_records.unshift(res.data);
+                });
         }
     }
 
