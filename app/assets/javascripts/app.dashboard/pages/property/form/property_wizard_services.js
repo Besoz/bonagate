@@ -25,6 +25,7 @@
       setPropertyLocation: setPropertyLocation,
       resetInstances: resetInstances,
       intializeImageUploader: intializeImageUploader,
+      addPaymentPlan: addPaymentPlan,
       moveMap: moveMap,
       next: next,
       prev: prev,
@@ -261,6 +262,9 @@
           'propertyId': stateParams.propertyId
         });
       };
+    }
+    function addPaymentPlan(property){
+      property.payment_plans_attributes.unshift({});
     }
   }
 })();
