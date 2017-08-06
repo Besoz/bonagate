@@ -97,9 +97,10 @@ class PropertiesController < ApplicationController
                                      :number, :floor, :publish,
                                      {property_images_attributes: :avatar},
                                      {property_detail_instance_value_options_attributes: :property_detail_value_option_id},
-                                     property_detail_instances_attributes: ['_destroy', :id, :property_detail_id, :value, 
-                                     property_detail_value_option_ids: [],
-                                     property_detail_instance_value_options_attributes: 
-                                     [:property_detail_value_option_id]])
+                                     {property_as_template_datum_attributes: [:name_en, :name_ar]},
+                                     {property_detail_instances_attributes: ['_destroy', :id, :property_detail_id, :value, 
+                                      property_detail_value_option_ids: [],
+                                      property_detail_instance_value_options_attributes: 
+                                      [:property_detail_value_option_id]]})
   end
 end

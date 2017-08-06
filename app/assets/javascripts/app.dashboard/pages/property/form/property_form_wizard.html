@@ -493,11 +493,20 @@ start: PAGE TITLE -->
                     <label><input type="checkbox" ng-model="wizardCtrl.property.publish"/>Publish</label>
                   </div>
                   <!-- end: PUBLISH/UNPUBLISH -->
-                  <!-- share with companies -->
+                  
+                  <!-- start: SAVE AS TEMPLATE -->
                   <div>
-
+                    <label>
+                      <input type="checkbox" 
+                            ng-model="wizardCtrl.save_as_template"
+                            ng-change="wizardCtrl.property.property_as_template_datum_attributes = 
+                                        wizardCtrl.save_as_template ? wizardCtrl.property.property_as_template_datum_attributes
+                                        : null;" />
+                      Save As Template</label>
+                    <input type="text" ng-if="wizardCtrl.save_as_template" ng-model="wizardCtrl.property.property_as_template_datum_attributes.name_en" value="template name" />
+                    <input type="text" ng-if="wizardCtrl.save_as_template" ng-model="wizardCtrl.property.property_as_template_datum_attributes.name_ar" value="أسم النموذج" /> 
                   </div>
-
+                  <!-- end: SAVE AS TEMPLATE -->
                 </div>
                 <!-- end: PROPERTY OPTIONS -->
                 <button class="btn btn-primary btn-o next-step btn-wide" ng-click="wizardCtrl.form.submit(Form)">Submit</button>

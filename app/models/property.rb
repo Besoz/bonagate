@@ -22,20 +22,24 @@ class Property < ActiveRecord::Base
 
   has_many :property_images, :dependent => :destroy
 
+  has_one :property_as_template_datum, :dependent => :destroy 
+  accepts_nested_attributes_for :property_as_template_datum
+
   # validates :service_type_instances, :length => { :minimum => 1 }
 
   validates :company_id, :property_status_id, :property_type_id,
     presence: true
 
 
-  scope :published, ->  { Property.where(publish: true) }
+  scope :published, ->  { Property.where publish: true }
+  scope :templates, -> { PropertyAsTemplateDatum.all.includes :property}
 
 
   def self.get_affected_with_property_detail detail_id
     Property.joins(:property_detail_instances).where(property_detail_instances: { property_detail_id: detail_id })
   end
 
-   def self.get_affected_with_property_detail_value_option value_option_ids
+  def self.get_affected_with_property_detail_value_option value_option_ids
     Property.joins(:property_detail_instances).where(property_detail_instances: { property_detail_id: detail_id })
   end
 
