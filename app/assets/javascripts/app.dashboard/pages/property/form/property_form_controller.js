@@ -42,6 +42,7 @@ angular
 
         vm.resetInstances = resetInstances;
         vm.addPaymentPlan = addPaymentPlan;
+        vm.addPaymentPlanRecord = addPaymentPlanRecord;
 
         vm.propertyTypes = propertyTypesRequest.data.list;
         vm.serviceTypes = serviceTypesRequest.data.list;
@@ -94,6 +95,10 @@ angular
 
       function addPaymentPlan(){
          PropertyWizardServices.addPaymentPlan(vm.property);
+      }
+
+      function addPaymentPlanRecord(paymentPlan){
+         PropertyWizardServices.addPaymentPlanRecord(paymentPlan);
       }
 
       function reset() {}

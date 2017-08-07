@@ -492,17 +492,18 @@
             <div class="row">
               <div class="col-md-12">
 
-                <fieldset>
-                  <legend>
-                    <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.payment_record'|translate}}'}"
-                    />
-                  </legend>
 
-                  <button class="btn btn-wide btn-primary" ng-click="wizardCtrl.addPaymentPlan()">
+
+                <button class="btn btn-wide btn-primary" ng-click="wizardCtrl.addPaymentPlan()">
                     <i class="ti-plus"></i>
                     <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
                   </button>
-                  <div ng-repeat="payment_plan in wizardCtrl.property.payment_plans_attributes">
+                <div ng-repeat="payment_plan in wizardCtrl.property.payment_plans_attributes">
+                  <fieldset>
+                    <legend>
+                      <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.payment_plan'|translate}}'}"
+                      />
+                    </legend>
                     <div class="form-group" ng-class="{'has-error':Form.paymentRecored.value.$dirty && Form.paymentRecored.value.$invalid, 'has-success':Form.paymentRecored.value.$valid}">
                       <label class="control-label">
                             {{'activerecord.attributes.payment_recored.value'|translate}} <span class="symbol required"></span>
@@ -520,8 +521,40 @@
                         name="lastName" ng-model="payment_plan.name" required />
                       <span class="error text-small block" ng-if="Form.paymentRecored.description.$dirty && Form.paymentRecored.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_recored.first_name'|translate}}'}" /></span>
                     </div>
+
+                    <button class="btn btn-wide btn-primary" ng-click="wizardCtrl.addPaymentPlanRecord(payment_plan)">
+                      <i class="ti-plus"></i>
+                      <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
+                    </button>
+                    <div ng-repeat="plan_record in payment_plan.payment_plan_records_attributes">
+                      <fieldset>
+                        <legend>
+                          <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.payment_plan_record'|translate}}'}"
+                          />
+                        </legend>
+                        <div class="form-group" ng-class="{'has-error':Form.paymentRecored.value.$dirty && Form.paymentRecored.value.$invalid, 'has-success':Form.paymentRecored.value.$valid}">
+                          <label class="control-label">
+                            {{'activerecord.attributes.payment_recored.value'|translate}} <span class="symbol required"></span>
+                          </label>
+                          <input type="number" placeholder="{{'activerecord.attributes.payment_recored.last_name'|translate}}" class="form-control"
+                            name="firstName" ng-model="plan_record.amount" required />
+                          <span class="error text-small block" ng-if="Form.paymentRecored.value.$dirty && Form.paymentRecored.value.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_recored.last_name'|translate}}'}" /></span>
+                        </div>
+
+                        <div class="form-group" ng-class="{'has-error':Form.paymentRecored.description.$dirty && Form.paymentRecored.description.$invalid, 'has-success':Form.paymentRecored.description.$valid}">
+                          <label class="control-label">
+                            {{'activerecord.attributes.payment_recored.description'|translate}}
+                          </label>
+                          <input type="text" placeholder="{{'activerecord.attributes.payment_recored.first_name'|translate}}" class="form-control"
+                            name="lastName" ng-model="plan_record.description" required />
+                          <span class="error text-small block" ng-if="Form.paymentRecored.description.$dirty && Form.paymentRecored.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_recored.first_name'|translate}}'}" /></span>
+                        </div>
+                      </fieldset>
+                  </fieldset>
+
                   </div>
-                </fieldset>
+
+                </div>
               </div>
             </div>
           </div>

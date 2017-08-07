@@ -26,6 +26,7 @@
       resetInstances: resetInstances,
       intializeImageUploader: intializeImageUploader,
       addPaymentPlan: addPaymentPlan,
+      addPaymentPlanRecord: addPaymentPlanRecord,
       moveMap: moveMap,
       next: next,
       prev: prev,
@@ -263,8 +264,14 @@
         });
       };
     }
-    function addPaymentPlan(property){
+
+    function addPaymentPlan(property) {
       property.payment_plans_attributes.unshift({});
+    }
+
+    function addPaymentPlanRecord(paymentPlan) {
+      paymentPlan.payment_plan_records_attributes = paymentPlan.payment_plan_records_attributes || [];
+      paymentPlan.payment_plan_records_attributes.unshift({});
     }
   }
 })();
