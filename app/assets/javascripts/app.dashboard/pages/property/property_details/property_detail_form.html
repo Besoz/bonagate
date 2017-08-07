@@ -1,143 +1,128 @@
 <div>
-  <alert ng-repeat="alert in detailCtrl.detailCreationErrors" type="{{alert.type}}">
-    {{alert.msg}}
-  </alert>
+    <alert ng-repeat="alert in detailCtrl.detailCreationErrors" type="{{alert.type}}">
+        {{alert.msg}}
+    </alert>
 </div>
 <div class="row">
-    <div class="col-md-6">
-      <form name="Form" id="form1" novalidate ng-submit="detailCtrl.submitPropertyDetail(Form)">
-        <fieldset>
-          <!-- title of the form -->
-          <legend>
-            <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_detail'|translate}}'}"
-            />
-          </legend>
-
-          <div class="form-group" ng-class="{'has-error':Form.firstName.$dirty && Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
-            <label class="control-label">
-            {{'activerecord.attributes.property_detail.name'|translate}} <span class="symbol required"></span>
-            </label>
-            <input placeholder="{{'activerecord.attributes.property_detail.name'|translate}}" class="form-control" name="firstName"
-              ng-model="detailCtrl.propertyDetail.name" required />
-            <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.name'|translate}}'}" /></span>
-          </div>
-
-          <div class="form-group" ng-class="{'has-error':Form.code.$dirty && Form.code.$invalid, 'has-success':Form.code.$valid}">
-            <label class="control-label">
-            {{'activerecord.attributes.property_detail.code'|translate}} <span class="symbol required"></span>
-            </label>
-            <input placeholder="{{'activerecord.attributes.property_detail.code'|translate}}" class="form-control" name="code" ng-model="detailCtrl.propertyDetail.code"
-              required>
-            <span class="error text-small block" ng-if="Form.code.$dirty && Form.code.$error.required" translate="errors.messages.required"
-              translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.code'|translate}}'}"> .</span>
-            <!--           <span class="error text-small block" ng-if="Form.code.$error.email" translate="errors.messages.invalid" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.code'|translate}}'}">.</span> -->
-            <!-- <span class="success text-small" ng-if="Form.code.$valid">It's a valid e-mail!</span> -->
-          </div>
-
-          <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
-            <label class="control-label">
-            {{'activerecord.attributes.property_detail.property_detail_category'|translate}} <span class="symbol required"></span>
-            </label>
-            <ui-select ng-model="detailCtrl.propertyDetail.property_detail_category_id" theme="bootstrap" name="type" required>
-              <ui-select-match placeholder="{{'activerecord.attributes.property_detail.property_detail_category'|translate}}">
-                {{ $select.selected.name | translate}}
-              </ui-select-match>
-              <ui-select-choices repeat="item.id as item in detailCtrl.categories | filter: $select.search">
-                <div ng-bind-html="item.name | highlight: $select.search"></div>
-              </ui-select-choices>
-            </ui-select>
-          </div>
-
-          <div class="form-group">
-            <!-- ng-class="{'has-error':Form.mandatory.$dirty && Form.mandatory.$invalid, 'has-success':Form.mandatory.$valid}" -->
-            <div class="checkbox clip-check check-primary checkbox-inline">
-              <input type="checkbox" id="checkbox1" value="1" name="mandatory" ng-model="detailCtrl.propertyDetail.mandatory">
-              <label for="checkbox1">
-                  {{'activerecord.attributes.property_detail.mandatory'|translate}}
-                </label>
-            </div>
-            <!-- span class="error text-small block" ng-if="Form.mandatory.$dirty && Form.mandatory.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.mandatory'|translate}}'}" /></span -->
-          </div>
-
-          <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
-            <label class="control-label">
-            {{'activerecord.attributes.property_detail.value_type' |translate}} <span class="symbol required"></span>
-            </label>
-            <ui-select ng-model="detailCtrl.propertyDetail.value_type" theme="bootstrap" name="type" required>
-              <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
-                {{'dashboard.value_types.'+ $select.selected | translate}}
-              </ui-select-match>
-              <ui-select-choices repeat="item in detailCtrl.valueTypeOptions | filter: $select.search">
-                <div ng-bind-html="('dashboard.value_types.'+item | translate)| highlight: $select.search"></div>
-              </ui-select-choices>
-            </ui-select>
-          </div>
-
-          <div ng-if="detailCtrl.propertyDetail.value_type == 'select' || detailCtrl.propertyDetail.value_type == 'multi_select'">
-            <div class="panel panel-transparent">
-              <div class="panel-heading">
-                <div class="panel-title">
-                  {{'activerecord.attributes.property_detail.property_detail_value_options_attributes' |translate}}
+    <div class="col-md-8">
+        <form name="Form" id="form1" novalidate ng-submit="detailCtrl.submitPropertyDetail(Form)">
+            <fieldset>
+                <!-- title of the form -->
+                <legend>
+                    <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_detail'|translate}}'}" />
+                </legend>
+                <div class="form-group" ng-class="{'has-error':Form.firstName.$dirty && Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
+                    <label class="control-label">
+                        {{'activerecord.attributes.property_detail.name'|translate}} <span class="symbol required"></span>
+                    </label>
+                    <input placeholder="{{'activerecord.attributes.property_detail.name'|translate}}" class="form-control" name="firstName" ng-model="detailCtrl.propertyDetail.name" required />
+                    <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.name'|translate}}'}" /></span>
                 </div>
-              </div>
-              <div class="panel-body">
-                <div class="list-group" ng-init="detailCtrl.propertyDetail.property_detail_value_options_attributes = detailCtrl.propertyDetail.property_detail_value_options_attributes || []">
-                  <div ng-repeat="option in detailCtrl.propertyDetail.property_detail_value_options_attributes track by $index">
-                    <div class="input-group">
-                      <div onLoad="option=option" ng-include src="'assets/app.dashboard/pages/property/property_details/value_option/value_option.html'"></div>
+                <div class="form-group" ng-class="{'has-error':Form.code.$dirty && Form.code.$invalid, 'has-success':Form.code.$valid}">
+                    <label class="control-label">
+                        {{'activerecord.attributes.property_detail.code'|translate}} <span class="symbol required"></span>
+                    </label>
+                    <input placeholder="{{'activerecord.attributes.property_detail.code'|translate}}" class="form-control" name="code" ng-model="detailCtrl.propertyDetail.code" required>
+                    <span class="error text-small block" ng-if="Form.code.$dirty && Form.code.$error.required" translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.code'|translate}}'}"> .</span>
+                    <!--           <span class="error text-small block" ng-if="Form.code.$error.email" translate="errors.messages.invalid" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.code'|translate}}'}">.</span> -->
+                    <!-- <span class="success text-small" ng-if="Form.code.$valid">It's a valid e-mail!</span> -->
+                </div>
+                <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
+                    <label class="control-label">
+                        {{'activerecord.attributes.property_detail.property_detail_category'|translate}} <span class="symbol required"></span>
+                    </label>
+                    <ui-select ng-model="detailCtrl.propertyDetail.property_detail_category_id" theme="bootstrap" name="type" required>
+                        <ui-select-match placeholder="{{'activerecord.attributes.property_detail.property_detail_category'|translate}}">
+                            {{ $select.selected.name | translate}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item.id as item in detailCtrl.categories | filter: $select.search">
+                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="form-group">
+                    <!-- ng-class="{'has-error':Form.mandatory.$dirty && Form.mandatory.$invalid, 'has-success':Form.mandatory.$valid}" -->
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                        <input type="checkbox" id="checkbox1" value="1" name="mandatory" ng-model="detailCtrl.propertyDetail.mandatory">
+                        <label for="checkbox1">
+                            {{'activerecord.attributes.property_detail.mandatory'|translate}}
+                        </label>
                     </div>
-                  </div>
-                  <div class="input-group">
-                    <input type="text" class="form-control" ng-model='x'>
-                    <span class="input-group-btn ">
-                    <button type="button" class="btn btn-primary " ng-click="detailCtrl.propertyDetail.value_options.push(x) ">
-                      <i class="fa fa-plus "></i>
-                    </button> 
-                    </span>
-                  </div>
+                    <!-- span class="error text-small block" ng-if="Form.mandatory.$dirty && Form.mandatory.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail.mandatory'|translate}}'}" /></span -->
                 </div>
-                <div class="input-group">
-                  <span class="input-group-btn ">
-                    <button type="button" class="btn btn-primary " ng-click="detailCtrl.propertyDetail.property_detail_value_options_attributes.push({}) ">
-                      <i class="fa fa-plus "></i>
-                    </button> 
-                  </span>
+                <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
+                    <label class="control-label">
+                        {{'activerecord.attributes.property_detail.value_type' |translate}} <span class="symbol required"></span>
+                    </label>
+                    <ui-select ng-model="detailCtrl.propertyDetail.value_type" theme="bootstrap" name="type" required>
+                        <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                            {{'dashboard.value_types.'+ $select.selected | translate}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in detailCtrl.valueTypeOptions | filter: $select.search">
+                            <div ng-bind-html="('dashboard.value_types.'+item | translate)| highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
                 </div>
-              </div>
-            </div>
-          </div>
+                <div ng-if="detailCtrl.propertyDetail.value_type == 'select' || detailCtrl.propertyDetail.value_type == 'multi_select'">
 
-          <div class="form-group ">
-            <div class="pull-right ">
-              <button type="submit" class="btn btn-primary btn-squared">
-                  <div ng-if="!(detailCtrl.propertyDetail.id)" translate="helpers.submit.create"/>
-                  <!-- translate-values="{model: '{{ 'activerecord.models.property_detail' | translate}}'}"  -->
-                  <div ng-if="detailCtrl.propertyDetail.id" translate="helpers.submit.update"/>
-                   <!-- translate-values="{model: '{{ 'activerecord.models.property_detail' | translate}}'}"  -->
-                </button>
-              <button type="button" ng-click="detailCtrl.dismiss() " class="btn-squared btn btn-danger ">
-                  <div translate="dashboard.cancel " />
-                </button>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5 class="over-title margin-top-5">
+                              <span class="text-bold">
+                                {{'activerecord.attributes.property_detail.property_detail_value_options_attributes' |translate}}:
+                              </span>
+                            </h5>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-squared pull-right" ng-click="detailCtrl.propertyDetail.property_detail_value_options_attributes.push({}) ">
+                                <i class="fa fa-plus "></i>
+                            </button>
+                        </div>
+                    </div>
+                   
 
-        </fieldset>
-        <pre class="code margin-top-20 ">{{ detailCtrl.propertyDetail | json }}</pre>
-      </form>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="list-group" ng-init="detailCtrl.propertyDetail.property_detail_value_options_attributes = detailCtrl.propertyDetail.property_detail_value_options_attributes || []">
+                                <div ng-repeat="option in detailCtrl.propertyDetail.property_detail_value_options_attributes track by $index">
+                                    <div class="input-group">
+                                        <div onLoad="option=option" ng-include src="'assets/app.dashboard/pages/property/property_details/value_option/value_option.html'">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                      </div>
+                    </div>
+
+                </div>
+                <div class="form-group ">
+                    <div class="pull-right ">
+                        <button type="submit" class="btn btn-primary btn-squared">
+                            <div ng-if="!(detailCtrl.propertyDetail.id)" translate="helpers.submit.create" />
+                            <!-- translate-values="{model: '{{ 'activerecord.models.property_detail' | translate}}'}"  -->
+                            <div ng-if="detailCtrl.propertyDetail.id" translate="helpers.submit.update" />
+                            <!-- translate-values="{model: '{{ 'activerecord.models.property_detail' | translate}}'}"  -->
+                        </button>
+                        <button type="button" ng-click="detailCtrl.dismiss() " class="btn-squared btn btn-danger ">
+                            <div translate="dashboard.cancel " />
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+            <pre class="code margin-top-20 ">{{ detailCtrl.propertyDetail | json }}</pre>
+        </form>
     </div>
-    <div class="col-md-6">
-      <div>affected property types</div>
-      <div ng-repeat="type in detailCtrl.propertyDetail.affected_types track by $index">
-        <label>
-            <input type="checkbox" checklist-model="detailCtrl.propertyDetail.types_need_update" 
-          checklist-value="type"> {{type.name}}         
-           </label>
-        <pre class="code margin-top-20 ">{{ type | json }}</pre>
-      </div>
-
-      <div>affected_properties</div>
-      <div ng-repeat="property in detailCtrl.propertyDetail.affected_properties track by $index">
-        <pre class="code margin-top-20 ">{{ property | json }}</pre>
-      </div>
+    <div class="col-md-4">
+        <div>affected property types</div>
+        <div ng-repeat="type in detailCtrl.propertyDetail.affected_types track by $index">
+            <label>
+                <input type="checkbox" checklist-model="detailCtrl.propertyDetail.types_need_update" checklist-value="type"> {{type.name}}
+            </label>
+            <pre class="code margin-top-20 ">{{ type | json }}</pre>
+        </div>
+        <div>affected_properties</div>
+        <div ng-repeat="property in detailCtrl.propertyDetail.affected_properties track by $index">
+            <pre class="code margin-top-20 ">{{ property | json }}</pre>
+        </div>
     </div>
 </div>
