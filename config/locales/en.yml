@@ -287,6 +287,7 @@ en:
       not_approved: Your account is not approved
       no_authentication_details: You did not provide any details for authentication.
       general_credentials_error: Login/Password combination is not valid
+      old_password_invalid: Old password invalid
     models:
       user_session: UserSession
       user: User

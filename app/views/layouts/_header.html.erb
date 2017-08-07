@@ -1,8 +1,8 @@
 
-  <script src="assets/app.realestate/controllers/login.controller.js"></script>
+  <script src="/assets/app.realestate/controllers/login.controller.js"></script>
 
   <% if current_user.nil? %>
-    <script src="assets/app.realestate/controllers/register.controller.js"></script>
+    <script src="/assets/app.realestate/controllers/register.controller.js"></script>
   <% else %>
   <% end %>
 
@@ -19,7 +19,7 @@
         </button>
         <a ng-show="$state.is('property.map') || $state.is('discover.map-full') || $state.is('discover.map-listing-list') || $state.is('discover.map-listing-grid')" href="#sidebar-map" data-toggle="sidebar-menu" class="toggle pull-right visible-xs"><i class="fa fa-map-marker"></i></a>
         <a ng-show="$state.is('property.edit')" href="#sidebar-edit" data-toggle="sidebar-menu" class="toggle pull-right visible-xs"><i class="fa fa-pencil"></i></a>
-        <a class="navbar-brand" ui-sref="discover.map-full"><i class="md fa-fw md-home text-primary"></i> <%= t('dashboard.app.name') %></a>
+        <a class="navbar-brand" href="/properties"><i class="md fa-fw md-home text-primary"></i> <%= t('dashboard.app.name') %></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,7 +44,7 @@
               <div class="dropdown-menu dropdown-size-280" ng-controller="LoginController as LoginCtrl">
                 <form>
 
-                  <div class="alert alert-danger" type="danger" ng-if="LoginCtrl.loginErrors.length > 0">
+                  <div class="alert alert-danger" type="danger" ng-if="LoginCtrl.loginErrors.length > 0" ng-cloak>
                     <ul>
                       <li ng-repeat="error in LoginCtrl.loginErrors">
                         {{error}}
@@ -78,7 +78,7 @@
               </a>
               <div class="dropdown-menu dropdown-size-280" id="signup-toggle">
 
-                <div class="alert alert-danger" type="danger" ng-if="RegisterCtrl.regErrors.length > 0">
+                <div class="alert alert-danger" type="danger" ng-if="RegisterCtrl.regErrors.length > 0" ng-cloak>
                   <ul>
                     <li ng-repeat="error in RegisterCtrl.regErrors">
                       {{error}}
@@ -122,11 +122,14 @@
             <!-- user -->
             <li class="dropdown user" ng-controller="LoginController as LoginCtrl">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="<%= current_user.avatar %>" alt="" class="img-circle" /> <%= current_user.first_name %><span class="caret"></span>
+                <img src="<%= current_user.avatar %>" alt="" class="img-circle" /> 
+                <span ng-cloak>
+                {{currentUser.first_name}}
+                </span>
+                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>
+                <li><a href="/user_profile"><i class="fa fa-user"></i>Profile</a></li>
                 <li><a ng-click="LoginCtrl.logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
               </ul>
             </li>

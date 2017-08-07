@@ -1,0 +1,62 @@
+<div>
+  <div class="st-container">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10" style="background-color: white; padding: 10px">
+<!-- extra div for emulating position:fixed of the menu -->
+        <div class="padding-top-none" id="content">
+
+          <nav class="navbar navbar-default navbar-static-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="toggle pull-right margin-none visible-xs" data-toggle="collapse" href="#navbar"><i class="fa fa-sliders fa-rotate-90"></i></a>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left-m">
+
+                  <li class="<%= active_class 'favorites' %>">
+                    <a href="/user_profile/favorites"><i class="fa fa-star fa-fw"></i> Favorites </a>
+                  </li>
+                  <li class="<%= active_class 'searches' %>">
+                    <a href="/user_profile/searches"><i class="fa fa-search fa-fw"></i> Searches </a>
+                  </li>
+                  <li class="<%= active_class 'info' %>">
+                    <a href="/user_profile/info"><i class="fa fa-user fa-fw"></i> User Info </a>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <% if @tab == 'favorites' %>
+
+            <%= render partial: '/users/favorites',
+                       formats: :html,
+                       handlers: :erb %>
+
+          <% elsif @tab == 'searches' %>
+
+            <%= render partial: '/users/searches',
+                       formats: :html,
+                       handlers: :erb %>
+
+          <% elsif @tab == 'info' %>
+
+            <%= render partial: '/users/info',
+                       formats: :html,
+                       handlers: :erb %>
+
+          <% end %>
+
+        </div>
+        <!-- /st-content-inner -->
+
+
+
+
+
+    </div>
+    <div class="col-xs-1"></div>
+  </div>
+</div>
+        <div data-scrollable>

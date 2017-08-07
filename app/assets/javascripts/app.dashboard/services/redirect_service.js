@@ -22,10 +22,11 @@
       $http.delete('/sign_out.json')
         .then(function(res) {
           console.log(res);
+          $window.location.href = '/sign_in';
         }).catch(function(res) {
           console.log(res);
         });
-      $window.location.href = '/sign_in';
+      
     };
   }
 })();

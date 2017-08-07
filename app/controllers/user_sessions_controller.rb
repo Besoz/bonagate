@@ -1,6 +1,6 @@
 class UserSessionsController < ApplicationController
   before_action :set_user_session, only: [:show, :edit, :update, :destroy]
-  layout "cliptheme-layout"
+  layout "cliptheme-layout", :only => [:new]
 
   # GET /user_sessions
   # GET /user_sessions.json
