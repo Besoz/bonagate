@@ -200,19 +200,19 @@
                   <legend>
                     Account Credential
                   </legend>
-                  <ui-select ng-model="wizardCtrl.property.state" theme="bootstrap">
+                  <ui-select ng-model="wizardCtrl.property.property_state_id" theme="bootstrap">
                     <ui-select-match placeholder="Select in the list...">
-                      {{$select.selected.name}}
+                      {{$select.selected.id}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in wizardCtrl.states | filter: $select.search">
-                      <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    <ui-select-choices repeat="item in wizardCtrl.property.type.property_state_ids | filter: $select.search">
+                      <div ng-bind-html="wizardCtrl.propertyStates[item].name | highlight: $select.search"></div>
                     </ui-select-choices>
                   </ui-select>
                   <ui-select ng-model="wizardCtrl.property.status" theme="bootstrap">
                     <ui-select-match placeholder="Select in the list...">
                       {{$select.selected.name}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in wizardCtrl.statuses | filter: $select.search">
+                    <ui-select-choices repeat="item in wizardCtrl.statuses ">
                       <div ng-bind-html="item.name | highlight: $select.search"></div>
                     </ui-select-choices>
                   </ui-select>
