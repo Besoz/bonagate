@@ -1,0 +1,37 @@
+<div class="page-header">
+  <%= link_to new_property_payment_plan_record_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Property payment plan record
+  <% end %>
+  <h1>Listing property_payment_plan_records</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Description</th>
+            <th>Value</th>
+            <th>Period</th>
+            <th>Periodic</th>
+            <th>Property payment plan</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @property_payment_plan_records) do |property_payment_plan_record| %>
+            <td><%= property_payment_plan_record.description %></td>
+            <td><%= property_payment_plan_record.value %></td>
+            <td><%= property_payment_plan_record.period %></td>
+            <td><%= property_payment_plan_record.periodic %></td>
+            <td><%= property_payment_plan_record.property_payment_plan %></td>
+            <td><%= link_to 'Show', property_payment_plan_record %></td>
+        <td><%= link_to 'Edit', edit_property_payment_plan_record_path(property_payment_plan_record) %></td>
+        <td><%= link_to 'Destroy', property_payment_plan_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
