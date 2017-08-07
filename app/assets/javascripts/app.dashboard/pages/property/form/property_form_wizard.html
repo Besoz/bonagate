@@ -504,22 +504,22 @@
                       <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.payment_plan'|translate}}'}"
                       />
                     </legend>
-                    <div class="form-group" ng-class="{'has-error':Form.paymentRecored.value.$dirty && Form.paymentRecored.value.$invalid, 'has-success':Form.paymentRecored.value.$valid}">
+                    <div class="form-group" ng-class="{'has-error':Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid, 'has-success':Form.paymentrecord.value.$valid}">
                       <label class="control-label">
-                            {{'activerecord.attributes.payment_recored.value'|translate}} <span class="symbol required"></span>
+                            {{'activerecord.attributes.payment_record.value'|translate}} <span class="symbol required"></span>
                           </label>
-                      <input type="number" placeholder="{{'activerecord.attributes.payment_recored.last_name'|translate}}" class="form-control"
+                      <input type="number" placeholder="{{'activerecord.attributes.payment_record.last_name'|translate}}" class="form-control"
                         name="firstName" ng-model="payment_plan.total" required />
-                      <span class="error text-small block" ng-if="Form.paymentRecored.value.$dirty && Form.paymentRecored.value.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_recored.last_name'|translate}}'}" /></span>
+                      <span class="error text-small block" ng-if="Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.last_name'|translate}}'}" /></span>
                     </div>
 
-                    <div class="form-group" ng-class="{'has-error':Form.paymentRecored.description.$dirty && Form.paymentRecored.description.$invalid, 'has-success':Form.paymentRecored.description.$valid}">
+                    <div class="form-group" ng-class="{'has-error':Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid, 'has-success':Form.paymentrecord.description.$valid}">
                       <label class="control-label">
-                            {{'activerecord.attributes.payment_recored.description'|translate}}
+                            {{'activerecord.attributes.payment_record.description'|translate}}
                           </label>
-                      <input type="text" placeholder="{{'activerecord.attributes.payment_recored.first_name'|translate}}" class="form-control"
+                      <input type="text" placeholder="{{'activerecord.attributes.payment_record.first_name'|translate}}" class="form-control"
                         name="lastName" ng-model="payment_plan.name" required />
-                      <span class="error text-small block" ng-if="Form.paymentRecored.description.$dirty && Form.paymentRecored.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_recored.first_name'|translate}}'}" /></span>
+                      <span class="error text-small block" ng-if="Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.first_name'|translate}}'}" /></span>
                     </div>
 
                     <button class="btn btn-wide btn-primary" ng-click="wizardCtrl.addPaymentPlanRecord(payment_plan)">
@@ -532,22 +532,37 @@
                           <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.payment_plan_record'|translate}}'}"
                           />
                         </legend>
-                        <div class="form-group" ng-class="{'has-error':Form.paymentRecored.value.$dirty && Form.paymentRecored.value.$invalid, 'has-success':Form.paymentRecored.value.$valid}">
+                        <div class="form-group" ng-class="{'has-error':Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid, 'has-success':Form.paymentrecord.value.$valid}">
                           <label class="control-label">
-                            {{'activerecord.attributes.payment_recored.value'|translate}} <span class="symbol required"></span>
+                            {{'activerecord.attributes.payment_record.value'|translate}} <span class="symbol required"></span>
                           </label>
-                          <input type="number" placeholder="{{'activerecord.attributes.payment_recored.last_name'|translate}}" class="form-control"
+                          <input type="number" placeholder="{{'activerecord.attributes.payment_record.last_name'|translate}}" class="form-control"
                             name="firstName" ng-model="plan_record.amount" required />
-                          <span class="error text-small block" ng-if="Form.paymentRecored.value.$dirty && Form.paymentRecored.value.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_recored.last_name'|translate}}'}" /></span>
+                          <span class="error text-small block" ng-if="Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.last_name'|translate}}'}" /></span>
                         </div>
 
-                        <div class="form-group" ng-class="{'has-error':Form.paymentRecored.description.$dirty && Form.paymentRecored.description.$invalid, 'has-success':Form.paymentRecored.description.$valid}">
+                        <div class="form-group" ng-class="{'has-error':Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid, 'has-success':Form.paymentrecord.description.$valid}">
                           <label class="control-label">
-                            {{'activerecord.attributes.payment_recored.description'|translate}}
+                            {{'activerecord.attributes.payment_record.description'|translate}}
                           </label>
-                          <input type="text" placeholder="{{'activerecord.attributes.payment_recored.first_name'|translate}}" class="form-control"
+                          <input type="text" placeholder="{{'activerecord.attributes.payment_record.first_name'|translate}}" class="form-control"
                             name="lastName" ng-model="plan_record.description" required />
-                          <span class="error text-small block" ng-if="Form.paymentRecored.description.$dirty && Form.paymentRecored.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_recored.first_name'|translate}}'}" /></span>
+                          <span class="error text-small block" ng-if="Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.first_name'|translate}}'}" /></span>
+                        </div>
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                          <input type="checkbox" id="checkbox{{$parent.$index}}{{$index}}" ng-model="plan_record.periodic" 
+                          ng-change="plan_record.period = plan_record.periodic?  plan_record.period : null">
+                          <label for="checkbox{{$parent.$index}}{{$index}}">
+                            {{'activerecord.attributes.payment_plan_record.description'|translate}}
+                          </label>
+                        </div>
+                        <div ng-if="plan_record.periodic" class="form-group" ng-class="{'has-error':Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid, 'has-success':Form.paymentrecord.description.$valid}">
+                          <label class="control-label">
+                            {{'activerecord.attributes.payment_record.description'|translate}}
+                          </label>
+                          <input type="text" placeholder="{{'activerecord.attributes.payment_record.first_name'|translate}}" class="form-control"
+                            name="lastName" ng-model="plan_record.period" required />
+                          <span class="error text-small block" ng-if="Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.first_name'|translate}}'}" /></span>
                         </div>
                       </fieldset>
                   </fieldset>

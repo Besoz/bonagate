@@ -266,12 +266,13 @@
     }
 
     function addPaymentPlan(property) {
+      property.payment_plans_attributes = property.payment_plans_attributes || [];
       property.payment_plans_attributes.unshift({});
     }
 
     function addPaymentPlanRecord(paymentPlan) {
       paymentPlan.payment_plan_records_attributes = paymentPlan.payment_plan_records_attributes || [];
-      paymentPlan.payment_plan_records_attributes.unshift({});
+      paymentPlan.payment_plan_records_attributes.push({});
     }
   }
 })();
