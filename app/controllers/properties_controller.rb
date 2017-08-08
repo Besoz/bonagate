@@ -87,6 +87,10 @@ class PropertiesController < ApplicationController
   #GET /properties/templates.json
   def templates
     @properties = @properties.joins :property_as_template_datum
+    
+    respond_to do |format|
+      format.json {render 'properties/index'}
+    end
   end
 
   private

@@ -62,6 +62,7 @@ angular
       function applyTemplate(){
         if(vm.template){
            vm.property = angular.copy(vm.template);
+           PropertyWizardServices.decoratePropertyTemplateFormJson(vm.property);
         }
       }
 
