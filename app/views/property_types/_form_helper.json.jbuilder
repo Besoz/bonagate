@@ -13,3 +13,4 @@ json.categories do
     end
   end
 end
+json.all_property_states PropertyState.all
