@@ -6,11 +6,11 @@ angular
   .module('app.dashboard')
   .controller('FormWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest', 'propertyStatesRequest', 'propertyStatusesRequest',
     'propertyRequest', '$state', '$stateParams',
-    'PropertyWizardServices', 'propertyDetailsRequest', 'propertyDetailCategoriesRequest',
+    'PropertyWizardServices', 'propertyDetailsRequest', 'propertyDetailCategoriesRequest', 'propertyTemplatesRequest',
 
     function (toaster, $scope, propertyTypesRequest, serviceTypesRequest, propertyStatesRequest, propertyStatusesRequest,
       propertyRequest, $state, $stateParams, PropertyWizardServices,
-      propertyDetailsRequest, propertyDetailCategoriesRequest) {
+      propertyDetailsRequest, propertyDetailCategoriesRequest, propertyTemplatesRequest) {
 
       var vm = this;
 
@@ -41,14 +41,15 @@ angular
         };
 
         vm.resetInstances = resetInstances;
-
+        vm.applyTemplate = applyTemplate;
 
         vm.propertyTypes = propertyTypesRequest.data.list;
         vm.serviceTypes = serviceTypesRequest.data.list;
         vm.states = propertyStatesRequest.data.list;
         vm.statuses = propertyStatusesRequest.data.list;
-        vm.propertyDetails = propertyDetailsRequest.data.hash
-        vm.propertyDetailCategories = propertyDetailCategoriesRequest.data.hash
+        vm.propertyDetails = propertyDetailsRequest.data.hash;
+        vm.propertyDetailCategories = propertyDetailCategoriesRequest.data.hash;
+        vm.propertyTemplates = propertyTemplatesRequest.data.list;
 
         vm.property = propertyRequest.data || {
           deleted_images_ids: [],
@@ -56,6 +57,12 @@ angular
         };
 
         PropertyWizardServices.intializeImageUploader(vm, $state, $stateParams);
+      }
+
+      function applyTemplate(){
+        if(vm.template){
+           vm.property = angular.copy(vm.template);
+        }
       }
 
       function resetInstances() {
@@ -88,6 +95,9 @@ angular
       }
 
       function submit() {
+        console.log(vm.template)
+        console.log(vm.property)
+
         PropertyWizardServices.submit(vm, $stateParams, $state);
       }
 

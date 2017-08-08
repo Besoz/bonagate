@@ -61,6 +61,24 @@ start: PAGE TITLE -->
               <div class="col-md-12">
                 <div class="col-md-6">
                   <div class="padding-30">
+                    <h2 class="StepTitle"> Choose property template</h2>
+                    <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
+                      <label class="control-label">
+                        <!-- {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span> -->
+                      </label>
+                      <ui-select ng-model="wizardCtrl.template" theme="bootstrap" name="service_type" on-select="wizardCtrl.applyTemplate()">
+                        <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                          {{$select.selected.template.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in wizardCtrl.propertyTemplates | filter: $select.search">
+                          <div ng-bind-html="item.template.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="padding-30">
                     <h2 class="StepTitle"> Choose property type</h2>
                     <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
                       <label class="control-label">

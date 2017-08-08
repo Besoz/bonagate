@@ -2,14 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-
-
     alias_action :create, :read, :update, :destroy, :to => :crud
     alias_action :index, :create, :read, :update, :destroy, :to => :crud_all
-
-    if user
-      
-    end
 
     user ||= User.new # guest user (not logged in)
     if user.admin?
@@ -17,7 +11,6 @@ class Ability
 
     elsif user.company_user?
       if(user.company_user.company_admin?)
-
         can :crud_all, Company, :id => user.company_user.company_id # to be changed company_user.company_id
 
 
@@ -28,14 +21,13 @@ class Ability
         can :create, UserInvitation, :company_id => user.company_user.company_id
 
         can :create, Property
-
+        can :templates, Property, company_id: user.company_user.company_id
       else
         can :crud, User, id: user.id
 
         can :index, User,  :company_user => { :company_id => user.company_user.company.id }
 
         can :read, Company, :id => user.company_user.company_id # to be changed company_user.company_id
-
       end
 
       can :crud_all, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id

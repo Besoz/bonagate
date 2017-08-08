@@ -84,6 +84,11 @@ class PropertiesController < ApplicationController
     end
   end
 
+  #GET /properties/templates.json
+  def templates
+    @properties = @properties.joins :property_as_template_datum
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_property
