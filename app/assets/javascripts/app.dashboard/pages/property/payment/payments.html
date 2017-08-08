@@ -2,35 +2,117 @@
 <section id="page-title">
     <div class="row">
         <div class="col-sm-8">
-            <h1 class="mainTitle" translate="sidebar.nav.pages.BLANKPAGE">{{ mainTitle }}</h1>
-            <span class="mainDescription">Use this page to start from scratch and put your custom content</span>
+            <!-- translate="sidebar.nav.pages.BLANKPAGE" -->
+            <h1 class="mainTitle">
+                Payment List
+            </h1>
         </div>
     </div>
 </section>
 <!-- end: PAGE TITLE -->
 <!-- start: YOUR CONTENT HERE -->
-
 <div class="container-fluid container-fullw">
+    <div class="row margin-bottom-20">
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="" placeholder="Search In Payment">
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-wide btn-primary pull-right btn-squared" ng-click="paymentsCtrl.create()">
+                <i class="ti-plus"></i>
+                <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_service_type'|translate}}'}" />
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <accordion close-others="oneAtATime" class="accordion">
+                    
+                <accordion-group is-open="status.open" ng-repeat="payment in paymentsCtrl.paymentsList track by $index">
+                    <accordion-heading>
+                        <b>ID: {{payment.id}}</b>,  First Name: {{payment.person_attributes.first_name}}, Last Name {{payment.person_attributes.last_name}}, SSN: {{payment.person_attributes.ssn}}
+                        <i class="pull-right fa" ng-class="{'fa-angle-down ': status.open, 'fa-angle-right': !status.open}"></i>
+                    </accordion-heading>
+                    
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div ng-show="editId==payment.id" ng-if="editId==payment.id">
+                                <div colspan="7" onload="payment=payment" ng-include src="'assets/app.dashboard/pages/property/payment/payment_record_form.html'">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button id="addrecord{{payment.id}}" ng-click="editId = payment.id" class="btn btn-primary btn-squared pull-right margin-bottom-10 margin-top-20">
+                                Add Record
+                            </button>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        
+                    </div>
+                    <div ng-repeat="record in  paymentsCtrl.paymentsList[$index].payment_records" class="media">
+                        <div class="media-left" href="#">
+                            <embed ng-src="{{record.attachment}}">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading inline-block">
+                                {{'activerecord.attributes.payment_record.value'|translate}}: 
+                            </h4>
+                            <label class="control-label">
+                                {{record.value}}
+                            </label>
+                            </br>
+                            <h4 class="media-heading inline-block">
+                                {{'activerecord.attributes.payment_record.description'|translate}}:
+                                
+                            </h4>
+                            <label class="control-label">
+                                {{record.description}}
+                            </label>
+                        </div>
+                    </div>
+
+                </accordion-group>
+
+            </accordion>
+        </div>
+    </div>
+</div>
+<!-- end: YOUR CONTENT HERE -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- start: YOUR CONTENT HERE -->
+<!-- <div class="container-fluid container-fullw">
     <div class="row">
         <button class="btn btn-wide btn-primary" ng-click="paymentsCtrl.create()">
             <i class="ti-plus"></i>
             <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_service_type'|translate}}'}" />
         </button>
         <div class="col-md-12">
-            <h5 class="over-title margin-bottom-15">Inline <span class="text-bold">edit example</span></h5>
-            <!-- /// controller:  'ngTableCtrl6' -  localtion: assets/js/controllers/ngTableCtrl.js /// -->
             <div>
                 <div class="row margin-bottom-10">
                     <div class="col-md-12">
                         <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">
-							Clear sorting
-						</button>
+                            Clear sorting
+                        </button>
                     </div>
                 </div>
                 <strong>Sorting:</strong> {{tableParams.sorting()|json}}
                 <div class="table-responsive">
                     <table ng-table="tableParams" class="table table-bordered">
-                        <tbody ng-repeat="payment in paymentsCtrl.paymentsList track by $index" >
+                        <tbody ng-repeat="payment in paymentsCtrl.paymentsList track by $index">
                             <tr id="tr{{payment.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
                                 <td class="rowTd" data-title="'ID'" sortable="'id'">{{payment.id}}</td>
                                 <td class="rowTd" data-title="'Firstname'" sortable="'fn'">{{payment.person_attributes.first_name}}</td>
@@ -48,27 +130,20 @@
                             <tr ng-repeat="record in  paymentsCtrl.paymentsList[$index].payment_records">
                                 <td class="form-group" ng-class="{'has-error':Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid, 'has-success':Form.paymentrecord.value.$valid}">
                                     <label class="control-label">
-                                    {{'activerecord.attributes.payment_record.value'|translate}} <span class="symbol required"></span>
+                                        {{'activerecord.attributes.payment_record.value'|translate}} <span class="symbol required"></span>
                                     </label>
-                                    <input type="number" placeholder="{{'activerecord.attributes.payment_record.last_name'|translate}}" class="form-control"
-                                        name="firstName" ng-model="record.value" required />
+                                    <input type="number" placeholder="{{'activerecord.attributes.payment_record.last_name'|translate}}" class="form-control" name="firstName" ng-model="record.value" required />
                                     <span class="error text-small block" ng-if="Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.last_name'|translate}}'}" /></span>
                                 </td>
-
                                 <td class="form-group" ng-class="{'has-error':Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid, 'has-success':Form.paymentrecord.description.$valid}">
                                     <label class="control-label">
-                                    {{'activerecord.attributes.payment_record.description'|translate}}
+                                        {{'activerecord.attributes.payment_record.description'|translate}}
                                     </label>
-                                    <input type="text" placeholder="{{'activerecord.attributes.payment_record.first_name'|translate}}" class="form-control" name="lastName"
-                                        ng-model="record.description" required />
+                                    <input type="text" placeholder="{{'activerecord.attributes.payment_record.first_name'|translate}}" class="form-control" name="lastName" ng-model="record.description" required />
                                     <span class="error text-small block" ng-if="Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.first_name'|translate}}'}" /></span>
                                 </td>
                                 <td>
                                     <embed ng-src="{{record.attachment}}">
-                                    <!--<img ngf-select ngf-src="record.attachment"
-                                        ngf-resize="{width: 20, height: 20, quality: 0.9}">-->
-                                        <!--<input class="button" ngf-select ng-model="record.attachment" type="file" ngf-min-height="100" ngf-resize="{width: 100, height: 100}"
-                                        />-->
                                 </td>
                             </tr>
                         </tbody>
@@ -77,5 +152,9 @@
             </div>
         </div>
     </div>
-</div>
-<!-- end: YOUR CONTENT HERE -->
+</div> -->
+ <!--<img ngf-select ngf-src="record.attachment"
+    ngf-resize="{width: 20, height: 20, quality: 0.9}">-->
+<!--<input class="button" ngf-select ng-model="record.attachment" type="file" ngf-min-height="100" ngf-resize="{width: 100, height: 100}"
+    />-->
+<!-- end: YOUR CONTENT HERE
