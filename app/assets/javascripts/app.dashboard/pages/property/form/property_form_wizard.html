@@ -202,7 +202,7 @@
                   </legend>
                   <ui-select ng-model="wizardCtrl.property.property_state_id" theme="bootstrap">
                     <ui-select-match placeholder="Select in the list...">
-                      {{$select.selected.id}}
+                      {{wizardCtrl.propertyStates[$select.selected].name}}
                     </ui-select-match>
                     <ui-select-choices repeat="item in wizardCtrl.property.type.property_state_ids | filter: $select.search">
                       <div ng-bind-html="wizardCtrl.propertyStates[item].name | highlight: $select.search"></div>
@@ -212,7 +212,7 @@
                     <ui-select-match placeholder="Select in the list...">
                       {{$select.selected.name}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in wizardCtrl.statuses ">
+                    <ui-select-choices repeat="item in wizardCtrl.statuses | filter: $select.search">
                       <div ng-bind-html="item.name | highlight: $select.search"></div>
                     </ui-select-choices>
                   </ui-select>

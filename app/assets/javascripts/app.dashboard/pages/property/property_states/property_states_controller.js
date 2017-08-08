@@ -69,8 +69,7 @@
           },
           formHelpers: function() {
             return { 
-              stateOptions: statesRequest.data.state_options,
-              //propertyState:
+              stateOptions: statesRequest.data.state_options
             }
           }
         }
