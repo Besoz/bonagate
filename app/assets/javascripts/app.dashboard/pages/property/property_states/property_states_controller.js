@@ -68,7 +68,9 @@
             return propertyState;
           },
           formHelpers: function() {
-            return { stateOptions: statesRequest.data.state_options }
+            return { 
+              stateOptions: statesRequest.data.state_options
+            }
           }
         }
       });

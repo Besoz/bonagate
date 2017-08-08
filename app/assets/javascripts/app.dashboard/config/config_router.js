@@ -158,6 +158,9 @@ angular
           propertyTemplatesRequest: function($http){
             return $http.get('properties/templates.json');
           },
+          propertyStatesHashRequest: function ($http) {
+            return $http.get('property_states/index_by_id.json');
+          },
           deps: mLoadSequence('angular-filter','angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
             'propertFormController', 'propertiesServices', 'propertyDetailsServices')
         }
@@ -195,6 +198,9 @@ angular
           },
           propertyTemplatesRequest: function($http){
             return $http.get('properties/templates.json');
+          },
+          propertyStatesHashRequest: function ($http) {
+            return $http.get('property_states/index_by_id.json');
           },
           deps: mLoadSequence('angular-filter', 'angularFileUpload', 'ngMap', 'ui.select', 'propertyWizardServices',
             'propertFormController', 'propertiesServices', 'propertyDetailsServices')
@@ -281,7 +287,7 @@ angular
           formHelpersRequest: function ($http) {
             return $http.get('/property_types/new.json');
           },
-          deps: mLoadSequence('ui.select', "propertyTypeController",
+          deps: mLoadSequence('checklist-model', 'ui.select', "propertyTypeController",
             "propertyTypesServices")
         }
       }).state('app.property.statuses', {

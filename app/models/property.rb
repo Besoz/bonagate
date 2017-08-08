@@ -25,6 +25,9 @@ class Property < ActiveRecord::Base
   has_one :property_as_template_datum, :dependent => :destroy 
   accepts_nested_attributes_for :property_as_template_datum
 
+  has_many :user_favorite_properties
+  has_many :users , through: :user_favorite_properties
+
   # validates :service_type_instances, :length => { :minimum => 1 }
 
   validates :company_id, :property_status_id, :property_type_id,

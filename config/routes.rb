@@ -14,7 +14,13 @@ Rails.application.routes.draw do
     end
   end
   resources :property_service_types
-  resources :property_states
+  
+  resources :property_states do
+    collection do
+      get 'index_by_id'
+    end
+  end
+
   resources :property_statuses
   resources :property_detail_instances
   resources :property_details do
@@ -55,6 +61,8 @@ Rails.application.routes.draw do
   get '/user_profile/:tab', to: 'users#user_profile', as: :user_profile
   get "/user_profile" , to: redirect('/user_profile/favorites')
 
+
+  resources :user_favorite_properties,  only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

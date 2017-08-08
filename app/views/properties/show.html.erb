@@ -1,9 +1,84 @@
-<p id="notice"><%= notice %></p>
+<script src="/assets/app.realestate/controllers/showProperty.controller.js"></script>
 
-<p>
-  <strong>Address:</strong>
-  <%= @property.address %>
-</p>
+<div ng-controller="ShowPropertyController as ShowPropertyCtrl" ng-init="ShowPropertyCtrl.property = <%= render partial: 'properties/property.json.jbuilder', locals: {property: @property}%>">
+   <!-- {{ShwPropCtrl.property}} -->
 
-<%= link_to 'Edit', edit_property_path(@property) %> |
-<%= link_to 'Back', properties_path %>
+   <% if !current_user.nil? %>
+
+   <!--  <button type="submit"  ng-click="ShowPropertyCtrl.ToggleFavorite(ShowPropertyCtrl.property.id)">{{(ShowPropertyCtrl.property.is_favourite)? ShowPropertyCtrl.btnTxts[1]:ShowPropertyCtrl.btnTxts[0]}}</button> -->
+   <% end %>
+
+   <!-- <div>{{ShowPropertyCtrl.property}}</div> -->
+
+   <div id="content">
+      <!-- {{ShowPropertyCtrl.test}} -->
+      <div id="carousel-example-generic"  class="carousel slide cover overlay overflow-hidden margin-bottom-none max-height-500" data-ride="carousel" 
+      style="margin-right: 15% ; margin-left: 15%">
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li ng-repeat="img in ShowPropertyCtrl.property.images" ng-if="$index > 0" data-target="#carousel-example-generic" data-slide-to="{{$index}}"></li>
+      </ol>
+      <div class="  carousel-inner" role="listbox">
+         <div ng-if="ShowPropertyCtrl.property.avatar" class="item active">
+            <img ng-src="{{ShowPropertyCtrl.property.avatar}}" class="width-100pc" >
+         </div>
+         <!-- first image must have class active -->
+         <div ng-if="!ShowPropertyCtrl.property.avatar"  class="item active">
+            <img src="/images/photodune-186709-residential-street-m.jpg"  class="width-100pc" > 
+         </div>
+         <div ng-repeat="img in ShowPropertyCtrl.property.images" ng-if="$index > 0" class="item">
+            <img ng-src="{{img.avatar}}" class="width-100pc" >
+         </div>
+         <!-- first image must have class active -->
+      </div>
+      <div class=" overlay overlay-bg-black overlay-full-xs" style="padding: 0px">
+         <div class="v-bottom v-top-xs">
+            <div class="container">
+               <div class="page-section">
+
+
+
+                  <h1 class="text-h1 text-overlay">{{ShowPropertyCtrl.property.address}}</h1>
+               </div>
+            </div>
+         </div>
+      </div>
+      <a class="left carousel-control" data-target="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" data-target="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+   </div>
+   <% if !current_user.nil? %>
+
+   <center>  <span class="{{(ShowPropertyCtrl.property.is_favourite)? ShowPropertyCtrl.btnTxts[1]:ShowPropertyCtrl.btnTxts[0]}}" ng-click="ShowPropertyCtrl.ToggleFavorite(ShowPropertyCtrl.property.id)"></span></center> 
+   <% end %>
+   <div class="property-meta">
+      <ul>
+         <li class="property-meta-item">
+            <h4>Type: {{ShowPropertyCtrl.property.type.name}}</h4>
+         </li>
+         <li class="property-meta-item">
+            <h4>Status: {{ShowPropertyCtrl.property.status.name}}</h4>
+         </li>
+         <li class="property-meta-item">
+            <h4>State: {{ShowPropertyCtrl.property.state.name}}</h4>
+         </li>
+      </ul>
+   </div>
+   <div class="container" style="margin: 5%">
+      <h3>Features</h3>
+      <div class="row" ng-repeat="d in ShowPropertyCtrl.property.property_detail_instances_attributes">
+         <div class="col-sm-4">
+            <h4><strong>{{d.property_detail.name}}</strong></h4>
+         </div>
+         <div class="col-sm-8">
+            <h4>{{d.value}}</h4>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
