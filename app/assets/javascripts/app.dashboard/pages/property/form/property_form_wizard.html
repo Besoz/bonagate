@@ -499,7 +499,7 @@
                     <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
                   </button>
                 <div ng-repeat="payment_plan in wizardCtrl.property.property_payment_plans_attributes">
-                  <button ng-if="!(payment_plan.id)" class="btn btn-wide btn-danger" ng-click="wizardCtrl.removePaymentPlan($index)">
+                  <button ng-if="!payment_plan.id" class="btn btn-wide btn-danger" ng-click="wizardCtrl.removePaymentPlan($index)">
                       <i class="ti-minus"></i>
                     <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
                   </button>
@@ -531,7 +531,7 @@
                       <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
                     </button>
                     <div ng-repeat="plan_record in payment_plan.property_payment_plan_records_attributes">
-                      <button ng-if="!(plan_record.id)" class="btn btn-wide btn-danger" ng-click="wizardCtrl.removePaymentPlanRecord(payment_plan, $index)">
+                      <button ng-if="!plan_record.id" class="btn btn-wide btn-danger" ng-click="wizardCtrl.removePaymentPlanRecord(payment_plan, $index)">
                     <i class="ti-minus"></i>
                     <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
                   </button>
