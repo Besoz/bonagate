@@ -212,7 +212,7 @@
     function decoratePropertyRequest(property) {
       property.property_type_id = property.type.id;
       property.property_status_id = property.status.id;
-      property.property_state_id = property.state.id;
+      // property.property_state_id = property.state.id;
     }
 
     function showErrorMessage(form) {
