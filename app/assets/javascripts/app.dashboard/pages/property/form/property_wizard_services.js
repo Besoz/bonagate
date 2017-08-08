@@ -26,7 +26,9 @@
       resetInstances: resetInstances,
       intializeImageUploader: intializeImageUploader,
       addPaymentPlan: addPaymentPlan,
+      removePaymentPlan: removePaymentPlan,
       addPaymentPlanRecord: addPaymentPlanRecord,
+      removePaymentPlanRecord: removePaymentPlanRecord,
       moveMap: moveMap,
       next: next,
       prev: prev,
@@ -266,13 +268,20 @@
     }
 
     function addPaymentPlan(property) {
-      property.payment_plans_attributes = property.payment_plans_attributes || [];
-      property.payment_plans_attributes.unshift({});
+      property.property_payment_plans_attributes = property.property_payment_plans_attributes || [];
+      property.property_payment_plans_attributes.unshift({});
+    }
+    function removePaymentPlan(property, paymentIndex) {
+      property.property_payment_plans_attributes.splice(paymentIndex, 1);
     }
 
     function addPaymentPlanRecord(paymentPlan) {
-      paymentPlan.payment_plan_records_attributes = paymentPlan.payment_plan_records_attributes || [];
-      paymentPlan.payment_plan_records_attributes.push({});
+      paymentPlan.property_payment_plan_records_attributes = paymentPlan.property_payment_plan_records_attributes || [];
+      paymentPlan.property_payment_plan_records_attributes.push({});
+    }
+
+    function removePaymentPlanRecord(paymentPlan, paymentRecordIndex) {
+      paymentPlan.property_payment_plan_records_attributes.splice(paymentRecordIndex, 1);
     }
   }
 })();

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807155310) do
+ActiveRecord::Schema.define(version: 20170808193448) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -181,12 +181,12 @@ ActiveRecord::Schema.define(version: 20170807155310) do
 
   create_table "property_payment_plan_records", force: :cascade do |t|
     t.text     "description",              limit: 65535
-    t.string   "value",                    limit: 255
+    t.decimal  "value",                                  precision: 10
     t.string   "period",                   limit: 255
     t.boolean  "periodic",                 limit: 1
     t.integer  "property_payment_plan_id", limit: 4
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
   end
 
   add_index "property_payment_plan_records", ["property_payment_plan_id"], name: "index_property_payment_plan_records_on_property_payment_plan_id", using: :btree
@@ -194,10 +194,10 @@ ActiveRecord::Schema.define(version: 20170807155310) do
   create_table "property_payment_plans", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
-    t.string   "total_value", limit: 255
+    t.decimal  "total_value",               precision: 10
     t.integer  "property_id", limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   add_index "property_payment_plans", ["property_id"], name: "index_property_payment_plans_on_property_id", using: :btree
@@ -251,6 +251,16 @@ ActiveRecord::Schema.define(version: 20170807155310) do
   add_index "property_type_details", ["property_detail_id"], name: "index_property_type_details_on_property_detail_id", using: :btree
   add_index "property_type_details", ["property_type_id"], name: "index_property_type_details_on_property_type_id", using: :btree
 
+  create_table "property_type_states", force: :cascade do |t|
+    t.integer  "property_type_id",  limit: 4
+    t.integer  "property_state_id", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "property_type_states", ["property_state_id"], name: "index_property_type_states_on_property_state_id", using: :btree
+  add_index "property_type_states", ["property_type_id"], name: "index_property_type_states_on_property_type_id", using: :btree
+
   create_table "property_types", force: :cascade do |t|
     t.string   "code",       limit: 255
     t.datetime "created_at",             null: false
@@ -270,6 +280,17 @@ ActiveRecord::Schema.define(version: 20170807155310) do
 
   add_index "shared_properties", ["company_id"], name: "index_shared_properties_on_company_id", using: :btree
   add_index "shared_properties", ["property_id"], name: "index_shared_properties_on_property_id", using: :btree
+
+  create_table "user_favorite_properties", force: :cascade do |t|
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "user_id",     limit: 4
+    t.integer  "property_id", limit: 4
+  end
+
+  add_index "user_favorite_properties", ["property_id"], name: "index_user_favorite_properties_on_property_id", using: :btree
+  add_index "user_favorite_properties", ["user_id", "property_id"], name: "index_user_favorite_properties_on_user_id_and_property_id", unique: true, using: :btree
+  add_index "user_favorite_properties", ["user_id"], name: "index_user_favorite_properties_on_user_id", using: :btree
 
   create_table "user_invitations", force: :cascade do |t|
     t.string   "random_key",     limit: 255
@@ -347,6 +368,8 @@ ActiveRecord::Schema.define(version: 20170807155310) do
   add_foreign_key "property_payment_plans", "properties"
   add_foreign_key "property_type_details", "property_details"
   add_foreign_key "property_type_details", "property_types"
+  add_foreign_key "property_type_states", "property_states"
+  add_foreign_key "property_type_states", "property_types"
   add_foreign_key "shared_properties", "companies"
   add_foreign_key "shared_properties", "properties"
   add_foreign_key "user_invitations", "companies"

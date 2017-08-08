@@ -102,6 +102,9 @@ class PropertiesController < ApplicationController
                                      property_detail_instances_attributes: ['_destroy', :id, :property_detail_id, :value, 
                                      property_detail_value_option_ids: [],
                                      property_detail_instance_value_options_attributes: 
-                                     [:property_detail_value_option_id]])
+                                     [:property_detail_value_option_id]],
+                                     property_payment_plans_attributes: [:id, :total_value, :name,
+                                      property_payment_plan_records_attributes: 
+                                      [:id, :value, :description, :periodic, :period]])
   end
 end
