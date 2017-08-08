@@ -231,8 +231,10 @@
     }
 
     function resetInstances(property) {
-      if (!property.id)
+      if (!property.id){
         property.property_detail_instances_attributes = [];
+        property.shared_companies_ids = [];
+      }
     }
 
     function intializeImageUploader(vm, state, stateParams) {

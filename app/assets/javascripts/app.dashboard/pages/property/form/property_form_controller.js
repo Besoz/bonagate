@@ -6,11 +6,11 @@ angular
   .module('app.dashboard')
   .controller('FormWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest', 'propertyStatesRequest', 'propertyStatusesRequest',
     'propertyRequest', '$state', '$stateParams',
-    'PropertyWizardServices', 'propertyDetailsRequest', 'propertyDetailCategoriesRequest',
+    'PropertyWizardServices', 'propertyDetailsRequest', 'propertyDetailCategoriesRequest', 'companiesToBeSharedRequest',
 
     function (toaster, $scope, propertyTypesRequest, serviceTypesRequest, propertyStatesRequest, propertyStatusesRequest,
       propertyRequest, $state, $stateParams, PropertyWizardServices,
-      propertyDetailsRequest, propertyDetailCategoriesRequest) {
+      propertyDetailsRequest, propertyDetailCategoriesRequest, companiesToBeSharedRequest) {
 
       var vm = this;
 
@@ -49,7 +49,7 @@ angular
         vm.statuses = propertyStatusesRequest.data.list;
         vm.propertyDetails = propertyDetailsRequest.data.hash
         vm.propertyDetailCategories = propertyDetailCategoriesRequest.data.hash
-
+        vm.companiesToBeShared = companiesToBeSharedRequest.data.list;
         vm.property = propertyRequest.data || {
           deleted_images_ids: [],
           property_detail_instances_attributes: [] /////

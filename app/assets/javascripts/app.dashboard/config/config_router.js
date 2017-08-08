@@ -190,6 +190,9 @@ angular
           propertyDetailCategoriesRequest: function ($http) {
             return $http.get('property_detail_categories/index_by_id.json');
           },
+          companiesToBeSharedRequest: function ($http){
+            return $http.get('/companies.json');
+          },
           deps: mLoadSequence('angular-filter', 'angularFileUpload', 'ngMap', 'ui.select', 'propertyWizardServices',
             'propertFormController', 'propertiesServices', 'propertyDetailsServices')
         }

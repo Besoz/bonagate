@@ -1,4 +1,4 @@
-<!-- start: PAGE TITLE -->
+start: PAGE TITLE -->
 <!-- end: PAGE TITLE -->
 <!-- start: WIZARD DEMO -->
 <div class="container-fluid container-fullw bg-white">
@@ -485,6 +485,17 @@
           <div id="step-5" ng-if="wizardCtrl.currentStep == 5">
             <div class="row">
               <div class="col-md-12">
+                <!-- start: SHARE_WITH_COMPANIES -->
+                  <ui-select multiple ng-model="wizardCtrl.property.shared_companies_ids"
+                          theme="bootstrap" ng-disabled="disabled" close-on-select="false">
+                    <ui-select-match placeholder="Select colors...">
+                            {{$item.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="option.id as option in wizardCtrl.companiesToBeShared | filter:$select.search">
+                            {{option.name}}
+                    </ui-select-choices>
+                  </ui-select>
+                <!-- end: SHARE_WITH_COMPANIES -->
                 <button class="btn btn-primary btn-o next-step btn-wide" ng-click="wizardCtrl.form.submit(Form)">Submit</button>
                 <div>
                   Queue progress:
@@ -520,4 +531,4 @@
     </div>
   </div>
 </div>
-<!-- start: WIZARD DEMO -->
+<!-- start: WIZARD DEMO

@@ -40,7 +40,7 @@ class PropertiesController < ApplicationController
   def create 
     @property = Property.new(property_params)
     @property.company_id = current_user.company_user.company_id
-
+    @property.companies.push *Company.find(params[:property][:shared_companies_ids])
     respond_to do |format|
       if @property.save!
         format.html { redirect_to @property, notice: 'Property was successfully created.' }
@@ -97,6 +97,7 @@ class PropertiesController < ApplicationController
     params.require(:property).permit(:address, :company_id, :property_type_id, :property_status_id,
                                      :property_state_id, :lat, :lng, :country, :city, :area, :street, 
                                      :number, :floor,
+                                     #{shared_companies_ids: []},
                                      {property_images_attributes: :avatar},
                                      {property_detail_instance_value_options_attributes: :property_detail_value_option_id},
                                      property_detail_instances_attributes: ['_destroy', :id, :property_detail_id, :value, 
