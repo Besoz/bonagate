@@ -3,7 +3,5 @@ class CreateUserFavoriteProperties < ActiveRecord::Migration
     create_table :user_favorite_properties do |t|
       t.timestamps null: false
     end
-
-  end
   end
 end
