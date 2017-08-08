@@ -27,9 +27,10 @@ class PropertyTypesController < ApplicationController
   # POST /property_types
   # POST /property_types.json
   def create
-    @property_type = PropertyType.new(property_type_params.except(:property_details_attributes))
-    @property_type.set_property_details property_type_params[:property_details_attributes]
+  #   @property_type = PropertyType.new(property_type_params.except(:property_details_attributes))
+  #   @property_type.set_property_details property_type_params[:property_details_attributes]
 
+   @property_type = PropertyType.new(property_type_params)
     respond_to do |format|
       if @property_type.save
         format.html { redirect_to @property_type, notice: 'Property type was successfully created.' }
@@ -44,12 +45,12 @@ class PropertyTypesController < ApplicationController
   # PATCH/PUT /property_types/1
   # PATCH/PUT /property_types/1.json
   def update
-    @property_type.assign_attributes(property_type_params.except(:property_details_attributes))
-    puts property_type_params[:property_details_attributes].to_json
-    @property_type.set_property_details property_type_params[:property_details_attributes]
-
+    # @property_type.assign_attributes(property_type_params.except(:property_details_attributes))
+    # puts property_type_params[:property_details_attributes].to_json
+    # @property_type.set_property_details property_type_params[:property_details_attributes]
+    
     respond_to do |format|
-      if  @property_type.save
+      if  @property_type.update(property_type_params)
         format.html { redirect_to @property_type, notice: 'Property type was successfully updated.' }
         format.json { render :show, status: :ok, location: @property_type }
       else
@@ -77,6 +78,6 @@ class PropertyTypesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_type_params
-    params.require(:property_type).permit(:code, :name, :state, :property_details_attributes =>[:id])
+    params.require(:property_type).permit(:code, :name, :state, :property_detail_ids =>[], :property_state_ids =>[])
   end
 end

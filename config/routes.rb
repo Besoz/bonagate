@@ -14,7 +14,13 @@ Rails.application.routes.draw do
     end
   end
   resources :property_service_types
-  resources :property_states
+  
+  resources :property_states do
+    collection do
+      get 'index_by_id'
+    end
+  end
+
   resources :property_statuses
   resources :property_detail_instances
   resources :property_details do
