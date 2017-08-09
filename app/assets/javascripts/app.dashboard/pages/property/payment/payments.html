@@ -33,7 +33,28 @@
                         <i class="pull-right fa" ng-class="{'fa-angle-down ': status.open, 'fa-angle-right': !status.open}"></i>
                     </accordion-heading>
                     
+
+
                     <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-white" id="panel1">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title text-primary inline-block margin-top-20">Add New Record</h4>
+                                    <ct-paneltool class="panel-tools" tool-collapse="tool-collapse" id="addrecord{{payment.id}}" ng-click="editId = payment.id"></ct-paneltool>
+                                </div>
+                                <div collapse="panel1" ng-init="panel1=false" class="panel-wrapper">
+                                    <div class="panel-body" ng-show="editId==payment.id" ng-if="editId==payment.id">
+                                        <div colspan="7" onload="payment=payment" ng-include src="'assets/app.dashboard/pages/property/payment/payment_record_form.html'">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- <div class="row">
                         <div class="col-md-10">
                             <div ng-show="editId==payment.id" ng-if="editId==payment.id">
                                 <div colspan="7" onload="payment=payment" ng-include src="'assets/app.dashboard/pages/property/payment/payment_record_form.html'">
@@ -45,7 +66,7 @@
                                 Add Record
                             </button>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="clearfix">
                         
                     </div>
