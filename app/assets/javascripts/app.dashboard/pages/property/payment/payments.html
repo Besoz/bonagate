@@ -71,6 +71,7 @@
                         <div ng-repeat="record in  paymentsCtrl.paymentsList[$index].payment_records" class="media">
                             <div class="media-left" href="#">
                                 <embed ng-src="{{record.attachment}}">
+                                <img  ngf-select ngf-src="record.attachment"/>
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading inline-block">
