@@ -24,9 +24,9 @@ set :scm, :git
 set :ssh_options, {forward_agent: true}
 set :default_shell, "bash -l"
 set :default_environment, {
-    'PATH' => "/home/ec2-user/bin:/usr/bin/:/home/ec2-user/passenger-5.0.21/bin/:$PATH"
+    'PATH' => "/root/bin:/usr/bin/:/root/passenger-5.0.21/bin/:$PATH"
   }
-set :passenger_environment_variables, { :path => '/home/ec2-user/passenger-5.0.21/bin/:$PATH' }
+set :passenger_environment_variables, { :path => '/root/passenger-5.0.21/bin/:$PATH' }
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
