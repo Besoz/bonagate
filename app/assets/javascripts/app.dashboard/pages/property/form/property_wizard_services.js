@@ -21,7 +21,7 @@
       processPropertyDetails: processPropertyDetails,
       addGeoLocationMarker: addGeoLocationMarker,
       setPropertyLatLng: setPropertyLatLng,
-      gotoPropetyLocation: gotoPropertyLocation,
+      gotoPropertyLocation: gotoPropertyLocation,
       setPropertyLocation: setPropertyLocation,
       resetInstances: resetInstances,
       intializeImageUploader: intializeImageUploader,
