@@ -61,9 +61,9 @@ angular
         PropertyWizardServices.intializeImageUploader(vm, $state, $stateParams);
       }
 
-      function applyTemplate(template_source){
-        if(template_source){
-           vm.property = angular.copy(template_source);
+      function applyTemplate(templateSource){
+        if(templateSource){
+           vm.property = angular.copy(templateSource);
            PropertyWizardServices.decoratePropertyTemplateFormJson(vm.property);
         }
       }
