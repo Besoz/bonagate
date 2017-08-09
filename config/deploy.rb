@@ -23,10 +23,10 @@ set :scm, :git
 # set :pty, true
 set :ssh_options, {forward_agent: true}
 set :default_shell, "bash -l"
-set :default_environment, {
-    'PATH' => "/root/bin:/usr/bin/:/root/passenger-5.0.21/bin/:$PATH"
-  }
-set :passenger_environment_variables, { :path => '/root/passenger-5.0.21/bin/:$PATH' }
+# set :default_environment, {
+#     'PATH' => "/root/bin:/usr/bin/:/root/passenger-5.0.21/bin/:$PATH"
+#   }
+# set :passenger_environment_variables, { :path => '/root/passenger-5.0.21/bin/:$PATH' }
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')

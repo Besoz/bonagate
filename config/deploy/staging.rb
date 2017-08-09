@@ -34,7 +34,7 @@ set :deploy_to, '/root/bonagate'
 # Feel free to add new variables to customise your setup.
 set :repo_url, 'git@bitbucket.org:accorpa/bonagate-rails.git'
 set :branch, 'deployment'
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'public/system', 'tmp/cache')
 
 # Custom SSH Options
 # ==================
@@ -63,5 +63,17 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'public/system
 #     # password: 'please use keys'
 #   }
 
+namespace :deploy do
 
+  # bower install
+  task :bower_and_npm_install do
+    on roles(:app), in: :sequence, wait: 5 do
+      within '/root/bonagate/current/' do
+        execute :npm, "install"
+        execute :bower, "install"
+      end
+    end
+  end
+  after :published, :bower_and_npm_install
+end
 #task to restart elasticsearch
