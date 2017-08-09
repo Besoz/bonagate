@@ -63,17 +63,17 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'public/system
 #     # password: 'please use keys'
 #   }
 
-namespace :deploy do
-
-  # bower install
-  task :bower_and_npm_install do
-    on roles(:app), in: :sequence, wait: 5 do
-      within '/root/bonagate/current/' do
-        execute :npm, "install"
-        execute :bower, "install"
+namespace :bower do
+  desc 'Install bower'
+  task :install do
+    on roles(:web) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'bower:install CI=true'
+        end
       end
     end
   end
-  after :published, :bower_and_npm_install
 end
+before 'deploy:compile_assets', 'bower:install'
 #task to restart elasticsearch
