@@ -76,4 +76,12 @@ namespace :bower do
   end
 end
 before 'deploy:restart', 'bower:install'
+
+
+namespace :deploy do
+  desc "reload the database with seed data"
+  task :seed do
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
+  end
+end
 #task to restart elasticsearch
