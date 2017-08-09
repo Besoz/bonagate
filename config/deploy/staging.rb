@@ -63,18 +63,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'public/system
 #     # password: 'please use keys'
 #   }
 
-namespace :db do
-  desc 'Run seeds'
-  task :seed do
-    on roles(:web) do
-      within release_path do
-        with rails_env: fetch(:rails_env) do
-          execute :rake, 'db:seed'
-        end
-      end
-    end
-  end
-end
 
 namespace :bower do
   desc 'Install bower'
@@ -90,6 +78,19 @@ namespace :bower do
 end
 before 'deploy:restart', 'bower:install'
 
+namespace :db do
+  desc 'Run seeds'
+  task :seed do
+    on roles(:web) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'db:seed'
+        end
+      end
+    end
+  end
+end
+after 'bower:install', 'db:seed'
 
 
 #task to restart elasticsearch
