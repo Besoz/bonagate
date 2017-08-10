@@ -7,10 +7,10 @@ angular
   .controller('FormWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest', 'propertyStatesRequest', 'propertyStatusesRequest',
     'propertyRequest', '$state', '$stateParams',
     'PropertyWizardServices', 'propertyDetailsRequest', 'propertyDetailCategoriesRequest',  'propertyStatesHashRequest',
-
+    'propertyTemplatesRequest',
     function (toaster, $scope, propertyTypesRequest, serviceTypesRequest, propertyStatesRequest, propertyStatusesRequest,
       propertyRequest, $state, $stateParams, PropertyWizardServices,
-      propertyDetailsRequest, propertyDetailCategoriesRequest, propertyStatesHashRequest) {
+      propertyDetailsRequest, propertyDetailCategoriesRequest, propertyStatesHashRequest, propertyTemplatesRequest) {
 
       var vm = this;
 
@@ -41,6 +41,7 @@ angular
         };
 
         vm.resetInstances = resetInstances;
+        vm.applyTemplate = applyTemplate;
         vm.addPaymentPlan = addPaymentPlan;
         vm.removePaymentPlan = removePaymentPlan;
         vm.addPaymentPlanRecord = addPaymentPlanRecord;
@@ -50,9 +51,11 @@ angular
         vm.serviceTypes = serviceTypesRequest.data.list;
         vm.states = propertyStatesRequest.data.list;
         vm.statuses = propertyStatusesRequest.data.list;
-        vm.propertyDetails = propertyDetailsRequest.data.hash
-        vm.propertyDetailCategories = propertyDetailCategoriesRequest.data.hash
-        vm.propertyStates = propertyStatesHashRequest.data.hash
+
+        vm.propertyDetails = propertyDetailsRequest.data.hash;
+        vm.propertyDetailCategories = propertyDetailCategoriesRequest.data.hash;
+        vm.propertyTemplates = propertyTemplatesRequest.data.list;
+        vm.propertyStates = propertyStatesHashRequest.data.hash;
 
         vm.property = propertyRequest.data || {
           deleted_images_ids: [],
@@ -61,6 +64,13 @@ angular
         };
 
         PropertyWizardServices.intializeImageUploader(vm, $state, $stateParams);
+      }
+
+      function applyTemplate(templateSource){
+        if(templateSource){
+           vm.property = angular.copy(templateSource);
+           PropertyWizardServices.decoratePropertyTemplateFormJson(vm.property);
+        }
       }
 
       function resetInstances() {

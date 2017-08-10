@@ -3,6 +3,8 @@ class Property < ActiveRecord::Base
 
   enumerize :state, in: %i[active inactive], default: :active, predicates: true, scope: true
 
+  default_value_for :publish, false
+
   belongs_to :company
   belongs_to :property_type
   belongs_to :property_state
@@ -20,10 +22,11 @@ class Property < ActiveRecord::Base
 
   has_many :property_images, dependent: :destroy
 
+  has_one :property_as_template_datum, :dependent => :destroy 
+  accepts_nested_attributes_for :property_as_template_datum
 
   has_many :user_favorite_properties
   has_many :users , through: :user_favorite_properties
-
 
   # validates :service_type_instances, :length => { :minimum => 1 }
 
@@ -33,11 +36,15 @@ class Property < ActiveRecord::Base
   has_many :property_payment_plans
   accepts_nested_attributes_for :property_payment_plans, allow_destroy: true
 
-  def self.get_affected_with_property_detail(detail_id)
+  scope :published, ->  { Property.where publish: true }
+  scope :templates, -> { PropertyAsTemplateDatum.all.includes :property}
+
+
+  def self.get_affected_with_property_detail detail_id
     Property.joins(:property_detail_instances).where(property_detail_instances: { property_detail_id: detail_id })
   end
 
-  def self.get_affected_with_property_detail_value_option(_value_option_ids)
+  def self.get_affected_with_property_detail_value_option value_option_ids
     Property.joins(:property_detail_instances).where(property_detail_instances: { property_detail_id: detail_id })
  end
 end
