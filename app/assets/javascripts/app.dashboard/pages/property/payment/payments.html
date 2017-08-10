@@ -26,7 +26,6 @@
     <div class="row">
         <div class="col-md-12">
             <accordion close-others="oneAtATime" class="accordion">
-
                 <accordion-group is-open="status.open" ng-repeat="payment in paymentsCtrl.paymentsList track by $index">
                     <accordion-heading>
                         <b>ID: {{payment.id}}</b>, First Name: {{payment.person_attributes.first_name}}, Last Name {{payment.person_attributes.last_name}},
@@ -49,9 +48,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                         <!-- <div class="row">
                         <div class="col-md-10">
                             <div ng-show="editId==payment.id" ng-if="editId==payment.id">
@@ -90,29 +86,12 @@
                             </label>
                             </div>
                         </div>
-
                 </accordion-group>
-
             </accordion>
             </div>
         </div>
     </div>
     <!-- end: YOUR CONTENT HERE -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- start: YOUR CONTENT HERE -->
     <!-- <div class="container-fluid container-fullw">
     <div class="row">
