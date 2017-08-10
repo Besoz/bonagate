@@ -4,11 +4,11 @@
  */
 angular
   .module('app.dashboard')
-  .controller('FormWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest', 'propertyStatesRequest', 'propertyStatusesRequest',
+  .controller('FormWizardController', ['$scope', 'propertyTypesRequest', 'serviceTypesRequest', 'propertyStatesRequest', 'propertyStatusesRequest',
     'propertyRequest', '$state', '$stateParams',
     'PropertyWizardServices', 'propertyDetailsRequest', 'propertyDetailCategoriesRequest',  'propertyStatesHashRequest',
 
-    function (toaster, $scope, propertyTypesRequest, serviceTypesRequest, propertyStatesRequest, propertyStatusesRequest,
+    function ($scope, propertyTypesRequest, serviceTypesRequest, propertyStatesRequest, propertyStatusesRequest,
       propertyRequest, $state, $stateParams, PropertyWizardServices,
       propertyDetailsRequest, propertyDetailCategoriesRequest, propertyStatesHashRequest) {
 
