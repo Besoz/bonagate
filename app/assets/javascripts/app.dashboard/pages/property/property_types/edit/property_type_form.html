@@ -1,95 +1,105 @@
 <div class="container-fluid container-fullw bg-white">
-  <div class="row">
-    <div class="col-md-12">
-      <div>
-        <alert ng-repeat="alert in typeCtrl.typeCreationErrors" type="{{alert.type}}">
-          {{alert.msg}}
-        </alert>
-      </div>
-      <form name="Form" id="form1" novalidate ng-submit="typeCtrl.submitPropertyType(Form)">
-        <div class="row">
-          <div class="col-md-6">
-            <fieldset>
-              <legend>
-                <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_type'|translate}}'}" />
-              </legend>
-              <div class="form-group" ng-class="{'has-error':Form.firstName.$dirty && Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
-                <label class="control-label">
-                  {{'activerecord.attributes.property_type.name'|translate}} <span class="symbol required"></span>
-                </label>
-                <input type="text" placeholder="{{'activerecord.attributes.property_type.name'|translate}}" class="form-control" name="firstName" ng-model="typeCtrl.propertyType.name" required />
-                <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_type.name'|translate}}'}" /></span>
-              </div>
-              <div class="form-group" ng-class="{'has-error':Form.code.$dirty && Form.code.$invalid, 'has-success':Form.code.$valid}">
-                <label class="control-label">
-                  {{'activerecord.attributes.property_type.code'|translate}} <span class="symbol required"></span>
-                </label>
-                <input placeholder="{{'activerecord.attributes.property_type.code'|translate}}" class="form-control" name="code" ng-model="typeCtrl.propertyType.code" required>
-                <span class="error text-small block" ng-if="Form.code.$dirty && Form.code.$error.required" translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_type.code'|translate}}'}"> .</span>
-                <!--           <span class="error text-small block" ng-if="Form.code.$error.email" translate="errors.messages.invalid" translate-values="{attribute:'{{ 'activerecord.attributes.property_type.code'|translate}}'}">.</span> -->
-                <!-- <span class="success text-small" ng-if="Form.code.$valid">It's a valid e-mail!</span> -->
-              </div>
-              <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
-                <label class="control-label">
-                  {{'activerecord.attributes.property_type.state'|translate}} <span class="symbol required"></span>
-                </label>
-                <ui-select ng-model="typeCtrl.propertyType.state" theme="bootstrap" name="type" required>
-                  <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
-                    {{'dashboard.recored_states.'+ $select.selected | translate}}
-                  </ui-select-match>
-                  <ui-select-choices repeat="item in typeCtrl.propertyType.state_options | filter: $select.search">
-                    <div ng-bind-html="('dashboard.recored_states.'+item | translate)| highlight: $select.search"></div>
-                  </ui-select-choices>
-                </ui-select>
-              </div>
-              <div class="form-group">
-                <div class="pull-right">
-                  <button type="submit" class="btn btn-primary">
-                    <div ng-if="!(typeCtrl.propertyType.id)" translate="helpers.submit.create" translate-values="{model:'{{ 'activerecord.models.property_type'|translate}}'}" />
-                    <div ng-if="typeCtrl.propertyType.id" translate="helpers.submit.update" translate-values="{model:'{{ 'activerecord.models.property_type'|translate}}'}" />
-                  </button>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-          <div class="col-md-6">
-            <fieldset>
-              <div class="panel panel-transparent">
-                <div class="panel-heading">
-                  <h5 class="panel-title">{{'activerecord.models.property_detail' | translate}}</h5>
-                </div>
-                <div class="panel-body">
-                  <div ng-repeat="(category, details) in typeCtrl.formHelpers.property_details" class="checkbox clip-check check-primary">
-                    <div>{{typeCtrl.formHelpers.categories[category].name}}</div>
-                    <div ng-repeat="detail in details" class="checkbox clip-check check-primary">
-                      <input type="checkbox" id="checkbox{{detail.id}}" checklist-model="typeCtrl.propertyType.property_detail_ids" checklist-value="detail.id">
-                      <label for="checkbox{{detail.id}}">
-                        {{ detail.name}}
-                      </label>
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <alert ng-repeat="alert in typeCtrl.typeCreationErrors" type="{{alert.type}}">
+                    {{alert.msg}}
+                </alert>
+            </div>
+            <form name="Form" id="form1" novalidate ng-submit="typeCtrl.submitPropertyType(Form)">
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend>
+                                <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_type'|translate}}'}" />
+                            </legend>
+                            <div class="form-group" ng-class="{'has-error':Form.firstName.$dirty && Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
+                                <label class="control-label">
+                                    {{'activerecord.attributes.property_type.name'|translate}} <span class="symbol required"></span>
+                                </label>
+                                <input placeholder="{{'activerecord.attributes.property_type.name'|translate}}" class="form-control" name="firstName" ng-model="typeCtrl.propertyType.name" required />
+                                <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_type.name'|translate}}'}" /></span>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':Form.code.$dirty && Form.code.$invalid, 'has-success':Form.code.$valid}">
+                                <label class="control-label">
+                                    {{'activerecord.attributes.property_type.code'|translate}} <span class="symbol required"></span>
+                                </label>
+                                <input placeholder="{{'activerecord.attributes.property_type.code'|translate}}" class="form-control" name="code" ng-model="typeCtrl.propertyType.code" required>
+                                <span class="error text-small block" ng-if="Form.code.$dirty && Form.code.$error.required" translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_type.code'|translate}}'}"> .</span>
+                                <!--           <span class="error text-small block" ng-if="Form.code.$error.email" translate="errors.messages.invalid" translate-values="{attribute:'{{ 'activerecord.attributes.property_type.code'|translate}}'}">.</span> -->
+                                <!-- <span class="success text-small" ng-if="Form.code.$valid">It's a valid e-mail!</span> -->
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
+                                <label class="control-label">
+                                    {{'activerecord.attributes.property_type.state'|translate}} <span class="symbol required"></span>
+                                </label>
+                                <ui-select ng-model="typeCtrl.propertyType.state" theme="bootstrap" name="type" required>
+                                    <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                                        {{'dashboard.recored_states.'+ $select.selected | translate}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in typeCtrl.propertyType.state_options | filter: $select.search">
+                                        <div ng-bind-html="('dashboard.recored_states.'+item | translate)| highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                            <div class="form-group">
+                                <div class="pull-right">
+                                    <button type="submit" class="btn btn-primary btn-squared">
+                                        <div ng-if="!(typeCtrl.propertyType.id)" translate="helpers.submit.create" translate-values="{model:'{{ 'activerecord.models.property_type'|translate}}'}" />
+                                        <div ng-if="typeCtrl.propertyType.id" translate="helpers.submit.update" translate-values="{model:'{{ 'activerecord.models.property_type'|translate}}'}" />
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
-                  </div>
+                    <div class="col-md-6">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="over-title margin-top-10">
+                                      <span class="text-bold">
+                                      {{'activerecord.models.property_detail' | translate}}
+                                      </span>
+                                    </h5>
+                                </div>
+                                <div class="col-md-6 pull-right">
+                                    <input type="text" class="form-control" id="" placeholder="Search detial Category">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div ng-repeat="(category, details) in typeCtrl.formHelpers.property_details" class="checkbox clip-check check-primary">
+                                        <div>{{typeCtrl.formHelpers.categories[category].name}}</div>
+                                        <div ng-repeat="detail in details" class="checkbox clip-check check-primary">
+                                            <input type="checkbox" id="checkbox{{detail.id}}" checklist-model="typeCtrl.propertyType.property_details_attributes" checklist-value="detail">
+                                            <label for="checkbox{{detail.id}}">
+                                                {{ detail.name}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>
+                                Property State
+                            </legend>
+                            <div class="panel panel-transparent">
+                                <div class="panel-body">
+                                    <div ng-repeat="state in typeCtrl.formHelpers.all_property_states" class="checkbox clip-check check-primary">
+                                        <input type="checkbox" id="checkbox2{{state.id}}" checklist-model="typeCtrl.propertyType.property_state_ids" checklist-value="state.id">
+                                        <label for="checkbox2{{state.id}}">
+                                            {{state.name}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
                 </div>
-              </div>
-            </fieldset>
-            <fieldset>
-              <legend>
-                Property State
-              </legend>
-              <div class="panel panel-transparent">
-                <div class="panel-body">
-                  <div ng-repeat="state in typeCtrl.formHelpers.all_property_states" class="checkbox clip-check check-primary">
-                    <input type="checkbox" id="checkbox2{{state.id}}" checklist-model="typeCtrl.propertyType.property_state_ids" checklist-value="state.id">
-                    <label for="checkbox2{{state.id}}">
-                      {{state.name}}
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-          </div>
+            </form>
+            <pre class="code margin-top-20">{{ typeCtrl | json }}</pre>
         </div>
-      </form>
-      <pre class="code margin-top-20">{{ typeCtrl | json }}</pre>
     </div>
-  </div>
 </div>
