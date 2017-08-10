@@ -29,6 +29,7 @@ en:
       property_detail_category: property detail category
       payment: payment
       payment_record: payment record
+      property_service_type: property service type
     attributes:
       user:
         email: "email" 
@@ -60,7 +61,16 @@ en:
         state: state
         code: code
         name_en: english name
-        name_ar: arabic name       
+        name_ar: arabic name 
+      payment_record:
+        value: Value
+        description: Description
+        last_name: Last Name
+        first_name: First Name
+      person:
+        first_name: First Name
+        last_name: Last Name
+        ssn: SSN          
     errors:
       messages:
         record_invalid: "Validation failed: %{errors}"
