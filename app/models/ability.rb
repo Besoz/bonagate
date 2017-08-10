@@ -31,16 +31,22 @@ class Ability
       end
 
       can :crud_all, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id
+      can [:search], Property, Property.published do |property|
+          property.publish
+      end
       can :upload_image, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id
-      else
-        can [:change_password, :user_profile], User
-    end
 
-    if not (user.admin? or user.company_user?)
-      can [:index, :read, :search], Property, Property.published do |property|
+    elsif user.user?
+        can [:change_password, :user_profile], User
+        can [:index, :read, :search], Property, Property.published do |property|
+            property.publish
+        end
+    else
+       can [:index, :read, :search], Property, Property.published do |property|
           property.publish
       end
     end
+
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

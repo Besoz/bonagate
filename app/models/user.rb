@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :user_favorite_properties
   has_many :properties , through: :user_favorite_properties
 
-  enumerize :role, in: [:user, :admin, :company_user], default: :user , predicates: true, scope: true, i18n_scope: "roles"
+  enumerize :role, in: [:visitor, :user, :admin, :company_user], default: :visitor , predicates: true, scope: true, i18n_scope: "roles"
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/default-user.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
