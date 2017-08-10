@@ -50,6 +50,14 @@ start: PAGE TITLE -->
                 <div class="stepNumber">
                   5
                 </div>
+                <span class="stepDesc text-small"> Pricing </span>
+              </a>
+            </li>
+            <li ng-click="wizardCtrl.form.goto(Form, 6)">
+              <a href ng-class="{'selected' : wizardCtrl.currentStep >= 6, 'done' : wizardCtrl.currentStep > 6}">
+                <div class="stepNumber">
+                  6
+                </div>
                 <span class="stepDesc text-small"> Complete </span>
               </a>
             </li>
@@ -153,10 +161,11 @@ start: PAGE TITLE -->
                       </span>
                       <span ng-if="detail_instance.new &&  wizardCtrl.property.id" class="input-group-btn">
                           <div class="checkbox clip-check check-success">
-                          <input ng-model="true" type="checkbox" id="remove_instance_{{$index}}" value="1">
+                          <div class="label label-sm label-info ">new detail</div>
+                          <!-- <input ng-model="true" type="checkbox" id="remove_instance_{{p$index}}" value="1">
                           <label for="remove_instance_{{$index}}">
                             new detail
-                          </label>
+                          </label> -->
                         </div>
                       </span>
                       <div class="form-group" ng-class="{'has-error': detail_instance.removed}">
@@ -174,10 +183,8 @@ start: PAGE TITLE -->
                         <!-- end: value_type == 'text' -->
 
                         <!-- start: value_type == 'select' -->
-                        <ui-select  ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'select'" 
-                          ng-init="detail_instance.property_detail_value_option_ids = detail_instance.property_detail_value_option_ids || []"
-                          ng-model="detail_instance.property_detail_value_option_ids[0]"
-                          theme="bootstrap">
+                        <ui-select ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'select'" ng-init="detail_instance.property_detail_value_option_ids = detail_instance.property_detail_value_option_ids || []"
+                          ng-model="detail_instance.property_detail_value_option_ids[0]" theme="bootstrap">
                           <ui-select-match placeholder="Select in the list...">
                             {{$select.selected.name}}
                           </ui-select-match>
@@ -505,6 +512,113 @@ start: PAGE TITLE -->
           <div id="step-5" ng-if="wizardCtrl.currentStep == 5">
             <div class="row">
               <div class="col-md-12">
+
+
+
+                <button class="btn btn-wide btn-primary" ng-click="wizardCtrl.addPaymentPlan()">
+                    <i class="ti-plus"></i>
+                    <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
+                  </button>
+                <div ng-repeat="payment_plan in wizardCtrl.property.property_payment_plans_attributes">
+                  <button ng-if="!payment_plan.id" class="btn btn-wide btn-danger" ng-click="wizardCtrl.removePaymentPlan($index)">
+                      <i class="ti-minus"></i>
+                    <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
+                  </button>
+                  <fieldset>
+                    <legend>
+                      <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.payment_plan'|translate}}'}"
+                      />
+                    </legend>
+                    <div class="form-group" ng-class="{'has-error':Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid, 'has-success':Form.paymentrecord.value.$valid}">
+                      <label class="control-label">
+                            {{'activerecord.attributes.payment_record.value'|translate}} <span class="symbol required"></span>
+                          </label>
+                      <input type="number" placeholder="{{'activerecord.attributes.payment_record.last_name'|translate}}" class="form-control"
+                        name="firstName" ng-model="payment_plan.total_value" required />
+                      <span class="error text-small block" ng-if="Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.last_name'|translate}}'}" /></span>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-error':Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid, 'has-success':Form.paymentrecord.description.$valid}">
+                      <label class="control-label">
+                            {{'activerecord.attributes.payment_record.description'|translate}}
+                          </label>
+                      <input type="text" placeholder="{{'activerecord.attributes.payment_record.first_name'|translate}}" class="form-control" name="lastName"
+                        ng-model="payment_plan.name" required />
+                      <span class="error text-small block" ng-if="Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.first_name'|translate}}'}" /></span>
+                    </div>
+
+                    <button class="btn btn-wide btn-primary" ng-click="wizardCtrl.addPaymentPlanRecord(payment_plan)">
+                      <i class="ti-plus"></i>
+                      <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
+                    </button>
+                    <div ng-repeat="plan_record in payment_plan.property_payment_plan_records_attributes">
+                      <button ng-if="!plan_record.id" class="btn btn-wide btn-danger" ng-click="wizardCtrl.removePaymentPlanRecord(payment_plan, $index)">
+                    <i class="ti-minus"></i>
+                    <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
+                  </button>
+                      <fieldset>
+                        <legend>
+                          <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.payment_plan_record'|translate}}'}"
+                          />
+                        </legend>
+                        <div class="form-group" ng-class="{'has-error':Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid, 'has-success':Form.paymentrecord.value.$valid}">
+                          <label class="control-label">
+                            {{'activerecord.attributes.payment_record.value'|translate}} <span class="symbol required"></span>
+                          </label>
+                          <input type="number" placeholder="{{'activerecord.attributes.payment_record.last_name'|translate}}" class="form-control"
+                            name="firstName" ng-model="plan_record.value" required />
+                          <span class="error text-small block" ng-if="Form.paymentrecord.value.$dirty && Form.paymentrecord.value.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.last_name'|translate}}'}" /></span>
+                        </div>
+
+                        <div class="form-group" ng-class="{'has-error':Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid, 'has-success':Form.paymentrecord.description.$valid}">
+                          <label class="control-label">
+                            {{'activerecord.attributes.property_payment_plan_record.description'|translate}}
+                          </label>
+                          <input type="text" placeholder="{{'activerecord.attributes.payment_record.first_name'|translate}}" class="form-control" name="lastName"
+                            ng-model="plan_record.description" required />
+                          <span class="error text-small block" ng-if="Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.first_name'|translate}}'}" /></span>
+                        </div>
+                        <div class="checkbox clip-check check-primary checkbox-inline">
+                          <input type="checkbox" id="checkbox{{$parent.$index}}{{$index}}" ng-model="plan_record.periodic" ng-change="plan_record.period = plan_record.periodic?  plan_record.period : null">
+                          <label for="checkbox{{$parent.$index}}{{$index}}">
+                            {{'activerecord.attributes.property_payment_plan_record.description'|translate}}
+                          </label>
+                        </div>
+                        <div ng-if="plan_record.periodic" class="form-group" ng-class="{'has-error':Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid, 'has-success':Form.paymentrecord.description.$valid}">
+                          <label class="control-label">
+                            {{'activerecord.attributes.property_payment_plan_record.period'|translate}}
+                          </label>
+                          <input type="text" placeholder="{{'activerecord.attributes.payment_record.first_name'|translate}}" class="form-control" name="lastName"
+                            ng-model="plan_record.period" required />
+                          <span class="error text-small block" ng-if="Form.paymentrecord.description.$dirty && Form.paymentrecord.description.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.payment_record.first_name'|translate}}'}" /></span>
+                        </div>
+                        <div ng-if="plan_record.id" class="checkbox clip-check check-danger checkbox-inline">
+                          <input type="checkbox" id="delete_checkbox{{$parent.$index}}{{$index}}" ng-model="plan_record._destroy">
+                          <label for="delete_checkbox{{$parent.$index}}{{$index}}">
+                            {{'destroy'|translate}}
+                          </label>
+                        </div>
+                      </fieldset>
+                      <div ng-if="payment_plan.id" class="checkbox clip-check check-danger checkbox-inline">
+                        <input type="checkbox" id="delete_checkbox{{$parent.$index}}" ng-model="payment_plan._destroy">
+                        <label for="delete_checkbox{{$parent.$index}}">
+                            {{'destroy'|translate}}
+                          </label>
+                      </div>
+                  </fieldset>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end: WIZARD STEP 5 -->
+
+          <!-- start: WIZARD STEP 6 -->
+          <div id="step-5" ng-if="wizardCtrl.currentStep == 6">
+            <div class="row">
+              <div class="col-md-12">
                 <!-- start: PROPERTY OPTIONS -->
                 <div>
                   <!-- start: PUBLISH/UNPUBLISH -->
@@ -547,13 +661,13 @@ start: PAGE TITLE -->
                     you. You may log into your account to view details of this transaction.
                   </p>
                   <a class="btn btn-primary btn-o" href ng-click="wizardCtrl.form.goTo(Form, 1)">
-                  Back to first step
-                </a>
+                    Back to first step
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          <!-- end: WIZARD STEP 5 -->
+          <!-- end: WIZARD STEP 6 -->
 
           <pre class="code margin-top-20">{{ wizardCtrl.property | json }}</pre>
 

@@ -1,0 +1,29 @@
+<div class="page-header">
+  <%= link_to property_payment_plan_records_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_property_payment_plan_record_path(@property_payment_plan_record), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show property_payment_plan_record</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Description:</dt>
+  <dd><%= @property_payment_plan_record.description %></dd>
+
+  <dt>Value:</dt>
+  <dd><%= @property_payment_plan_record.value %></dd>
+
+  <dt>Period:</dt>
+  <dd><%= @property_payment_plan_record.period %></dd>
+
+  <dt>Periodic:</dt>
+  <dd><%= @property_payment_plan_record.periodic %></dd>
+
+  <dt>Property payment plan:</dt>
+  <dd><%= @property_payment_plan_record.property_payment_plan %></dd>
+
+</dl>
