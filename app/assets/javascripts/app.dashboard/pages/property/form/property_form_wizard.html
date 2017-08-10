@@ -161,10 +161,11 @@ start: PAGE TITLE -->
                       </span>
                       <span ng-if="detail_instance.new &&  wizardCtrl.property.id" class="input-group-btn">
                           <div class="checkbox clip-check check-success">
-                          <input ng-model="true" type="checkbox" id="remove_instance_{{$index}}" value="1">
+                          <div class="label label-sm label-info ">new detail</div>
+                          <!-- <input ng-model="true" type="checkbox" id="remove_instance_{{p$index}}" value="1">
                           <label for="remove_instance_{{$index}}">
                             new detail
-                          </label>
+                          </label> -->
                         </div>
                       </span>
                       <div class="form-group" ng-class="{'has-error': detail_instance.removed}">
