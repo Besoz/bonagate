@@ -57,7 +57,7 @@
     </script>
 
     <!-- REAL ESTATE THEME -->
-    <script src="assets/app.realestate/vendor/all.js"></script>
+    <script src="/assets/app.realestate/vendor/all.js"></script>
     <!-- REAL ESTATE THEME -->
 
     <!-- Lodash -->
@@ -81,34 +81,38 @@
     <!-- Angular Toaster -->
 
     <!-- shared utils module -->
-    <script src="../assets/app.shared/app_module.js"></script>
-    <script src="../assets/app.shared/services/decorator_service.js"></script>
-    <script src="assets/app.shared/services/general_data_service.js"></script>
+    <script src="/assets/app.shared/app_module.js"></script>
+    <script src="/assets/app.shared/services/decorator_service.js"></script>
+    <script src="/assets/app.shared/services/general_data_service.js"></script>
+    <script src="/assets/app.shared/config/config_http_interceptor.js"></script>
 
     <!-- app module -->
-    <script src="assets/app.realestate/modules/app.js"></script>
+    <script src="/assets/app.realestate/modules/app.js"></script>
     <!-- app module -->
 
     <!-- app controller -->
-    <script src="assets/app.realestate/controllers/app.controller.js"></script>
+    <script src="/assets/app.realestate/controllers/app.controller.js"></script>
 
     <!-- app config -->
-    <script src="assets/app.realestate/config/config_translation.js"></script>
+    <script src="/assets/app.realestate/config/config_translation.js"></script>
 
     <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+    <% unless current_user.nil? %>
+        <span ng-init="$root.currentUser = <%= render partial: '/users/user.json.jbuilder', :locals => { :user => current_user } %>"></span>
+    <% end %>
 
     <%= render partial: '/layouts/header',
                formats: :html,
                handlers: :erb %>
 
     <%= yield %>
-
-    <%= render partial: '/layouts/footer',
+    <!-- render partial: '/layouts/footer',
                formats: :html,
-               handlers: :erb %>
+               handlers: :erb  -->
 
     <!-- REAL ESTATE THEME -->
-    <script src="assets/app.realestate/app/app.js"></script>
+    <script src="/assets/app.realestate/app/app.js"></script>
     <!-- REAL ESTATE THEME -->
 
   </body>

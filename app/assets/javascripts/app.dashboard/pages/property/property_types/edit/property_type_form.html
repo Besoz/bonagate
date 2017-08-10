@@ -81,6 +81,21 @@
                                 </div>
                             </div>
                         </fieldset>
+                        <fieldset>
+                            <legend>
+                                Property State
+                            </legend>
+                            <div class="panel panel-transparent">
+                                <div class="panel-body">
+                                    <div ng-repeat="state in typeCtrl.formHelpers.all_property_states" class="checkbox clip-check check-primary">
+                                        <input type="checkbox" id="checkbox2{{state.id}}" checklist-model="typeCtrl.propertyType.property_state_ids" checklist-value="state.id">
+                                        <label for="checkbox2{{state.id}}">
+                                            {{state.name}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
                 </div>
             </form>

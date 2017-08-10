@@ -1,0 +1,99 @@
+
+<script src="/assets/app.realestate/controllers/user.info.controller.js"></script>
+
+<div ng-controller="UserInfoController as vm" ng-cloak>
+
+  <div class="sidebar-block col-xs-12" ng-if="!vm.editMode" ng-cloak>
+    <ul class="list-group list-group-menu">
+      <li class="list-group-item">
+        <a href="#">
+           Name: 
+          <span class="pull-right">{{vm.currentUser.first_name}} {{vm.currentUser.last_name}}</span>
+        </a>
+      </li>
+      <li class="list-group-item">
+        <a href="#">
+           E-mail: 
+          <span class="pull-right">{{vm.currentUser.email}}</span>
+        </a>
+      </li>
+      <li class="list-group-item">
+        <a href="#">
+           Phone: 
+          <span class="pull-right">{{vm.currentUser.phone}}</span>
+        </a>
+      </li>
+
+    </ul>
+
+    <div class="col-xs-12 text-right">
+      <button class="btn btn-success" ng-click="vm.editProfile()">Edit</button>
+    </div>
+
+  </div>
+
+  <div ng-if="vm.editMode">
+
+    <div class="alert alert-danger" type="danger" ng-if="vm.errors.length > 0">
+      <ul>
+        <li ng-repeat="error in vm.errors">
+          {{error}}
+        </li>
+      </ul>
+    </div>
+
+    <form>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group form-control-default">
+            <label for="exampleInputFirstName">First name</label>
+            <input ng-model="vm.userClone.first_name" class="form-control">
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="form-group form-control-default">
+            <label for="exampleInputLastName">Last name</label>
+            <input class="form-control" ng-model="vm.userClone.last_name">
+          </div>
+        </div>
+      </div>
+      <div class="form-group form-control-default">
+        <label for="exampleInputEmail1">Email address</label>
+        <input class="form-control" ng-model="vm.userClone.email" placeholder="Enter email">
+      </div>
+      <div class="form-group form-control-default">
+        <label for="exampleInputEmail1">Phone</label>
+        <input class="form-control" ng-model="vm.userClone.phone">
+      </div>
+
+      <div class=" row">
+      <div class="form-group col-xs-6">
+        <button ng-click="vm.save()" type="button" class="btn btn-primary"> Save </button>
+      </div>
+      <div class="form-group col-xs-6">
+        <a ng-click="vm.cancel()" class="btn btn-link"><i class="fa fa-fw fa-times"></i> Cancel </a>
+      </div>
+      </div>
+
+      <div class="form-group form-control-default">
+        <label for="exampleInputPassword1">Current Password</label>
+        <input type="password" class="form-control" ng-model="vm.userClone.current_password" id="exampleInputPassword1">
+      </div>
+      <div class="form-group form-control-default">
+        <label for="exampleInputPassword2">New Password</label>
+        <input type="password" class="form-control" ng-model="vm.userClone.password" id="exampleInputPassword2">
+      </div>
+      <div class="form-group form-control-default">
+        <label for="exampleInputPassword2">Confirm Password</label>
+        <input type="password" class="form-control" ng-model="vm.userClone.password_confirmation" id="exampleInputPassword2">
+      </div>
+
+      <div class="row">
+      <div class="form-group col-xs-6">
+        <button class="btn btn-primary" ng-click="vm.changePassword()">Change Password</button>
+      </div>
+      </div>
+    </form>
+    
+  </div>
+</div>

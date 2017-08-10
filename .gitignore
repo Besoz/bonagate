@@ -48,3 +48,8 @@ bower.json
 .pid
 
 /node_modules
+db/schema\.rb
+
+config/database\.yml
+
+config/locales/en\.json

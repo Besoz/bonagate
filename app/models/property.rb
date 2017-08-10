@@ -20,6 +20,11 @@ class Property < ActiveRecord::Base
 
   has_many :property_images, :dependent => :destroy
 
+
+  has_many :user_favorite_properties
+  has_many :users , through: :user_favorite_properties
+
+
   # validates :service_type_instances, :length => { :minimum => 1 }
 
   validates :company_id, :property_status_id, :property_type_id,
