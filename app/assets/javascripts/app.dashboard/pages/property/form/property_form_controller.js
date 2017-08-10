@@ -41,7 +41,10 @@ angular
         };
 
         vm.resetInstances = resetInstances;
-
+        vm.addPaymentPlan = addPaymentPlan;
+        vm.removePaymentPlan = removePaymentPlan;
+        vm.addPaymentPlanRecord = addPaymentPlanRecord;
+        vm.removePaymentPlanRecord = removePaymentPlanRecord;
 
         vm.propertyTypes = propertyTypesRequest.data.list;
         vm.serviceTypes = serviceTypesRequest.data.list;
@@ -53,7 +56,8 @@ angular
 
         vm.property = propertyRequest.data || {
           deleted_images_ids: [],
-          property_detail_instances_attributes: [] /////
+          property_detail_instances_attributes: [],
+          property_payment_plans_attributes: []
         };
 
         PropertyWizardServices.intializeImageUploader(vm, $state, $stateParams);
@@ -90,6 +94,23 @@ angular
 
       function submit() {
         PropertyWizardServices.submit(vm, $stateParams, $state);
+      }
+
+      function addPaymentPlan() {
+        PropertyWizardServices.addPaymentPlan(vm.property);
+      }
+
+      function removePaymentPlan(paymentIndex) {
+        PropertyWizardServices.removePaymentPlan(vm.property, paymentIndex);
+      }
+
+      function addPaymentPlanRecord(paymentPlan) {
+        PropertyWizardServices.addPaymentPlanRecord(paymentPlan);
+      }
+
+      function removePaymentPlanRecord(paymentPlan, paymentRecordIndex) {
+        PropertyWizardServices.removePaymentPlanRecord(paymentPlan,
+          paymentRecordIndex);
       }
 
       function reset() {}

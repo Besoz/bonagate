@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727132646) do
+ActiveRecord::Schema.define(version: 20170808193448) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -43,6 +43,41 @@ ActiveRecord::Schema.define(version: 20170727132646) do
 
   add_index "company_users", ["company_id"], name: "index_company_users_on_company_id", using: :btree
   add_index "company_users", ["user_id"], name: "index_company_users_on_user_id", using: :btree
+
+  create_table "payment_records", force: :cascade do |t|
+    t.integer  "payment_id",              limit: 4
+    t.integer  "value",                   limit: 4
+    t.text     "description",             limit: 65535
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "attachment_file_name",    limit: 255
+    t.string   "attachment_content_type", limit: 255
+    t.integer  "attachment_file_size",    limit: 4
+    t.datetime "attachment_updated_at"
+  end
+
+  add_index "payment_records", ["payment_id"], name: "index_payment_records_on_payment_id", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "person_id",   limit: 4
+    t.integer  "property_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "payments", ["person_id"], name: "index_payments_on_person_id", using: :btree
+  add_index "payments", ["property_id"], name: "index_payments_on_property_id", using: :btree
+
+  create_table "people", force: :cascade do |t|
+    t.integer  "company_user_id", limit: 4
+    t.string   "ssn",             limit: 255
+    t.string   "first_name",      limit: 255
+    t.string   "last_name",       limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "people", ["company_user_id"], name: "index_people_on_company_user_id", using: :btree
 
   create_table "properties", force: :cascade do |t|
     t.string   "address",            limit: 255
@@ -116,19 +151,21 @@ ActiveRecord::Schema.define(version: 20170727132646) do
   add_index "property_detail_value_options", ["property_detail_id"], name: "index_property_detail_value_options_on_property_detail_id", using: :btree
 
   create_table "property_details", force: :cascade do |t|
-    t.string   "code",                        limit: 255
-    t.string   "name",                        limit: 255
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.string   "value_type",                  limit: 255
-    t.string   "state",                       limit: 255
-    t.string   "value_options",               limit: 255
-    t.boolean  "mandatory",                   limit: 1
-    t.integer  "property_detail_category_id", limit: 4
+    t.string   "code",                         limit: 255
+    t.string   "name",                         limit: 255
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "value_type",                   limit: 255
+    t.string   "state",                        limit: 255
+    t.string   "value_options",                limit: 255
+    t.integer  "property_details_category_id", limit: 4
+    t.integer  "property_detail_category_id",  limit: 4
+    t.boolean  "mandatory",                    limit: 1
   end
 
   add_index "property_details", ["code"], name: "index_property_details_on_code", unique: true, using: :btree
   add_index "property_details", ["property_detail_category_id"], name: "index_property_details_on_property_detail_category_id", using: :btree
+  add_index "property_details", ["property_details_category_id"], name: "index_property_details_on_property_details_category_id", using: :btree
 
   create_table "property_images", force: :cascade do |t|
     t.datetime "created_at",                      null: false
@@ -141,6 +178,29 @@ ActiveRecord::Schema.define(version: 20170727132646) do
   end
 
   add_index "property_images", ["property_id"], name: "index_property_images_on_property_id", using: :btree
+
+  create_table "property_payment_plan_records", force: :cascade do |t|
+    t.text     "description",              limit: 65535
+    t.decimal  "value",                                  precision: 10
+    t.string   "period",                   limit: 255
+    t.boolean  "periodic",                 limit: 1
+    t.integer  "property_payment_plan_id", limit: 4
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+  end
+
+  add_index "property_payment_plan_records", ["property_payment_plan_id"], name: "index_property_payment_plan_records_on_property_payment_plan_id", using: :btree
+
+  create_table "property_payment_plans", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "description", limit: 65535
+    t.decimal  "total_value",               precision: 10
+    t.integer  "property_id", limit: 4
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "property_payment_plans", ["property_id"], name: "index_property_payment_plans_on_property_id", using: :btree
 
   create_table "property_service_type_instances", force: :cascade do |t|
     t.string   "unit",            limit: 255
@@ -190,6 +250,16 @@ ActiveRecord::Schema.define(version: 20170727132646) do
 
   add_index "property_type_details", ["property_detail_id"], name: "index_property_type_details_on_property_detail_id", using: :btree
   add_index "property_type_details", ["property_type_id"], name: "index_property_type_details_on_property_type_id", using: :btree
+
+  create_table "property_type_states", force: :cascade do |t|
+    t.integer  "property_type_id",  limit: 4
+    t.integer  "property_state_id", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "property_type_states", ["property_state_id"], name: "index_property_type_states_on_property_state_id", using: :btree
+  add_index "property_type_states", ["property_type_id"], name: "index_property_type_states_on_property_type_id", using: :btree
 
   create_table "property_types", force: :cascade do |t|
     t.string   "code",       limit: 255
@@ -279,6 +349,10 @@ ActiveRecord::Schema.define(version: 20170727132646) do
   add_foreign_key "companies", "users"
   add_foreign_key "company_users", "companies"
   add_foreign_key "company_users", "users"
+  add_foreign_key "payment_records", "payments"
+  add_foreign_key "payments", "people"
+  add_foreign_key "payments", "properties"
+  add_foreign_key "people", "company_users"
   add_foreign_key "properties", "companies"
   add_foreign_key "properties", "property_states"
   add_foreign_key "properties", "property_statuses"
@@ -290,8 +364,12 @@ ActiveRecord::Schema.define(version: 20170727132646) do
   add_foreign_key "property_detail_value_options", "property_details"
   add_foreign_key "property_details", "property_detail_categories"
   add_foreign_key "property_images", "properties"
+  add_foreign_key "property_payment_plan_records", "property_payment_plans"
+  add_foreign_key "property_payment_plans", "properties"
   add_foreign_key "property_type_details", "property_details"
   add_foreign_key "property_type_details", "property_types"
+  add_foreign_key "property_type_states", "property_states"
+  add_foreign_key "property_type_states", "property_types"
   add_foreign_key "shared_properties", "companies"
   add_foreign_key "shared_properties", "properties"
   add_foreign_key "user_invitations", "companies"
