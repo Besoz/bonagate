@@ -56,11 +56,14 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1
   # PATCH/PUT /properties/1.json
   def update    
+    shared_companies_ids = params[:property][:shared_companies_ids]
+    @property.companies = Company.find(shared_companies_ids)
+
     respond_to do |format|
       if @property.update(property_params)
         if(params[:property][:deleted_images_ids])
           @property.property_images.where(id: params[:property][:deleted_images_ids]).destroy_all
-        end
+        end 
 
         format.html { redirect_to @property, notice: 'Property was successfully updated.' }
         format.json { render :show, status: :ok, location: @property }
