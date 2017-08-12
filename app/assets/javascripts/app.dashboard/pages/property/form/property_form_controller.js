@@ -5,11 +5,11 @@
 angular
   .module('app.dashboard')
   .controller('FormWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest', 'propertyStatesRequest', 'propertyStatusesRequest',
-    'propertyRequest', '$state', '$stateParams',
+    'propertyRequest', '$state', '$stateParams', '$rootScope',
     'PropertyWizardServices', 'propertyDetailsRequest', 'propertyDetailCategoriesRequest',  'propertyStatesHashRequest',
     'propertyTemplatesRequest', 'companiesToBeSharedRequest',
     function (toaster, $scope, propertyTypesRequest, serviceTypesRequest, propertyStatesRequest, propertyStatusesRequest,
-      propertyRequest, $state, $stateParams, PropertyWizardServices,
+      propertyRequest, $state, $stateParams, $rootScope, PropertyWizardServices,
       propertyDetailsRequest, propertyDetailCategoriesRequest, propertyStatesHashRequest, propertyTemplatesRequest, companiesToBeSharedRequest) {
 
       var vm = this;
@@ -51,7 +51,19 @@ angular
         vm.propertyDetailCategories = propertyDetailCategoriesRequest.data.hash;
         vm.propertyTemplates = propertyTemplatesRequest.data.list;
         vm.propertyStates = propertyStatesHashRequest.data.hash;
-        vm.companiesToBeShared = companiesToBeSharedRequest.data.list;
+        vm.companiesToBeShared;
+
+        var companies = companiesToBeSharedRequest.data.list;
+        if($rootScope.currentUser.companyUser || $rootScope.currentUser.companyAdmin){
+          var userCompanyId = $rootScope.currentUser.company.id;
+          vm.companiesToBeShared = companies.filter(function (company){
+            return company.id !== userCompanyId;
+          })
+        }
+        else if($rootScope.currentUser.admin){
+          vm.companiesToBeShared.companies;
+        }
+         
         vm.property = propertyRequest.data || {
           deleted_images_ids: [],
           property_detail_instances_attributes: [] /////
