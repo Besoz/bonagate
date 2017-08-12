@@ -1,5 +1,6 @@
 class Property < ActiveRecord::Base
   extend Enumerize
+  include ActiveRecord::Scopes::SetOperations
 
   enumerize :state, in: [:active, :inactive], default: :active , predicates: true, scope: true
 
@@ -36,7 +37,12 @@ class Property < ActiveRecord::Base
 
   scope :published, ->  { Property.where publish: true }
   scope :templates, -> { PropertyAsTemplateDatum.all.includes :property}
-
+  
+  scope :company_properties, -> (company_id) {
+    q1 = Property.where(id: SharedProperty.where(company_id: company_id).pluck(:property_id))
+    q2 = Property.where(company_id: company_id)
+    Property.union_scope(q1, q2)
+  }
 
   def self.get_affected_with_property_detail detail_id
     Property.joins(:property_detail_instances).where(property_detail_instances: { property_detail_id: detail_id })

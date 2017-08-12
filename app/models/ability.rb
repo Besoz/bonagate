@@ -2,6 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    alias_action :index, :read, to: :read_all
+    alias_action :update, :destroy, :create, to: :write
     alias_action :create, :read, :update, :destroy, :to => :crud
     alias_action :index, :create, :read, :update, :destroy, :to => :crud_all
     
@@ -30,7 +32,12 @@ class Ability
         can :read, Company, :id => user.company_user.company_id # to be changed company_user.company_id
       end
 
-      can :crud_all, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id
+      # can :crud_all, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id
+      company_id = user.company_user.company_id
+      can :read_all, Property, Property.company_properties(company_id) do |property|
+        (property.company_id == company_id) or SharedProperty.where(company_id: company_id, property_id: property.id).any?
+      end
+      can :write, Property, :company_id => user.company_user.company_id
       can [:search], Property, Property.published do |property|
           property.publish
       end
