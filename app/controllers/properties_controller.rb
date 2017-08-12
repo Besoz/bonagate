@@ -38,7 +38,10 @@ class PropertiesController < ApplicationController
   def create 
     @property = Property.new(property_params)
     @property.company_id = current_user.company_user.company_id
-    @property.companies.push *Company.find(params[:property][:shared_companies_ids])
+
+    shared_companies_ids = params[:property][:shared_companies_ids]
+    @property.companies.push *Company.find(shared_companies_ids) if shared_companies_ids 
+    
     respond_to do |format|
       if @property.save!
         format.html { redirect_to @property, notice: 'Property was successfully created.' }
