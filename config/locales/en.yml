@@ -27,6 +27,9 @@ en:
       property_detail: property detail
       property_type: property type
       property_detail_category: property detail category
+      property_status: Property Status
+      property_state: Property State
+      property_serviceType: Property Service Type
     attributes:
       user:
         email: "email" 
@@ -46,19 +49,35 @@ en:
         name:  name
         phone: phone
       property_detail:
-        name: name
-        value_type: type
-        code: code
+        name: Name
+        value_type: Type
+        code: Code
+        property_detail_category : Category
+        mandatory: Mandatory
+        property_detail_value_options_attributes: Value Options
       property_type:
         name: name
         state: state
         code: code
       property_detail_category:
-        name: name
-        state: state
-        code: code
-        name_en: english name
-        name_ar: arabic name       
+        name: Name
+        state: State
+        code: Code
+        name_en: English Name
+        name_ar: Arabic Name
+        edit: Edit
+      property_status:
+        name: Name
+        code: Code 
+        value_status: Value Status 
+      property_state:
+        name: Name
+        code: Code
+        value_state: Value Status
+      property_serviceType:
+        name: Name
+        code: Code
+        value_serviceType: Value Service Type
     errors:
       messages:
         record_invalid: "Validation failed: %{errors}"
@@ -330,7 +349,7 @@ en:
     recored_created: '%{model} successfully created'
     recored_updated: '%{model} successfully updated'
     success: success 
-    cancel: cancel
+    cancel: Cancel
     # end general
     
     # start: dashboard
@@ -380,6 +399,7 @@ en:
       bool: bool
       select: select
       multi_select: multi select
+      number: Number
     
     bools:
       'true': 'yes'
@@ -430,7 +450,7 @@ en:
       company: 
         MAIN: Manage company
       user:  
-        MAIN: Mangae users
+        MAIN: Manage users
       property:
         MAIN: Manage property
         DETAIL: Property details

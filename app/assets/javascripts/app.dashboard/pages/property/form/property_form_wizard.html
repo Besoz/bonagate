@@ -61,6 +61,26 @@ start: PAGE TITLE -->
               <div class="col-md-12">
                 <div class="col-md-6">
                   <div class="padding-30">
+                    <!-- start: CHOOSE_PROPERTY_TEMPLATE -->
+                    <h2 class="StepTitle"> Choose property template</h2>
+                    <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
+                      <label class="control-label">
+                        <!-- {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span> -->
+                      </label>
+                      <ui-select ng-model="wizardCtrl.template" theme="bootstrap" name="service_type" on-select="wizardCtrl.applyTemplate($select.selected)">
+                        <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                          {{$select.selected.template.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in wizardCtrl.propertyTemplates | filter: $select.search">
+                          <div ng-bind-html="item.template.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                  </div>
+                </div>
+                <!-- end: CHOOSE_PROPERTY_TEMPLATE -->
+                <div class="col-md-6">
+                  <div class="padding-30">
                     <h2 class="StepTitle"> Choose property type</h2>
                     <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
                       <label class="control-label">
@@ -200,12 +220,12 @@ start: PAGE TITLE -->
                   <legend>
                     Account Credential
                   </legend>
-                  <ui-select ng-model="wizardCtrl.property.state" theme="bootstrap">
+                  <ui-select ng-model="wizardCtrl.property.property_state_id" theme="bootstrap">
                     <ui-select-match placeholder="Select in the list...">
-                      {{$select.selected.name}}
+                      {{wizardCtrl.propertyStates[$select.selected].name}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in wizardCtrl.states | filter: $select.search">
-                      <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    <ui-select-choices repeat="item in wizardCtrl.property.type.property_state_ids | filter: $select.search">
+                      <div ng-bind-html="wizardCtrl.propertyStates[item].name | highlight: $select.search"></div>
                     </ui-select-choices>
                   </ui-select>
                   <ui-select ng-model="wizardCtrl.property.status" theme="bootstrap">
@@ -449,7 +469,7 @@ start: PAGE TITLE -->
                     </legend>
                     <div class="form-group">
                       <label>street</label>
-                      <input type="number" class="form-control" name="street" ng-model="wizardCtrl.property.street">
+                      <input type="string" class="form-control" name="street" ng-model="wizardCtrl.property.street">
                     </div>
                     <div class="form-group">
                       <label>number</label>
@@ -496,6 +516,30 @@ start: PAGE TITLE -->
                     </ui-select-choices>
                   </ui-select>
                 <!-- end: SHARE_WITH_COMPANIES -->
+                <!-- start: PROPERTY OPTIONS -->
+                <div>
+                  <!-- start: PUBLISH/UNPUBLISH -->
+                  <!-- <div class="checkbox clip-check check-primary"> -->
+                  <div>
+                    <label><input type="checkbox" ng-model="wizardCtrl.property.publish"/>Publish</label>
+                  </div>
+                  <!-- end: PUBLISH/UNPUBLISH -->
+                  
+                  <!-- start: SAVE AS TEMPLATE -->
+                  <div>
+                    <label>
+                      <input type="checkbox" 
+                            ng-model="wizardCtrl.save_as_template"
+                            ng-change="wizardCtrl.property.property_as_template_datum_attributes = 
+                                        wizardCtrl.save_as_template ? wizardCtrl.property.property_as_template_datum_attributes
+                                        : null;" />
+                      Save As Template</label>
+                    <input type="text" ng-if="wizardCtrl.save_as_template" ng-model="wizardCtrl.property.property_as_template_datum_attributes.name_en" value="template name" />
+                    <input type="text" ng-if="wizardCtrl.save_as_template" ng-model="wizardCtrl.property.property_as_template_datum_attributes.name_ar" value="أسم النموذج" /> 
+                  </div>
+                  <!-- end: SAVE AS TEMPLATE -->
+                </div>
+                <!-- end: PROPERTY OPTIONS -->
                 <button class="btn btn-primary btn-o next-step btn-wide" ng-click="wizardCtrl.form.submit(Form)">Submit</button>
                 <div>
                   Queue progress:

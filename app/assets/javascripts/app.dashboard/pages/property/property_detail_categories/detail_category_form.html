@@ -1,60 +1,64 @@
-<div class="container-fluid container-fullw bg-white">
-  <div class="row">
+<div class="row">
     <div class="col-md-12">
-      <div>
-        <alert ng-repeat="alert in categoryCtrl.categoryCreationErrors" category="{{alert.category}}">
-          {{alert.msg}}
-        </alert>
-      </div>
-      <form name="Form" id="form1" novalidate ng-submit="categoryCtrl.submitDetailCategory(Form)">
-        <div class="row">
-          <div class="col-md-6">
-            <fieldset>
-              <legend>
-                <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_detail_category'|translate}}'}" />
-              </legend>
-              <div class="form-group" ng-class="{'has-error':Form.NameEN.$dirty && Form.NameEN.$invalid, 'has-success':Form.NameEN.$valid}">
-                <label class="control-label">
-                  {{'activerecord.attributes.property_detail_category.name_en'|translate}} <span class="symbol required"></span>
-                </label>
-                <input category="text" placeholder="{{'activerecord.attributes.property_detail_category.name_en'|translate}}" class="form-control" name="NameEN" ng-model="categoryCtrl.detailCategory.name_en" required />
-                <span class="error text-small block" ng-if="Form.NameEN.$dirty && Form.NameEN.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail_category.name'|translate}}'}" /></span>
-              </div>
-              <div class="form-group" ng-class="{'has-error':Form.NameAR.$dirty && Form.NameAR.$invalid, 'has-success':Form.NameAR.$valid}">
-                <label class="control-label">
-                  {{'activerecord.attributes.property_detail_category.name_ar'|translate}} <span class="symbol required"></span>
-                </label>
-                <input category="text" placeholder="{{'activerecord.attributes.property_detail_category.name_ar'|translate}}" class="form-control" name="NameAR" ng-model="categoryCtrl.detailCategory.name_ar" required />
-                <span class="error text-small block" ng-if="Form.NameAR.$dirty && Form.NameAR.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail_category.name'|translate}}'}" /></span>
-              </div>
-              <div class="form-group" ng-class="{'has-error':Form.category.$dirty && Form.category.$invalid, 'has-success':Form.category.$valid}">
-                <label class="control-label">
-                  {{'activerecord.attributes.property_detail_category.state'|translate}} <span class="symbol required"></span>
-                </label>
-                <ui-select ng-model="categoryCtrl.detailCategory.state" theme="bootstrap" name="category" required>
-                  <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
-                    {{'dashboard.recored_states.'+ $select.selected | translate}}
-                  </ui-select-match>
-                  <ui-select-choices repeat="item in categoryCtrl.stateOptions | filter: $select.search">
-                    <div ng-bind-html="('dashboard.recored_states.'+item | translate)| highlight: $select.search"></div>
-                  </ui-select-choices>
-                </ui-select>
-              </div>
-              <div class="form-group">
-                <div class="pull-right">
-                  <button category="submit" class="btn btn-primary">
-                    <div ng-if="!(categoryCtrl.detailCategory.id)" translate="helpers.submit.create" translate-values="{model:'{{ 'activerecord.models.property_detail_category'|translate}}'}" />
-                    <div ng-if="categoryCtrl.detailCategory.id" translate="helpers.submit.update" translate-values="{model:'{{ 'activerecord.models.property_detail_category'|translate}}'}" />
-                  </button>
-                  <button category="button" ng-click="categoryCtrl.dismiss()" class="btn btn-o btn-primary">
-                    <div translate="dashboard.cancel" />
-                  </button>
-                </div>
-              </div>
-            </fieldset>
-          </div>
+        <div>
+            <alert ng-repeat="alert in categoryCtrl.categoryCreationErrors" category="{{alert.category}}">
+                {{alert.msg}}
+            </alert>
         </div>
-      </form>
+        <form name="Form" id="form1" novalidate ng-submit="categoryCtrl.submitDetailCategory(Form)">
+            <div class="row">
+                <div class="col-md-12">
+                    <fieldset>
+                        <legend>
+
+                            <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_detail_category'|translate}}'}" />
+
+                        </legend>
+                        <div class="form-group" ng-class="{'has-error':Form.NameEN.$dirty && Form.NameEN.$invalid, 'has-success':Form.NameEN.$valid}">
+                            <label class="control-label">
+                                {{'activerecord.attributes.property_detail_category.name_en'|translate}} <span class="symbol required"></span>
+                            </label>
+                            <input category="text" placeholder="{{'activerecord.attributes.property_detail_category.name_en'|translate}}" class="form-control" name="NameEN" ng-model="categoryCtrl.detailCategory.name_en" required />
+                            <span class="error text-small block" ng-if="Form.NameEN.$dirty && Form.NameEN.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail_category.name'|translate}}'}" /></span>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':Form.NameAR.$dirty && Form.NameAR.$invalid, 'has-success':Form.NameAR.$valid}">
+                            <label class="control-label">
+                                {{'activerecord.attributes.property_detail_category.name_ar'|translate}} <span class="symbol required"></span>
+                            </label>
+                            <input category="text" placeholder="{{'activerecord.attributes.property_detail_category.name_ar'|translate}}" class="form-control" name="NameAR" ng-model="categoryCtrl.detailCategory.name_ar" required />
+                            <span class="error text-small block" ng-if="Form.NameAR.$dirty && Form.NameAR.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail_category.name'|translate}}'}" /></span>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error':Form.category.$dirty && Form.category.$invalid, 'has-success':Form.category.$valid}">
+                            <label class="control-label">
+                                {{'activerecord.attributes.property_detail_category.state'|translate}} <span class="symbol required"></span>
+                            </label>
+                            <ui-select ng-model="categoryCtrl.detailCategory.state" theme="bootstrap" name="category" required>
+                                <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
+                                    {{'dashboard.recored_states.'+ $select.selected | translate}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in categoryCtrl.stateOptions | filter: $select.search">
+                                    <div ng-bind-html="('dashboard.recored_states.'+item | translate)| highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="form-group">
+                            <div class="pull-right">
+                                <button category="submit" class="btn btn-primary btn-squared">
+                                    <div ng-if="!(categoryCtrl.detailCategory.id)" 
+                                    translate="helpers.submit.create"/>
+                                    <!-- translate-values="{model:'{{ 'activerecord.attributes.property_detail_category.create'|translate}}'}"     -->
+                                    <div ng-if="categoryCtrl.detailCategory.id" 
+                                    translate="helpers.submit.update"/>
+                                    <!-- translate-values="{model:'{{ 'activerecord.models.property_detail_category'|translate}}'}"  -->
+                                </button>
+                                <button category="button" ng-click="categoryCtrl.dismiss()" class="btn btn-danger btn-squared">
+                                    <div translate="dashboard.cancel" />
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
     </div>
-  </div>
 </div>

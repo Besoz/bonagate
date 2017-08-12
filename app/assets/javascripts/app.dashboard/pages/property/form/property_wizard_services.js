@@ -29,7 +29,8 @@
       next: next,
       prev: prev,
       goto: goto,
-      submit: submit
+      submit: submit,
+      decoratePropertyTemplateFormJson: decoratePropertyTemplateFormJson
     };
     return service;
 
@@ -173,7 +174,7 @@
       Object.assign(vm.property, res.data);
       // upload images
       if (vm.imagesUploader.queue.length == 0) {
-        state.go('^.view', {
+        state.go('^.list', {
           'propertyId': vm.property.id
         });
       } else {
@@ -205,10 +206,18 @@
 
     }
 
+    function decoratePropertyTemplateFormJson(property){
+      property.id = null;
+      for(var i = 0; i < property.property_detail_instances_attributes.length; i++){
+        property.property_detail_instances_attributes[i].id = null;
+      }
+      property.images = [];
+    }
+
     function decoratePropertyRequest(property) {
       property.property_type_id = property.type.id;
       property.property_status_id = property.status.id;
-      property.property_state_id = property.state.id;
+      // property.property_state_id = property.state.id;
     }
 
     function showErrorMessage(form) {
