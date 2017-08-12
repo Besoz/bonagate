@@ -23,4 +23,6 @@ end
 if(current_user)
   json.is_favourite property.users.include?(current_user)
 end
+
+json.shared_companies_ids property.companies.ids
  
