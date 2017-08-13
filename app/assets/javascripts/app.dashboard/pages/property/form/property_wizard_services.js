@@ -25,11 +25,16 @@
       setPropertyLocation: setPropertyLocation,
       resetInstances: resetInstances,
       intializeImageUploader: intializeImageUploader,
+      addPaymentPlan: addPaymentPlan,
+      removePaymentPlan: removePaymentPlan,
+      addPaymentPlanRecord: addPaymentPlanRecord,
+      removePaymentPlanRecord: removePaymentPlanRecord,
       moveMap: moveMap,
       next: next,
       prev: prev,
       goto: goto,
-      submit: submit
+      submit: submit,
+      decoratePropertyTemplateFormJson: decoratePropertyTemplateFormJson
     };
     return service;
 
@@ -173,7 +178,7 @@
       Object.assign(vm.property, res.data);
       // upload images
       if (vm.imagesUploader.queue.length == 0) {
-        state.go('^.view', {
+        state.go('^.list', {
           'propertyId': vm.property.id
         });
       } else {
@@ -203,6 +208,14 @@
           .catch(updateErrorCallback);
       }
 
+    }
+
+    function decoratePropertyTemplateFormJson(property){
+      property.id = null;
+      for(var i = 0; i < property.property_detail_instances_attributes.length; i++){
+        property.property_detail_instances_attributes[i].id = null;
+      }
+      property.images = [];
     }
 
     function decoratePropertyRequest(property) {
@@ -261,6 +274,23 @@
           'propertyId': stateParams.propertyId
         });
       };
+    }
+
+    function addPaymentPlan(property) {
+      property.property_payment_plans_attributes = property.property_payment_plans_attributes || [];
+      property.property_payment_plans_attributes.unshift({});
+    }
+    function removePaymentPlan(property, paymentIndex) {
+      property.property_payment_plans_attributes.splice(paymentIndex, 1);
+    }
+
+    function addPaymentPlanRecord(paymentPlan) {
+      paymentPlan.property_payment_plan_records_attributes = paymentPlan.property_payment_plan_records_attributes || [];
+      paymentPlan.property_payment_plan_records_attributes.push({});
+    }
+
+    function removePaymentPlanRecord(paymentPlan, paymentRecordIndex) {
+      paymentPlan.property_payment_plan_records_attributes.splice(paymentRecordIndex, 1);
     }
   }
 })();
