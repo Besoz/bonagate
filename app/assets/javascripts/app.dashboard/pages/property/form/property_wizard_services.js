@@ -6,10 +6,10 @@
     .module('app.dashboard')
     .service('PropertyWizardServices', PropertyWizardServices);
 
-  PropertyWizardServices.$inject = ['PropertiesServices', 'NgMap', 'FileUploader'];
+  PropertyWizardServices.$inject = ['PropertiesServices','FormValidationService', 'toaster','NgMap', 'FileUploader'];
 
 
-  function PropertyWizardServices(PropertiesServices, NgMap, FileUploader) {
+  function PropertyWizardServices(PropertiesServices, FormValidationService, toaster, NgMap, FileUploader) {
 
     var TYPE_STEP = 1;
     var DETAILS_STEP = 2;
