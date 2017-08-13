@@ -57,7 +57,11 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1.json
   def update    
     shared_companies_ids = params[:property][:shared_companies_ids]
-    @property.companies = Company.find(shared_companies_ids)
+    if shared_companies_ids
+      @property.companies = Company.find(shared_companies_ids)
+    else
+      @property.companies = []
+    end
 
     respond_to do |format|
       if @property.update(property_params)
