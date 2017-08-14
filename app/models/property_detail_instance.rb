@@ -16,7 +16,7 @@ class PropertyDetailInstance < ActiveRecord::Base
 
   def validate_property_detail_value
 		if self.property_detail.mandatory && value.blank?
-			errors.add(:value, 'this is a mandatory field')
+      errors.add(:value, "#{property_detail.name} is a mandatory field")
 		end
 	end
   
