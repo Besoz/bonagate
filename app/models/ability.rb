@@ -32,11 +32,10 @@ class Ability
         can :read, Company, :id => user.company_user.company_id # to be changed company_user.company_id
       end
 
+      # can :crud_all, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id
       company_id = user.company_user.company_id
-      shared_properties = SharedProperty.where(company_id: company_id).pluck(:property_id).sort
-      
       can :read_all, Property, Property.company_properties(company_id) do |property|
-        (property.company_id == company_id) or shared_properties.bsearch {|property_id| property.id - property_id}
+        (property.company_id == company_id) or SharedProperty.where(company_id: company_id, property_id: property.id).any?
       end
       can :write, Property, :company_id => user.company_user.company_id
       can [:search], Property, Property.published do |property|
@@ -54,5 +53,24 @@ class Ability
           property.publish
       end
     end
+
+    #
+    # The first argument to `can` is the action you are giving the user
+    # permission to do.
+    # If you pass :manage it will apply to every action. Other common actions
+    # here are :read, :create, :update and :destroy.
+    #
+    # The second argument is the resource the user can perform the action on.
+    # If you pass :all it will apply to every resource. Otherwise pass a Ruby
+    # class of the resource.
+    #
+    # The third argument is an optional hash of conditions to further filter the
+    # objects.
+    # For example, here the user can only update published articles.
+    #
+    #   can :update, Article, :published => true
+    #
+    # See the wiki for details:
+    # https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end
 end
