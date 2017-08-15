@@ -85,7 +85,7 @@ angular
       }
 
       function resetInstances() {
-        PropertyWizardServices.resetInstances(vm.property);
+        PropertyWizardServices.resetPropertyDetailInstances(vm.property);
       }
 
       function setPropertyLocation() {

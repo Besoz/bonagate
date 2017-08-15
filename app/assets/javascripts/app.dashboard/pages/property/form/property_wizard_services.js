@@ -23,7 +23,7 @@
       setPropertyLatLng: setPropertyLatLng,
       gotoPropertyLocation: gotoPropertyLocation,
       setPropertyLocation: setPropertyLocation,
-      resetInstances: resetInstances,
+      resetPropertyDetailInstances: resetPropertyDetailInstances,
       intializeImageUploader: intializeImageUploader,
       addPaymentPlan: addPaymentPlan,
       removePaymentPlan: removePaymentPlan,
@@ -246,10 +246,9 @@
       }
     }
 
-    function resetInstances(property) {
+    function resetPropertyDetailInstances(property) {
       if (!property.id){
         property.property_detail_instances_attributes = [];
-        property.shared_companies_ids = [];
       }
     }
 
