@@ -58,7 +58,7 @@ angular
         vm.companiesToBeShared;
 
         var companies = companiesToBeSharedRequest.data.list;
-        if($rootScope.currentUser.companyUser || $rootScope.currentUser.companyAdmin){
+        if($rootScope.currentUser.companyUser){
           var userCompanyId = $rootScope.currentUser.company.id;
           vm.companiesToBeShared = companies.filter(function (company){
             return company.id !== userCompanyId;
