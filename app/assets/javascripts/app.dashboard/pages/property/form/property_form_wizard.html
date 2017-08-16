@@ -1,4 +1,4 @@
-start: PAGE TITLE -->
+<!-- start: PAGE TITLE -->
 <!-- end: PAGE TITLE -->
 <!-- start: WIZARD DEMO -->
 <div class="container-fluid container-fullw bg-white">
@@ -114,7 +114,7 @@ start: PAGE TITLE -->
                       <label class="control-label">
                         {{'activerecord.models.property_service_type'|translate}} <span class="symbol required"></span>
                       </label>
-                      <ui-select ng-model="wizardCtrl.property.service_type" theme="bootstrap" name="type">
+                      <ui-select ng-model="wizardCtrl.property.service_type" theme="bootstrap" name="type" required>
                         <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
                           {{$select.selected.name}}
                         </ui-select-match>
