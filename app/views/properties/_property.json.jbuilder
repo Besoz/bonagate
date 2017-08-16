@@ -24,7 +24,7 @@ end
 if(current_user)
   json.is_favourite property.users.include?(current_user)
 end
-json.shared_companies_ids property.companies.ids
+json.company_ids property.companies.ids
 json.property_payment_plans_attributes property.property_payment_plans,
                                        partial: 'property_payment_plans/property_payment_plan.json.jbuilder',
                                        as: :property_payment_plan

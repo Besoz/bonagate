@@ -39,9 +39,6 @@ class PropertiesController < ApplicationController
     @property = Property.new(property_params)
     @property.company_id = current_user.company_user.company_id
 
-    shared_companies_ids = params[:property][:shared_companies_ids]
-    @property.companies.push *Company.find(shared_companies_ids) if shared_companies_ids 
-    
     respond_to do |format|
       if @property.save!
         format.html { redirect_to @property, notice: 'Property was successfully created.' }
@@ -56,13 +53,9 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1
   # PATCH/PUT /properties/1.json
   def update    
-    shared_companies_ids = params[:property][:shared_companies_ids]
-    if shared_companies_ids
-      @property.companies = Company.find(shared_companies_ids)
-    else
+    if not property_params[:company_ids]
       @property.companies = []
     end
-
     respond_to do |format|
       if @property.update(property_params)
         if(params[:property][:deleted_images_ids])
@@ -113,7 +106,8 @@ class PropertiesController < ApplicationController
   def property_params
     params.require(:property).permit(:address, :company_id, :property_type_id, :property_status_id,
                                      :property_state_id, :lat, :lng, :country, :city, :area, :street, 
-                                     :number, :floor, :publish,
+                                     :number, :floor, :publish, 
+                                     {company_ids: []},
                                      {property_images_attributes: :avatar},
                                      {property_detail_instance_value_options_attributes: :property_detail_value_option_id},
                                      {property_as_template_datum_attributes: [:name_en, :name_ar]},
