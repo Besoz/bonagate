@@ -1,6 +1,5 @@
 class Property < ActiveRecord::Base
   extend Enumerize
-  include ActiveRecord::Scopes::SetOperations
 
   enumerize :state, in: %i[active inactive], default: :active, predicates: true, scope: true
 
