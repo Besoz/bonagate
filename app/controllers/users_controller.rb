@@ -21,6 +21,11 @@ class UsersController < ApplicationController
   def user_profile
     @tab = params[:tab] || 'favorites'
     @user = current_user
+    if @user.user?
+      @properties = Property.page(params[:page]).per_page(10)
+                            .where(id: UserFavoriteProperty.where(user_id: @user.id).pluck(:property_id))
+                            .order(created_at: :desc)
+    end 
   end
 
   # GET /users/new
