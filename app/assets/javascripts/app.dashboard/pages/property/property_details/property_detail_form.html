@@ -74,7 +74,7 @@
                             </h5>
                         </div>
                         <div class="col-md-4">
-                            <button type="button" class="btn btn-primary btn-squared pull-right" ng-click="detailCtrl.propertyDetail.property_detail_value_options_attributes.push({}) ">
+                            <button type="button" class="btn btn-primary btn-squared pull-right" ng-click="detailCtrl.propertyDetail.property_detail_value_options_attributes.unshift({}) ">
                                 <i class="fa fa-plus "></i>
                             </button>
                         </div>
@@ -103,7 +103,7 @@
                             <div ng-if="detailCtrl.propertyDetail.id" translate="helpers.submit.update" />
                             <!-- translate-values="{model: '{{ 'activerecord.models.property_detail' | translate}}'}"  -->
                         </button>
-                        <button type="button" ng-click="detailCtrl.dismiss() " class="btn-squared btn btn-danger ">
+                        <button type="button" ng-click="detailCtrl.dismiss()" class="btn-squared btn btn-danger ">
                             <div translate="dashboard.cancel " />
                         </button>
                     </div>
