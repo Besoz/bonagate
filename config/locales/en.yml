@@ -28,6 +28,8 @@ en:
       property_type: property type
       property_detail_category: property detail category
       property_state: Property State
+      payment_plan: payment plan
+      payment_plan_record: Payment Plan Record
     attributes:
       user:
         email: "email" 
@@ -59,7 +61,10 @@ en:
         state: state
         code: code
         name_en: english name
-        name_ar: arabic name       
+        name_ar: arabic name      
+      property_payment_record:
+        value: Value
+        description: Description  
     errors:
       messages:
         record_invalid: "Validation failed: %{errors}"
@@ -211,6 +216,7 @@ en:
       create_new: Create new %{model}
       submit: Save %{model}
       update: Update %{model}
+      remove: Remove %{model}
   number:
     currency:
       format:
@@ -361,7 +367,15 @@ en:
     image_upload: Image Upload
     update: Update
     # end: user profile
-    
+
+    # start: property create wizard
+    property_create_wizard:
+      title: Create New Property
+      step5:
+         
+
+    # end: property create wizard
+
     errors:
       required: '{{attribute}} is required'
 
