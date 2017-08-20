@@ -71,7 +71,7 @@ class PropertyDetailsController < ApplicationController
 
     value_type_changed = @property_detail.value_type != property_detail_params[:value_type]
     
-    value_options_used = value_options_used(
+    value_options_used = [] || value_options_used(
       property_detail_params[:property_detail_value_options_attributes])
 
     if(value_type_changed || value_options_used.length > 0)

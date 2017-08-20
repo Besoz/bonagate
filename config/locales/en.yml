@@ -79,6 +79,13 @@ en:
         code: Code
         value_serviceType: Value Service Type
     errors:
+      models:
+        property_detail:
+          attributes:
+            property_detail_value_options:
+              not_enough:
+                one: "%{attribute} are not enough (minimum is 1)"
+                other: "%{attribute} are not enough (minimum is %{count})"
       messages:
         record_invalid: "Validation failed: %{errors}"
         restrict_dependent_destroy:
