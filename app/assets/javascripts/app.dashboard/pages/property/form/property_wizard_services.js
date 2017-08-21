@@ -23,7 +23,7 @@
       setPropertyLatLng: setPropertyLatLng,
       gotoPropertyLocation: gotoPropertyLocation,
       setPropertyLocation: setPropertyLocation,
-      resetInstances: resetInstances,
+      resetPropertyDetailInstances: resetPropertyDetailInstances,
       intializeImageUploader: intializeImageUploader,
       addPaymentPlan: addPaymentPlan,
       removePaymentPlan: removePaymentPlan,
@@ -215,6 +215,9 @@
       for(var i = 0; i < property.property_detail_instances_attributes.length; i++){
         property.property_detail_instances_attributes[i].id = null;
       }
+      for(var i = 0; i < property.property_payment_plans_attributes.length; i++){
+        property.property_payment_plans_attributes[i].id = null;
+      }
       property.images = [];
     }
 
@@ -243,9 +246,10 @@
       }
     }
 
-    function resetInstances(property) {
-      if (!property.id)
+    function resetPropertyDetailInstances(property) {
+      if (!property.id){
         property.property_detail_instances_attributes = [];
+      }
     }
 
     function intializeImageUploader(vm, state, stateParams) {

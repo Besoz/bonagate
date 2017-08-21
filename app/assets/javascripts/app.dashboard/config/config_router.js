@@ -155,6 +155,9 @@ angular
           propertyDetailCategoriesRequest: function ($http) {
             return $http.get('property_detail_categories/index_by_id.json');
           },
+           companiesToBeSharedRequest: function ($http){
+            return $http.get('/companies.json');
+          },
           propertyTemplatesRequest: function($http){
             return $http.get('properties/templates.json');
           },
@@ -195,6 +198,9 @@ angular
           },
           propertyDetailCategoriesRequest: function ($http) {
             return $http.get('property_detail_categories/index_by_id.json');
+          },
+          companiesToBeSharedRequest: function ($http){
+            return $http.get('/companies.json');
           },
           propertyTemplatesRequest: function($http){
             return $http.get('properties/templates.json');

@@ -512,9 +512,6 @@
           <div id="step-5" ng-if="wizardCtrl.currentStep == 5">
             <div class="row">
               <div class="col-md-12">
-
-
-
                 <button class="btn btn-wide btn-primary" ng-click="wizardCtrl.addPaymentPlan()">
                     <i class="ti-plus"></i>
                     <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
@@ -619,6 +616,17 @@
           <div id="step-5" ng-if="wizardCtrl.currentStep == 6">
             <div class="row">
               <div class="col-md-12">
+                <!-- start: SHARE_WITH_COMPANIES -->
+                  <ui-select multiple ng-model="wizardCtrl.property.company_ids"
+                          theme="bootstrap" ng-disabled="disabled" close-on-select="false">
+                    <ui-select-match placeholder="Select colors...">
+                            {{$item.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="option.id as option in wizardCtrl.companiesToBeShared | filter:$select.search">
+                            {{option.name}}
+                    </ui-select-choices>
+                  </ui-select>
+                <!-- end: SHARE_WITH_COMPANIES -->
                 <!-- start: PROPERTY OPTIONS -->
                 <div>
                   <!-- start: PUBLISH/UNPUBLISH -->
