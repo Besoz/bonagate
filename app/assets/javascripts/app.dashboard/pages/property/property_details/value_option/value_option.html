@@ -12,7 +12,7 @@
         <input type="text" class="form-control" ng-model="option.name_ar" placeholder="الاختيار بالعربى" ng-disabled="option._destroy"  dir="rtl">
     </div>
     <div ng-if="!option.id" class="col-md-12 pull-right">
-        <button class="btn btn-squared btn-danger">
+        <button class="btn btn-squared btn-danger" ng-click="detailCtrl.removeValueOption({{$index}}) ">
             <i class="fa fa-trash "></i> Delete
         </button>
     </div>
