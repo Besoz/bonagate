@@ -57,7 +57,7 @@ class PropertiesController < ApplicationController
       if @property.update(property_params)
         if(params[:property][:deleted_images_ids])
           @property.property_images.where(id: params[:property][:deleted_images_ids]).destroy_all
-        end
+        end 
 
         format.html { redirect_to @property, notice: 'Property was successfully updated.' }
         format.json { render :show, status: :ok, location: @property }
@@ -103,11 +103,13 @@ class PropertiesController < ApplicationController
   def property_params
     params.require(:property).permit(:address, :company_id, :property_type_id, :property_status_id,
                                      :property_state_id, :lat, :lng, :country, :city, :area, :street, 
-                                     :number, :floor, :publish,
+                                     :number, :floor, :publish, :company_ids,
+                                     {company_ids: []},
                                      {property_images_attributes: :avatar},
                                      {property_detail_instance_value_options_attributes: :property_detail_value_option_id},
                                      {property_as_template_datum_attributes: [:name_en, :name_ar]},
-                                     property_detail_instances_attributes: ['_destroy', :id, :property_detail_id, :value, 
+                                     property_detail_instances_attributes: ['_destroy', :id, 
+                                      :property_detail_id, :value, :property_detail_value_option_ids,
                                      property_detail_value_option_ids: [],
                                      property_detail_instance_value_options_attributes: 
                                      [:property_detail_value_option_id]],
