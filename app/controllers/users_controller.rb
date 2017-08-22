@@ -10,10 +10,14 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = @users
-                .joins('LEFT JOIN company_users ON users.id = company_users.user_id')
+                .joins('LEFT JOIN company_users cu2 ON users.id = cu2.user_id')
                 .order(role: :asc)
                 .order('company_users.company_id')
                 .includes(company_user: :company)
+
+    filtering_params(params).each do |scope, value|
+      @users = @users.public_send(scope, value) if value.present?
+    end
   end
 
   # GET /users/1
@@ -185,5 +189,9 @@ class UsersController < ApplicationController
     def company_params
       params.require(:company).permit(:name)
       
+    end
+
+    def filtering_params(params)
+      params.slice(:with_role)
     end
 end
