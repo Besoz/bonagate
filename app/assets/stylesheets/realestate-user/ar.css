@@ -3,4 +3,5 @@
 /*
  *= require ./ar/vendor/all.css
  *= require ./ar/app/app.css
+ *= require ../all/override_ar.scss
  */

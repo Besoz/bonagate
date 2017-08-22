@@ -6,10 +6,10 @@
     .module('app.dashboard')
     .service('PropertyWizardServices', PropertyWizardServices);
 
-  PropertyWizardServices.$inject = ['PropertiesServices', 'NgMap', 'FileUploader'];
+  PropertyWizardServices.$inject = ['PropertiesServices','FormValidationService', 'toaster','NgMap', 'FileUploader'];
 
 
-  function PropertyWizardServices(PropertiesServices, NgMap, FileUploader) {
+  function PropertyWizardServices(PropertiesServices, FormValidationService, toaster, NgMap, FileUploader) {
 
     var TYPE_STEP = 1;
     var DETAILS_STEP = 2;
@@ -23,7 +23,7 @@
       setPropertyLatLng: setPropertyLatLng,
       gotoPropertyLocation: gotoPropertyLocation,
       setPropertyLocation: setPropertyLocation,
-      resetInstances: resetInstances,
+      resetPropertyDetailInstances: resetPropertyDetailInstances,
       intializeImageUploader: intializeImageUploader,
       addPaymentPlan: addPaymentPlan,
       removePaymentPlan: removePaymentPlan,
@@ -33,7 +33,8 @@
       next: next,
       prev: prev,
       goto: goto,
-      submit: submit
+      submit: submit,
+      decoratePropertyTemplateFormJson: decoratePropertyTemplateFormJson
     };
     return service;
 
@@ -177,7 +178,7 @@
       Object.assign(vm.property, res.data);
       // upload images
       if (vm.imagesUploader.queue.length == 0) {
-        state.go('^.view', {
+        state.go('^.list', {
           'propertyId': vm.property.id
         });
       } else {
@@ -209,6 +210,17 @@
 
     }
 
+    function decoratePropertyTemplateFormJson(property){
+      property.id = null;
+      for(var i = 0; i < property.property_detail_instances_attributes.length; i++){
+        property.property_detail_instances_attributes[i].id = null;
+      }
+      for(var i = 0; i < property.property_payment_plans_attributes.length; i++){
+        property.property_payment_plans_attributes[i].id = null;
+      }
+      property.images = [];
+    }
+
     function decoratePropertyRequest(property) {
       property.property_type_id = property.type.id;
       property.property_status_id = property.status.id;
@@ -234,9 +246,10 @@
       }
     }
 
-    function resetInstances(property) {
-      if (!property.id)
+    function resetPropertyDetailInstances(property) {
+      if (!property.id){
         property.property_detail_instances_attributes = [];
+      }
     }
 
     function intializeImageUploader(vm, state, stateParams) {

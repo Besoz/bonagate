@@ -1,5 +1,7 @@
-json.extract! property, :id, :address, :created_at, :updated_at, :state, :lat, :lng, :country, :city, :area, :street, :number, :floor
+json.extract! property, :id, :address, :created_at, :updated_at, :state, :lat, :lng, :country, :city, :area, :street, :number, :floor, :publish
+json.template property.property_as_template_datum, :name if(property.property_as_template_datum)
 json.property_detail_instances_attributes property.property_detail_instances, partial: 'property_detail_instances/property_detail_instance.json.jbuilder', as: :property_detail_instance
+json.company property.company, partial: 'companies/company.json.jbuilder', as: :company
 # json.property_detail_instances_attributes do
 #     property.property_detail_instances.each do |inst|
 #         json.set! inst.property_detail_id do
@@ -22,6 +24,7 @@ end
 if(current_user)
   json.is_favourite property.users.include?(current_user)
 end
+json.company_ids property.companies.ids
 json.property_payment_plans_attributes property.property_payment_plans,
                                        partial: 'property_payment_plans/property_payment_plan.json.jbuilder',
                                        as: :property_payment_plan

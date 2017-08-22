@@ -4,13 +4,13 @@
  */
 angular
   .module('app.dashboard')
-  .controller('FormWizardController', ['toaster', '$scope', 'propertyTypesRequest', 'serviceTypesRequest', 'propertyStatesRequest', 'propertyStatusesRequest',
-    'propertyRequest', '$state', '$stateParams',
+  .controller('FormWizardController', ['$scope', 'propertyTypesRequest', 'serviceTypesRequest', 'propertyStatesRequest', 'propertyStatusesRequest',
+    'propertyRequest', '$state', '$stateParams', '$rootScope',
     'PropertyWizardServices', 'propertyDetailsRequest', 'propertyDetailCategoriesRequest',  'propertyStatesHashRequest',
-
-    function (toaster, $scope, propertyTypesRequest, serviceTypesRequest, propertyStatesRequest, propertyStatusesRequest,
-      propertyRequest, $state, $stateParams, PropertyWizardServices,
-      propertyDetailsRequest, propertyDetailCategoriesRequest, propertyStatesHashRequest) {
+    'propertyTemplatesRequest', 'companiesToBeSharedRequest',
+    function ($scope, propertyTypesRequest, serviceTypesRequest, propertyStatesRequest, propertyStatusesRequest,
+      propertyRequest, $state, $stateParams, $rootScope, PropertyWizardServices,
+      propertyDetailsRequest, propertyDetailCategoriesRequest, propertyStatesHashRequest, propertyTemplatesRequest, companiesToBeSharedRequest) {
 
       var vm = this;
 
@@ -41,6 +41,7 @@ angular
         };
 
         vm.resetInstances = resetInstances;
+        vm.applyTemplate = applyTemplate;
         vm.addPaymentPlan = addPaymentPlan;
         vm.removePaymentPlan = removePaymentPlan;
         vm.addPaymentPlanRecord = addPaymentPlanRecord;
@@ -50,10 +51,23 @@ angular
         vm.serviceTypes = serviceTypesRequest.data.list;
         vm.states = propertyStatesRequest.data.list;
         vm.statuses = propertyStatusesRequest.data.list;
-        vm.propertyDetails = propertyDetailsRequest.data.hash
-        vm.propertyDetailCategories = propertyDetailCategoriesRequest.data.hash
-        vm.propertyStates = propertyStatesHashRequest.data.hash
+        vm.propertyDetails = propertyDetailsRequest.data.hash;
+        vm.propertyDetailCategories = propertyDetailCategoriesRequest.data.hash;
+        vm.propertyTemplates = propertyTemplatesRequest.data.list;
+        vm.propertyStates = propertyStatesHashRequest.data.hash;
+        vm.companiesToBeShared;
 
+        var companies = companiesToBeSharedRequest.data.list;
+        if($rootScope.currentUser.companyUser){
+          var userCompanyId = $rootScope.currentUser.company.id;
+          vm.companiesToBeShared = companies.filter(function (company){
+            return company.id !== userCompanyId;
+          })
+        }
+        else if($rootScope.currentUser.admin){
+          vm.companiesToBeShared.companies;
+        }
+         
         vm.property = propertyRequest.data || {
           deleted_images_ids: [],
           property_detail_instances_attributes: [],
@@ -63,8 +77,15 @@ angular
         PropertyWizardServices.intializeImageUploader(vm, $state, $stateParams);
       }
 
+      function applyTemplate(templateSource){
+        if(templateSource){
+           vm.property = angular.copy(templateSource);
+           PropertyWizardServices.decoratePropertyTemplateFormJson(vm.property);
+        }
+      }
+
       function resetInstances() {
-        PropertyWizardServices.resetInstances(vm.property);
+        PropertyWizardServices.resetPropertyDetailInstances(vm.property);
       }
 
       function setPropertyLocation() {
