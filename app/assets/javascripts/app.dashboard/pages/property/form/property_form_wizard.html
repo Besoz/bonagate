@@ -508,25 +508,18 @@
           <div id="step-5" ng-if="wizardCtrl.currentStep == 5">
             <div class="row">
               <div class="col-md-12">
-
-
-
-                <button class="btn btn-wide btn-primary" ng-click="wizardCtrl.addPaymentPlan()">
-                    <i class="ti-plus"></i>
-                    <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
-                  </button>
-                <div ng-repeat="payment_plan in wizardCtrl.property.property_payment_plans_attributes">
-                  <button ng-if="!payment_plan.id" class="btn btn-wide btn-danger" ng-click="wizardCtrl.removePaymentPlan($index)">
-                      <i class="ti-minus"></i>
-                    <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
-                  </button>
-                <!-- btn add new payment plan -->
                 <button class="btn btn-wide btn-primary btn-squared" ng-click="wizardCtrl.addPaymentPlan()">
                   <i class="ti-plus"></i>
                   <span translate="helpers.submit.create_new" translate-values="{model:'{{'activerecord.models.payment_plan' | translate}}'}" class="ng-scope">
                                     </span>
                 </button>
-              </div>
+               <!--  <div ng-repeat="payment_plan in wizardCtrl.property.property_payment_plans_attributes">
+                  <button ng-if="!payment_plan.id" class="btn btn-wide btn-danger" ng-click="wizardCtrl.removePaymentPlan($index)">
+                      <i class="ti-minus"></i>
+                    <span translate="helpers.submit.create_new" translate-values="{model:'activerecord.models.payment_plan'}" class="ng-scope"></span>
+                  </button>
+                </div> -->
+                <!-- btn add new payment plan -->
               <div class="col-md-12">
                 <!-- payment fieldset -->
                 <div ng-repeat="payment_plan in wizardCtrl.property.property_payment_plans_attributes" class="margin-top-30">
