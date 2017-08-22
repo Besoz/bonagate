@@ -202,8 +202,8 @@
                         </ui-select>
                         <!-- end: value_type == 'multi_select' -->
                         <!-- start: value_type == 'bool' -->
-                        <div ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'bool'" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory" class="checkbox clip-check check-primary ng-scope" >
-                        <input name="property.property_detail_instances_attributes{{$index}}.value" ng-model="detail_instance.value" type="checkbox" id="checkbox-bool{{$index}}" >
+                        <div ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'bool'" class="checkbox clip-check check-primary ng-scope" > 
+                        <input name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory" ng-model="detail_instance.value" type="checkbox" id="checkbox-bool{{$index}}" > 
                           <label for="checkbox-bool{{$index}}" >
                           </label>
                         </div>
