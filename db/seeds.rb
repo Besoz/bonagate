@@ -3,5 +3,16 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+puts '##############################################################'
+puts '################# start seeding ##############################'
+puts '##############################################################'
+if User.where(email: 'admin@bonagate.com').exists?
+  puts 'admin already exist'
+else
+  puts 'creating admin'
+  User.create(email: 'admin@bonagate.com', password: '123456789',
+              password_confirmation: '123456789', role: :admin)
+end
+puts '##############################################################'
+puts '################# end seeding ################################'
+puts '##############################################################'

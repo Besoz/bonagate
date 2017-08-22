@@ -28,8 +28,8 @@
                     <td data-title="'activerecord.attributes.property_state.name' | translate " filter="{ 'name': 'text' }"> {{propertyState.name}} </td>
                     <td data-title="'activerecord.attributes.property_state.code' | translate ">{{propertyState.code}} </td>
                     <td class="rowTd">
-                        <div class="pull-right margin-right-10">
-                            <input state="button" class="btn btn-primary btn-squared" id="editRowBtn{{p.id}}" value="Edit" ng-click="statesCtrl.edit($index)">
+                        <div class="margin-right-10">
+                            <input type="button" state="button" class="btn btn-primary btn-squared" id="editRowBtn{{p.id}}" value="Edit" ng-click="statesCtrl.edit($index)">
                         </div>
                     </td>
                 </tr>

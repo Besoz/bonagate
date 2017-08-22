@@ -45,13 +45,13 @@ class PropertyDetailsController < ApplicationController
     respond_to do |format|
       if @property_detail.save
 
-        if(duplicate_detail_id && 
-          types_need_update && types_need_update.length > 0)
-          
+        if duplicate_detail_id &&
+           types_need_update && !types_need_update.empty?
+
           types_need_update_ids = types_need_update.map { |x| x[:id] }
           PropertyTypeDetail
-            .where(property_type_id: types_need_update_ids, 
-              property_detail_id: duplicate_detail_id)
+            .where(property_type_id: types_need_update_ids,
+                   property_detail_id: duplicate_detail_id)
             .update_all(property_detail_id: @property_detail.id)
         end
 
@@ -67,24 +67,30 @@ class PropertyDetailsController < ApplicationController
   # PATCH/PUT /property_details/1
   # PATCH/PUT /property_details/1.json
   def update
+    @property_detail.attributes = property_detail_params
+    used_value_options = @property_detail.get_used_value_options
+    value_type_changed = @property_detail.value_type_changed?
+    affected_properties = @property_detail.get_properties_using
+
+    puts 'ddddddddddddddddddddddd'
     # check if value options or value type will change and the details is already used
 
-    value_type_changed = @property_detail.value_type != property_detail_params[:value_type]
-    
-    value_options_used = value_options_used(
-      property_detail_params[:property_detail_value_options_attributes])
-
-    if(value_type_changed || value_options_used.length > 0)
+    if (affected_properties.any? && value_type_changed) || used_value_options.any?
 
       affected_types = PropertyType.get_affected_with_property_detail(@property_detail.id)
 
-      response = {affected_properties: value_options_used, affected_types: affected_types}
+      # response = { affected_properties: affected_properties,
+      #              value_options_used: used_value_options,
+      #              affected_types: affected_types }
 
-      puts response.to_json
-      render 'property_details/_value_option_effected_data.json.jbuilder',locals: {affected_properties: value_options_used, affected_types: affected_types}, status: :multi_status
+      # puts response.to_json
+      render 'property_details/_value_option_effected_data.json.jbuilder',
+             locals: {  affected_properties: affected_properties,
+                   used_value_options: used_value_options,
+                   affected_types: affected_types }, status: :multi_status
     else
       respond_to do |format|
-        if @property_detail.update(property_detail_params)
+        if @property_detail.save
           format.html { redirect_to @property_detail, notice: 'Property detail was successfully updated.' }
           format.json { render :show, status: :ok, location: @property_detail }
         else
