@@ -20,8 +20,9 @@
 
     // creating new property detail
     vm.propertyDetail;
-    vm.submitPropertyDetail = submitPropertyDetail;
-    vm.detailCreationErrors = [];
+    vm.submitPropertyDetail;
+    vm.detailCreationErrors;
+    vm.removeValueOption;
 
     vm.valueTypeOptions;
     vm.categories;
@@ -30,6 +31,9 @@
 
     function activate() {
       vm.propertyDetail = propertyDetail;
+      vm.submitPropertyDetail = submitPropertyDetail;
+      vm.removeValueOption = removeValueOption;
+      vm.detailCreationErrors = [];
       vm.valueTypeOptions = formHelpers.valueTypeOptions;
       vm.categories = formHelpers.categories;
     }
@@ -133,6 +137,10 @@
         model: propertydDetailStr
       })
       toaster.pop("success", title, msg);
+    }
+
+    function removeValueOption(index){
+      vm.propertyDetail.property_detail_value_options_attributes.splice(index, 1);
     }
 
   }

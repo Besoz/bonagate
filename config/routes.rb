@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :property_payment_plan_records
+  resources :property_payment_plans
   root to: 'pages#index'
     
   resources :property_detail_categories do
@@ -35,6 +37,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'search'
+      get 'templates'
     end
   end
   resources :companies
