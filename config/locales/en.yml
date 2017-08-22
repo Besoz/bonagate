@@ -76,14 +76,24 @@ en:
         name: Name
         code: Code
         value_state: Value Status
-      property_serviceType:
+      property_service_type:
         name: Name
         code: Code
-        value_serviceType: Value Service Type
+        value_service_type: Value Service Type
+      property_detail_value_option:
+        name_en: English Name
+        name_ar: Arabic Name
       property_payment_record:
         value: Value
         description: Description  
     errors:
+      models:
+        property_detail:
+          attributes:
+            property_detail_value_options:
+              not_enough:
+                one: "%{attribute} are not enough (minimum is 1)"
+                other: "%{attribute} are not enough (minimum is %{count})"
       messages:
         record_invalid: "Validation failed: %{errors}"
         restrict_dependent_destroy:

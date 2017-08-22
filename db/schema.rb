@@ -162,15 +162,16 @@ ActiveRecord::Schema.define(version: 20170808193448) do
   add_index "property_detail_value_options", ["property_detail_id"], name: "index_property_detail_value_options_on_property_detail_id", using: :btree
 
   create_table "property_details", force: :cascade do |t|
-    t.string   "code",                        limit: 255
-    t.string   "name",                        limit: 255
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.string   "value_type",                  limit: 255
-    t.string   "state",                       limit: 255
-    t.string   "value_options",               limit: 255
-    t.integer  "property_detail_category_id", limit: 4
-    t.boolean  "mandatory",                   limit: 1
+    t.string   "code",                         limit: 255
+    t.string   "name",                         limit: 255
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "value_type",                   limit: 255
+    t.string   "state",                        limit: 255
+    t.string   "value_options",                limit: 255
+    t.integer  "property_details_category_id", limit: 4
+    t.integer  "property_detail_category_id",  limit: 4
+    t.boolean  "mandatory",                    limit: 1
   end
 
   add_index "property_details", ["code"], name: "index_property_details_on_code", unique: true, using: :btree
