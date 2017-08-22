@@ -361,6 +361,9 @@ en:
     view_more: view more
     Manage_Company: Manage Company
     Store_modify: Store, modify, and extract information from your database
+    profile: Profile
+    edit_profile: Edit Profile
+
     # end: dashboard
     
     # start: users.html
