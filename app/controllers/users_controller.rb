@@ -9,6 +9,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @users = @users
+                .joins('LEFT JOIN company_users ON users.id = company_users.user_id')
+                .order(role: :asc)
+                .order('company_users.company_id')
+                .includes(company_user: :company)
   end
 
   # GET /users/1
