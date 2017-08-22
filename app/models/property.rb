@@ -18,6 +18,8 @@ class Property < ActiveRecord::Base
   has_many :property_detail_instances
   accepts_nested_attributes_for :property_detail_instances, allow_destroy: true
 
+  validates_associated :property_detail_instances
+
   has_many :service_type_instances
 
   has_many :property_images, dependent: :destroy
