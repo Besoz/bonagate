@@ -23,7 +23,7 @@ angular
 
       function activate() {
         // Initial Value
-        vm.currentStep = 5;
+        vm.currentStep = 1;
 
         vm.form = {
           next: next,
