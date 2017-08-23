@@ -3,69 +3,26 @@
   'use strict';
 
   angular.module('app.dashboard')
-    .controller('UsersController', UsersController);
+    .controller('UserInvitationController', UserInvitationController);
 
-  UsersController.$inject = ['$state', '$window', 'usersList', 'UserServices', '$rootScope', 'toaster', '$translate', '$modal'];
+  UserInvitationController.$inject = ['$state', '$window', 'UserServices', '$rootScope', 'toaster', '$translate', 
+    '$modalInstance'];
 
-  function UsersController($state, $window, usersList, UserServices, $rootScope, toaster, $translate, $modal) {
+  function UserInvitationController($state, $window, UserServices, $rootScope, toaster, $translate, $modalInstance) {
 
     var vm = this;
-
-    vm.users = usersList.data;
-
-    // inline edit show control  
-    vm.editId;
-    vm.setEditId = setEditId;
-    vm.save = save; // inline edit save
-
 
     // invitations
     vm.inviteUser = inviteUser;
     vm.userInvitation;
     vm.invitationAlerts = [];
-    vm.openInviteModal = openInviteModal;
-
 
     vm.roles = [
       'company_admin',
       'company_sales'
     ];
 
-        // invite user create btn
-    function openInviteModal () {
-      console.log("test");
-      var modalInstance = $modal.open({
-        templateUrl: 'assets/app.dashboard/pages/users/user_invite_modal.html',
-        controller: 'UserInvitationController',
-        controllerAs: 'invitationCtrl'
-      });
-
-      modalInstance.result.then(function(selectedItem) {
-        
-      }, function() {
-      });
-    };
-
-
-    function setEditId(id) {
-      vm.editId = id;
-    }
-
-    function save(user) {
-      console.log(user);
-
-      UserServices.updateUser(user)
-        .then(function(res) {
-          console.log(res);
-          vm.setEditId(-1)
-        })
-        .catch(function(err) {
-          console.log(err);
-        });
-    }
-
     //  user invitation
-
     function inviteUser() {
 
       vm.invitationAlerts = [];

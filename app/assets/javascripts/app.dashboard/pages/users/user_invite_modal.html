@@ -1,0 +1,34 @@
+<form class="form-register padding-20" name="Form1" novalidate>
+  <fieldset>
+    <legend>
+      <div translate="{{'dashboard.invite_user' | translate}}"/>
+    </legend>
+    <div class="form-group" ng-class="{'has-error':Form1.email.$dirty && Form1.email.$invalid || invitationCtrl.emailError, 'has-success':Form1.email.$valid}">
+      <span class="input-icon">
+          <input class="form-control" name="email" placeholder="{{'activerecord.attributes.user.email' | translate}}" ng-model="invitationCtrl.userInvitation.user.email" required>
+          <i class="fa fa-envelope"></i> </span>
+      <span class="error text-small block" ng-if="Form1.email.$dirty && Form1.email.$error.required">
+            <div translate="dashboard.errors.required" translate-values="{attribute:'{{ 'activerecord.attributes.user.email'|translate}}'}"/>.
+          </span>
+      <span class="error text-small block" ng-if="Form1.email.$error.email">Please, enter a valid email address.</span>
+      <span class="error text-small block" ng-if="invitationCtrl.emailError">Email  {{invitationCtrl.emailError}}</span>
+    </div>
+    <div class="form-group">
+      <ui-select ng-model="invitationCtrl.userInvitation.user.role" theme="bootstrap">
+        <ui-select-match placeholder="{{'dashboard.select_list' | translate}}...">
+          {{'dashboard.roles.'+ $select.selected | translate}}
+        </ui-select-match>
+        <ui-select-choices repeat="item in invitationCtrl.roles | filter: $select.search">
+          <div ng-bind-html="('dashboard.roles.'+item | translate) | highlight: $select.search"></div>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+    <div class="form-actions">
+      <button type="submit" ng-click="invitationCtrl.inviteUser()" class="btn btn-primary btn-squared pull-right">
+        {{'dashboard.invite_user' | translate}} <i class="fa fa-arrow-circle-right"></i>
+      </button>
+    </div>
+    <div class="clearfix">
+    </div>
+  </fieldset>
+</form>

@@ -55,7 +55,8 @@ angular
           usersList: function ($http) {
             return $http.get('/users.json');
           },
-          deps: mLoadSequence('ui.select', 'ngTable', 'moment', 'angularMoment', "userServices", "usersController")
+          deps: mLoadSequence('ui.select', 'ngTable', 'moment', 'angularMoment', "userServices", 
+            "usersController", "userInvitationController")
         }, // resolve: loadSequence('jquery-sparkline', 'dashboardCtrl'),
         // title: 'Dashboard',
         ncyBreadcrumb: {

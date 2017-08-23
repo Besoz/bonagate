@@ -62,6 +62,10 @@
   }
 }
 
+th.sortable .sort-indicator {
+  text-transform: capitalize;
+}
+
 //property-details modal create new detail
 .value-option-wrapper {
   background: #f5f5f5;
@@ -79,4 +83,19 @@
 .StepTitle {
   letter-spacing: 1px;
   margin-top: 10px;
+}
+
+// user_profile.html && company_profile.html
+.profile-container {
+  margin-top: -18px;
+  border-bottom: 0px !important;
+  .tabbable {
+    padding: 0px;
+  }
+
+  tr {
+    td:first-child {
+      width: 100px;
+    }
+  }
 }
