@@ -1,18 +1,43 @@
 <div class="row margin-top-10 value-option-wrapper" ng-class="{checkToDelete:option._destroy}">
-    <div class="form-group col-md-12 margin-bottom-10">
+    
+    <!--<div class="form-group col-md-12 margin-bottom-10">
         <label class="control-label">
             Option in English
         </label>
         <input type="text" class="form-control" ng-model="option.name_en" placeholder="Option in English" ng-disabled="option._destroy">
+    </div>-->
+
+    <div class="form-group col-md-12 margin-bottom-10" ng-class="{'has-error':Form.nameEN.$dirty && Form.nameEN.$invalid, 'has-success':Form.nameEN.$valid}">
+        <label class="control-label">
+            {{'activerecord.attributes.property_detail_value_option.name_en'|translate}} <span class="symbol required"></span>
+        </label>
+        <input placeholder="{{'activerecord.attributes.property_detail_value_option.name_en'|translate}}" 
+            class="form-control" name="nameEN" ng-model="option.name_en" ng-disabled="option._destroy"
+            required />
+        <span class="error text-small block" ng-if="Form.nameEN.$dirty && Form.nameEN.$invalid">
+            <div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail_value_option.name_en'|translate}}'}" /></span>
     </div>
-    <div class="form-group col-md-12 margin-bottom-10" dir="rtl">
+
+    <div class="form-group col-md-12 margin-bottom-10" ng-class="{'has-error':Form.nameAR.$dirty && Form.nameAR.$invalid, 'has-success':Form.nameAR.$valid}">
+        <label class="control-label">
+            {{'activerecord.attributes.property_detail_value_option.name_ar'|translate}} <span class="symbol required"></span>
+        </label>
+        <input placeholder="{{'activerecord.attributes.property_detail_value_option.name_ar'|translate}}" 
+            class="form-control" name="nameAR" ng-model="option.name_ar" ng-disabled="option._destroy"
+            required />
+        <span class="error text-small block" ng-if="Form.nameAR.$dirty && Form.nameAR.$invalid">
+            <div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_detail_value_option.name_ar'|translate}}'}" /></span>
+    </div>
+
+    <!--<div class="form-group col-md-12 margin-bottom-10" dir="rtl">
         <label class="control-label">
             الإختيار بالعربى
         </label>
-        <input type="text" class="form-control" ng-model="option.name_ar" placeholder="الاختيار بالعربى" ng-disabled="option._destroy"  dir="rtl">
-    </div>
+        <input type="text" class="form-control" ng-model="option.name_ar" placeholder="الاختيار بالعربى" ng-disabled="option._destroy"
+            dir="rtl">
+    </div>-->
     <div ng-if="!option.id" class="col-md-12 pull-right">
-        <button class="btn btn-squared btn-danger">
+        <button class="btn btn-squared btn-danger" ng-click="detailCtrl.removeValueOption({{$index}}) ">
             <i class="fa fa-trash "></i> Delete
         </button>
     </div>
