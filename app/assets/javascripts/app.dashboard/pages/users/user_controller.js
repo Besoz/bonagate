@@ -6,11 +6,11 @@
     .controller('UserController', UserController);
 
   UserController.$inject = ['$http', '$window', '$stateParams', 'flowFactory',
-    'UserServices', 'moment', '$rootScope', 'userRequest'
+    'UserServices', 'moment', '$rootScope', 'userRequest', 'cfpLoadingBar'
   ];
 
   function UserController($http, $window, $stateParams, flowFactory, UserServices,
-    moment, $rootScope, userRequest) {
+    moment, $rootScope, userRequest, cfpLoadingBar) {
 
     var vm = this;
 
@@ -64,9 +64,11 @@
     function uploadImage() {
 
       console.log(vm.obj.files[0].file);
+      cfpLoadingBar.start();
 
       UserServices.updateUserImage(vm.user.id, vm.obj.files[0].file)
         .then(function(res) {
+          cfpLoadingBar.complete();
           console.log("res");
           console.log(res);
         })
