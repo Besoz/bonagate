@@ -22,10 +22,15 @@ class UsersController < ApplicationController
     @tab = params[:tab] || 'favorites'
     @user = current_user
     if @user.user?
-      @properties = Property.page(params[:page]).per_page(10)
-                            .where(id: UserFavoriteProperty.where(user_id: @user.id).pluck(:property_id))
-                            .order(created_at: :desc)
+      @properties = Property.page(params[:page]).per_page(10).favorites(@user.id)
     end 
+
+    respond_to do |format|
+      format.html {}
+      format.json {
+        render 'users/_favorites' if @tab == 'favorites'
+      }
+    end
   end
 
   # GET /users/new
