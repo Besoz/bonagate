@@ -1,6 +1,7 @@
 json.affected_types affected_types
-json.affected_properties do
-  affected_properties.each do |option|
+json.affected_properties affected_properties
+json.used_value_options do
+  used_value_options.each do |option|
     json.set! option.id do
       json.partial! 'property_details/value_option', value_option: option
       json.properties do
