@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  value: MyString
+  period: MyString
+  periodic: false
+  property_payment_plan_id: 
+
+two:
+  description: MyText
+  value: MyString
+  period: MyString
+  periodic: false
+  property_payment_plan_id: 

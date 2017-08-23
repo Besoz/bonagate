@@ -2,6 +2,8 @@ class PropertyDetailValueOption < ActiveRecord::Base
 
   before_destroy :confirm_not_used
   translate :name
+  validates :name_en, :name_ar, presence: true
+
   belongs_to :property_detail
   
   has_many :property_detail_instance_value_option

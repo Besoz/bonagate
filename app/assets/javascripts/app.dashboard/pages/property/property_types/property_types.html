@@ -1,31 +1,40 @@
+<section id="page-title" class="ng-scope">
+    <div class="row">
+        <div class="col-sm-8">
+            <h1 class="mainTitle">
+              Property Types
+            </h1>
+        </div>
+    </div>
+</section>
 <div class="container-fluid container-fullw">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <button class="btn btn-wide btn-primary" ng-click="$state.go('^.new')">
-          <i class="ti-plus"></i>
-          <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_type'|translate}}'}" />
-        </button>
+    <div class="row margin-bottom-20">
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="" placeholder="Search detial Category">
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-wide btn-primary pull-right btn-squared" ng-click="$state.go('^.new')">
+                <i class="ti-plus"></i>
+                <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_type'|translate}}'}" />
+            </button>
+        </div>
+    </div>
+    <div class="row">
         <!-- start: TABLE WITH FILTERS -->
         <div class="col-md-12">
-          <div>
             <!-- <strong>Filter:</strong> {{tableParams.filter()|json}} -->
-            <table ng-table="tableParams" show-filter="true" class="table table-striped">
-              <tr ng-repeat="propertyType in typesCtrl.typesList">
-                <td data-title="'activerecord.attributes.property_type.name' | translate " filter="{ 'name': 'text' }"> {{propertyType.name}} </td>
-                <td data-title="'activerecord.attributes.property_type.code' | translate ">{{propertyType.code}} </td>
-                <td class="rowTd">
-                  <div class="pull-right margin-right-10">
-                    <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" 
-                    value="edit" ng-click="$state.go('^.edit', {'typeId': propertyType.id})">
-                  </div>
-                </td>
-              </tr>
+            <table ng-table="tableParams" class="table table-striped table-bordered table-full-width">
+                <tr ng-repeat="propertyType in typesCtrl.typesList">
+                    <td data-title="'activerecord.attributes.property_type.name' | translate " filter="{ 'name': 'text' }"> {{propertyType.name}} </td>
+                    <td data-title="'activerecord.attributes.property_type.code' | translate ">{{propertyType.code}} </td>
+                    <td class="rowTd">
+                        <div class="margin-right-10">
+                            <input type="button" class="btn btn-primary btn-squared" id="editRowBtn{{p.id}}" value="Edit" ng-click="$state.go('^.edit', {'typeId': propertyType.id})">
+                        </div>
+                    </td>
+                </tr>
             </table>
-          </div>
         </div>
         <!-- end: TABLE WITH FILTERS -->
-      </div>
     </div>
-  </div>
 </div>

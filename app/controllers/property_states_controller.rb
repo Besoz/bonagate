@@ -7,6 +7,11 @@ class PropertyStatesController < ApplicationController
     @property_states = PropertyState.all
   end
 
+  def index_by_id
+    @property_states = PropertyState.all
+  end
+
+
   # GET /property_states/1
   # GET /property_states/1.json
   def show

@@ -41,11 +41,13 @@
         </div>
         <div class="form-group">
           <div class="pull-right">
-            <button type="submit" class="btn btn-primary">
-              <div ng-if="!(stateCtrl.propertyState.id)" translate="helpers.submit.create" translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}" />
-              <div ng-if="stateCtrl.propertyState.id" translate="helpers.submit.update" translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}" />
+            <button state="submit" class="btn btn-primary btn-squared">
+              <div ng-if="!(stateCtrl.propertyState.id)" translate="helpers.submit.create" />
+              <!-- translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}"  -->
+              <div ng-if="stateCtrl.propertyState.id" translate="helpers.submit.update"/>
+               <!-- translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}"  -->
             </button>
-            <button type="button" ng-click="stateCtrl.dismiss()" class="btn btn-o btn-primary">
+            <button state="button" ng-click="stateCtrl.dismiss()" class="btn btn-squared btn-danger">
               <div translate="dashboard.cancel" />
             </button>
           </div>
