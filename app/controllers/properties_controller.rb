@@ -8,6 +8,17 @@ class PropertiesController < ApplicationController
   # GET /properties
   # GET /properties.json
   def index
+    unless current_user && current_user.company_user?
+
+      if params[:page].to_i > 0
+        page_number = params[:page].to_i
+      else
+        page_number = 1
+      end
+
+      @properties = @properties.paginate(page: page_number, per_page: 1)
+
+    end
   end
 
   # GET /properties/search

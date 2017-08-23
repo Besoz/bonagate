@@ -6,7 +6,11 @@ class Ability
     alias_action :update, :destroy, :create, to: :write
     alias_action :create, :read, :update, :destroy, :to => :crud
     alias_action :index, :create, :read, :update, :destroy, :to => :crud_all
-    
+
+    if user
+      can :crud, User, id: user.id
+    end
+
     user ||= User.new # guest user (not logged in)
     if user.admin?
       can :manage, :all
