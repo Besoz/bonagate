@@ -87,7 +87,7 @@ th.sortable .sort-indicator {
 
 // user_profile.html && company_profile.html
 .profile-container {
-  margin-top: -18px;
+  // margin-top: -18px;
   border-bottom: 0px !important;
   .tabbable {
     padding: 0px;
@@ -98,4 +98,14 @@ th.sortable .sort-indicator {
       width: 100px;
     }
   }
+}
+
+//wizard create property
+.swMain>ul li .stepDesc {
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+.wizard-col-4-text-area {
+  max-width: 300px;
 }
