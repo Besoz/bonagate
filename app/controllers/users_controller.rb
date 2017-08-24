@@ -30,6 +30,16 @@ class UsersController < ApplicationController
   def user_profile
     @tab = params[:tab] || 'favorites'
     @user = current_user
+    if @user.user?
+      @properties = Property.page(params[:page]).per_page(10).favorites(@user.id)
+    end 
+
+    respond_to do |format|
+      format.html {}
+      format.json {
+        render 'users/_favorites' if @tab == 'favorites'
+      }
+    end
   end
 
   # GET /users/new
