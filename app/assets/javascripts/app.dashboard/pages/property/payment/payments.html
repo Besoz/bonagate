@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-12">
             <accordion close-others="oneAtATime" class="accordion">
-                <accordion-group is-open="status.open" ng-repeat="payment in paymentsCtrl.paymentsList track by $index">
+                <accordion-group ng-repeat="payment in paymentsCtrl.paymentsList">
                     <accordion-heading>
                         <b>ID: {{payment.id}}</b>, First Name: {{payment.person_attributes.first_name}}, Last Name {{payment.person_attributes.last_name}},
                         SSN: {{payment.person_attributes.ssn}}
@@ -48,24 +48,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="row">
-                        <div class="col-md-10">
-                            <div ng-show="editId==payment.id" ng-if="editId==payment.id">
-                                <div colspan="7" onload="payment=payment" ng-include src="'assets/app.dashboard/pages/property/payment/payment_record_form.html'">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <button id="addrecord{{payment.id}}" ng-click="editId = payment.id" class="btn btn-primary btn-squared pull-right margin-bottom-10 margin-top-20">
-                                Add Record
-                            </button>
-                        </div>
-                    </div> -->
                         <div class="clearfix">
-
                         </div>
                         <div ng-repeat="record in  paymentsCtrl.paymentsList[$index].payment_records" class="media">
-                            <div class="media-left" href="#">
+                            <div class="media-left">
                                 <embed ng-src="{{record.attachment}}">
                                 <img  ngf-select ngf-src="record.attachment"/>
                             </div>
@@ -86,9 +72,9 @@
                             </label>
                             </div>
                         </div>
+                    </div>
                 </accordion-group>
             </accordion>
-            </div>
         </div>
     </div>
     <!-- end: YOUR CONTENT HERE -->
