@@ -84,12 +84,12 @@ en:
         name_ar: Arabic Name
         code: Code
         value_state: Value Status
-      property_serviceType:
+      property_service_type:
         name: Name
         name_en: English Name
         name_ar: Arabic Name
         code: Code
-        value_serviceType: Value Service Type
+        value_service_type: Value Service Type
       property_detail_value_option:
         name_en: English Name
         name_ar: Arabic Name
