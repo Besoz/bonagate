@@ -10,12 +10,19 @@
         <legend>
           <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_serviceType'|translate}}'}" />
         </legend>
-        <div class="form-group" ng-class="{'has-error':Form.firstName.$dirty && Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
+        <div class="form-group" ng-class="{'has-error':Form.NameEn.$dirty && Form.NameEn.$invalid, 'has-success':Form.NameEn.$valid}">
           <label class="control-label">
-            {{'activerecord.attributes.property_serviceType.name'|translate}} <span class="symbol required"></span>
+            {{'activerecord.attributes.property_serviceType.name_en'|translate}} <span class="symbol required"></span>
           </label>
-          <input placeholder="{{'activerecord.attributes.property_serviceType.name'|translate}}" class="form-control" name="firstName" ng-model="serviceTypeCtrl.propertyServiceType.name" required />
-          <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_serviceType.name'|translate}}'}" /></span>
+          <input placeholder="{{'activerecord.attributes.property_serviceType.name_en'|translate}}" class="form-control" name="NameEn" ng-model="serviceTypeCtrl.propertyServiceType.name_en" required />
+          <span class="error text-small block" ng-if="Form.NameEn.$dirty && Form.NameEn.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_serviceType.name_en'|translate}}'}" /></span>
+        </div>
+        <div class="form-group" ng-class="{'has-error':Form.NameAr.$dirty && Form.NameAr.$invalid, 'has-success':Form.NameAr.$valid}">
+          <label class="control-label">
+            {{'activerecord.attributes.property_serviceType.name_ar'|translate}} <span class="symbol required"></span>
+          </label>
+          <input placeholder="{{'activerecord.attributes.property_serviceType.name_ar'|translate}}" class="form-control" name="NameAr" ng-model="serviceTypeCtrl.propertyServiceType.name_ar" required />
+          <span class="error text-small block" ng-if="Form.NameAr.$dirty && Form.NameAr.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_serviceType.name_ar'|translate}}'}" /></span>
         </div>
         <div class="form-group" ng-class="{'has-error':Form.code.$dirty && Form.code.$invalid, 'has-success':Form.code.$valid}">
           <label class="control-label">
