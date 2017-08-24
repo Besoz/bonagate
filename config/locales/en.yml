@@ -476,8 +476,13 @@ en:
         MAIN: Dashboard
       company: 
         MAIN: Manage company
+        PROFILE: Company profile
+        USERS: Company users
       user:  
         MAIN: Manage users
+        ADMINS: Admins
+        COMAPNY_USERS: Company users
+        NORMAL_USERS: Normal users
       property:
         MAIN: Manage property
         DETAIL: Property details
