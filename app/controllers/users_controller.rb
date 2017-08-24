@@ -9,6 +9,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @users = @users
+                .joins('LEFT JOIN company_users cu2 ON users.id = cu2.user_id')
+                .order(role: :asc)
+                .order('company_users.company_id')
+                .includes(company_user: :company)
+
+    filtering_params(params).each do |scope, value|
+      @users = @users.public_send(scope, value) if value.present?
+    end
   end
 
   # GET /users/1
@@ -21,6 +30,16 @@ class UsersController < ApplicationController
   def user_profile
     @tab = params[:tab] || 'favorites'
     @user = current_user
+    if @user.user?
+      @properties = Property.page(params[:page]).per_page(10).favorites(@user.id)
+    end 
+
+    respond_to do |format|
+      format.html {}
+      format.json {
+        render 'users/_favorites' if @tab == 'favorites'
+      }
+    end
   end
 
   # GET /users/new
@@ -180,5 +199,9 @@ class UsersController < ApplicationController
     def company_params
       params.require(:company).permit(:name)
       
+    end
+
+    def filtering_params(params)
+      params.slice(:with_role)
     end
 end

@@ -47,13 +47,15 @@ angular
       }).state('app.users', {
         templateUrl: "assets/app.dashboard/partials/layout.html"
       }).state('app.users.all', {
-        url: "/users",
+        url: "/users?role",
         templateUrl: "assets/app.dashboard/pages/users/users.html",
         controller: "UsersController",
         controllerAs: 'usersCtrl',
         resolve: {
-          usersList: function ($http) {
-            return $http.get('/users.json');
+          usersList: function ($http, $stateParams) {
+            return $http.get('/users.json', {params: {
+                with_role: $stateParams.role
+              }});
           },
           deps: mLoadSequence('ui.select', 'ngTable', 'moment', 'angularMoment', "userServices", "usersController")
         }, // resolve: loadSequence('jquery-sparkline', 'dashboardCtrl'),
