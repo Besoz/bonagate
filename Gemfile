@@ -78,14 +78,9 @@ group :development, :test do
   gem "letter_opener"
 
   gem "rails-erd"
-<<<<<<< HEAD
-=======
 
   gem 'capistrano', '~> 3.6'
   gem 'capistrano-rails', '~> 1.3'
   gem 'capistrano-passenger'
   gem 'capistrano-bundler'
-
-
->>>>>>> 0185e9692a667814791dd960ad6b63d1a06e804d
 end
