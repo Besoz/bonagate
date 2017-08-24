@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808193448) do
+ActiveRecord::Schema.define(version: 20170824131446) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name",                limit: 255
@@ -128,14 +128,15 @@ ActiveRecord::Schema.define(version: 20170808193448) do
 
   create_table "property_details", force: :cascade do |t|
     t.string   "code",                        limit: 255
-    t.string   "name",                        limit: 255
+    t.string   "name_en",                     limit: 255
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.string   "value_type",                  limit: 255
     t.string   "state",                       limit: 255
     t.string   "value_options",               limit: 255
-    t.integer  "property_detail_category_id", limit: 4
     t.boolean  "mandatory",                   limit: 1
+    t.integer  "property_detail_category_id", limit: 4
+    t.string   "name_ar",                     limit: 255
   end
 
   add_index "property_details", ["code"], name: "index_property_details_on_code", unique: true, using: :btree
@@ -187,30 +188,33 @@ ActiveRecord::Schema.define(version: 20170808193448) do
 
   create_table "property_service_types", force: :cascade do |t|
     t.string   "code",       limit: 255
-    t.string   "name",       limit: 255
+    t.string   "name_en",    limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "state",      limit: 255
+    t.string   "name_ar",    limit: 255
   end
 
   add_index "property_service_types", ["code"], name: "index_property_service_types_on_code", unique: true, using: :btree
 
   create_table "property_states", force: :cascade do |t|
     t.string   "code",       limit: 255
-    t.string   "name",       limit: 255
+    t.string   "name_en",    limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "state",      limit: 255
+    t.string   "name_ar",    limit: 255
   end
 
   add_index "property_states", ["code"], name: "index_property_states_on_code", unique: true, using: :btree
 
   create_table "property_statuses", force: :cascade do |t|
     t.string   "code",       limit: 255
-    t.string   "name",       limit: 255
+    t.string   "name_en",    limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "state",      limit: 255
+    t.string   "name_ar",    limit: 255
   end
 
   add_index "property_statuses", ["code"], name: "index_property_statuses_on_code", unique: true, using: :btree
@@ -239,8 +243,9 @@ ActiveRecord::Schema.define(version: 20170808193448) do
     t.string   "code",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "name",       limit: 255
+    t.string   "name_en",    limit: 255
     t.string   "state",      limit: 255
+    t.string   "name_ar",    limit: 255
   end
 
   add_index "property_types", ["code"], name: "index_property_types_on_code", unique: true, using: :btree
