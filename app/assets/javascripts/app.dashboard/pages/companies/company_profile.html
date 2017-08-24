@@ -1,4 +1,4 @@
-<!-- start: PAGE TITLE -->
+start: PAGE TITLE -->
 <!-- <section id="page-title">
   <div class="row">
     <div class="col-sm-8">
@@ -26,7 +26,6 @@
                     <img flow-img="compCtrl.obj.files[0]" ng-if="compCtrl.obj.files.length">
                   </div>
                 </div>
-                <hr>
                 <div class="social-icons block">
                   <ul>
                     <li data-placement="top" data-original-title="Twitter" class="social-twitter tooltips">
@@ -57,128 +56,121 @@
                   <table class="table table-condensed margin-top-20">
                     <thead>
                       <tr>
-                        <th colspan="3"> {{'dashboard.contact_information' | translate}}</th>
+                        <th colspan="3"> {{'dashboard.contact_information' | translate}}
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>{{'activerecord.attributes.company.url' | translate}}</td>
+                        <td>{{'activerecord.attributes.company.address' | translate}}:
+                        </td>
+                        <td>
+                          compCtrl.company.address
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>{{'activerecord.attributes.company.url' | translate}}:
+                        </td>
                         <td>
                           <a href="#">
                           {{compCtrl.company.url}}
-                        </a></td>
+                        </a>
+                        </td>
                       </tr>
                       <tr>
-                        <td>{{'activerecord.attributes.company.email' | translate}}:</td>
+                        <td>{{'activerecord.attributes.company.email' | translate}}:
+                        </td>
                         <td>
                           <a href>
                           {{compCtrl.company.email}}
-                        </a></td>
+                        </a>
+                        </td>
                       </tr>
                       <tr>
-                        <td>{{'activerecord.attributes.company.phone' | translate}}:</td>
-                        <td>{{compCtrl.company.phone}}</td>
+                        <td>{{'activerecord.attributes.company.phone' | translate}}:
+                        </td>
+                        <td>{{compCtrl.company.phone}}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
-                  
                 </div>
               </div>
             </div>
           </tab>
           <!-- end: TAB OVERVIEW -->
           <!-- start: TAB EDIT ACCOUNT -->
-          <tab heading="{{'dashboard.edit_account' | translate}}" active="compCtrl.editActive" ng-if="compCtrl.canEditCompanyProfile">
+          <tab heading="{{'dashboard.edit_profile' | translate}}" active="compCtrl.editActive" ng-if="compCtrl.canEditCompanyProfile">
             <form role="form" id="form">
-            
-              <fieldset>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label">
-                        {{'activerecord.attributes.company.name' | translate}}
-                      </label>
-                      <input type="text" placeholder="{{'activerecord.attributes.company.name' | translate}}" class="form-control" name="name" ng-model="compCtrl.company.name">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label">
-                        {{'activerecord.attributes.company.email' | translate}}
-                      </label>
-                      <input type="email" placeholder="{{'activerecord.attributes.company.email' | translate}}" class="form-control" name="email" ng-model="compCtrl.company.email">
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label">
-                        {{'activerecord.attributes.company.phone' | translate}}
-                      </label>
-                      <input type="text" placeholder="{{'activerecord.attributes.company.phone' | translate}}" class="form-control" name="phone" ng-model="compCtrl.company.phone">
-                    </div>
-                    <div class="form-group">
-                      <label>
-                        {{'dashboard.image_upload' | translate}}
-                      </label>
-                      <div flow-init flow-object="compCtrl.obj" flow-files-submitted="compCtrl.uploadImage()">
-                        <div class="user-image ">
-                          <div class="thumbnail margin-bottom-5 ">
-                            <img src="assets/images/default-user.png" alt=" " ng-if="!compCtrl.obj.files.length && compCtrl.noImage ">
-                            <img ng-src="{{compCtrl.company.avatar}} " alt=" " ng-if="!compCtrl.obj.files.length && !compCtrl.noImage ">
-                            <img flow-img="compCtrl.obj.files[0] " ng-if="compCtrl.obj.files.length ">
-                          </div>
+              <div class="row padding-top-30">
+                <div class="col-md-3 center">
+                  <div class="form-group">
+                    <div flow-init flow-object="compCtrl.obj" flow-files-submitted="compCtrl.uploadImage()">
+                      <div class="user-image ">
+                        <div class="thumbnail margin-bottom-5 ">
+                          <img src="assets/images/default-user.png" alt=" " ng-if="!compCtrl.obj.files.length && compCtrl.noImage ">
+                          <img ng-src="{{compCtrl.company.avatar}} " alt=" " ng-if="!compCtrl.obj.files.length && !compCtrl.noImage ">
+                          <img flow-img="compCtrl.obj.files[0] " ng-if="compCtrl.obj.files.length ">
                         </div>
-                        <div class="user-image-buttons-edit " ng-if="compCtrl.obj.files.length ">
-                          <span class="btn btn-primary " flow-btn><i class="fa fa-pencil "></i></span>
-                          <span class="btn btn-danger " ng-click="compCtrl.obj.cancel() "> <i class="fa fa-times "></i></span>
+                        <div class="user-image-buttons " ng-if="compCtrl.obj.files.length ">
+                          <span class="btn btn-primary btn-squared" flow-btn><i class="fa fa-pencil "></i></span>
+                          <span class="btn btn-danger btn-squared" ng-click="compCtrl.obj.cancel() "> <i class="fa fa-times "></i></span>
                         </div>
-                        <div class="user-image-buttons-edit " ng-if="!compCtrl.obj.files.length ">
-                          <span class="btn btn-primary " flow-btn><i class="fa fa-pencil "></i></span>
-                          <span class="btn btn-danger " ng-if="!compCtrl.noImage " ng-click="compCtrl.removeImage() "><i class="fa fa-times "></i> </span>
+                        <div class="user-image-buttons " ng-if="!compCtrl.obj.files.length ">
+                          <span class="btn btn-primary btn-squared" flow-btn><i class="fa fa-pencil "></i></span>
+                          <span class="btn btn-danger btn-squared" ng-if="!compCtrl.noImage " ng-click="compCtrl.removeImage() "><i class="fa fa-times "></i> </span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </fieldset>
-              <fieldset>
-                <legend>
-                  {{'dashboard.addtional_information' | translate}}
-                </legend>
-                <div class="row">
-                  <div class="col-md-6 ">
-                    <div class="form-group ">
-                      <label class="control-label ">
-                        {{'dashboard.twitter' | translate}}
-                      </label>
-                      <span class="input-icon ">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!-- <label class="control-label">
+                      {{'activerecord.attributes.company.name' | translate}}
+                    </label> -->
+                    <input type="text" placeholder="{{'activerecord.attributes.company.name' | translate}}" class="form-control" name="name" ng-model="compCtrl.company.name">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" placeholder="{{'activerecord.attributes.company.address' | translate}}" class="form-control" name="name">
+                  </div>
+                  <div class="form-group">
+                    <!-- <label class="control-label">
+                      {{'activerecord.attributes.company.email' | translate}}
+                    </label> -->
+                    <input type="email" placeholder="{{'activerecord.attributes.company.email' | translate}}" class="form-control" name="email" ng-model="compCtrl.company.email">
+                  </div>
+                  <div class="form-group">
+                    <!--  <label class="control-label">
+                      {{'activerecord.attributes.company.phone' | translate}}
+                    </label> -->
+                    <input type="text" placeholder="{{'activerecord.attributes.company.phone' | translate}}" class="form-control" name="phone" ng-model="compCtrl.company.phone">
+                  </div>
+                  <div class="form-group ">
+                    <!--  <label class="control-label ">
+                      {{'dashboard.twitter' | translate}}
+                    </label> -->
+                    <span class="input-icon ">
                         <input class="form-control" type="text" placeholder="{{'dashboard.twitter' | translate}}" name="twitter" ng-model="compCtrl.company.twitter">
                         <i class="fa fa-twitter "></i> </span>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label">
-                        {{'dashboard.fb' | translate}}
-                      </label>
-                      <span class="input-icon">
+                  </div>
+                  <div class="form-group">
+                    <!-- <label class="control-label">
+                      {{'dashboard.fb' | translate}}
+                    </label> -->
+                    <span class="input-icon">
                         <input class="form-control " type="text" placeholder="{{'dashboard.fb' | translate}}" name="facebook" ng-model="compCtrl.company.facebook">
                         <i class="fa fa-facebook "></i> </span>
-                    </div>
-                    <div class="form-group ">
-                      <label class="control-label ">
-                        {{'dashboard.gplus' | translate}}
-                      </label>
-                      <span class="input-icon">
+                  </div>
+                  <div class="form-group ">
+                    <!-- <label class="control-label ">
+                      {{'dashboard.gplus' | translate}}
+                    </label> -->
+                    <span class="input-icon">
                         <input class="form-control" type="text" placeholder="{{'dashboard.gplus' | translate}}" name="google" ng-model="compCtrl.company.gplus">
                         <i class="fa fa-google-plus"></i> </span>
-                    </div>
                   </div>
-                </div>
-              </fieldset>
-              <div class="row ">
-                <div class="col-md-12 ">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-8 ">
-                </div>
-                <div class="col-md-4 ">
-                  <button class="btn btn-primary pull-right " ng-click="compCtrl.updateCompany() ">
+                  <button class="btn btn-primary btn-squared pull-right " ng-click="compCtrl.updateCompany() ">
                     {{'dashboard.update' | translate}} <i class="fa fa-arrow-circle-right "></i>
                   </button>
                 </div>
@@ -192,4 +184,4 @@
     </div>
   </div>
 </div>
-<!-- end: USER PROFILE -->
+<!-- end: USER PROFILE

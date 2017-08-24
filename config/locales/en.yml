@@ -50,6 +50,8 @@ en:
         email: email 
         name:  name
         phone: phone
+        url: url
+        address: address
       property_detail:
         name: Name
         value_type: Type
