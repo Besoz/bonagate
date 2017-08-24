@@ -119,13 +119,13 @@ class PropertyDetailsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_detail_params
-    params.require(:property_detail).permit(:id, :code, :name, :value_type, :mandatory, 
+    params.require(:property_detail).permit(:id, :code, :name, :name_en, :name_ar, :value_type, :mandatory, 
     :details_ids, :property_detail_category_id, :value_options => [], 
     property_detail_value_options_attributes: [:id, :name_en, :name_ar, :_destroy])
   end
 
   def property_detail_extended_params
-    params.require(:property_detail).permit(:id, :code, :name, :value_type, :mandatory,
+    params.require(:property_detail).permit(:id, :code, :name, :name_en, :name_ar, :value_type, :mandatory,
     :details_ids, :duplicate_detail_id, :value_options => [], types_need_update: [:id])
   end
 end
