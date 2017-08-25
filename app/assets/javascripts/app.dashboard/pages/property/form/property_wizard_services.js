@@ -34,7 +34,8 @@
       prev: prev,
       goto: goto,
       submit: submit,
-      decoratePropertyTemplateFormJson: decoratePropertyTemplateFormJson
+      decoratePropertyTemplateFormJson: decoratePropertyTemplateFormJson,
+      decoratePropertyResponse: decoratePropertyResponse
     };
     return service;
 
@@ -227,6 +228,16 @@
       property.property_state_id = property.state.id;
     }
 
+    function decoratePropertyResponse(property, propertyDetails){
+      //convert bool detail instances value from string to bool ("1", "0" => true, false)
+      property.property_detail_instances_attributes.forEach((detailInstance) => {
+       var isBoolDetail = propertyDetails[detailInstance.property_detail_id]["value_type"] == "bool"
+       if(isBoolDetail){
+        var boolValue = parseInt(detailInstance.value);
+        detailInstance.value = boolValue? true : false;
+       }
+      });
+    }
     function showErrorMessage(form) {
       FormValidationService.validateForm(form);
       toaster.pop('error', 'Error', 'please complete the form in this step before proceeding');

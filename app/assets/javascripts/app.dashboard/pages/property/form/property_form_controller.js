@@ -74,6 +74,9 @@ angular
           property_detail_instances_attributes: [],
           property_payment_plans_attributes: []
         };
+
+        PropertyWizardServices.decoratePropertyResponse(vm.property, vm.propertyDetails);
+
         vm.property.deleted_images_ids = [];
 
         PropertyWizardServices.intializeImageUploader(vm, $state, $stateParams);
