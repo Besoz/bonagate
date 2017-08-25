@@ -1,12 +1,14 @@
-<div class="row">
-  <div class="col-sm-8">
-    <h1 class="mainTitle" translate="{{'dashboard.property_create_wizard.title' | translate}}">
-    </h1>
+<!-- <section>
+  <div class="row">
+    <div class="col-sm-8">
+      <h1 class="mainTitle" translate="{{'dashboard.property_create_wizard.title' | translate}}">
+      </h1>
+    </div>
   </div>
 </div>
 </section>
-<!-- start: WIZARD DEMO -->
-<div class="container-fluid container-fullw bg-white">
+ --><!-- start: WIZARD DEMO -->
+<div class="container-fluid container-fullw bg-white no-padding">
   <div class="row">
     <div class="col-md-12">
       <!-- start: WIZARD FORM -->
@@ -19,7 +21,7 @@
                 <div class="stepNumber">
                   1
                 </div>
-                <span class="stepDesc text-small"> Personal Information </span>
+                <span class="stepDesc text-small" translate="dashboard.property_create_wizard.wizard.type">  </span>
               </a>
             </li>
             <li ng-click="wizardCtrl.form.goto(Form, 2)">
@@ -27,7 +29,7 @@
                 <div class="stepNumber">
                   2
                 </div>
-                <span class="stepDesc text-small"> Details </span>
+                <span class="stepDesc text-small" translate="dashboard.property_create_wizard.wizard.details">  </span>
               </a>
             </li>
             <li ng-click="wizardCtrl.form.goto(Form, 3)">
@@ -35,7 +37,7 @@
                 <div class="stepNumber">
                   3
                 </div>
-                <span class="stepDesc text-small"> Images </span>
+                <span class="stepDesc text-small" translate="dashboard.property_create_wizard.wizard.images"> </span>
               </a>
             </li>
             <li ng-click="wizardCtrl.form.goto(Form, 4)">
@@ -43,7 +45,7 @@
                 <div class="stepNumber">
                   4
                 </div>
-                <span class="stepDesc text-small"> Location </span>
+                <span class="stepDesc text-small" translate="dashboard.property_create_wizard.wizard.location">  </span>
               </a>
             </li>
             <li ng-click="wizardCtrl.form.goto(Form, 5)">
@@ -51,7 +53,7 @@
                 <div class="stepNumber">
                   5
                 </div>
-                <span class="stepDesc text-small"> Pricing </span>
+                <span class="stepDesc text-small" translate="dashboard.property_create_wizard.wizard.payment_plan">  </span>
               </a>
             </li>
             <li ng-click="wizardCtrl.form.goto(Form, 6)">
@@ -59,23 +61,21 @@
                 <div class="stepNumber">
                   6
                 </div>
-                <span class="stepDesc text-small"> Complete </span>
+                <span class="stepDesc text-small" translate="helpers.submit.save"> </span>
               </a>
             </li>
           </ul>
           <!-- end: WIZARD SEPS -->
           <!-- start: WIZARD STEP 1 -->
           <div id="step-1" ng-if="wizardCtrl.currentStep == 1">
-            <div class="row">
+            <div class="row padding-right-20 padding-left-20">
               <div class="col-md-12">
-                <div class="col-md-6">
-                  <div class="padding-30">
+                <div class="col-md-4">
+                  <div class="">
                     <!-- start: CHOOSE_PROPERTY_TEMPLATE -->
-                    <h2 class="StepTitle"> Choose property template</h2>
+                    <p class=""> Choose property template:</p>
                     <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
-                      <label class="control-label">
-                        <!-- {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span> -->
-                      </label>
+                      
                       <ui-select ng-model="wizardCtrl.template" theme="bootstrap" name="service_type" on-select="wizardCtrl.applyTemplate($select.selected)">
                         <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
                           {{$select.selected.template.name}}
@@ -88,15 +88,13 @@
                   </div>
                 </div>
                 <!-- end: CHOOSE_PROPERTY_TEMPLATE -->
-                <div class="col-md-6">
-                  <div class="padding-30">
-                    <h2 class="StepTitle"> Choose property type</h2>
+                <div class="col-md-4">
+                  <div class="">
+                    <p class=""> 
+                      Choose property type: <span class="symbol required"></span>
+                    </p>
                     <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
-                      <label class="control-label">
-                        {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span>
-                      </label>
-                      <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="service_type" on-select="wizardCtrl.resetInstances()"
-                        required>
+                      <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="service_type" on-select="wizardCtrl.resetInstances()" required>
                         <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
                           {{$select.selected.name}}
                         </ui-select-match>
@@ -108,13 +106,12 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="padding-30">
-                    <h2 class="StepTitle"> Choose service type</h2>
+                <div class="col-md-4">
+                  <div class="">
+                    <p class=""> 
+                      Choose service type:  <span class="symbol required"></span>
+                    </p>
                     <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
-                      <label class="control-label">
-                        {{'activerecord.models.property_service_type'|translate}} <span class="symbol required"></span>
-                      </label>
                       <ui-select ng-model="wizardCtrl.property.service_type" theme="bootstrap" name="type" required>
                         <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
                           {{$select.selected.name}}
@@ -127,95 +124,131 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="wizardCtrl.form.prev(Form)">
-                    <i class="fa fa-circle-arrow-right"></i> Back
-                  </button>
-                  <button class="btn btn-primary btn-o next-step btn-wide pull-left" ng-click="wizardCtrl.form.next(Form)">
-                    Next <i class="fa fa-arrow-circle-left"></i>
-                  </button>
-                </div>
+                <!-- <div class="col-md-12">
+                  <hr>
+                  <div class="form-group">
+                    <button class="btn btn-primary btn-squared back-step" ng-click="wizardCtrl.form.prev(Form)">
+                      <i class="fa fa-circle-arrow-right"></i> Back
+                    </button>
+                    <button class="btn btn-primary btn-squared next-step pull-right" ng-click="wizardCtrl.form.next(Form)">
+                      Next <i class="fa fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div> -->
+
               </div>
             </div>
           </div>
           <!-- end: WIZARD STEP 1 -->
           <!-- start: WIZARD STEP 2 -->
           <div id="step-2" ng-if="wizardCtrl.currentStep == 2">
-            <div class="row">
-              <div class="col-md-6">
-                <fieldset>
-                  <legend>
-                    Details
-                  </legend>
-                  <!--start: old Property detail instances-->
-                  <div ng-repeat="(catId, detail_instances) in wizardCtrl.property.property_detail_instances_attributes | groupBy: 'category_id'">
+            <div class="row padding-right-20 padding-left-20"">
+
+                <!--start: old Property detail instances-->
+                <div ng-repeat="(catId, detail_instances) in wizardCtrl.property.property_detail_instances_attributes | groupBy: 'category_id'" class="col-md-12">
+                  <h4>
                     <strong>
-                    {{ wizardCtrl.propertyDetailCategories[catId].name }}
+                      {{ wizardCtrl.propertyDetailCategories[catId].name }}
                     </strong>
-                    <div ng-repeat="detail_instance in detail_instances">
-                      <span ng-if="detail_instance.removed" class="input-group-btn">
-                        <div class="checkbox clip-check check-danger">
-                          <input ng-model="detail_instance._destroy" type="checkbox" id="remove_instance_{{$index}}" value="1">
-                          <label for="remove_instance_{{$index}}">
-                            remove instance
-                          </label>
-                        </div>
-                      </span>
-                      <span ng-if="detail_instance.new &&  wizardCtrl.property.id" class="label label-info">new detail
-                      </span>
-                      <div class="form-group" ng-class="{'has-error': detail_instance.removed || Form['property.property_detail_instances_attributes'+$index+'.value'].$dirty && Form['property.property_detail_instances_attributes'+$index+'.value'].$invalid, 'has-success':Form['property.property_detail_instances_attributes'+$index+'.value'].$valid}">
-                        <label class="control-label">
+                  </h4>
+                  <div ng-repeat="detail_instance in detail_instances" class="col-md-4">
+
+                    <div class="checkbox clip-check check-primary" ng-if="detail_instance.removed" >
+                      <input ng-model="detail_instance._destroy" type="checkbox" id="remove_instance_{{$index}}" value="1">
+                      <label for="remove_instance_{{$index}}">
+                        remove instance
+                      </label>
+                    </div>
+
+                    <span ng-if="detail_instance.new &&  wizardCtrl.property.id" class="label label-info">
+                      new detail
+                    </span>
+
+                    <div class="form-group" ng-class="{'has-error': detail_instance.removed || Form['property.property_detail_instances_attributes'+$index+'.value'].$dirty && Form['property.property_detail_instances_attributes'+$index+'.value'].$invalid, 'has-success':Form['property.property_detail_instances_attributes'+$index+'.value'].$valid}">
+
+                      <!-- <label class="control-label" ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type != 'bool'">
                         {{wizardCtrl.propertyDetails[detail_instance.property_detail_id].name}}
-                        <span ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory" class="symbol required"></span>
+                        <span ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory" class="symbol required">
+                        </span>
+                      </label> -->
+
+                      <!-- start: value_type == 'string' -->
+                      <input type="text" name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory" ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'string'" ng-model="detail_instance.value"
+                        placeholder="{{wizardCtrl.propertyDetails[detail_instance.property_detail_id].name}}" class="form-control" name="{{detail.code}}">
+                      <!-- end: value_type == 'string' -->
+                      <!-- start: value_type == 'number' -->
+                      <input type="number" name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory" ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'number'" ng-model="detail_instance.value"
+                        placeholder="{{wizardCtrl.propertyDetails[detail_instance.property_detail_id].name}}" class="form-control" name="{{detail.code}}">
+                      <!-- end: value_type == 'number' -->
+                      <!-- start: value_type == 'text' -->
+                      <textarea type="textarea" name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory" ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'text'" ng-model="detail_instance.value"
+                        placeholder="{{wizardCtrl.propertyDetails[detail_instance.property_detail_id].name}}" id="form-field-22" class="form-control wizard-col-4-text-area"></textarea>
+                      <!-- end: value_type == 'text' -->
+                      <!-- start: value_type == 'select' -->
+                      <ui-select type="select" name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory" ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'select'" 
+                        ng-init="detail_instance.property_detail_value_option_ids = detail_instance.property_detail_value_option_ids || []"
+                        ng-model="detail_instance.property_detail_value_option_ids[0]"
+                        theme="bootstrap">
+                        <ui-select-match placeholder="{{wizardCtrl.propertyDetails[detail_instance.property_detail_id].name}}">
+                          {{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="option.id as option in wizardCtrl.propertyDetails[detail_instance.property_detail_id].property_detail_value_options_attributes | filter:$select.search">
+                          <div ng-bind-html="option.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                      </ui-select>
+                      <!-- end: value_type == 'select' -->
+                      <!-- start: value_type == 'multi_select' -->
+                      <ui-select type="select" name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory" ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'multi_select'" multiple ng-model="detail_instance.property_detail_value_option_ids"
+                        theme="bootstrap" ng-disabled="disabled" close-on-select="false">
+                        <ui-select-match placeholder="{{wizardCtrl.propertyDetails[detail_instance.property_detail_id].name}}">
+                          {{$item.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="option.id as option in wizardCtrl.propertyDetails[detail_instance.property_detail_id].property_detail_value_options_attributes | filter:$select.search">
+                          {{option.name}}
+                        </ui-select-choices>
+                      </ui-select>
+                      <!-- end: value_type == 'multi_select' -->
+                      <!-- start: value_type == 'bool' -->
+                      <div ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'bool'" class="checkbox clip-check check-primary ng-scope" >
+                        <input type="checkbox" name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory" ng-model="detail_instance.value" type="checkbox" id="checkbox-bool{{$index}}" >
+                        <label for="checkbox-bool{{$index}}" >
+                          {{wizardCtrl.propertyDetails[detail_instance.property_detail_id].name}}
+                          <span ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory" class="symbol required">
+                          </span>
                         </label>
-                        <!-- start: value_type == 'string' -->
-                        <input name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory"
-                          ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'string'" ng-model="detail_instance.value"
-                          placeholder="{{detail.name}}" class="form-control" name="{{detail.code}}">
-                        <!-- end: value_type == 'string' -->
-                        <!-- start: value_type == 'text' -->
-                        <textarea name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory"
-                          ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'text'" ng-model="detail_instance.value"
-                          placeholder="Default Text" id="form-field-22" class="form-control"></textarea>
-                        <!-- end: value_type == 'text' -->
-                        <!-- start: value_type == 'select' -->
-                        <ui-select name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory"
-                          ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'select'" ng-init="detail_instance.property_detail_value_option_ids = detail_instance.property_detail_value_option_ids || []"
-                          ng-model="detail_instance.property_detail_value_option_ids[0]" theme="bootstrap">
-                          <ui-select-match placeholder="Select in the list...">
-                            {{$select.selected.name}}
-                          </ui-select-match>
-                          <ui-select-choices repeat="option.id as option in wizardCtrl.propertyDetails[detail_instance.property_detail_id].property_detail_value_options_attributes | filter:$select.search">
-                            <div ng-bind-html="option.name | highlight: $select.search"></div>
-                          </ui-select-choices>
-                        </ui-select>
-                        <!-- end: value_type == 'select' -->
-                        <!-- start: value_type == 'multi_select' -->
-                        <ui-select name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory"
-                          ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'multi_select'"
-                          multiple ng-model="detail_instance.property_detail_value_option_ids" theme="bootstrap" ng-disabled="disabled"
-                          close-on-select="false">
-                          <ui-select-match placeholder="Select colors...">
-                            {{$item.name}}
-                          </ui-select-match>
-                          <ui-select-choices repeat="option.id as option in wizardCtrl.propertyDetails[detail_instance.property_detail_id].property_detail_value_options_attributes | filter:$select.search">
-                            {{option.name}}
-                          </ui-select-choices>
-                        </ui-select>
-                        <!-- end: value_type == 'multi_select' -->
-                        <!-- start: value_type == 'bool' -->
-                        <div ng-if="wizardCtrl.propertyDetails[detail_instance.property_detail_id].value_type == 'bool'" class="checkbox clip-check check-primary ng-scope">
-                          <input name="property.property_detail_instances_attributes{{$index}}.value" ng-required="wizardCtrl.propertyDetails[detail_instance.property_detail_id].mandatory"
-                            ng-model="detail_instance.value" type="checkbox" id="checkbox-bool{{$index}}">
-                          <label for="checkbox-bool{{$index}}">
-                          </label>
-                        </div>
-                        <!-- end: value_type == 'bool'-->
                       </div>
+                      <!-- end: value_type == 'bool'-->
                     </div>
                   </div>
-                  <!--end: old Property detail instances-->
-                </fieldset>
+                </div>
+                <!--end: old Property detail instances-->
+                <div class="col-md-12 margin-top-10 margin-bottom-10">
+                  <h4>
+                    <strong translate="dashboard.property_create_wizard.wizard.property_state_status">
+                    </strong>
+                  </h4>
+                  <div class="col-md-4">
+                    <ui-select ng-model="wizardCtrl.property.property_state_id" theme="bootstrap">
+                      <ui-select-match placeholder="activerecord.attributes.property_state.state">
+                        {{wizardCtrl.propertyStates[$select.selected].name}}
+                      </ui-select-match>
+                      <ui-select-choices repeat="item in wizardCtrl.property.type.property_state_ids | filter: $select.search">
+                        <div ng-bind-html="wizardCtrl.propertyStates[item].name | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                  <div class="col-md-4">
+                    <ui-select ng-model="wizardCtrl.property.status" theme="bootstrap">
+                      <ui-select-match placeholder="activerecord.attributes.property_status.status">
+                        {{$select.selected.name}}
+                      </ui-select-match>
+                      <ui-select-choices repeat="item in wizardCtrl.statuses | filter: $select.search">
+                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                      </ui-select-choices>
+                    </ui-select>
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="wizardCtrl.form.prev(Form)">
                     <i class="fa fa-circle-arrow-right"></i> Back
@@ -224,30 +257,7 @@
                     Next <i class="fa fa-arrow-circle-left"></i>
                   </button>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <fieldset>
-                  <legend>
-                    Account Credential
-                  </legend>
-                  <ui-select ng-model="wizardCtrl.property.property_state_id" theme="bootstrap">
-                    <ui-select-match placeholder="Select in the list...">
-                      {{wizardCtrl.propertyStates[$select.selected].name}}
-                    </ui-select-match>
-                    <ui-select-choices repeat="item in wizardCtrl.property.type.property_state_ids | filter: $select.search">
-                      <div ng-bind-html="wizardCtrl.propertyStates[item].name | highlight: $select.search"></div>
-                    </ui-select-choices>
-                  </ui-select>
-                  <ui-select ng-model="wizardCtrl.property.status" theme="bootstrap">
-                    <ui-select-match placeholder="Select in the list...">
-                      {{$select.selected.name}}
-                    </ui-select-match>
-                    <ui-select-choices repeat="item in wizardCtrl.statuses | filter: $select.search">
-                      <div ng-bind-html="item.name | highlight: $select.search"></div>
-                    </ui-select-choices>
-                  </ui-select>
-                </fieldset>
-              </div>
+              
             </div>
           </div>
           <!-- end: WIZARD STEP 2-->
