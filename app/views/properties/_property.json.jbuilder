@@ -1,4 +1,4 @@
-json.extract! property, :id, :address, :created_at, :updated_at, :state, :lat, :lng, :country, :city, :area, :street, :number, :floor, :publish
+json.extract! property, :id, :address, :created_at, :updated_at, :lat, :lng, :country, :city, :area, :street, :number, :floor, :publish
 json.template property.property_as_template_datum, :name if(property.property_as_template_datum)
 json.property_detail_instances_attributes property.property_detail_instances, partial: 'property_detail_instances/property_detail_instance.json.jbuilder', as: :property_detail_instance
 json.company property.company, partial: 'companies/company.json.jbuilder', as: :company

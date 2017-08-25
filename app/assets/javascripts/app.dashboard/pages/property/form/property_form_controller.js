@@ -49,12 +49,14 @@ angular
 
         vm.propertyTypes = propertyTypesRequest.data.list;
         vm.serviceTypes = serviceTypesRequest.data.list;
-        vm.states = propertyStatesRequest.data.list;
+        vm.states = propertyStatesHashRequest.data.hash;
         vm.statuses = propertyStatusesRequest.data.list;
         vm.propertyDetails = propertyDetailsRequest.data.hash;
         vm.propertyDetailCategories = propertyDetailCategoriesRequest.data.hash;
         vm.propertyTemplates = propertyTemplatesRequest.data.list;
-        vm.propertyStates = propertyStatesHashRequest.data.hash;
+
+        vm.propertyTypeStates = propertyTypeStates;
+
         vm.companiesToBeShared;
 
         var companies = companiesToBeSharedRequest.data.list;
@@ -132,6 +134,12 @@ angular
       function removePaymentPlanRecord(paymentPlan, paymentRecordIndex) {
         PropertyWizardServices.removePaymentPlanRecord(paymentPlan,
           paymentRecordIndex);
+      }
+
+      //select from all property states, the states that belong to a particular property type.
+      function propertyTypeStates(propertyType){
+        var statesIDs = propertyType.property_state_ids;
+        return statesIDs.map((stateID) => vm.states[stateID]);
       }
 
       function reset() {}
