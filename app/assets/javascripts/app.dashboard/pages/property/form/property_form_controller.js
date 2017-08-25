@@ -46,6 +46,7 @@ angular
         vm.removePaymentPlan = removePaymentPlan;
         vm.addPaymentPlanRecord = addPaymentPlanRecord;
         vm.removePaymentPlanRecord = removePaymentPlanRecord;
+        vm.propertyTypeStates = propertyTypeStates;
 
         vm.propertyTypes = propertyTypesRequest.data.list;
         vm.serviceTypes = serviceTypesRequest.data.list;
@@ -54,8 +55,6 @@ angular
         vm.propertyDetails = propertyDetailsRequest.data.hash;
         vm.propertyDetailCategories = propertyDetailCategoriesRequest.data.hash;
         vm.propertyTemplates = propertyTemplatesRequest.data.list;
-
-        vm.propertyTypeStates = propertyTypeStates;
 
         vm.companiesToBeShared;
 
