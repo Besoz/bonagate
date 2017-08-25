@@ -48,6 +48,11 @@ Rails.application.routes.draw do
     end
   end
   resources :users do
+    member do
+      post 'active', to: "users#activate"
+      delete 'active', to: "users#deactivate"
+    end
+
     collection do
       post 'create_user'
       put 'change_password'
