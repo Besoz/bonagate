@@ -74,6 +74,6 @@ class PropertyStatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_state_params
-      params.require(:property_state).permit(:code, :name, :name_en, :name_ar)
+      params.require(:property_state).permit(:code, :name, :name_en, :name_ar, :state)
     end
 end
