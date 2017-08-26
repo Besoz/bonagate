@@ -73,6 +73,6 @@ class PropertyDetailCategoriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_detail_category_params
-    params.require(:property_detail_category).permit(:name_en, :name_ar)
+    params.require(:property_detail_category).permit(:name_en, :name_ar, :state)
   end
 end
