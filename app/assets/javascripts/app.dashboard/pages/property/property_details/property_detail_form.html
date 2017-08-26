@@ -51,6 +51,20 @@
                         </ui-select-choices>
                     </ui-select>
                 </div>
+                <!-- State -->
+                <div class="form-group" ng-class="{'has-error':Form.state.$dirty && Form.state.$invalid, 'has-success':Form.state.$valid}">
+                    <label class="control-label">
+                        {{'activerecord.attributes.property_detail.state'|translate}} <span class="symbol required"></span>
+                    </label>
+                    <ui-select ng-model="detailCtrl.propertyDetail.state" theme="bootstrap" name="state" required>
+                        <ui-select-match placeholder="{{'activerecord.attributes.property_detail.state'|translate}}">
+                            {{ $select.selected | translate}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in detailCtrl.stateOptions | filter: $select.search">
+                          <div ng-bind-html="('dashboard.recored_states.'+item | translate)| highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
                 <!-- Mandatory -->
                 <div class="form-group">
                     <!-- ng-class="{'has-error':Form.mandatory.$dirty && Form.mandatory.$invalid, 'has-success':Form.mandatory.$valid}" -->
