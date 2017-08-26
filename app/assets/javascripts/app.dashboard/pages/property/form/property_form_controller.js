@@ -18,12 +18,14 @@ angular
       vm.form;
       vm.property;
       vm.imagesUploader;
+      vm.stepsNumber;
 
       activate();
 
       function activate() {
         // Initial Value
         vm.currentStep = 1;
+        vm.stepsNumber = 6;
 
         vm.form = {
           next: next,

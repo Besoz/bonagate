@@ -124,18 +124,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div class="col-md-12">
-                  <hr>
-                  <div class="form-group">
-                    <button class="btn btn-primary btn-squared back-step" ng-click="wizardCtrl.form.prev(Form)">
-                      <i class="fa fa-circle-arrow-right"></i> Back
-                    </button>
-                    <button class="btn btn-primary btn-squared next-step pull-right" ng-click="wizardCtrl.form.next(Form)">
-                      Next <i class="fa fa-arrow-right"></i>
-                    </button>
-                  </div>
-                </div> -->
-
               </div>
             </div>
           </div>
@@ -248,16 +236,6 @@
                     </ui-select>
                   </div>
                 </div>
-
-                <div class="form-group">
-                  <button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="wizardCtrl.form.prev(Form)">
-                    <i class="fa fa-circle-arrow-right"></i> Back
-                  </button>
-                  <button class="btn btn-primary btn-o next-step btn-wide pull-left" ng-click="wizardCtrl.form.next(Form)">
-                    Next <i class="fa fa-arrow-circle-left"></i>
-                  </button>
-                </div>
-              
             </div>
           </div>
           <!-- end: WIZARD STEP 2-->
@@ -356,14 +334,6 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="wizardCtrl.form.prev(Form)">
-                      <i class="fa fa-circle-arrow-right"></i> Back
-                    </button>
-                    <button class="btn btn-primary btn-o next-step btn-wide pull-left" ng-click="wizardCtrl.form.next(Form)">
-                      Next <i class="fa fa-arrow-circle-left"></i>
-                    </button>
                   </div>
                 </div>
               </div>
@@ -497,14 +467,6 @@
                   </fieldset>
                 </div>
                 <!--end: Map-->
-                <div class="form-group">
-                  <button class="btn btn-primary btn-o back-step btn-wide pull-right" ng-click="wizardCtrl.form.prev(Form)">
-                    <i class="fa fa-circle-arrow-right"></i> Back
-                  </button>
-                  <button class="btn btn-primary btn-o next-step btn-wide pull-left" ng-click="wizardCtrl.form.next(Form)">
-                    Next <i class="fa fa-arrow-circle-left"></i>
-                  </button>
-                </div>
               </div>
             </div>
           </div>
@@ -697,6 +659,17 @@
             </div>
           </div>
           <!-- end: WIZARD STEP 6 -->
+          <div class="col-md-12">
+                  <hr>
+                  <div class="form-group">
+                    <button ng-hide="wizardCtrl.currentStep == 1" class="btn btn-primary btn-squared back-step" ng-click="wizardCtrl.form.prev(Form)">
+                      <i class="fa fa-circle-arrow-right"></i> Back
+                    </button>
+                    <button ng-hide="wizardCtrl.currentStep == wizardCtrl.stepsNumber" class="btn btn-primary btn-squared next-step pull-right" ng-click="wizardCtrl.form.next(Form)">
+                      Next <i class="fa fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
           <pre class="code margin-top-20">{{ wizardCtrl.property | json }}</pre>
         </div>
       </form>

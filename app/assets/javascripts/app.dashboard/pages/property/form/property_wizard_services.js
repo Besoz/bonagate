@@ -103,18 +103,11 @@
 
 
     function next(vm, form, scope) {
-      scope.toTheTop();
-
-      if (form.$valid) {
-        vm.currentStep++;
-      } else {
-        showErrorMessage(form);
-      }
+      goto(vm, form, vm.currentStep + 1, scope);
     }
 
     function prev(vm, form, scope) {
-      scope.toTheTop();
-      vm.currentStep--;
+      goto(vm, form, vm.currentStep - 1, scope);
     }
 
     function goto(vm, form, i, scope) {
