@@ -33,11 +33,11 @@
           <!--           <span class="error text-small block" ng-if="Form.code.$error.email" translate="errors.messages.invalid" translate-values="{attribute:'{{ 'activerecord.attributes.property_status.code'|translate}}'}">.</span> -->
           <!-- <span class="success text-small" ng-if="Form.code.$valid">It's a valid e-mail!</span> -->
         </div>
-        <div class="form-group" ng-class="{'has-error':Form.status.$dirty && Form.status.$invalid, 'has-success':Form.status.$valid}">
+        <div class="form-group" ng-class="{'has-error':Form.state.$dirty && Form.state.$invalid, 'has-success':Form.state.$valid}">
           <label class="control-label">
             {{'activerecord.attributes.property_status.value_status'|translate}} <span class="symbol required"></span>
           </label>
-          <ui-select ng-model="statusCtrl.propertyStatus.value_status" theme="bootstrap" name="status" required>
+          <ui-select ng-model="statusCtrl.propertyStatus.state" theme="bootstrap" name="state" required>
             <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
               {{'dashboard.recored_states.'+ $select.selected | translate}}
             </ui-select-match>
