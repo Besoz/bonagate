@@ -13,4 +13,4 @@ json.categories do
     end
   end
 end
-json.all_property_states PropertyState.all
+json.all_property_states PropertyState.all, partial: 'property_states/property_state', as: :property_state
