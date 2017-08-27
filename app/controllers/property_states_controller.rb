@@ -1,14 +1,13 @@
 class PropertyStatesController < ApplicationController
-  before_action :set_property_state, only: [:show, :edit, :update, :destroy]
+  before_action :set_property_state, only: [:edit, :update, :destroy]
 
+  load_and_authorize_resource
   # GET /property_states
   # GET /property_states.json
   def index
-    @property_states = PropertyState.all
   end
 
   def index_by_id
-    @property_states = PropertyState.all
   end
 
 

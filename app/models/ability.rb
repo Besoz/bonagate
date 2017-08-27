@@ -46,6 +46,16 @@ class Ability
       
       can :upload_image, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id
 
+      can :read_all, PropertyState, state: :active
+      can :index_by_id, PropertyState, state: :active
+      can :read_all, PropertyDetail, state: :active
+      can :index_by_id, PropertyDetail, state: :active
+      can :read_all, PropertyDetailCategory, state: :active
+      can :index_by_id, PropertyDetailCategory, state: :active
+      can :read_all, PropertyStatus, state: :active
+      can :read_all, PropertyServiceType, state: :active
+      can :read_all, PropertyType, state: :active
+
     elsif user.user?
         can [:change_password, :user_profile], User
         

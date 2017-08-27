@@ -1,10 +1,10 @@
 class PropertyStatusesController < ApplicationController
-  before_action :set_property_status, only: [:show, :edit, :update, :destroy]
+  before_action :set_property_status, only: [:edit, :update, :destroy]
 
+  load_and_authorize_resource
   # GET /property_statuses
   # GET /property_statuses.json
   def index
-    @property_statuses = PropertyStatus.all
   end
 
   # GET /property_statuses/1

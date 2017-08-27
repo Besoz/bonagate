@@ -1,15 +1,15 @@
 class PropertyDetailCategoriesController < ApplicationController
-  before_action :set_property_detail_category, only: %i[show edit update destroy]
+  before_action :set_property_detail_category, only: %i[edit update destroy]
+
+  load_and_authorize_resource
 
   # GET /property_detail_categories
   # GET /property_detail_categories.json
   def index
-    @property_detail_categories = PropertyDetailCategory.all
   end
 
   # GET /property_detail_categories/index_by_id.json
   def index_by_id
-    @property_detail_categories = PropertyDetailCategory.all
   end
 
   # GET /property_detail_categories/1
