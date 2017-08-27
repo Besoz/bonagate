@@ -1,13 +1,16 @@
-(function() {
+(function () {
 
   'use strict';
 
   angular.module('app.dashboard')
     .controller('CompanyController', CompanyController);
 
-  CompanyController.$inject = ['$state', '$window', 'CompanyServices', 'companyRequest', '$rootScope'];
+  CompanyController.$inject = ['$state', '$window', 'CompanyServices', 'companyRequest',
+    '$rootScope', 'cfpLoadingBar'
+  ];
 
-  function CompanyController($state, $window, CompanyServices, companyRequest, $rootScope) {
+  function CompanyController($state, $window, CompanyServices, companyRequest, $rootScope,
+    cfpLoadingBar) {
 
     var vm = this;
 
@@ -48,13 +51,14 @@
     }
 
     function uploadImage() {
-
+      cfpLoadingBar.start();
       CompanyServices.updateCompanyImage(vm.company.id, vm.obj.files[0].file)
-        .then(function(res) {
+        .then(function (res) {
+          cfpLoadingBar.complete();
           console.log("res");
           console.log(res);
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log("err");
           console.log(err);
         });
@@ -64,12 +68,12 @@
     function updateCompany() {
 
       CompanyServices.updateCompany(vm.company)
-        .then(function(res) {
+        .then(function (res) {
           console.log(res);
           vm.editActive = false;
           vm.overviewActive = true;
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.log(err)
         });
     }

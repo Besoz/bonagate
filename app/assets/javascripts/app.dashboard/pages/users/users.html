@@ -57,7 +57,11 @@
               <tbody ng-repeat="p in usersCtrl.users">
                 <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
                   <td class="rowTd" data-title="'activerecord.attributes.user.email' | translate" sortable="'fn'">{{p.email}}</td>
-                  <td class="rowTd" data-title="'activerecord.attributes.user.role' | translate" sortable="'ph'">{{'dashboard.roles.'+ (p.role == 'company_user'? p.company.role: p.role) | translate}}</td>
+                  <td class="rowTd" data-title="'activerecord.attributes.user.role' | translate" sortable="'ph'">
+                    
+                    <span ng-if="p.role == 'company_user'" class="label label-info">{{ p.company.name}}</span>
+                    {{'dashboard.roles.'+ (p.role == 'company_user'? p.company.role: p.role) | translate}}
+                    </td>
                   <td class="rowTd" data-title="'activerecord.attributes.user.first_name' | translate" sortable="'ln'">{{p.first_name}}</td>
                   <td class="rowTd" data-title="'activerecord.attributes.user.last_name' | translate" sortable="'dc'">{{p.last_name}}</td>
                   <td class="rowTd" data-title="'activerecord.attributes.user.active' | translate" sortable="'em'">{{'dashboard.bools.'+ p.active | translate}}</td>

@@ -53,15 +53,19 @@ en:
         phone: phone
       property_detail:
         name: Name
+        name_en: English Name
+        name_ar: Arabic Name
         value_type: Type
         code: Code
         property_detail_category : Category
         mandatory: Mandatory
         property_detail_value_options_attributes: Value Options
       property_type:
-        name: name
-        state: state
-        code: code
+        name: Name
+        name_en: English Name
+        name_ar: Arabic Name
+        state: State
+        code: Code
       property_detail_category:
         name: name
         state: state
@@ -79,14 +83,20 @@ en:
         ssn: SSN          
       property_status:
         name: Name
+        name_en: English Name
+        name_ar: Arabic Name
         code: Code 
         value_status: Value Status 
       property_state:
         name: Name
+        name_en: English Name
+        name_ar: Arabic Name
         code: Code
         value_state: Value Status
       property_service_type:
         name: Name
+        name_en: English Name
+        name_ar: Arabic Name
         code: Code
         value_service_type: Value Service Type
       property_detail_value_option:
@@ -485,8 +495,13 @@ en:
         MAIN: Dashboard
       company: 
         MAIN: Manage company
+        PROFILE: Company profile
+        USERS: Company users
       user:  
         MAIN: Manage users
+        ADMINS: Admins
+        COMAPNY_USERS: Company users
+        NORMAL_USERS: Normal users
       property:
         MAIN: Manage property
         DETAIL: Property details

@@ -69,10 +69,10 @@ angular
         }
          
         vm.property = propertyRequest.data || {
-          deleted_images_ids: [],
           property_detail_instances_attributes: [],
           property_payment_plans_attributes: []
         };
+        vm.property.deleted_images_ids = [];
 
         PropertyWizardServices.intializeImageUploader(vm, $state, $stateParams);
       }

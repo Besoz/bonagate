@@ -69,6 +69,6 @@ class PropertyServiceTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_service_type_params
-      params.require(:property_service_type).permit(:code, :name)
+      params.require(:property_service_type).permit(:code, :name, :name_en, :name_ar)
     end
 end

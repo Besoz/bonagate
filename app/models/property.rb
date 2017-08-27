@@ -41,13 +41,17 @@ class Property < ActiveRecord::Base
   accepts_nested_attributes_for :property_payment_plans, allow_destroy: true
 
   scope :published, ->  { Property.where publish: true }
-  scope :templates, -> { PropertyAsTemplateDatum.all.includes :property}
-  
+  scope :templates, -> { PropertyAsTemplateDatum.all.includes :property} 
   scope :company_properties, -> (company_id) {
     #properties shared with the company or owned by it
     Property.joins("LEFT JOIN shared_properties ON shared_properties.property_id = properties.id")
             .where("shared_properties.company_id = ? or properties.company_id = ?", company_id, company_id)
             .distinct
+  }
+  scope :favorites, -> (user_id){
+    Property.joins(:user_favorite_properties)
+            .where('user_favorite_properties.user_id' => user_id)
+            .order(created_at: :desc)
   }
 
   def self.get_affected_with_property_detail detail_id

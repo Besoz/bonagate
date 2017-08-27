@@ -78,6 +78,6 @@ class PropertyTypesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_type_params
-    params.require(:property_type).permit(:code, :name, :state, :property_detail_ids =>[], :property_state_ids =>[])
+    params.require(:property_type).permit(:code, :name, :name_en, :name_ar, :state, :property_detail_ids =>[], :property_state_ids =>[])
   end
 end
