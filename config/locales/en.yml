@@ -88,6 +88,7 @@ en:
         name_en: English Name
         name_ar: Arabic Name
       property_payment_record:
+        record: record
         value: Value
         description: Description  
     errors:
