@@ -31,7 +31,8 @@ class UsersController < ApplicationController
     @tab = params[:tab] || 'favorites'
     @user = current_user
     if @user.user?
-      @properties = Property.page(params[:page]).per_page(10).favorites(@user.id)
+      @items_per_page = 10
+      @properties = Property.page(params[:page]).per_page(@items_per_page).favorites(@user.id)
     end 
 
     respond_to do |format|

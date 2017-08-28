@@ -134,8 +134,8 @@ ActiveRecord::Schema.define(version: 20170824131446) do
     t.string   "value_type",                  limit: 255
     t.string   "state",                       limit: 255
     t.string   "value_options",               limit: 255
-    t.boolean  "mandatory",                   limit: 1
     t.integer  "property_detail_category_id", limit: 4
+    t.boolean  "mandatory",                   limit: 1
     t.string   "name_ar",                     limit: 255
   end
 
