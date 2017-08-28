@@ -217,7 +217,14 @@
         property.property_detail_instances_attributes[i].id = null;
       }
       for(var i = 0; i < property.property_payment_plans_attributes.length; i++){
-        property.property_payment_plans_attributes[i].id = null;
+        var paymentPlan = property.property_payment_plans_attributes[i];
+        paymentPlan.id = null;
+        
+        for(var j = 0; j < paymentPlan.property_payment_plan_records_attributes.length; j++){
+          var paymentRecord = paymentPlan.property_payment_plan_records_attributes[j];
+
+          paymentRecord.id = null;
+        }
       }
       property.images = [];
     }
