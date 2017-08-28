@@ -14,10 +14,11 @@
 
     activate();
     
-    var PaginationInfo = function(totalItems, currentPage, pageChangedEvent){
+    var PaginationInfo = function(totalItems, currentPage, itemsPerPage,pageChangedEvent){
       this.totalItems = totalItems;
       this.currentPage = currentPage;
-      this.pageChanged = pageChangedEvent
+      this.pageChanged = pageChangedEvent;
+      this.itemsPerPage = itemsPerPage;
       this.maxSize = 5;
     }
 
@@ -25,11 +26,12 @@
       vm.dataLoaded = false;
       pageNumber = pageNumber || 1
       return $http.get('/user_profile/favorites.json?page=' + pageNumber)
-                .then((response) => {
+                .then(function (response){
                                       vm.favoriteProperties = response.data.favorites;
                                       var paginationInfo = response.data.pagination_info;
                                       vm.paginationInfo = new PaginationInfo(paginationInfo.totalItems, 
                                                                               paginationInfo.currentPage,
+                                                                              paginationInfo.itemsPerPage,
                                                                               pageChangedEvent);
                                       vm.dataLoaded = true;
                                   });
@@ -42,11 +44,10 @@
 
     function activate(){
       window.onpopstate = loadDataFromServer;
-      getFavorites(parseInt($location.search().page));
+      loadDataFromServer();
     }
 
     function pageChangedEvent() {
-      getFavorites(vm.paginationInfo.currentPage);
       $location.search('page', vm.paginationInfo.currentPage);
     }
   }

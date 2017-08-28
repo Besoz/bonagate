@@ -1,7 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid" ngCloak>
   <script src="/assets/app.realestate/controllers/favorites.controller.js"></script>
 
-  <div class="container-fluid" ng-controller="FavoritesController as vm" ngCloak>
+  <div class="container-fluid" ng-controller="FavoritesController as vm">
     <div ng-if="!vm.dataLoaded">
       loading ...
     </div>
@@ -46,7 +46,7 @@
         </div>
       </div>
 
-      <pagination total-items="vm.paginationInfo.totalItems" max-size="vm.paginationInfo.maxSize" ng-model="vm.paginationInfo.currentPage" ng-change="vm.paginationInfo.pageChanged()" boundary-link-numbers="true" rotate="false" next-text="&raquo;" previous-text="&laquo;">
+      <pagination total-items="vm.paginationInfo.totalItems" max-size="vm.paginationInfo.maxSize" ng-model="vm.paginationInfo.currentPage" items-per-page="vm.paginationInfo.itemsPerPage" ng-change="vm.paginationInfo.pageChanged()" boundary-link-numbers="true" rotate="false" next-text="&raquo;" previous-text="&laquo;">
       </pagination>
     </div>
 </div>
