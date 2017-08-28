@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :payment_records
+  resources :payments
+  resources :people
   resources :property_payment_plan_records
   resources :property_payment_plans
   root to: 'pages#index'
