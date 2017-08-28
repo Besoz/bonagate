@@ -11,6 +11,9 @@ class Ability
     if user.admin?
       can :manage, :all
 
+      cannot [:activate, :deactivate], User do |other_user|
+          other_user.role == :admin
+      end
     elsif user.company_user?
       if(user.company_user.company_admin?)
         can :crud_all, Company, :id => user.company_user.company_id # to be changed company_user.company_id
@@ -26,6 +29,10 @@ class Ability
         can :create, Property
 
         can :templates, Property, company_id: user.company_user.company_id
+
+        can [:activate, :deactivate], User do |other_user|
+          other_user.company_user.role == :company_sales
+        end
       else
         can :write, User, id: user.id
 
@@ -35,7 +42,7 @@ class Ability
 
         can :read, Company, :id => user.company_user.company_id # to be changed company_user.company_id
       end
-      
+
       company_id = user.company_user.company_id
       
       can :read_all, Property, Property.company_properties(company_id) do |property|

@@ -83,6 +83,12 @@
                                         </tbody>
                                     </table>
                                     <div class="text-left ">
+                                        <a class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.activateUser()" value="activate"/>
+                                    </div>
+                                    <div class="text-left ">
+                                        <a class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.deactivateUser()" value="deactivate"/>
+                                    </div>
+                                    <div class="text-left ">
                                         <a class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.editActive=true " ng-if="currentUser.id == userCtrl.user.id">
                                           {{ 'dashboard.edit_account' | translate }}
                                         </a>

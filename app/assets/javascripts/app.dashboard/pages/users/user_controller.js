@@ -6,11 +6,11 @@
     .controller('UserController', UserController);
 
   UserController.$inject = ['$http', '$window', '$stateParams', 'flowFactory',
-    'UserServices', 'moment', '$rootScope', 'userRequest', 'cfpLoadingBar'
+    'UserServices', 'moment', '$rootScope', 'userRequest', 'cfpLoadingBar', 'toaster'
   ];
 
   function UserController($http, $window, $stateParams, flowFactory, UserServices,
-    moment, $rootScope, userRequest, cfpLoadingBar) {
+    moment, $rootScope, userRequest, cfpLoadingBar, toaster) {
 
     var vm = this;
 
@@ -22,6 +22,8 @@
     vm.noImage;
     vm.update = update;
     vm.uploadImage = uploadImage;
+    vm.deactivateUser = deactivateUser;
+    vm.activateUser = activateUser;
 
     activate();
 
@@ -89,6 +91,30 @@
           console.log("err");
           console.log(err);
         })
+    }
+
+    function deactivateUser(){
+      UserServices.deactivateUser(vm.user)
+        .then(function(res){
+          vm.user.active = false;
+          toaster.pop("success", vm.user.email + " has been deactivated");
+        })
+        .catch(function(err){
+          console.log("err");
+          console.log(err);
+        });
+    }
+
+    function activateUser(){
+      UserServices.activateUser(vm.user)
+        .then(function(res){
+          vm.user.active = true;
+          toaster.pop("success", vm.user.email + " has been activated");
+        })
+        .catch(function(err){
+          console.log("err");
+          console.log(err);
+        });
     }
   }
 
