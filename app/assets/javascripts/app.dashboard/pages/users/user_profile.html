@@ -83,7 +83,7 @@
                                         </tbody>
                                     </table>
                                     <div class="text-left ">
-                                        <a class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.editActive=true ">
+                                        <a class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.editActive=true " ng-if="currentUser.id == userCtrl.user.id">
                                           {{ 'dashboard.edit_account' | translate }}
                                         </a>
                                     </div>
@@ -93,7 +93,7 @@
                     </tab>
                     <!-- end: TAB OVERVIEW -->
                     <!-- start: TAB EDIT ACCOUNT -->
-                    <tab heading="{{'dashboard.edit_profile' | translate}}" active="userCtrl.editActive ">
+                    <tab heading="{{'dashboard.edit_profile' | translate}}" active="userCtrl.editActive " ng-if="currentUser.id == userCtrl.user.id">
                         <form role="form " id="form ">
                             <fieldset>
                                 <legend>
