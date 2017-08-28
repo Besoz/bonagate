@@ -72,11 +72,11 @@
                   <div class="padding-30">
                     <!-- start: CHOOSE_PROPERTY_TEMPLATE -->
                     <h2 class="StepTitle"> Choose property template</h2>
-                    <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
+                    <div class="form-group" ng-class="{'has-error':Form.template.$dirty && Form.template.$invalid, 'has-success':Form.template.$valid}">
                       <label class="control-label">
                         <!-- {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span> -->
                       </label>
-                      <ui-select ng-model="wizardCtrl.template" theme="bootstrap" name="service_type" on-select="wizardCtrl.applyTemplate($select.selected)">
+                      <ui-select ng-model="wizardCtrl.template" theme="bootstrap" name="template" on-select="wizardCtrl.applyTemplate($select.selected)">
                         <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
                           {{$select.selected.template.name}}
                         </ui-select-match>
@@ -91,11 +91,11 @@
                 <div class="col-md-6">
                   <div class="padding-30">
                     <h2 class="StepTitle"> Choose property type</h2>
-                    <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
+                    <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
                       <label class="control-label">
                         {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span>
                       </label>
-                      <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="service_type" on-select="wizardCtrl.resetInstances()"
+                      <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="type" on-select="wizardCtrl.resetInstances()"
                         required>
                         <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
                           {{$select.selected.name}}
@@ -110,15 +110,12 @@
                 </div>
                 <div class="col-md-6">
                   <div class="padding-30">
-                    <!-- ToDo: descibe what does service type do?
-                          Currently, there is no association in the database or in property and property_service_type
-                          models. And, it's not allow in params  -->
                     <h2 class="StepTitle"> Choose service type</h2>
-                    <div class="form-group" ng-class="{'has-error':Form.type.$dirty && Form.type.$invalid, 'has-success':Form.type.$valid}">
+                    <div class="form-group" ng-class="{'has-error':Form.service_type.$dirty && Form.service_type.$invalid, 'has-success':Form.service_type.$valid}">
                       <label class="control-label">
                         {{'activerecord.models.property_service_type'|translate}} <span class="symbol required"></span>
                       </label>
-                      <ui-select ng-model="wizardCtrl.property.service_type" theme="bootstrap" name="type" required>
+                      <ui-select ng-model="wizardCtrl.property.service_type" theme="bootstrap" name="service_type" required>
                         <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
                           {{$select.selected.name}}
                         </ui-select-match>

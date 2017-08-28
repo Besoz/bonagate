@@ -12,6 +12,7 @@ json.company property.company, partial: 'companies/company.json.jbuilder', as: :
 json.type property.property_type, partial: 'property_types/property_type.json.jbuilder', as: :property_type
 json.state property.property_state, partial: 'property_states/property_state.json.jbuilder', as: :property_state
 json.status property.property_status, partial: 'property_statuses/property_status.json.jbuilder', as: :property_status
+json.service_type property.property_service_type, partial: 'property_service_types/property_service_type.json.jbuilder', as: :property_service_type
 #             json.partial! 'property_detail_instances/property_detail_instance.json.jbuilder', property_detail_instance: inst
 # json.property_service_type property.property_service_type, partial: 'property_service_types/property_service_type.json.jbuilder', as: :property_service_type
 json.url property_url(property, format: :json)

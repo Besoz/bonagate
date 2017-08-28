@@ -226,6 +226,7 @@
       property.property_type_id = property.type.id;
       property.property_status_id = property.status.id;
       property.property_state_id = property.state.id;
+      property.property_service_type_id = property.service_type.id;
     }
 
     function decoratePropertyResponse(property, propertyDetails){
