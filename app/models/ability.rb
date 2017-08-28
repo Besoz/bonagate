@@ -23,7 +23,6 @@ class Ability
         can :create, UserInvitation, :company_id => user.company_user.company_id
 
         can :create, Property
-        can :templates, Property, company_id: user.company_user.company_id
       else
         can :crud, User, id: user.id
 
@@ -31,6 +30,7 @@ class Ability
 
         can :read, Company, :id => user.company_user.company_id # to be changed company_user.company_id
       end
+      can :templates, Property, company_id: user.company_user.company_id
 
       company_id = user.company_user.company_id
       
