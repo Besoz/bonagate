@@ -1,19 +1,16 @@
 class PropertyDetailsController < ApplicationController
-  before_action :set_property_detail, only: [:show, :edit, :update, :destroy]
+  before_action :set_property_detail, only: [:edit, :update, :destroy]
 
   include PropertyDetailsHelper
+
+  load_and_authorize_resource
 
   # GET /property_details
   # GET /property_details.json
   def index
-    @property_details = PropertyDetail.all
-    puts params.to_json
   end
 
   def index_by_id
-    puts params.to_json
-    @property_details = PropertyDetail.all
-
     respond_to do |format|
       format.html { }
       format.json { render :index_by_id }
@@ -120,7 +117,7 @@ class PropertyDetailsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_detail_params
     params.require(:property_detail).permit(:id, :code, :name, :name_en, :name_ar, :value_type, :mandatory, 
-    :details_ids, :property_detail_category_id, :value_options => [], 
+    :state, :details_ids, :property_detail_category_id, :value_options => [], 
     property_detail_value_options_attributes: [:id, :name_en, :name_ar, :_destroy])
   end
 
