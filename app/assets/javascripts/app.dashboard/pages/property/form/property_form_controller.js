@@ -36,7 +36,9 @@ angular
             setPropertyLocation: setPropertyLocation,
             gotoPropertyLocation: gotoPropertyLocation,
             ngmap: null,
-            currentGeolocationPoint: null
+            currentGeolocationPoint: null,
+            egyptLocation: null,
+            zoom: 18
           }
         };
 
@@ -98,7 +100,7 @@ angular
 
       function goCurrentLocation() {
         PropertyWizardServices.moveMap(vm.form.map.ngmap,
-          vm.form.map.currentGeolocationPoint);
+          vm.form.map.currentGeolocationPoint, vm.form.map.zoom);
       }
 
       function next(form) {
