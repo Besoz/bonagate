@@ -181,6 +181,18 @@ angular
           deps: mLoadSequence('ngTable', 'angular-filter', 'ngFileUpload', 'angularFileUpload', 'paymentServices',
             'ui.select', "paymentController", "paymentsController")
         }
+      }).state('app.property.payment', {
+        url: '/:propertyId/payment',
+        templateUrl: "assets/app.dashboard/pages/property/payment/payments.html",
+        controller: "PaymentsController",
+        controllerAs: 'paymentsCtrl',
+        resolve: {
+          paymentsRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('payments');
+          },
+          deps: mLoadSequence('ngTable', 'angular-filter', 'ngFileUpload', 'angularFileUpload', 'paymentServices',
+            'ui.select', "paymentController", "paymentsController")
+        }
       }).state('app.property.new', {
         url: '/new',
         templateUrl: "assets/app.dashboard/pages/property/form/property_form_wizard.html",
