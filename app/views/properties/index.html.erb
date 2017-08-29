@@ -1,211 +1,217 @@
+<script src="/assets/app.shared/directives/properties.filter.directive.js"></script>
+<script src="/assets/app.shared/directives/properties.filter.controller.js"></script>
+<script src="/assets/app.realestate/controllers/properties.controller.js"></script>
+<script src="/assets/bower_components/angular-filter/dist/angular-filter.min.js"></script>
+<script src="/assets/bower_components/checklist-model/checklist-model.js"></script>
 
-  <script src="/assets/app.shared/directives/properties.filter.js"></script>
+<div id="content"  ng-app="app" ng-controller="PropertiesController as propsCtrl">
 
-  <div id="content">
-
-    <section class="cover overlay height-200 height-270-xs">
-      <img src="images/photodune-186709-residential-street-m.jpg" alt="cover" />
-      <div class="overlay overlay-full overlay-bg-black bg-transparent">
+  <section class="cover overlay height-200 height-270-xs">
+    <img src="images/photodune-186709-residential-street-m.jpg" alt="cover" />
+    <div class="overlay overlay-full overlay-bg-black bg-transparent">
+      <div class="container">
+        <h1 class="text-h1 text-overlay">Properties</h1>
+      </div>
+    </div>
+    <div class="overlay overlay-bg-black">
+      <div class="v-bottom">
         <div class="container">
-          <h1 class="text-h1 text-overlay">Properties</h1>
-        </div>
-      </div>
-      <div class="overlay overlay-bg-black">
-        <div class="v-bottom">
-          <div class="container">
-            <p class="text-overlay">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur debitis doloremque dolorum error excepturi illum ipsa ipsam modi. <span class="hidden-sm hidden-xs">Nesciunt nulla obcaecati porro quibusdam repellendus reprehenderit saepe sequi, velit veniam voluptates!</span></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
-            <div class="panel-heading panel-collapse-trigger">
-              <h4 class="panel-title">Filter</h4>
-            </div>
-            <div class="panel-body">
-
-            <properties-filter handler="propertiesFilterHandler"
-                               apply-history="true">
-            </properties-filter>
-
-            <button ng-click="propertiesFilterHandler.goToPage(3)">
-              goToPage(3)
-            </button>
-
-            </div>
-          </div>
-
-          <div class="row text-center">
-            <div class="col-xs-6">
-              <button class="btn btn-block btn-success">Search Now!</button>
-            </div>
-            <div class="col-xs-6">
-              <a href="" class="btn btn-link"><i class="fa fa-fw fa-times"></i> reset filters</a>
-            </div>
-          </div>
-          <br/>
-        </div>
-        <div class="col-md-9">
-          <div class="row">
-            <div class="col-xs-6">
-              <h4><span class="text-primary">280</span> Results</h4>
-            </div>
-            <div class="col-xs-6 text-right">
-              <div class="dropdown display-inline-block">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                  Sort by:
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu pull-right">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </div>
-              <div class="btn-group display-inline-block">
-
-                <a class="btn btn-primary active" href="front-listing-list.html"><i class="fa fa-list"></i></a>
-                <a class="btn btn-primary" href="front-listing-grid.html"><i class="fa fa-th"></i></a>
-
-              </div>
-            </div>
-          </div>
-          <br/>
-
-          <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
-            <div class="panel-heading panel-collapse-trigger">
-              <h4 class="panel-title">Map View</h4>
-            </div>
-            <div class="panel-body relative height-350">
-
-              <div id="google-fs-realestate" data-toggle="google-maps" data-file="js/data/google_maps/markers-listing-closed.json" data-center="57.698519366788865,11.983302806854681" data-style="paper" class="maps-google-fs"></div>
-              <script id="real-estate-map-pop-1" type="text/x-handlebars-template">
-                <div class="padding-none full">
-                  <div class="ribbon-heading text-h5 {{ ribbon_mark_class }} absolute leftinline margin-none">{{ ribbon_mark_text }}</div>
-                  <div class="cover overlay cover-image-full margin-none">
-                    <a href="{{ details_url }}" class="thumb" data-height="150px">
-                      <img src="{{ image }}" alt="image" class="img-responsive">
-                    </a>
-                  </div>
-                  <div class="list-group margin-none">
-                    <div class="list-group-item">
-                      <a href="{{ details_url }}" class="btn btn-primary btn-circle pull-right">
-                        <i class="fa fa-shopping-cart"></i>
-                      </a>
-                      <h4 class="margin-v-0-5">{{ title }}</h4>
-                      <p class="small">
-                        <span class="fa fa-fw fa-star text-yellow-800"></span>
-                        <span class="fa fa-fw fa-star text-yellow-800"></span>
-                        <span class="fa fa-fw fa-star text-yellow-800"></span>
-                        <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-                        <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-                      </p>
-                      <p>{{ description }}</p>
-                      <label class="label label-grey-100">&euro;{{ price }}</label>&nbsp;
-                      <small>
-
-                        <i class="fa fa-fw icon-home-fill-1"></i> Agency
-
-                      </small>
-                    </div>
-                  </div>
-                </div>
-              </script>
-
-              <script id="real-estate-map-pop_home" type="text/x-handlebars-template">
-                <div class="padding-none">
-                  <div class="ribbon-heading text-h5 {{ ribbon_mark_class }} absolute left inline margin-none">
-                    {{ ribbon_mark_text }}
-                  </div>
-                  <div class="cover cover-image-full margin-none">
-                    <a href="{{ details_url }}" class="thumb" data-height="150px">
-                      <img src="{{ image }}" alt="image" class="img-responsive">
-                    </a>
-                  </div>
-                  <div class="text-center">
-                    <h4 class="text-primary margin-bottom-none">{{ title }}</h4>
-                    <p class="h5 text-muted margin-v-5-15">{{ location }}</p>
-                  </div>
-                </div>
-              </script>
-
-              <script id="real-estate-map-pop_profile" type="text/x-handlebars-template">
-                <div class="text-center">
-                  <p>
-                    <img src="{{ image }}" alt="" class="img-circle" />
-                  </p>
-                  <h4><a href="{{ details_url }}" class="text-grey-700">{{ name }}</a></h4>
-                  <a href="mailto:{{ email }}">{{ email }}</a>
-                  <br/>
-                  <p class="text-muted"><i class="fa fa-user fa-fw"></i>Agent <i class="fa fa-home fa-fw"></i>{{ no_properties }} Properties</p>
-                </div>
-              </script>
-
-              <script id="real-estate-map-pop_icon" type="text/x-handlebars-template">
-                <div>
-                  <div class="text-center">
-                    <div class="h1 text-grey-300">
-                      <i class="{{ inner_icon }}"></i>
-                    </div>
-                    <p><a href="{{ details_url }}" class="h4 text-primary">{{ name }}</a></p>
-                    <p>{{ location }}</p>
-                  </div>
-                </div>
-              </script>
-
-            </div>
-          </div>
-
-          <div class="panel panel-default" ng-repeat="property in propertiesFilterHandler.properties">
-            <div class="panel-body">
-              <div class="media media-clearfix-xs media-clearfix-sm">
-                <div class="media-left">
-                  <p>
-                    <a href="/properties/{{property.id}}">
-                      <img ng-src="{{property.avatar}}" alt="property" width="150" class="media-object" />
-                    </a>
-                  </p>
-                  <div class="text-center small">
-                    <span class="fa fa-fw fa-star text-yellow-800"></span>
-                    <span class="fa fa-fw fa-star text-yellow-800"></span>
-                    <span class="fa fa-fw fa-star text-yellow-800"></span>
-                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-                  </div>
-                </div>
-                <div class="media-body">
-                  <div class="pull-right">
-                    <a href="/properties/{{property.id}}" class="text-primary"><i class="fa fa-comments fa-fw"></i> <strong>5</strong></a>
-                    <a href="/properties/{{property.id}}" class="text-grey-400"><i class="fa fa-star-o fa-fw"></i></a>
-                  </div>
-                  <h4 class="media-heading margin-v-0-10">
-                    <a href="/properties/{{property.id}}">The Dwelling Mansion, Caracas</a>
-                    <small class="text-grey-400"><i class="fa fa-clock-o fa-fw"></i> 5 days ago</small>
-                  </h4>
-                  <p>
-                    <span class="label label-grey-100"><i class="fa fa-home fa-fw"></i>3 Bedrooms</span>
-                    <span class="label label-grey-100"><i class="fa fa-fw icon icon-toilet"></i> 1 Bathrooms</span>
-                    <span class="label label-grey-100"><i class="icon icon-shovel "></i> Garden</span>
-                  </p>
-                  <p class="margin-none">The apartment boasts a fully equipped eat-in kitchen, washing machine, central heating and an en-suite bathroom with shower. The bathroom is in the main bedroom so it&#39;s suitable and comfortable for family and friends ...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <ul class="pagination margin-top-none">
-            <li class="disabled"><a href="#">&laquo;</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">&raquo;</a></li>
-          </ul>
+          <p class="text-overlay">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur debitis doloremque dolorum error excepturi illum ipsa ipsam modi. <span class="hidden-sm hidden-xs">Nesciunt nulla obcaecati porro quibusdam repellendus reprehenderit saepe sequi, velit veniam voluptates!</span></p>
         </div>
       </div>
     </div>
+  </section>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+          <div class="panel-heading panel-collapse-trigger">
+            <h4 class="panel-title">Filter</h4>
+          </div>
+          <div class="panel-body">
+
+          <properties-filter api="propsCtrl.propertiesFilterDirective"
+                              paginate="true">
+
+          </properties-filter>
+
+          <button ng-click="propsCtrl.gotoPage(3)">
+            goToPage(3)
+          </button>
+
+          </div>
+        </div>
+
+        <div class="row text-center">
+          <div class="col-xs-6">
+            <button class="btn btn-block btn-success">Search Now!</button>
+          </div>
+          <div class="col-xs-6">
+            <a href="" class="btn btn-link"><i class="fa fa-fw fa-times"></i> reset filters</a>
+          </div>
+        </div>
+        <br/>
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-xs-6">
+            <h4><span class="text-primary">280</span> Results</h4>
+          </div>
+          <div class="col-xs-6 text-right">
+            <div class="dropdown display-inline-block">
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                Sort by:
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu pull-right">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </div>
+            <div class="btn-group display-inline-block">
+
+              <a class="btn btn-primary active" href="front-listing-list.html"><i class="fa fa-list"></i></a>
+              <a class="btn btn-primary" href="front-listing-grid.html"><i class="fa fa-th"></i></a>
+
+            </div>
+          </div>
+        </div>
+        <br/>
+
+        <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+          <div class="panel-heading panel-collapse-trigger">
+            <h4 class="panel-title">Map View</h4>
+          </div>
+          <div class="panel-body relative height-350">
+
+            <div id="google-fs-realestate" data-toggle="google-maps" data-file="js/data/google_maps/markers-listing-closed.json" data-center="57.698519366788865,11.983302806854681" data-style="paper" class="maps-google-fs"></div>
+            <script id="real-estate-map-pop-1" type="text/x-handlebars-template">
+              <div class="padding-none full">
+                <div class="ribbon-heading text-h5 {{ ribbon_mark_class }} absolute leftinline margin-none">{{ ribbon_mark_text }}</div>
+                <div class="cover overlay cover-image-full margin-none">
+                  <a href="{{ details_url }}" class="thumb" data-height="150px">
+                    <img src="{{ image }}" alt="image" class="img-responsive">
+                  </a>
+                </div>
+                <div class="list-group margin-none">
+                  <div class="list-group-item">
+                    <a href="{{ details_url }}" class="btn btn-primary btn-circle pull-right">
+                      <i class="fa fa-shopping-cart"></i>
+                    </a>
+                    <h4 class="margin-v-0-5">{{ title }}</h4>
+                    <p class="small">
+                      <span class="fa fa-fw fa-star text-yellow-800"></span>
+                      <span class="fa fa-fw fa-star text-yellow-800"></span>
+                      <span class="fa fa-fw fa-star text-yellow-800"></span>
+                      <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                      <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                    </p>
+                    <p>{{ description }}</p>
+                    <label class="label label-grey-100">&euro;{{ price }}</label>&nbsp;
+                    <small>
+
+                      <i class="fa fa-fw icon-home-fill-1"></i> Agency
+
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </script>
+
+            <script id="real-estate-map-pop_home" type="text/x-handlebars-template">
+              <div class="padding-none">
+                <div class="ribbon-heading text-h5 {{ ribbon_mark_class }} absolute left inline margin-none">
+                  {{ ribbon_mark_text }}
+                </div>
+                <div class="cover cover-image-full margin-none">
+                  <a href="{{ details_url }}" class="thumb" data-height="150px">
+                    <img src="{{ image }}" alt="image" class="img-responsive">
+                  </a>
+                </div>
+                <div class="text-center">
+                  <h4 class="text-primary margin-bottom-none">{{ title }}</h4>
+                  <p class="h5 text-muted margin-v-5-15">{{ location }}</p>
+                </div>
+              </div>
+            </script>
+
+            <script id="real-estate-map-pop_profile" type="text/x-handlebars-template">
+              <div class="text-center">
+                <p>
+                  <img src="{{ image }}" alt="" class="img-circle" />
+                </p>
+                <h4><a href="{{ details_url }}" class="text-grey-700">{{ name }}</a></h4>
+                <a href="mailto:{{ email }}">{{ email }}</a>
+                <br/>
+                <p class="text-muted"><i class="fa fa-user fa-fw"></i>Agent <i class="fa fa-home fa-fw"></i>{{ no_properties }} Properties</p>
+              </div>
+            </script>
+
+            <script id="real-estate-map-pop_icon" type="text/x-handlebars-template">
+              <div>
+                <div class="text-center">
+                  <div class="h1 text-grey-300">
+                    <i class="{{ inner_icon }}"></i>
+                  </div>
+                  <p><a href="{{ details_url }}" class="h4 text-primary">{{ name }}</a></p>
+                  <p>{{ location }}</p>
+                </div>
+              </div>
+            </script>
+
+          </div>
+        </div>
+
+        <div class="panel panel-default" ng-repeat="property in propertiesFilterHandler.properties">
+          <div class="panel-body">
+            <div class="media media-clearfix-xs media-clearfix-sm">
+              <div class="media-left">
+                <p>
+                  <a href="/properties/{{property.id}}">
+                    <img ng-src="{{property.avatar}}" alt="property" width="150" class="media-object" />
+                  </a>
+                </p>
+                <div class="text-center small">
+                  <span class="fa fa-fw fa-star text-yellow-800"></span>
+                  <span class="fa fa-fw fa-star text-yellow-800"></span>
+                  <span class="fa fa-fw fa-star text-yellow-800"></span>
+                  <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                  <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                </div>
+              </div>
+              <div class="media-body">
+                <div class="pull-right">
+                  <a href="/properties/{{property.id}}" class="text-primary"><i class="fa fa-comments fa-fw"></i> <strong>5</strong></a>
+                  <a href="/properties/{{property.id}}" class="text-grey-400"><i class="fa fa-star-o fa-fw"></i></a>
+                </div>
+                <h4 class="media-heading margin-v-0-10">
+                  <a href="/properties/{{property.id}}">The Dwelling Mansion, Caracas</a>
+                  <small class="text-grey-400"><i class="fa fa-clock-o fa-fw"></i> 5 days ago</small>
+                </h4>
+                <p>
+                  <span class="label label-grey-100"><i class="fa fa-home fa-fw"></i>3 Bedrooms</span>
+                  <span class="label label-grey-100"><i class="fa fa-fw icon icon-toilet"></i> 1 Bathrooms</span>
+                  <span class="label label-grey-100"><i class="icon icon-shovel "></i> Garden</span>
+                </p>
+                <p class="margin-none">The apartment boasts a fully equipped eat-in kitchen, washing machine, central heating and an en-suite bathroom with shower. The bathroom is in the main bedroom so it&#39;s suitable and comfortable for family and friends ...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="pagination margin-top-none">
+          <li class="disabled"><a href="#">&laquo;</a></li>
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">&raquo;<json.list @properties, partial: 'properties/property', as: :property/a></li>
+        </ul>
+      </div>
+    </div>
   </div>
+</div>
+
+

@@ -5,4 +5,34 @@
   </div>
 
   <button ng-click="test()"> Test </button>
+
+
+  <button ng-click="vm.handler.goToPage(3)">
+    goToPage(3)
+  </button>
+Types
+  <div ng-repeat="type in vm.filterData.typesArr">
+    <div class="checkbox checkbox-primary margin-none">
+      <input id="type{{$index}}" type="checkbox" checklist-model="vm.selectedTypes" checklist-value="type.id" />
+      <label for="type{{$index}}">{{type.name}}</label>
+    </div>
+  </div>
+  Details
+  <div ng-repeat="(categoryId, details) in vm.filterData.detailsArr | groupBy: 'property_detail_category_id'" ng-init="catId = $index">
+    category: {{vm.filterData.detailCategoriesHash[categoryId].name}}
+    <div ng-repeat="detail in details" ng-init="detailId = $index">
+      <div class="checkbox checkbox-primary margin-none">
+        <input id="detail{{catId}}{{detailId}}" type="checkbox" checklist-model="vm.selectedDetails" checklist-value="detail.id"
+        />
+        <label for="detail{{catId}}{{detailId}}">{{detail.name}}</label>
+      </div>
+    </div>
+  </div>
+  States
+  <div ng-repeat="(stateId, state) in vm.filterData.statesHash">
+    <div class="checkbox checkbox-primary margin-none">
+      <input id="state{{$index}}" type="checkbox" checklist-model="vm.selectedStates" checklist-value="state.id" />
+      <label for="state{{$index}}">{{state.name}}</label>
+    </div>
+  </div>
 </div>

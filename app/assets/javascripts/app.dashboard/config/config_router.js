@@ -167,7 +167,7 @@ angular
             return $http.get('property_states/index_by_id.json');
           },
           deps: mLoadSequence('angular-filter','angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
-            'propertFormController', 'propertiesServices', 'propertyDetailsServices')
+            'propertyFormController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.payment', {
         url: '/:propertyId/payment',

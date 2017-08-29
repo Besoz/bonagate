@@ -6,6 +6,8 @@
     'toaster',
     'app.shared',
     'pascalprecht.translate', 
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'angular.filter',
+    "checklist-model"
   ]);
 })();
