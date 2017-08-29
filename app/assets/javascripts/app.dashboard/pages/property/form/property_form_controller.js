@@ -36,7 +36,8 @@ angular
             setPropertyLocation: setPropertyLocation,
             gotoPropertyLocation: gotoPropertyLocation,
             ngmap: null,
-            currentGeolocationPoint: null
+            currentGeolocationPoint: null,
+            egyptLocation: null
           }
         };
 

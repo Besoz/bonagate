@@ -396,7 +396,7 @@
             <div class="row">
               <div class="col-md-12">
                 <!--start: Map-->
-                <map on-center_changed="wizardCtrl.form.map.centerChanged()" zoom="20" map-type-id="MapTypeId.ROADMAP">
+                <map on-center_changed="wizardCtrl.form.map.centerChanged()" zoom="15" map-type-id="MapTypeId.ROADMAP" center="{{address}}">
                   <marker ng-if="wizardCtrl.property.lat && wizardCtrl.property.lng" position="{{[wizardCtrl.property.lat, wizardCtrl.property.lng]}}">
                   </marker>
                   <marker ng-if="wizardCtrl.form.map.ngmap && wizardCtrl.form.map.ngmap.getCenter()" position="{{[wizardCtrl.form.map.ngmap.getCenter().lat(), wizardCtrl.form.map.ngmap.getCenter().lng()]}}" icon='http://labs.google.com/ridefinder/images/mm_20_yellow.png'>
@@ -419,6 +419,9 @@
                     </a>
                   </custom-control>
                 </map>
+                <div>
+                  <br/>Address : <input ng-model="address" />
+                </div>
                 <div class="col-md-6">
                   <fieldset>
                     <legend>

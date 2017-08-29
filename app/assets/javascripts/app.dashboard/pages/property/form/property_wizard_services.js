@@ -19,7 +19,7 @@
 
     var service = {
       processPropertyDetails: processPropertyDetails,
-      addGeoLocationMarker: addGeoLocationMarker,
+      // requestGeoLocation: requestGeoLocation,
       setPropertyLatLng: setPropertyLatLng,
       gotoPropertyLocation: gotoPropertyLocation,
       setPropertyLocation: setPropertyLocation,
@@ -83,7 +83,7 @@
 
     }
 
-    function addGeoLocationMarker(successCallbackFn, errorCallbackFn) {
+    function requestGeoLocation(successCallbackFn, errorCallbackFn) {
       var options = {
         enableHighAccuracy: true
       };
@@ -98,7 +98,7 @@
 
     function moveMap(map, geolocalpoint) {
       map.setCenter(geolocalpoint);
-      map.setZoom(20);
+      map.setZoom(15);
     }
 
 
@@ -156,21 +156,34 @@
         case LOCATION_STEP:
           NgMap.getMap().then(function (evtMap) {
             vm.form.map.ngmap = evtMap;
-            addGeoLocationMarker(function (pos) {
-              vm.form.map.currentGeolocationPoint = new google.maps.LatLng(pos.coords.latitude,
-                pos.coords.longitude);
-              if (vm.property.id && vm.property.lat && vm.property.lng) {
-                moveMap(vm.form.map.ngmap,
-                  new google.maps.LatLng(vm.property.lat,
-                    vm.property.lng));
-              } else {
-                moveMap(vm.form.map.ngmap,
-                  vm.form.map.currentGeolocationPoint);
-              }
-            });
+            if (vm.property.id && vm.property.lat && vm.property.lng) {
+              moveMap(vm.form.map.ngmap,
+                new google.maps.LatLng(vm.property.lat,
+                  vm.property.lng));
+            }
+
+            requestGeoLocation(currentPositionFound.bind(this, vm), 
+              currentPositionNotFound.bind(this, vm));
           });
           break;
         default:
+      }
+    }
+
+    function currentPositionFound(vm, pos) {
+      vm.form.map.currentGeolocationPoint = new google.maps.LatLng(pos.coords.latitude,
+        pos.coords.longitude);
+      if (!(vm.property.id && vm.property.lat && vm.property.lng)) {
+        moveMap(vm.form.map.ngmap,
+          vm.form.map.currentGeolocationPoint);
+      }
+    }
+
+    function currentPositionNotFound(vm){
+      vm.form.map.egyptLocation = new google.maps.LatLng(31.205753, 29.924526);
+      if (!(vm.property.id && vm.property.lat && vm.property.lng)) {
+        moveMap(vm.form.map.ngmap,
+          vm.form.map.egyptLocation);
       }
     }
 
