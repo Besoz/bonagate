@@ -96,9 +96,9 @@
       property.lng = lng;
     }
 
-    function moveMap(map, geolocalpoint) {
+    function moveMap(map, geolocalpoint, zoom) {
       map.setCenter(geolocalpoint);
-      map.setZoom(15);
+      map.setZoom(zoom);
     }
 
 
@@ -159,7 +159,7 @@
             if (vm.property.id && vm.property.lat && vm.property.lng) {
               moveMap(vm.form.map.ngmap,
                 new google.maps.LatLng(vm.property.lat,
-                  vm.property.lng));
+                  vm.property.lng), vm.form.map.zoom);
             }
 
             requestGeoLocation(currentPositionFound.bind(this, vm), 
@@ -175,7 +175,7 @@
         pos.coords.longitude);
       if (!(vm.property.id && vm.property.lat && vm.property.lng)) {
         moveMap(vm.form.map.ngmap,
-          vm.form.map.currentGeolocationPoint);
+          vm.form.map.currentGeolocationPoint, vm.form.map.zoom);
       }
     }
 
@@ -183,7 +183,7 @@
       vm.form.map.egyptLocation = new google.maps.LatLng(31.205753, 29.924526);
       if (!(vm.property.id && vm.property.lat && vm.property.lng)) {
         moveMap(vm.form.map.ngmap,
-          vm.form.map.egyptLocation);
+          vm.form.map.egyptLocation, 10);
       }
     }
 
