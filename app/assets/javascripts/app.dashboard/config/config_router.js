@@ -140,16 +140,16 @@ angular
             return GeneralDataServices.show('properties', $stateParams.propertyId);
           },
           propertyTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_types');
+            return GeneralDataServices.index('property_types/index_by_id');
           },
           serviceTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_service_types');
+            return GeneralDataServices.index('property_service_types/index_by_id');
           },
           propertyStatesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_states');
+            return GeneralDataServices.index('property_states/index_by_id');
           },
           propertyStatusesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_statuses');
+            return GeneralDataServices.index('property_statuses/index_by_id');
           },
           propertyDetailsRequest: function ($http) {
             return $http.get('property_details/index_by_id.json');
@@ -167,7 +167,19 @@ angular
             return $http.get('property_states/index_by_id.json');
           },
           deps: mLoadSequence('angular-filter','angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
-            'propertFormController', 'propertiesServices', 'propertyDetailsServices')
+            'propertyFormController', 'propertiesServices', 'propertyDetailsServices')
+        }
+      }).state('app.property.payment', {
+        url: '/:propertyId/payment',
+        templateUrl: "assets/app.dashboard/pages/property/payment/payments.html",
+        controller: "PaymentsController",
+        controllerAs: 'paymentsCtrl',
+        resolve: {
+          paymentsRequest: function (GeneralDataServices) {
+            return GeneralDataServices.index('payments');
+          },
+          deps: mLoadSequence('ngTable', 'angular-filter', 'ngFileUpload', 'angularFileUpload', 'paymentServices',
+            'ui.select', "paymentController", "paymentsController")
         }
       }).state('app.property.new', {
         url: '/new',
@@ -184,16 +196,16 @@ angular
             });
           },
           propertyTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_types');
+            return GeneralDataServices.index('property_types/index_by_id');
           },
           serviceTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_service_types');
+            return GeneralDataServices.index('property_service_types/index_by_id');
           },
           propertyStatesRequest: function (GeneralDataServices) {
             return GeneralDataServices.index('property_states');
           },
           propertyStatusesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_statuses');
+            return GeneralDataServices.index('property_statuses/index_by_id');
           },
           propertyDetailsRequest: function ($http) {
             return $http.get('property_details/index_by_id.json');
@@ -211,7 +223,7 @@ angular
             return $http.get('property_states/index_by_id.json');
           },
           deps: mLoadSequence('angular-filter', 'angularFileUpload', 'ngMap', 'ui.select', 'propertyWizardServices',
-            'propertFormController', 'propertiesServices', 'propertyDetailsServices')
+            'propertyFormController', 'propertiesServices', 'propertyDetailsServices')
         }
       }).state('app.property.list', {
         url: '/list',

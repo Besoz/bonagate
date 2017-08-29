@@ -1,9 +1,13 @@
 class PropertyStatusesController < ApplicationController
-  before_action :set_property_status, only: [:show, :edit, :update, :destroy]
+  before_action :set_property_status, only: [:edit, :update, :destroy]
 
+  load_and_authorize_resource
   # GET /property_statuses
   # GET /property_statuses.json
   def index
+  end
+
+  def index_by_id
     @property_statuses = PropertyStatus.all
   end
 
@@ -69,6 +73,6 @@ class PropertyStatusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_status_params
-      params.require(:property_status).permit(:code, :name, :name_en, :name_ar)
+      params.require(:property_status).permit(:code, :name, :name_en, :name_ar, :state)
     end
 end

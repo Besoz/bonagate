@@ -36,7 +36,9 @@ angular
             setPropertyLocation: setPropertyLocation,
             gotoPropertyLocation: gotoPropertyLocation,
             ngmap: null,
-            currentGeolocationPoint: null
+            currentGeolocationPoint: null,
+            egyptLocation: null,
+            zoom: 18
           }
         };
 
@@ -46,12 +48,14 @@ angular
         vm.removePaymentPlan = removePaymentPlan;
         vm.addPaymentPlanRecord = addPaymentPlanRecord;
         vm.removePaymentPlanRecord = removePaymentPlanRecord;
-        vm.propertyTypeStates = propertyTypeStates;
-
-        vm.propertyTypes = propertyTypesRequest.data.list;
-        vm.serviceTypes = serviceTypesRequest.data.list;
+        vm.propertyTypes = propertyTypesRequest.data.hash;
+        vm.propertyTypesIds = Object.keys(vm.propertyTypes);
+        vm.serviceTypes = serviceTypesRequest.data.hash;
+        vm.serviceTypeIds = Object.keys(vm.serviceTypes);
         vm.states = propertyStatesHashRequest.data.hash;
-        vm.statuses = propertyStatusesRequest.data.list;
+        vm.propertyTypeStatesIds = propertyTypeStatesIds;
+        vm.statuses = propertyStatusesRequest.data.hash;
+        vm.statusIds = Object.keys(vm.statuses);
         vm.propertyDetails = propertyDetailsRequest.data.hash;
         vm.propertyDetailCategories = propertyDetailCategoriesRequest.data.hash;
         vm.propertyTemplates = propertyTemplatesRequest.data.list;
@@ -74,7 +78,7 @@ angular
           property_payment_plans_attributes: []
         };
 
-        PropertyWizardServices.decoratePropertyResponse(vm.property, vm.propertyDetails);
+        PropertyWizardServices.decoratePropertyResponse(vm.property, vm.propertyTypes);
 
         vm.property.deleted_images_ids = [];
 
@@ -90,6 +94,7 @@ angular
       }
 
       function resetInstances() {
+        vm.property.type = vm.propertyTypes[vm.property.property_type_id]
         PropertyWizardServices.resetPropertyDetailInstances(vm.property);
       }
 
@@ -103,7 +108,7 @@ angular
 
       function goCurrentLocation() {
         PropertyWizardServices.moveMap(vm.form.map.ngmap,
-          vm.form.map.currentGeolocationPoint);
+          vm.form.map.currentGeolocationPoint, vm.form.map.zoom);
       }
 
       function next(form) {
@@ -140,9 +145,9 @@ angular
       }
 
       //select from all property states, the states that belong to a particular property type.
-      function propertyTypeStates(propertyType){
-        var statesIDs = propertyType.property_state_ids;
-        return statesIDs.map((stateID) => vm.states[stateID]);
+      function propertyTypeStatesIds(){
+        var propertyType = vm.propertyTypes[vm.property.property_type_id];
+        return propertyType.property_state_ids;
       }
 
       function reset() {}

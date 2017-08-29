@@ -5,6 +5,8 @@ if(property_detail_instance.property_detail.value_type == 'multi_select' && prop
 			.where(id: JSON.parse(property_detail_instance.value)),
 			partial: 'property_details/value_option.json.jbuilder', as: :value_option
 	end
+elsif property_detail_instance.property_detail.value_type == 'bool'
+	json.value property_detail_instance.value == "1" ? true : false
 else
 	json.value property_detail_instance.value
 end

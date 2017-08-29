@@ -95,14 +95,14 @@
                       <label class="control-label">
                         {{'activerecord.models.property_type'|translate}} <span class="symbol required"></span>
                       </label>
-                      <ui-select ng-model="wizardCtrl.property.type" theme="bootstrap" name="type" on-select="wizardCtrl.resetInstances()"
+                      <ui-select ng-model="wizardCtrl.property.property_type_id" theme="bootstrap" name="type" on-select="wizardCtrl.resetInstances()"
                         required>
                         <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
-                          {{$select.selected.name}}
+                          {{wizardCtrl.propertyTypes[$select.selected].name}}
                         </ui-select-match>
-                        <ui-select-choices repeat="item in wizardCtrl.propertyTypes | filter: $select.search">
-                          <div ng-bind-html="item.name | highlight: $select.search"></div>
-                          <small ng-bind-html="item.code | highlight: $select.search"></small>
+                        <ui-select-choices repeat="item in wizardCtrl.propertyTypesIds | filter: $select.search">
+                          <div ng-bind-html="wizardCtrl.propertyTypes[item].name | highlight: $select.search"></div>
+                          <small ng-bind-html="wizardCtrl.propertyTypes[item].code | highlight: $select.search"></small>
                         </ui-select-choices>
                       </ui-select>
                     </div>
@@ -115,13 +115,13 @@
                       <label class="control-label">
                         {{'activerecord.models.property_service_type'|translate}} <span class="symbol required"></span>
                       </label>
-                      <ui-select ng-model="wizardCtrl.property.service_type" theme="bootstrap" name="service_type" required>
+                      <ui-select ng-model="wizardCtrl.property.property_service_type_id" theme="bootstrap" name="service_type" required>
                         <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
-                          {{$select.selected.name}}
+                          {{wizardCtrl.serviceTypes[$select.selected].name}}
                         </ui-select-match>
-                        <ui-select-choices repeat="item in wizardCtrl.serviceTypes | filter: $select.search">
-                          <div ng-bind-html="item.name | highlight: $select.search"></div>
-                          <small ng-bind-html="item.code | highlight: $select.search"></small>
+                        <ui-select-choices repeat="item in wizardCtrl.serviceTypeIds | filter: $select.search">
+                          <div ng-bind-html="wizardCtrl.serviceTypes[item].name | highlight: $select.search"></div>
+                          <small ng-bind-html="wizardCtrl.serviceTypes[item].code | highlight: $select.search"></small>
                         </ui-select-choices>
                       </ui-select>
                     </div>
@@ -142,6 +142,7 @@
           <!-- start: WIZARD STEP 2 -->
           <div id="step-2" ng-if="wizardCtrl.currentStep == 2">
             <div class="row">
+            <!-- start: DETAIL INSTANCES -->
               <div class="col-md-6">
                 <fieldset>
                   <legend>
@@ -225,30 +226,35 @@
                   </button>
                 </div>
               </div>
+            <!-- end: DETAIL INSTANCES -->
+            <!-- start: ACCOUNT CREDENTIALS -->
               <div class="col-md-6">
                 <fieldset>
                   <legend>
                     Account Credential
                   </legend>
+                  <!-- STATE -->
                   <!-- Display property states belonging to selected property type -->
-                  <ui-select ng-model="wizardCtrl.property.state" theme="bootstrap">
+                  <ui-select ng-model="wizardCtrl.property.property_state_id" theme="bootstrap">
                     <ui-select-match placeholder="Select in the list...">
-                      {{$select.selected.name}}
+                      {{wizardCtrl.states[$select.selected].name}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in wizardCtrl.propertyTypeStates(wizardCtrl.property.type) | filter: $select.search">
-                      <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    <ui-select-choices repeat="item in wizardCtrl.propertyTypeStatesIds() | filter: $select.search">
+                      <div ng-bind-html="wizardCtrl.states[item].name | highlight: $select.search"></div>
                     </ui-select-choices>
                   </ui-select>
-                  <ui-select ng-model="wizardCtrl.property.status" theme="bootstrap">
+                  <!-- STATUS -->
+                  <ui-select ng-model="wizardCtrl.property.property_status_id" theme="bootstrap">
                     <ui-select-match placeholder="Select in the list...">
-                      {{$select.selected.name}}
+                      {{wizardCtrl.statuses[$select.selected].name}}
                     </ui-select-match>
-                    <ui-select-choices repeat="item in wizardCtrl.statuses | filter: $select.search">
-                      <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    <ui-select-choices repeat="item in wizardCtrl.statusIds | filter: $select.search">
+                      <div ng-bind-html="wizardCtrl.statuses[item].name | highlight: $select.search"></div>
                     </ui-select-choices>
                   </ui-select>
                 </fieldset>
               </div>
+            <!-- end: ACCOUNT CREDENTIALS -->
             </div>
           </div>
           <!-- end: WIZARD STEP 2-->
@@ -397,7 +403,7 @@
             <div class="row">
               <div class="col-md-12">
                 <!--start: Map-->
-                <map on-center_changed="wizardCtrl.form.map.centerChanged()" zoom="20" map-type-id="MapTypeId.ROADMAP">
+                <map on-center_changed="wizardCtrl.form.map.centerChanged()" zoom="wizardCtrl.form.map.zoom" map-type-id="MapTypeId.ROADMAP" center="{{address}}">
                   <marker ng-if="wizardCtrl.property.lat && wizardCtrl.property.lng" position="{{[wizardCtrl.property.lat, wizardCtrl.property.lng]}}">
                   </marker>
                   <marker ng-if="wizardCtrl.form.map.ngmap && wizardCtrl.form.map.ngmap.getCenter()" position="{{[wizardCtrl.form.map.ngmap.getCenter().lat(), wizardCtrl.form.map.ngmap.getCenter().lng()]}}" icon='http://labs.google.com/ridefinder/images/mm_20_yellow.png'>
@@ -420,6 +426,9 @@
                     </a>
                   </custom-control>
                 </map>
+                <div>
+                  <br/>{{'dashboard.property_create_wizard.step4.maps.address' | translate}} : <input ng-model="address" />
+                </div>
                 <div class="col-md-6">
                   <fieldset>
                     <legend>

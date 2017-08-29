@@ -27,11 +27,12 @@ en:
       property_detail: property detail
       property_type: property type
       property_detail_category: property detail category
+      payment: payment
+      payment_record: payment record
+      property_service_type: property service type
       property_status: Property Status
-      property_state: Property State
       payment_plan: payment plan
       payment_plan_record: Payment Plan Record
-      property_serviceType: Property Service Type
     attributes:
       user:
         email: "email" 
@@ -66,12 +67,20 @@ en:
         state: State
         code: Code
       property_detail_category:
-        name: Name
-        state: State
-        code: Code
-        name_en: English Name
-        name_ar: Arabic Name
-        edit: Edit
+        name: name
+        state: state
+        code: code
+        name_en: english name
+        name_ar: arabic name 
+      payment_record:
+        value: Value
+        description: Description
+        first_name: First Name
+        last_name: Last Name
+      person:
+        first_name: First Name
+        last_name: Last Name
+        ssn: SSN          
       property_status:
         name: Name
         name_en: English Name
@@ -93,8 +102,8 @@ en:
       property_detail_value_option:
         name_en: English Name
         name_ar: Arabic Name
-      property_payment_record:
         value: Value
+      property_payment_record:
         description: Description  
     errors:
       models:
@@ -412,6 +421,9 @@ en:
     # start: property create wizard
     property_create_wizard:
       title: Create New Property
+      step4:
+        maps:
+          address: address
       step5:
          
 

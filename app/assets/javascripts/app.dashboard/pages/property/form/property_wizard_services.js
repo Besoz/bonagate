@@ -19,7 +19,7 @@
 
     var service = {
       processPropertyDetails: processPropertyDetails,
-      addGeoLocationMarker: addGeoLocationMarker,
+      // requestGeoLocation: requestGeoLocation,
       setPropertyLatLng: setPropertyLatLng,
       gotoPropertyLocation: gotoPropertyLocation,
       setPropertyLocation: setPropertyLocation,
@@ -84,7 +84,7 @@
 
     }
 
-    function addGeoLocationMarker(successCallbackFn, errorCallbackFn) {
+    function requestGeoLocation(successCallbackFn, errorCallbackFn) {
       var options = {
         enableHighAccuracy: true
       };
@@ -97,9 +97,9 @@
       property.lng = lng;
     }
 
-    function moveMap(map, geolocalpoint) {
+    function moveMap(map, geolocalpoint, zoom) {
       map.setCenter(geolocalpoint);
-      map.setZoom(20);
+      map.setZoom(zoom);
     }
 
 
@@ -157,21 +157,34 @@
         case LOCATION_STEP:
           NgMap.getMap().then(function (evtMap) {
             vm.form.map.ngmap = evtMap;
-            addGeoLocationMarker(function (pos) {
-              vm.form.map.currentGeolocationPoint = new google.maps.LatLng(pos.coords.latitude,
-                pos.coords.longitude);
-              if (vm.property.id && vm.property.lat && vm.property.lng) {
-                moveMap(vm.form.map.ngmap,
-                  new google.maps.LatLng(vm.property.lat,
-                    vm.property.lng));
-              } else {
-                moveMap(vm.form.map.ngmap,
-                  vm.form.map.currentGeolocationPoint);
-              }
-            });
+            if (vm.property.id && vm.property.lat && vm.property.lng) {
+              moveMap(vm.form.map.ngmap,
+                new google.maps.LatLng(vm.property.lat,
+                  vm.property.lng), vm.form.map.zoom);
+            }
+
+            requestGeoLocation(currentPositionFound.bind(this, vm), 
+              currentPositionNotFound.bind(this, vm));
           });
           break;
         default:
+      }
+    }
+
+    function currentPositionFound(vm, pos) {
+      vm.form.map.currentGeolocationPoint = new google.maps.LatLng(pos.coords.latitude,
+        pos.coords.longitude);
+      if (!(vm.property.id && vm.property.lat && vm.property.lng)) {
+        moveMap(vm.form.map.ngmap,
+          vm.form.map.currentGeolocationPoint, vm.form.map.zoom);
+      }
+    }
+
+    function currentPositionNotFound(vm){
+      vm.form.map.egyptLocation = new google.maps.LatLng(31.205753, 29.924526);
+      if (!(vm.property.id && vm.property.lat && vm.property.lng)) {
+        moveMap(vm.form.map.ngmap,
+          vm.form.map.egyptLocation, 10);
       }
     }
 
@@ -192,9 +205,6 @@
     }
 
     function submit(vm, stateParams, state) {
-
-      decoratePropertyRequest(vm.property);
-
       if (vm.property.id) {
         PropertiesServices.updateProperty(vm.property)
           .then(function (res) {
@@ -229,23 +239,10 @@
       property.images = [];
     }
 
-    function decoratePropertyRequest(property) {
-      property.property_type_id = property.type.id;
-      property.property_status_id = property.status.id;
-      property.property_state_id = property.state.id;
-      property.property_service_type_id = property.service_type.id;
+    function decoratePropertyResponse(property, propertyTypes){
+      property.type = propertyTypes[property.property_type_id];
     }
 
-    function decoratePropertyResponse(property, propertyDetails){
-      //convert bool detail instances value from string to bool ("1", "0" => true, false)
-      property.property_detail_instances_attributes.forEach((detailInstance) => {
-       var isBoolDetail = propertyDetails[detailInstance.property_detail_id]["value_type"] == "bool"
-       if(isBoolDetail){
-        var boolValue = parseInt(detailInstance.value);
-        detailInstance.value = boolValue? true : false;
-       }
-      });
-    }
     function showErrorMessage(form) {
       FormValidationService.validateForm(form);
       toaster.pop('error', 'Error', 'please complete the form in this step before proceeding');

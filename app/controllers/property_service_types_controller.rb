@@ -1,9 +1,13 @@
 class PropertyServiceTypesController < ApplicationController
-  before_action :set_property_service_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_property_service_type, only: [:edit, :update, :destroy]
 
+  load_and_authorize_resource
   # GET /property_service_types
   # GET /property_service_types.json
   def index
+  end
+
+  def index_by_id
     @property_service_types = PropertyServiceType.all
   end
 
@@ -69,6 +73,6 @@ class PropertyServiceTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_service_type_params
-      params.require(:property_service_type).permit(:code, :name, :name_en, :name_ar)
+      params.require(:property_service_type).permit(:code, :name, :name_en, :name_ar, :state)
     end
 end
