@@ -9,7 +9,6 @@ class PropertyTypesController < ApplicationController
   end
 
   def index_by_id
-    @property_types = PropertyType.all
   end
 
   # GET /property_types/1

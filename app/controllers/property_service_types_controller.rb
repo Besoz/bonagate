@@ -8,7 +8,6 @@ class PropertyServiceTypesController < ApplicationController
   end
 
   def index_by_id
-    @property_service_types = PropertyServiceType.all
   end
 
   # GET /property_service_types/1

@@ -53,8 +53,11 @@ class Ability
       can :read_all, PropertyDetailCategory, state: :active
       can :index_by_id, PropertyDetailCategory, state: :active
       can :read_all, PropertyStatus, state: :active
+      can :index_by_id, PropertyStatus, state: :active
       can :read_all, PropertyServiceType, state: :active
+      can :index_by_id, PropertyServiceType, state: :active
       can :read_all, PropertyType, state: :active
+      can :index_by_id, PropertyType, state: :active
 
     elsif user.user?
         can [:change_password, :user_profile], User

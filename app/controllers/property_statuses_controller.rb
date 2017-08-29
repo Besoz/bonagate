@@ -8,7 +8,6 @@ class PropertyStatusesController < ApplicationController
   end
 
   def index_by_id
-    @property_statuses = PropertyStatus.all
   end
 
   # GET /property_statuses/1
