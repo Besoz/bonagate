@@ -1,5 +1,5 @@
 <div>
-  <alert ng-repeat="alert in stateCtrl.stateCreationErrors" state="{{alert.state}}">
+  <alert ng-repeat="alert in stateCtrl.stateCreationErrors" type="{{alert.state}}">
     {{alert.msg}}
   </alert>
 </div>
@@ -10,12 +10,19 @@
         <legend>
           <div translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}" />
         </legend>
-        <div class="form-group" ng-class="{'has-error':Form.firstName.$dirty && Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
+        <div class="form-group" ng-class="{'has-error':Form.NameEn.$dirty && Form.NameEn.$invalid, 'has-success':Form.NameEn.$valid}">
           <label class="control-label">
-            {{'activerecord.attributes.property_state.name'|translate}} <span class="symbol required"></span>
+            {{'activerecord.attributes.property_state.name_en'|translate}} <span class="symbol required"></span>
           </label>
-          <input state="text" placeholder="{{'activerecord.attributes.property_state.name'|translate}}" class="form-control" name="firstName" ng-model="stateCtrl.propertyState.name" required />
-          <span class="error text-small block" ng-if="Form.firstName.$dirty && Form.firstName.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_state.name'|translate}}'}" /></span>
+          <input type="text" placeholder="{{'activerecord.attributes.property_state.name_en'|translate}}" class="form-control" name="NameEn" ng-model="stateCtrl.propertyState.name_en" required />
+          <span class="error text-small block" ng-if="Form.NameEn.$dirty && Form.NameEn.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_state.name_en'|translate}}'}" /></span>
+        </div>
+        <div class="form-group" ng-class="{'has-error':Form.NameAr.$dirty && Form.NameAr.$invalid, 'has-success':Form.NameAr.$valid}">
+          <label class="control-label">
+            {{'activerecord.attributes.property_state.name_ar'|translate}} <span class="symbol required"></span>
+          </label>
+          <input type="text" placeholder="{{'activerecord.attributes.property_state.name_ar'|translate}}" class="form-control" name="NameAr" ng-model="stateCtrl.propertyState.name_ar" required />
+          <span class="error text-small block" ng-if="Form.NameAr.$dirty && Form.NameAr.$invalid"><div translate="errors.messages.required" translate-values="{attribute:'{{ 'activerecord.attributes.property_state.name_ar'|translate}}'}" /></span>
         </div>
         <div class="form-group" ng-class="{'has-error':Form.code.$dirty && Form.code.$invalid, 'has-success':Form.code.$valid}">
           <label class="control-label">
@@ -30,7 +37,7 @@
           <label class="control-label">
             {{'activerecord.attributes.property_state.value_state'|translate}} <span class="symbol required"></span>
           </label>
-          <ui-select ng-model="stateCtrl.propertyState.value_state" theme="bootstrap" name="state" required>
+          <ui-select ng-model="stateCtrl.propertyState.state" theme="bootstrap" name="state" required>
             <ui-select-match placeholder="{{'dashboard.select_list' | translate}}">
               {{'dashboard.recored_states.'+ $select.selected | translate}}
             </ui-select-match>
@@ -41,13 +48,13 @@
         </div>
         <div class="form-group">
           <div class="pull-right">
-            <button state="submit" class="btn btn-primary btn-squared">
+            <button type="submit" class="btn btn-primary btn-squared">
               <div ng-if="!(stateCtrl.propertyState.id)" translate="helpers.submit.create" />
               <!-- translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}"  -->
               <div ng-if="stateCtrl.propertyState.id" translate="helpers.submit.update"/>
                <!-- translate-values="{model:'{{ 'activerecord.models.property_state'|translate}}'}"  -->
             </button>
-            <button state="button" ng-click="stateCtrl.dismiss()" class="btn btn-squared btn-danger">
+            <button type="button" ng-click="stateCtrl.dismiss()" class="btn btn-squared btn-danger">
               <div translate="dashboard.cancel" />
             </button>
           </div>

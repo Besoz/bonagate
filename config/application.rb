@@ -26,6 +26,6 @@ module BonagateServer
 
     config.assets.paths << Rails.root.join('vendor', 'assets')
     # Rails.application.config.assets.paths += Dir["#{Rails.root}/vendor/assets/bower_components/*"].sort_by { |dir| -dir.size }
-
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

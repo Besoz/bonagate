@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="row">
-        <button class="btn btn-wide btn-primary" ng-click="serviceTypesCtrl.create()">
+        <button class="btn btn-wide btn-primary" ng-click="$state.go('^.new')">
           <i class="ti-plus"></i>
-          <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property_serviceType'|translate}}'}" />
+          <span translate="helpers.submit.create_new" translate-values="{model:'{{ 'activerecord.models.property'|translate}}'}" />
         </button>
         <!-- start: TABLE WITH FILTERS -->
         <div class="col-md-12">
@@ -17,8 +17,10 @@
                 <td class="rowTd">
                   <div onLoad="property=property" ng-include src="'assets/app.dashboard/pages/property/property_list/property_list_item.html'"></div>
                   <div class="pull-right margin-right-10">
-                    <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit" 
-                    ng-click="$state.go('^.edit', { 'propertyId': property.id })">
+                    <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit" ng-click="$state.go('^.edit', { 'propertyId': property.id })">
+                  </div>
+                  <div class="pull-right margin-right-10">
+                    <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="payment" ng-click="$state.go('^.payment', { 'propertyId': property.id })">
                   </div>
                 </td>
               </tr>

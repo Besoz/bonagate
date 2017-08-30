@@ -17,19 +17,36 @@
       </div>
     </a>
   </li>
-  <li ui-sref-active="active">
-    <a ui-sref="app.users.all">
+  <li ui-sref-active="active" ng-if="currentUser.admin()">
+    <a href="javascript:void(0)">
       <div class="item-content">
         <div class="item-media">
           <i class="fa fa-group"></i>
         </div>
         <div class="item-inner">
-          <span class="title" translate="sidebar.nav.user.MAIN"></span>
+          <span class="title" translate="sidebar.nav.user.MAIN"></span><i class="icon-arrow"></i>
         </div>
       </div>
     </a>
+    <ul class="sub-menu">
+      <li ui-sref-active="active">
+        <a ui-sref="app.users.all({role: 'admin'})">
+          <span class="title" translate="sidebar.nav.user.ADMINS"></span>
+        </a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="app.users.all({role: 'company_user'})">
+          <span class="title" translate="sidebar.nav.user.COMAPNY_USERS"></span>
+        </a>
+      </li>
+      <li ui-sref-active="active">
+        <a ui-sref="app.users.all({role: 'user'})">
+          <span class="title" translate="sidebar.nav.user.NORMAL_USERS"></span>
+        </a>
+      </li>
+    </ul>
   </li>
-  <li ui-sref-active="active" ng-if="currentUser.companyUser()">
+  <!--<li ui-sref-active="active" ng-if="currentUser.companyUser()">
     <a ui-sref="app.companies.profile({companyId: currentUser.company.id})">
       <div class="item-content">
         <div class="item-media">
@@ -40,7 +57,34 @@
         </div>
       </div>
     </a>
+  </li>-->
+
+  <li ng-if="currentUser.companyUser()" ng-class="{'active open':$state.includes('app.companies') || $state.includes('app.users.all')}">
+    <a href="javascript:void(0)">
+      <div class="item-content">
+        <div class="item-media">
+          <i class="ti-pie-chart"></i>
+        </div>
+        <div class="item-inner">
+          <span class="title" translate="sidebar.nav.company.MAIN"></span><i class="icon-arrow"></i>
+        </div>
+      </div>
+    </a>
+    <ul class="sub-menu">
+      <li ui-sref-active="active" ng-if="currentUser.companyUser()">
+        <a ui-sref="app.companies.profile({companyId: currentUser.company.id})">
+          <span class="title" translate="sidebar.nav.company.PROFILE"></span>
+        </a>
+      </li>
+      <li ui-sref-active="active" ng-if="currentUser.companyUser()">
+        <a ui-sref="app.users.all">
+          <span class="title" translate="sidebar.nav.company.USERS"></span>
+        </a>
+      </li>
+    </ul>
   </li>
+
+
   <li ng-class="{'active open':$state.includes('app.property')}">
     <a href="javascript:void(0)">
       <div class="item-content">

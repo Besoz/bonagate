@@ -1,6 +1,9 @@
 class PropertyDetail < ActiveRecord::Base
   extend Enumerize
 
+  translate :name
+  validates :name_en, :name_ar, presence: true
+
   VALUE_OPTIONS_COUNT_MIN = 1
 
   # serialize :value_options, Array

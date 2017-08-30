@@ -39,8 +39,23 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.action_mailer.delivery_method = :letter_opener
+  # Deliverable mailer testing config
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.perform_deliveries = true
 
+  # config.action_mailer.smtp_settings = {
+  #   :address              => "smtp.gmail.com",
+  #   :port                 => "465",
+  #   :user_name            => ENV["mailer_email"],
+  #   :password             => ENV["mailer_password"],
+  #   :authentication       => :login,
+  #   :ssl                  => true,
+  #   :openssl_verify_mode  => 'none',
+  #   :enable_starttls_auto => true
+  # }
+
+  #Non-deliverable mailer config
+  config.action_mailer.delivery_method = :letter_opener
 end
 
 GOOGLE_MAPS_API_KEY = 'AIzaSyDMDQu2IH-WV-RnZj35aDr7yvauocBZgQk'

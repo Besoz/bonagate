@@ -57,7 +57,12 @@ gem 'state_machine', :require => 'state_machine/core'
 
 gem 'rails-translate'
 
+#pagination gem
+gem 'will_paginate'
+
 gem 'ngannotate-rails'
+
+gem "figaro"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -79,6 +84,4 @@ group :development, :test do
   gem 'capistrano-rails', '~> 1.3'
   gem 'capistrano-passenger'
   gem 'capistrano-bundler'
-
-
 end

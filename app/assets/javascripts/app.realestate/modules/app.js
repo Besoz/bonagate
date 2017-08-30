@@ -5,6 +5,7 @@
     'ngAnimate',
     'toaster',
     'app.shared',
-    'pascalprecht.translate'
+    'pascalprecht.translate', 
+    'ui.bootstrap'
   ]);
 })();
