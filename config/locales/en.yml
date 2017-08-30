@@ -90,7 +90,9 @@ en:
       property_payment_record:
         record: record
         value: Value
-        description: Description  
+        total_value: total value
+        description: Description 
+        title: payment plan title 
     errors:
       models:
         property_detail:
