@@ -31,9 +31,16 @@
           </div>
           <div class="panel-body">
 
+          <%#<div ng-init ="filterData = "></div>%>
           <properties-filter api="propsCtrl.propertiesFilterDirective"
-                              paginate="true">
-
+            paginate="true"
+            filter-data = "{
+              typesArr: <%= render :template => 'property_types/index.json' %>.list,
+              statesHash:  <%= render :template => 'property_states/index_by_id'%>.hash,
+              statusesArr:  <%= render :template => 'property_statuses/index'%>.list,
+              detailsArr: <%= render :template => 'property_details/index'%>.list,
+              detailCategoriesHash: <%= render :template => 'property_detail_categories/index_by_id'%>.hash
+              }">
           </properties-filter>
 
           <button ng-click="propsCtrl.gotoPage(3)">

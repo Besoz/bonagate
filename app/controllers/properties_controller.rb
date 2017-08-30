@@ -1,24 +1,38 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show, :edit, :update, :destroy, 
-  :upload_image]
+  before_action :set_property, only: %i[show edit update destroy
+                                        upload_image]
 
-  #loads items in @properties
+  # loads items in @properties
   load_and_authorize_resource
+
+  load_and_authorize_resource index: %i[property_types
+                                        property_states
+                                        property_statuses
+                                        property_details
+                                        property_detail_categories]
 
   # GET /properties
   # GET /properties.json
   def index
     unless current_user && current_user.company_user?
 
-      if params[:page].to_i > 0
-        page_number = params[:page].to_i
-      else
-        page_number = 1
-      end
+      page_number = if params[:page].to_i > 0
+                      params[:page].to_i
+                    else
+                      1
+                    end
 
       @properties = @properties.paginate(page: page_number, per_page: 1)
 
     end
+    puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+    puts @property_types = PropertyType.all
+    puts @property_states = PropertyState.all
+    puts @property_statuses = PropertyStatus.all
+    puts @property_details = PropertyDetail.all
+    puts @property_detail_categories = PropertyDetailCategory.all
+
+    puts "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"
   end
 
   # GET /properties/search
@@ -32,8 +46,7 @@ class PropertiesController < ApplicationController
 
   # GET /properties/1
   # GET /properties/1.json
-  def show
-  end
+  def show; end
 
   # GET /properties/new
   def new
@@ -41,12 +54,11 @@ class PropertiesController < ApplicationController
   end
 
   # GET /properties/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /properties
   # POST /properties.json
-  def create 
+  def create
     @property = Property.new(property_params)
     @property.company_id = current_user.company_user.company_id
 
@@ -63,27 +75,26 @@ class PropertiesController < ApplicationController
 
   # PATCH/PUT /properties/1
   # PATCH/PUT /properties/1.json
-  def update    
+  def update
     respond_to do |format|
       if @property.update(property_params)
-        if(params[:property][:deleted_images_ids])
+        if params[:property][:deleted_images_ids]
           @property.property_images.where(id: params[:property][:deleted_images_ids]).destroy_all
-        end 
+        end
 
         format.html { redirect_to @property, notice: 'Property was successfully updated.' }
         format.json { render :show, status: :ok, location: @property }
       else
         format.html { render :edit }
-        format.json { render json: @property.errors, status: :unprocessable_entity}
+        format.json { render json: @property.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def upload_image
     @property.property_images << PropertyImage.create(property_params[:property_images_attributes])
-    render json: "",status: :ok
+    render json: '', status: :ok
   end
-
 
   # DELETE /properties/1
   # DELETE /properties/1.json
@@ -95,16 +106,17 @@ class PropertiesController < ApplicationController
     end
   end
 
-  #GET /properties/templates.json
+  # GET /properties/templates.json
   def templates
     @properties = @properties.joins :property_as_template_datum
-    
+
     respond_to do |format|
-      format.json {render 'properties/index'}
+      format.json { render 'properties/index' }
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_property
     @property = Property.find(params[:id])
@@ -113,19 +125,19 @@ class PropertiesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def property_params
     params.require(:property).permit(:address, :company_id, :property_type_id, :property_status_id,
-                                     :property_state_id, :lat, :lng, :country, :city, :area, :street, 
+                                     :property_state_id, :lat, :lng, :country, :city, :area, :street,
                                      :number, :floor, :publish, :company_ids,
-                                     {company_ids: []},
-                                     {property_images_attributes: :avatar},
-                                     {property_detail_instance_value_options_attributes: :property_detail_value_option_id},
-                                     {property_as_template_datum_attributes: [:name_en, :name_ar]},
-                                     property_detail_instances_attributes: ['_destroy', :id, 
-                                      :property_detail_id, :value, :property_detail_value_option_ids,
-                                     property_detail_value_option_ids: [],
-                                     property_detail_instance_value_options_attributes: 
-                                     [:property_detail_value_option_id]],
+                                     { company_ids: [] },
+                                     { property_images_attributes: :avatar },
+                                     { property_detail_instance_value_options_attributes: :property_detail_value_option_id },
+                                     { property_as_template_datum_attributes: %i[name_en name_ar] },
+                                     property_detail_instances_attributes: ['_destroy', :id,
+                                                                            :property_detail_id, :value, :property_detail_value_option_ids,
+                                                                            property_detail_value_option_ids: [],
+                                                                            property_detail_instance_value_options_attributes:
+                                                                            [:property_detail_value_option_id]],
                                      property_payment_plans_attributes: [:id, :total_value, :name,
-                                      property_payment_plan_records_attributes: 
-                                      [:id, :value, :description, :periodic, :period]])
+                                                                         property_payment_plan_records_attributes:
+                                                                         %i[id value description periodic period]])
   end
 end

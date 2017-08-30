@@ -1,9 +1,9 @@
-(function() {
+(function () {
   "use strict";
 
   angular
-  .module('app')
-  .controller('FavoritesController', FavoritesController);
+    .module('app')
+    .controller('FavoritesController', FavoritesController);
 
   FavoritesController.$inject = ['$scope', '$rootScope', '$translate', '$http', '$location', 'decoratorService', 'GeneralDataServices', 'toaster'];
 
@@ -37,7 +37,7 @@
                                   });
     }
 
-    function loadDataFromServer(){
+    function loadDataFromServer() {
       var currentPage = parseInt($location.search().page)
       getFavorites(currentPage);
     }     

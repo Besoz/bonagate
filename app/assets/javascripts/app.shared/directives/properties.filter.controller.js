@@ -11,14 +11,6 @@
 
     var vm = this;
 
-    vm.filterData = {
-      typesArr: null,
-      statesHash: null,
-      statusesArr: null,
-      detailsArr: null,
-      detailCategoriesHash: null,
-    };
-
     var config = {
       applyHistory: !vm.paginate,
       serverSideFiltering: !vm.paginate,
@@ -35,20 +27,24 @@
 
     function activate() {
 
-      Promise.all([GeneralDataServices.index('property_types'),
-        GeneralDataServices.index('property_statuses'),
-        $http.get('property_details.json'),
-        $http.get('property_detail_categories/index_by_id.json'),
-        $http.get('property_states/index_by_id.json'),
-      ]).then(function (values) {
-        vm.filterData = {
-          typesArr: values[0].data.list,
-          statusesArr: values[1].data.list,
-          detailsArr: values[2].data.list,
-          detailCategoriesHash: values[3].data.hash,
-          statesHash: values[4].data.hash,
-        };
-      });
+      console.log(vm.filterData);
+
+      if (!vm.filterData) {
+        Promise.all([GeneralDataServices.index('property_types'),
+          GeneralDataServices.index('property_statuses'),
+          $http.get('property_details.json'),
+          $http.get('property_detail_categories/index_by_id.json'),
+          $http.get('property_states/index_by_id.json'),
+        ]).then(function (values) {
+          vm.filterData = {
+            typesArr: values[0].data.list,
+            statusesArr: values[1].data.list,
+            detailsArr: values[2].data.list,
+            detailCategoriesHash: values[3].data.hash,
+            statesHash: values[4].data.hash,
+          };
+        });
+      }
 
       vm.api = {
         properties: [],

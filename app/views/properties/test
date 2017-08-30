@@ -1,0 +1,6 @@
+                                                            filterData="{
+                                typesArr: <%= render json:  'properties/property.json.jbuilder', locals: {property: @property}%>,
+                                statesHash: null,
+                                statusesArr: null,
+                                detailsArr: null,
+                                detailCategoriesHash: null}"

@@ -14,6 +14,7 @@
       scope: {
         api: '=',
         paginate: '=?',
+        filterData: '='
       },
       bindToController: true,
       controller: 'PropertiesFilterController',
