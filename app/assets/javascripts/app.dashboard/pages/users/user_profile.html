@@ -82,11 +82,17 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div class="text-left ">
-                                        <a class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.activateUser()" value="activate"/>
-                                    </div>
-                                    <div class="text-left ">
-                                        <a class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.deactivateUser()" value="deactivate"/>
+                                    <div ng-if="userCtrl.canDisableUser()">
+                                        <div class="text-left ">
+                                            <button class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.activateUser()" ng-disabled="userCtrl.user.active">
+                                                {{'dashboard.activate_user' | translate}}
+                                            </button>
+                                        </div>
+                                        <div class="text-left ">
+                                            <button class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.deactivateUser()" value="deactivate" ng-disabled="!userCtrl.user.active">
+                                                {{'dashboard.deactivate_user' | translate}}
+                                            </button>
+                                        </div>
                                     </div>
                                     <div class="text-left ">
                                         <a class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.editActive=true " ng-if="currentUser.id == userCtrl.user.id">

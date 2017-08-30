@@ -416,6 +416,8 @@ en:
     account_info: Account info
     image_upload: Image Upload
     update: Update
+    activate_user: Activate
+    deactivate_user: Deactivate
     # end: user profile
 
     # start: property create wizard

@@ -24,6 +24,7 @@
     vm.uploadImage = uploadImage;
     vm.deactivateUser = deactivateUser;
     vm.activateUser = activateUser;
+    vm.canDisableUser = canDisableUser;
 
     activate();
 
@@ -103,6 +104,23 @@
           console.log("err");
           console.log(err);
         });
+    }
+
+    function canDisableUser(){
+      var rolesHierarchy = {
+        "admin": ["company_user", "user"],
+        "company_admin": ["company_user"]
+      }
+
+      var currentUser = $rootScope.currentUser;
+
+      if(currentUser.admin())
+        return rolesHierarchy["admin"].indexOf(vm.user.role) > -1;
+      else if(currentUser.companyAdmin())
+        return rolesHierarchy["company_admin"].indexOf(vm.user.role) > -1
+                && vm.user.company && vm.user.company.role != "company_admin";
+      else
+        return false;
     }
 
     function activateUser(){

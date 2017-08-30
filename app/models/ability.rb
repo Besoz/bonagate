@@ -19,7 +19,7 @@ class Ability
         can :crud_all, Company, :id => user.company_user.company_id # to be changed company_user.company_id
 
         can :read_all, User, User.in_company(user.company_user.company.id).where.not(id: user.id) do |other_user|
-          other_user.company_user.company.id == user.company_user.company.id
+          other_user.company_user && other_user.company_user.company.id == user.company_user.company.id
         end
 
         can :update, User, id: user.id
