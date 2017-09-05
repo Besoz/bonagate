@@ -432,6 +432,11 @@ en:
     # start: property form wizard
     property_create_wizard:
       title: Create New Property
+      step4:
+        maps:
+          address: address
+      step5:
+         
       wizard: 
         type: property type
         details: property details
