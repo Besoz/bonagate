@@ -57,7 +57,8 @@ angular
                 with_role: $stateParams.role
               }});
           },
-          deps: mLoadSequence('ui.select', 'ngTable', 'moment', 'angularMoment', "userServices", "usersController")
+          deps: mLoadSequence('ui.select', 'ngTable', 'moment', 'angularMoment', "userServices", 
+            "usersController", "userInvitationController")
         }, // resolve: loadSequence('jquery-sparkline', 'dashboardCtrl'),
         // title: 'Dashboard',
         ncyBreadcrumb: {

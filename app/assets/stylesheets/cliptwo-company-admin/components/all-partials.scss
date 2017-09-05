@@ -1,76 +1,118 @@
 //top-navabr.html
 .navbar .navbar-right {
-    margin-top: 0px;
-    &> {
-        li a {
-            border-radius: 0px;
-        }
-        li.current-user>a {
-            padding-top: 11px;
-            span.username {
-                line-height: 40px;
-                margin-top: 0px;
-                font-weight: bold;
-            }
-            i.ti-angle-down {
-                line-height: 40px;
-                margin-top: 1px;
-            }
-        }
-        li.language {
-            a.dropdown-toggle {
-                padding: 12px 15px;
-                i.ti-world {
-                    float: left;
-                    margin-right: 5px;
-                    line-height: 40px;
-                    margin-top: 0px;
-                }
-                span.language-selected {
-                    line-height: 40px;
-                }
-            }
-        }
+  margin-top: 0px;
+  &> {
+    li a {
+      border-radius: 0px;
     }
+    li.current-user>a {
+      padding-top: 11px;
+      span.username {
+        line-height: 40px;
+        margin-top: 0px;
+        font-weight: bold;
+      }
+      i.ti-angle-down {
+        line-height: 40px;
+        margin-top: 1px;
+      }
+    }
+    li.language {
+      a.dropdown-toggle {
+        padding: 12px 15px;
+        i.ti-world {
+          float: left;
+          margin-right: 5px;
+          line-height: 40px;
+          margin-top: 0px;
+        }
+        span.language-selected {
+          line-height: 40px;
+        }
+      }
+    }
+  }
 }
 
 .dropdown-menu.dropdown-light {
-    border-radius: 0px;
+  border-radius: 0px;
 }
 
 //sidebar>>nav
 #sidebar>div nav>ul {
-    margin: 0px;
-    border-top: 0px;
+  margin: 0px;
+  border-top: 0px;
 }
 
 //section title at any page
 #page-title {
-    padding: 20px 0px;
+  padding: 20px 0px;
 }
 
 //modals at any the pages
 .modal-content {
-    background: #fff;
-    padding: 10px 20px;
+  background: #fff;
+  padding: 10px 20px;
 }
 
 //all tables
 .rowTd {
-    .btn {
-        line-height: 12px;
-    }
+  .btn {
+    line-height: 12px;
+  }
+}
+
+th.sortable .sort-indicator {
+  text-transform: capitalize;
 }
 
 //property-details modal create new detail
 .value-option-wrapper {
-    background: #f5f5f5;
-    margin: 0px;
-    padding: 15px 5px;
-}
-.value-option-wrapper.checkToDelete {
-    opacity: 0.5 !important;
-    border: 1px dashed #d43f3a !important;
-    background: rgba(212, 63, 58, 0.22) !important;
+  background: #f5f5f5;
+  margin: 0px;
+  padding: 15px 5px;
 }
 
+.value-option-wrapper.checkToDelete {
+  opacity: 0.5 !important;
+  border: 1px dashed #d43f3a !important;
+  background: rgba(212, 63, 58, 0.22) !important;
+}
+
+// dashboard.html (company)
+.StepTitle {
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+// user_profile.html && company_profile.html
+.profile-container {
+  // margin-top: -18px;
+  border-bottom: 0px !important;
+  .tabbable {
+    padding: 0px;
+  }
+
+  tr {
+    td:first-child {
+      width: 100px;
+    }
+  }
+}
+
+//wizard create property
+.swMain>ul li .stepDesc {
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+.wizard-col-4-text-area {
+  max-width: 300px;
+}
+
+//wizard step-6
+.ui-select-multiple.ui-select-bootstrap input.ui-select-search
+{
+  max-width: fit-content;
+  min-width: 300px
+}

@@ -51,6 +51,8 @@ en:
         email: email 
         name:  name
         phone: phone
+        url: url
+        address: address
       property_detail:
         name: Name
         name_en: English Name
@@ -85,9 +87,11 @@ en:
         name: Name
         name_en: English Name
         name_ar: Arabic Name
+        status: property status
         code: Code 
         value_status: Value Status 
       property_state:
+        state: property state
         name: Name
         name_en: English Name
         name_ar: Arabic Name
@@ -104,7 +108,11 @@ en:
         name_ar: Arabic Name
         value: Value
       property_payment_record:
-        description: Description  
+        record: record
+        value: Value
+        total_value: total value
+        description: Description 
+        title: payment plan title 
     errors:
       models:
         property_detail:
@@ -264,6 +272,8 @@ en:
       submit: Save %{model}
       update: Update %{model}
       remove: Remove %{model}
+      edit: edit 
+      save: save
   number:
     currency:
       format:
@@ -395,6 +405,7 @@ en:
     add_user: To add users, you need to be signed in as the super user
     view_more: view more
     Manage_Company: Manage Company
+    Manage_Property: Manage Property
     Store_modify: Store, modify, and extract information from your database
     profile: Profile
     edit_profile: Edit Profile
@@ -418,7 +429,7 @@ en:
     update: Update
     # end: user profile
 
-    # start: property create wizard
+    # start: property form wizard
     property_create_wizard:
       title: Create New Property
       step4:
@@ -426,6 +437,13 @@ en:
           address: address
       step5:
          
+      wizard: 
+        type: property type
+        details: property details
+        images: images
+        location: location
+        payment_plan: payment plan 
+        property_state_status: property state and status
 
     # end: property create wizard
 
@@ -514,6 +532,7 @@ en:
         SERVICE_TYPE: Property service types
         CREATE: Create property
         DETAIL_CATEGORY: Detail Category
+        LIST: Properties List
       element:
         USERS: Users
         MAIN: UI Elements
