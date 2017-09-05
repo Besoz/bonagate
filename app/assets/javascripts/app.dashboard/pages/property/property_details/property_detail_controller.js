@@ -23,6 +23,7 @@
     vm.submitPropertyDetail;
     vm.detailCreationErrors;
     vm.removeValueOption;
+    vm.stateOptions;
 
     vm.valueTypeOptions;
     vm.categories;
@@ -36,6 +37,7 @@
       vm.detailCreationErrors = [];
       vm.valueTypeOptions = formHelpers.valueTypeOptions;
       vm.categories = formHelpers.categories;
+      vm.stateOptions = formHelpers.stateOptions;
     }
 
     function submitPropertyDetail(form) {

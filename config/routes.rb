@@ -15,10 +15,14 @@ Rails.application.routes.draw do
 
   resources :user_invitations do
     collection do
-      match "/populate/:rand_key", to: "user_invitations#populate",     via: :get
+      match "/populate/:rand_key", to: "user_invitations#populate", via: :get
     end
   end
-  resources :property_service_types
+  resources :property_service_types do
+    collection do
+      get 'index_by_id'
+    end
+  end
   
   resources :property_states do
     collection do
@@ -26,14 +30,22 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :property_statuses
+  resources :property_statuses do
+    collection do
+      get 'index_by_id'
+    end
+  end
   resources :property_detail_instances
   resources :property_details do
     collection do
       get 'index_by_id'
     end
   end
-  resources :property_types
+  resources :property_types do
+    collection do
+      get 'index_by_id'
+    end
+  end
   resources :properties do
     member do
       put 'upload_image'

@@ -54,3 +54,6 @@ db/schema\.rb
 config/database\.yml
 
 config/locales/en\.json
+
+# Ignore application configuration
+/config/application.yml

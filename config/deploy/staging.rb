@@ -33,7 +33,7 @@ set :deploy_to, '/root/bonagate'
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 set :repo_url, 'git@bitbucket.org:accorpa/bonagate-rails.git'
-set :branch, 'deployment'
+set :branch, 'master'
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'public/system', 'tmp/cache')
 
 # Custom SSH Options

@@ -19,7 +19,7 @@
 
     var service = {
       processPropertyDetails: processPropertyDetails,
-      addGeoLocationMarker: addGeoLocationMarker,
+      // requestGeoLocation: requestGeoLocation,
       setPropertyLatLng: setPropertyLatLng,
       gotoPropertyLocation: gotoPropertyLocation,
       setPropertyLocation: setPropertyLocation,
@@ -34,7 +34,8 @@
       prev: prev,
       goto: goto,
       submit: submit,
-      decoratePropertyTemplateFormJson: decoratePropertyTemplateFormJson
+      decoratePropertyTemplateFormJson: decoratePropertyTemplateFormJson,
+      decoratePropertyResponse: decoratePropertyResponse
     };
     return service;
 
@@ -83,7 +84,7 @@
 
     }
 
-    function addGeoLocationMarker(successCallbackFn, errorCallbackFn) {
+    function requestGeoLocation(successCallbackFn, errorCallbackFn) {
       var options = {
         enableHighAccuracy: true
       };
@@ -96,25 +97,18 @@
       property.lng = lng;
     }
 
-    function moveMap(map, geolocalpoint) {
+    function moveMap(map, geolocalpoint, zoom) {
       map.setCenter(geolocalpoint);
-      map.setZoom(20);
+      map.setZoom(zoom);
     }
 
 
     function next(vm, form, scope) {
-      scope.toTheTop();
-
-      if (form.$valid) {
-        vm.currentStep++;
-      } else {
-        showErrorMessage(form);
-      }
+      goto(vm, form, vm.currentStep + 1, scope);
     }
 
     function prev(vm, form, scope) {
-      scope.toTheTop();
-      vm.currentStep--;
+      goto(vm, form, vm.currentStep - 1, scope);
     }
 
     function goto(vm, form, i, scope) {
@@ -156,21 +150,34 @@
         case LOCATION_STEP:
           NgMap.getMap().then(function (evtMap) {
             vm.form.map.ngmap = evtMap;
-            addGeoLocationMarker(function (pos) {
-              vm.form.map.currentGeolocationPoint = new google.maps.LatLng(pos.coords.latitude,
-                pos.coords.longitude);
-              if (vm.property.id && vm.property.lat && vm.property.lng) {
-                moveMap(vm.form.map.ngmap,
-                  new google.maps.LatLng(vm.property.lat,
-                    vm.property.lng));
-              } else {
-                moveMap(vm.form.map.ngmap,
-                  vm.form.map.currentGeolocationPoint);
-              }
-            });
+            if (vm.property.id && vm.property.lat && vm.property.lng) {
+              moveMap(vm.form.map.ngmap,
+                new google.maps.LatLng(vm.property.lat,
+                  vm.property.lng), vm.form.map.zoom);
+            }
+
+            requestGeoLocation(currentPositionFound.bind(this, vm), 
+              currentPositionNotFound.bind(this, vm));
           });
           break;
         default:
+      }
+    }
+
+    function currentPositionFound(vm, pos) {
+      vm.form.map.currentGeolocationPoint = new google.maps.LatLng(pos.coords.latitude,
+        pos.coords.longitude);
+      if (!(vm.property.id && vm.property.lat && vm.property.lng)) {
+        moveMap(vm.form.map.ngmap,
+          vm.form.map.currentGeolocationPoint, vm.form.map.zoom);
+      }
+    }
+
+    function currentPositionNotFound(vm){
+      vm.form.map.egyptLocation = new google.maps.LatLng(31.205753, 29.924526);
+      if (!(vm.property.id && vm.property.lat && vm.property.lng)) {
+        moveMap(vm.form.map.ngmap,
+          vm.form.map.egyptLocation, 10);
       }
     }
 
@@ -191,9 +198,6 @@
     }
 
     function submit(vm, stateParams, state) {
-
-      decoratePropertyRequest(vm.property);
-
       if (vm.property.id) {
         PropertiesServices.updateProperty(vm.property)
           .then(function (res) {
@@ -216,15 +220,20 @@
         property.property_detail_instances_attributes[i].id = null;
       }
       for(var i = 0; i < property.property_payment_plans_attributes.length; i++){
-        property.property_payment_plans_attributes[i].id = null;
+        var paymentPlan = property.property_payment_plans_attributes[i];
+        paymentPlan.id = null;
+        
+        for(var j = 0; j < paymentPlan.property_payment_plan_records_attributes.length; j++){
+          var paymentRecord = paymentPlan.property_payment_plan_records_attributes[j];
+
+          paymentRecord.id = null;
+        }
       }
       property.images = [];
     }
 
-    function decoratePropertyRequest(property) {
-      property.property_type_id = property.type.id;
-      property.property_status_id = property.status.id;
-      // property.property_state_id = property.state.id;
+    function decoratePropertyResponse(property, propertyTypes){
+      property.type = propertyTypes[property.property_type_id];
     }
 
     function showErrorMessage(form) {

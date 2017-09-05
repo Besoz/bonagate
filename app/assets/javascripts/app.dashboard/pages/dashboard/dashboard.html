@@ -3,30 +3,20 @@
   <div class="row">
     <div class="col-sm-7">
       <h1 class="mainTitle" translate="dashboard.WELCOME" translate-values="{appName:  '{{ 'dashboard.app.name'|translate}}'  }"></h1>
-      <span class="mainDescription">
-        {{'dashboard.overview'|translate}} &amp; {{'dashboard.stats'|translate}} 
-      </span>
-    </div>
-    <div class="col-sm-5">
-      <!-- start: MINI STATS WITH SPARKLINE {{ 'app.name' | translate}} -->
-      <!-- end: MINI STATS WITH SPARKLINE -->
     </div>
   </div>
 </section>
 <!-- end: DASHBOARD TITLE -->
-
-
 <!-- start: FEATURED BOX LINKS -->
 <div class="container-fluid container-fullw bg-white">
   <div class="row">
     <div class="col-sm-4">
       <div class="panel panel-white no-radius text-center">
         <div class="panel-body">
-          <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-          <h2 class="StepTitle">{{'dashboard.Manage_Users'|translate}}</h2>
-          <p class="text-small">
-            {{'dashboard.add_user'|translate}}.
-          </p>
+          <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-group fa-stack-1x fa-inverse"></i> </span>
+          <h3 class="StepTitle">
+            {{'dashboard.Manage_Users'|translate}}
+          </h3>
           <p class="links cl-effect-1">
             <a ng-click="$state.go('app.users.all')">
               {{'dashboard.view_more'|translate}}
@@ -35,31 +25,28 @@
         </div>
       </div>
     </div>
-    <!-- <div class="col-sm-4">
-  <div class="panel panel-white no-radius text-center">
-    <div class="panel-body">
-      <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
-      <h2 class="StepTitle">Manage Orders</h2>
-      <p class="text-small">
-        The Manage Orders tool provides a view of all your orders.
-      </p>
-      <p class="cl-effect-1">
-        <a href>view more</a>
-      </p>
-    </div>
-  </div>
-</div>
- -->
     <div class="col-sm-4" ng-if="currentUser.companyUser()">
       <div class="panel panel-white no-radius text-center">
         <div class="panel-body">
-          <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-          <h2 class="StepTitle">{{'dashboard.Manage_Company'|translate}}</h2>
-          <p class="text-small">
-            {{'dashboard.Store_modify'|translate}}.
-          </p>
+          <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-briefcase fa-stack-1x fa-inverse"></i> </span>
+          <h3 class="StepTitle">
+            {{'dashboard.Manage_Company'|translate}}
+          </h3>
           <p class="links cl-effect-1">
             <a ng-click="$state.go('app.companies.profile', {companyId: {{currentUser.company.id}}})">{{'dashboard.view_more'|translate}}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4" ng-if="currentUser.companyUser()">
+      <div class="panel panel-white no-radius text-center">
+        <div class="panel-body">
+          <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-home fa-stack-1x fa-inverse"></i> </span>
+          <h3 class="StepTitle">
+            {{'dashboard.Manage_Property'|translate}}
+          </h3>
+          <p class="links cl-effect-1">
+            <a ng-click="">{{'dashboard.view_more'|translate}}</a>
           </p>
         </div>
       </div>
@@ -67,4 +54,3 @@
   </div>
 </div>
 <!-- end: FEATURED BOX LINKS -->
-

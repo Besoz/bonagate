@@ -9,6 +9,7 @@ class Property < ActiveRecord::Base
   belongs_to :property_type
   belongs_to :property_state
   belongs_to :property_status
+  belongs_to :property_service_type
 
   has_many :shared_properties
   has_many :companies, through: :shared_properties

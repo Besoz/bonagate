@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
   def invitation_email(receiver_email, rand_key)
     # @user = user
     @url  = "http://localhost:3000/users/new#?invitation_code="+rand_key
-    mail(to: 'basem.muhammad@gmail.com', subject: 'Welcome to Bonagate')
+    mail(to: receiver_email, subject: 'Welcome to Bonagate')
   end
 
 end
