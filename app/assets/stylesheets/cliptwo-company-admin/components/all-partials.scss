@@ -109,3 +109,10 @@ th.sortable .sort-indicator {
 .wizard-col-4-text-area {
   max-width: 300px;
 }
+
+//wizard step-6
+.ui-select-multiple.ui-select-bootstrap input.ui-select-search
+{
+  max-width: fit-content;
+  min-width: 300px
+}

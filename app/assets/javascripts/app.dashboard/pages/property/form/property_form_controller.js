@@ -1,5 +1,5 @@
 'use strict';
-/** 
+/**
  * controller for Wizard Form example
  */
 angular
@@ -38,7 +38,9 @@ angular
             setPropertyLocation: setPropertyLocation,
             gotoPropertyLocation: gotoPropertyLocation,
             ngmap: null,
-            currentGeolocationPoint: null
+            currentGeolocationPoint: null,
+            egyptLocation: null,
+            zoom: 18
           }
         };
 
@@ -69,7 +71,7 @@ angular
         else if($rootScope.currentUser.admin){
           vm.companiesToBeShared.companies;
         }
-         
+
         vm.property = propertyRequest.data || {
           property_detail_instances_attributes: [],
           property_payment_plans_attributes: []
@@ -100,7 +102,7 @@ angular
 
       function goCurrentLocation() {
         PropertyWizardServices.moveMap(vm.form.map.ngmap,
-          vm.form.map.currentGeolocationPoint);
+          vm.form.map.currentGeolocationPoint, vm.form.map.zoom);
       }
 
       function next(form) {

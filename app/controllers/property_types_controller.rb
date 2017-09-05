@@ -1,10 +1,11 @@
 class PropertyTypesController < ApplicationController
-  before_action :set_property_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_property_type, only: [:edit, :update, :destroy]
+
+  load_and_authorize_resource
 
   # GET /property_types
   # GET /property_types.json
   def index
-    @property_types = PropertyType.all
   end
 
   # GET /property_types/1
