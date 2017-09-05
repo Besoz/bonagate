@@ -6,11 +6,11 @@
     .controller('UserController', UserController);
 
   UserController.$inject = ['$http', '$window', '$stateParams', 'flowFactory',
-    'UserServices', 'moment', '$rootScope', 'userRequest', 'cfpLoadingBar'
+    'UserServices', 'moment', '$rootScope', 'userRequest', 'cfpLoadingBar', 'toaster'
   ];
 
   function UserController($http, $window, $stateParams, flowFactory, UserServices,
-    moment, $rootScope, userRequest, cfpLoadingBar) {
+    moment, $rootScope, userRequest, cfpLoadingBar, toaster) {
 
     var vm = this;
 
@@ -22,6 +22,9 @@
     vm.noImage;
     vm.update = update;
     vm.uploadImage = uploadImage;
+    vm.deactivateUser = deactivateUser;
+    vm.activateUser = activateUser;
+    vm.canDisableUser = canDisableUser;
 
     activate();
 
@@ -89,6 +92,47 @@
           console.log("err");
           console.log(err);
         })
+    }
+
+    function deactivateUser(){
+      UserServices.deactivateUser(vm.user)
+        .then(function(res){
+          vm.user.active = false;
+          toaster.pop("success", vm.user.email + " has been deactivated");
+        })
+        .catch(function(err){
+          console.log("err");
+          console.log(err);
+        });
+    }
+
+    function canDisableUser(){
+      var rolesHierarchy = {
+        "admin": ["company_user", "user"],
+        "company_admin": ["company_user"]
+      }
+
+      var currentUser = $rootScope.currentUser;
+
+      if(currentUser.admin())
+        return rolesHierarchy["admin"].indexOf(vm.user.role) > -1;
+      else if(currentUser.companyAdmin())
+        return rolesHierarchy["company_admin"].indexOf(vm.user.role) > -1
+                && vm.user.company && vm.user.company.role != "company_admin";
+      else
+        return false;
+    }
+
+    function activateUser(){
+      UserServices.activateUser(vm.user)
+        .then(function(res){
+          vm.user.active = true;
+          toaster.pop("success", vm.user.email + " has been activated");
+        })
+        .catch(function(err){
+          console.log("err");
+          console.log(err);
+        });
     }
   }
 

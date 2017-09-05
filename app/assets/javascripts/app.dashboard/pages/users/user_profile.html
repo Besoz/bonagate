@@ -1,206 +1,192 @@
-<!-- start: PAGE TITLE -->
-<section id="page-title">
+<!-- <section id="page-title">
     <div class="row">
         <div class="col-sm-8">
             <h1 class="mainTitle">
-      <!-- translate="sidebar.nav.pages.USERPROFILE" -->
-        WELCOME TO YOUR PROFILE
-      </h1>
+                WELCOME TO YOUR PROFILE
+            </h1>
         </div>
-        <!-- <div ncy-breadcrumb></div>-->
     </div>
-</section>
+</section> -->
 <!-- end: PAGE TITLE -->
 <!-- start: USER PROFILE -->
-<div class="container-fluid container-fullw bg-white no-padding">
-    <div class="row">
-        <div class="col-md-12">
-            <!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
-            <div>
-                <!-- start: USER TABSET -->
-                <tabset class="tabbable">
-                    <!-- start: TAB OVERVIEW -->
-                    <tab heading="{{'dashboard.profile' | translate}}" active="userCtrl.overviewActive ">
-                        <div class="row ">
-                            <div class="col-md-6 ">
-                                <div class="user-left ">
-                                    <div class="center ">
-                                        <h4>{{userCtrl.user.first_name}} {{userCtrl.user.last_name}}</h4>
-                                        <div flow-init="{singleFile:true} " flow-object="userCtrl.obj " flow-files-submitted="userCtrl.uploadImage() " flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()] " flow>
-                                            <div class="user-image ">
-                                                <div class="thumbnail ">
-                                                    <img src="assets/images/default-user.png " alt=" " ng-if="!userCtrl.obj.files.length && userCtrl.noImage ">
-                                                    <img ng-src="{{userCtrl.user.avatar}} " alt=" " ng-if="!userCtrl.obj.files.length && !userCtrl.noImage ">
-                                                    <img flow-img="userCtrl.obj.files[0] " ng-if="userCtrl.obj.files.length ">
-                                                </div>
-                                                <div class="user-image-buttons" ng-if="userCtrl.obj.files.length ">
-                                                    <span class="btn btn-primary btn-squared" flow-btn><i class="fa fa-pencil "></i></span>
-                                                    <span class="btn btn-danger btn-squared" ng-click="userCtrl.obj.cancel() "> <i class="fa fa-times "></i> </span>
-                                                </div>
-                                                <div class="user-image-buttons" ng-if="!userCtrl.obj.files.length ">
-                                                    <span class="btn btn-primary btn-squared" flow-btn><i class="fa fa-pencil "></i></span>
-                                                    <span class="btn btn-danger btn-squared" ng-if="!userCtrl.noImage " ng-click="userCtrl.removeImage() "><i class="fa fa-times "></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <table class="table table-condensed ">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="3 ">{{'contact_information' | translate}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{'activerecord.attributes.user.email' | translate}}:</td>
-                                                <td>
-                                                    <a href>
-                                                      {{userCtrl.user.email}}
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>{{'activerecord.attributes.user.phone' | translate}}:</td>
-                                                <td>{{userCtrl.user.phone}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="table table-condensed ">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="3 ">{{'dashboard.general_information' | translate}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{'activerecord.attributes.user.last_login_at' | translate}}</td>
-                                                <td am-time-ago="userCtrl.user.last_login_at "></td>
-                                            </tr>
-                                            <tr>
-                                                <td>{{'activerecord.attributes.user.role' | translate}}</td>
-                                                <td><span class="label label-sm label-info ">{{'dashboard.roles.'+userCtrl.user.role | translate}}</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="text-left ">
-                                        <a class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.editActive=true ">
-                                          {{ 'dashboard.edit_account' | translate }}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+<div class="container-fluid container-fullw bg-white no-padding profile-container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- /// controller:  'UserCtrl' -  localtion: assets/js/controllers/userCtrl.js /// -->
+      <div>
+        <!-- start: USER TABSET -->
+        <tabset class="tabbable">
+          <!-- start: TAB OVERVIEW -->
+          <tab heading="{{'dashboard.profile' | translate}}" active="userCtrl.overviewActive " class="">
+            <div class="row padding-top-30">
+              <div class="col-md-3 center">
+                <div class="user-image ">
+                  <div class="thumbnail ">
+                    <img src="assets/images/default-user.png " alt=" " ng-if="!userCtrl.obj.files.length && userCtrl.noImage ">
+                    <img ng-src="{{userCtrl.user.avatar}} " alt=" " ng-if="!userCtrl.obj.files.length && !userCtrl.noImage ">
+                    <img flow-img="userCtrl.obj.files[0] " ng-if="userCtrl.obj.files.length ">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 no-padding">
+                <div class="">
+                  <div class="">
+                    <h4>{{userCtrl.user.first_name}} {{userCtrl.user.last_name}}</h4>
+                    <div flow-init="{singleFile:true} " flow-object="userCtrl.obj " flow-files-submitted="userCtrl.uploadImage() " flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()] " flow>
+                    </div>
+                  </div>
+                  <table class="table table-condensed margin-top-20">
+                    <thead>
+                      <tr>
+                        <th colspan="3">{{'contact_information' | translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{'activerecord.attributes.user.email' | translate}}:</td>
+                        <td>
+                          <a href>
+                              {{userCtrl.user.email}}
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>{{'activerecord.attributes.user.phone' | translate}}:</td>
+                        <td>{{userCtrl.user.phone}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table class="table table-condensed margin-top-20">
+                    <thead>
+                      <tr>
+                        <th colspan="3">{{'dashboard.general_information' | translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{'activerecord.attributes.user.last_login_at' | translate}}:</td>
+                        <td am-time-ago="userCtrl.user.last_login_at "></td>
+                      </tr>
+                      <tr>
+                        <td>{{'activerecord.attributes.user.role' | translate}}:</td>
+                        <td>
+                          <span class="label label-sm label-info ">
+                            {{'dashboard.roles.'+userCtrl.user.role | translate}}
+                            </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                    <div ng-if="userCtrl.canDisableUser()">
+                        <div class="text-left ">
+                            <button class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.activateUser()" ng-disabled="userCtrl.user.active">
+                                {{'dashboard.activate_user' | translate}}
+                            </button>
                         </div>
-                    </tab>
-                    <!-- end: TAB OVERVIEW -->
-                    <!-- start: TAB EDIT ACCOUNT -->
-                    <tab heading="{{'dashboard.edit_profile' | translate}}" active="userCtrl.editActive ">
-                        <form role="form " id="form ">
-                            <fieldset>
-                                <legend>
-                                    {{'dashboard.account_info' | translate}}
-                                </legend>
-                                <div class="row ">
-                                    <div class="col-md-6 ">
-                                        <div class="form-group ">
-                                            <label class="control-label ">
-                                                {{'activerecord.attributes.user.first_name' | translate}}
-                                            </label>
-                                            <input type="text " placeholder="{{ 'activerecord.attributes.user.first_name' | translate}} " class="form-control " name="firstname " ng-model="userCtrl.user.first_name ">
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="control-label ">
-                                                {{'activerecord.attributes.user.last_name' | translate}}
-                                            </label>
-                                            <input type="text " placeholder="{{ 'activerecord.attributes.user.last_name' | translate}} " class="form-control " name="lastname " ng-model="userCtrl.user.last_name ">
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="control-label ">
-                                                {{'activerecord.attributes.user.email' | translate}}
-                                            </label>
-                                            <input type="email " placeholder="{{ 'activerecord.attributes.user.email' | translate}} " class="form-control " name="email " ng-model="userCtrl.user.email ">
-                                        </div>
-                                        <div class="form-group ">
-                                            <label class="control-label ">
-                                                {{'activerecord.attributes.user.phone' | translate}}
-                                            </label>
-                                            <input type="text " placeholder="{{ 'activerecord.attributes.user.phone' | translate}} " class="form-control " name="phone " ng-model="userCtrl.user.phone ">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        <div class="form-group ">
-                                            <label>
-                                                {{'dashboard.image_upload' | translate}}
-                                            </label>
-                                            <div flow-init flow-object="userCtrl.obj " flow-files-submitted="userCtrl.uploadImage() ">
-                                                <div class="user-image ">
-                                                    <div class="thumbnail margin-bottom-5 ">
-                                                        <img src="assets/images/default-user.png " alt=" " ng-if="!userCtrl.obj.files.length && userCtrl.noImage ">
-                                                        <img ng-src="{{userCtrl.user.avatar}} " alt=" " ng-if="!userCtrl.obj.files.length && !userCtrl.noImage ">
-                                                        <img flow-img="userCtrl.obj.files[0] " ng-if="userCtrl.obj.files.length ">
-                                                    </div>
-                                                </div>
-                                                <div class="user-image-buttons-edit" ng-if="userCtrl.obj.files.length ">
-                                                    <span class="btn btn-primary btn-squared" flow-btn><i class="fa fa-pencil "></i></span>
-                                                    <span class="btn btn-danger btn-squared" ng-click="userCtrl.obj.cancel() "> <i class="fa fa-times "></i></span>
-                                                </div>
-                                                <div class="user-image-buttons-edit " ng-if="!userCtrl.obj.files.length ">
-                                                    <span class="btn btn-primary btn-squared" flow-btn><i class="fa fa-pencil "></i></span>
-                                                    <span class="btn btn-danger btn-squared" ng-if="!userCtrl.noImage " ng-click="userCtrl.removeImage() "><i class="fa fa-times "></i> </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <td>
-                                    <div class="checkbox clip-check check-primary checkbox-inline ">
-                                       <!--  <input type="checkbox " id="checkbox-approve-{{userCtrl.user.id}} " class="form-control " class="w180 " ng-model="userCtrl.user.approved "> -->
-                                        <label for="checkbox-approve-{{userCtrl.user.id}} ">
-                                            {{'activerecord.attributes.user.approved' | translate}}
-                                        </label>
-                                    </div>
-                                    <!-- <input class="form-control " type="text " name="dc " class="w180 " ng-model="p.approved ">-->
-                                </td>
-                                <td>
-                                    <div class="checkbox clip-check check-primary checkbox-inline ">
-                                        <!-- <input type="checkbox " id="checkbox-confim-{{userCtrl.user.id}} " class="form-control " class="w180 " ng-model="userCtrl.user.confirmed "> -->
-                                        <label for="checkbox-confim-{{userCtrl.user.id}} ">
-                                            {{'activerecord.attributes.user.confirmed' | translate}}
-                                        </label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="checkbox clip-check check-primary checkbox-inline ">
-                                        <!-- <input type="checkbox " id="checkbox-activ-{{userCtrl.user.id}} " class="form-control " class="w100 " ng-model="userCtrl.user.active "> -->
-                                        <label for="checkbox-activ-{{userCtrl.user.id}} ">
-                                            {{'activerecord.attributes.user.active' | translate}}
-                                        </label>
-                                    </div>
-                                    <!-- <input class="form-control " type="text " name="ln " class="w100 " ng-model="p.active "> -->
-                                </td>
-                            </fieldset>
-                            <div class="row ">
-                                <div class="col-md-12 ">
-                                </div>
-                            </div>
-                            <div class="row ">
-                                <div class="col-md-8 ">
-                                </div>
-                                <div class="col-md-4 ">
-                                    <button class="btn btn-primary pull-right btn-squared " ng-click="userCtrl.update() ">
-                                        {{'dashboard.update' | translate}}
-                                        <i class="fa fa-arrow-circle-right "></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </tab>
-                    <!-- end: TAB EDIT ACCOUNT -->
-                    <!-- start: TAB PROJECTS -->
-                    <!-- end: TAB PROJECTS -->
-                </tabset>
-                <!-- end: USER TABSET -->
+                        <div class="text-left ">
+                            <button class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.deactivateUser()" value="deactivate" ng-disabled="!userCtrl.user.active">
+                                {{'dashboard.deactivate_user' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                  <!-- <div class="text-left ">
+                    <a class="btn btn-primary btn-squared" href="# " ng-click="userCtrl.editActive=true ">
+                      {{ 'dashboard.edit_account' | translate }}
+                    </a>
+                  </div> -->
+                </div>
+              </div>
             </div>
-        </div>
+          </tab>
+          <!-- end: TAB OVERVIEW -->
+          <!-- start: TAB EDIT ACCOUNT -->
+          <tab heading="{{'dashboard.edit_profile' | translate}}" active="userCtrl.editActive ">
+            <form role="form " id="form ">
+              <div class="row padding-top-30">
+                <div class="col-md-3 center">
+                  <div class="form-group ">
+                    <div flow-init flow-object="userCtrl.obj " flow-files-submitted="userCtrl.uploadImage() ">
+                      <div class="user-image">
+                        <div class="thumbnail margin-bottom-5 ">
+                          <img src="assets/images/default-user.png " alt=" " ng-if="!userCtrl.obj.files.length && userCtrl.noImage ">
+                          <img ng-src="{{userCtrl.user.avatar}} " alt=" " ng-if="!userCtrl.obj.files.length && !userCtrl.noImage ">
+                          <img flow-img="userCtrl.obj.files[0] " ng-if="userCtrl.obj.files.length ">
+                        </div>
+                        <div class="user-image-buttons" ng-if="userCtrl.obj.files.length ">
+                          <span class="btn btn-primary btn-squared" flow-btn><i class="fa fa-pencil "></i></span>
+                          <span class="btn btn-danger btn-squared" ng-click="userCtrl.obj.cancel() "> <i class="fa fa-times "></i></span>
+                        </div>
+                        <div class="user-image-buttons " ng-if="!userCtrl.obj.files.length ">
+                          <span class="btn btn-primary btn-squared" flow-btn><i class="fa fa-pencil "></i></span>
+                          <span class="btn btn-danger btn-squared" ng-if="!userCtrl.noImage " ng-click="userCtrl.removeImage() "><i class="fa fa-times "></i> </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group ">
+                    <!-- <label class="control-label ">
+                      {{'activerecord.attributes.user.first_name' | translate}}
+                    </label> -->
+                    <input type="text" placeholder="{{ 'activerecord.attributes.user.first_name' | translate}} " class="form-control " name="firstname " ng-model="userCtrl.user.first_name ">
+                  </div>
+                  <div class="form-group ">
+                    <!-- <label class="control-label">
+                      {{'activerecord.attributes.user.last_name' | translate}}
+                    </label> -->
+                    <input type="text" placeholder="{{ 'activerecord.attributes.user.last_name' | translate}} " class="form-control" name="lastname " ng-model="userCtrl.user.last_name ">
+                  </div>
+                  <div class="form-group ">
+                    <!-- <label class="control-label ">
+                      {{'activerecord.attributes.user.email' | translate}}
+                    </label> -->
+                    <input type="email" placeholder="{{ 'activerecord.attributes.user.email' | translate}} " class="form-control " name="email " ng-model="userCtrl.user.email ">
+                  </div>
+                  <div class="form-group">
+                    <!-- <label class="control-label ">
+                      {{'activerecord.attributes.user.phone' | translate}}
+                    </label> -->
+                    <input type="text" placeholder="{{ 'activerecord.attributes.user.phone' | translate}} " class="form-control " name="phone " ng-model="userCtrl.user.phone ">
+                  </div>
+                  <!-- these should only appears when edit other users accounts not mine -->
+                  <div class="">
+                    <div class="checkbox clip-check check-primary checkbox-inline ">
+                      <!--  <input type="checkbox " id="checkbox-approve-{{userCtrl.user.id}} " class="form-control " class="w180 " ng-model="userCtrl.user.approved "> -->
+                      <label for="checkbox-approve-{{userCtrl.user.id}} ">
+                        {{'activerecord.attributes.user.approved' | translate}}
+                      </label>
+                    </div>
+                    <!-- <input class="form-control " type="text " name="dc " class="w180 " ng-model="p.approved ">-->
+                    <div class="checkbox clip-check check-primary checkbox-inline ">
+                      <!-- <input type="checkbox " id="checkbox-confim-{{userCtrl.user.id}} " class="form-control " class="w180 " ng-model="userCtrl.user.confirmed "> -->
+                      <label for="checkbox-confim-{{userCtrl.user.id}} ">
+                        {{'activerecord.attributes.user.confirmed' | translate}}
+                      </label>
+                    </div>
+                    <div class="checkbox clip-check check-primary checkbox-inline ">
+                      <!-- <input type="checkbox " id="checkbox-activ-{{userCtrl.user.id}} " class="form-control " class="w100 " ng-model="userCtrl.user.active "> -->
+                      <label for="checkbox-activ-{{userCtrl.user.id}} ">
+                        {{'activerecord.attributes.user.active' | translate}}
+                      </label>
+                    </div>
+                    <!-- <input class="form-control " type="text " name="ln " class="w100 " ng-model="p.active "> -->
+                  </div>
+                  <button class="btn btn-primary pull-right btn-squared " ng-click="userCtrl.update() ">
+                    {{'dashboard.update' | translate}}
+                    <i class="fa fa-arrow-circle-right "></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </tab>
+          <!-- end: TAB EDIT ACCOUNT -->
+          <!-- start: TAB PROJECTS -->
+          <!-- end: TAB PROJECTS -->
+        </tabset>
+        <!-- end: USER TABSET -->
+      </div>
     </div>
+  </div>
 </div>
-<!-- end: USER PROFILE -->
+<!-- end: USER PROFILE

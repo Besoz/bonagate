@@ -1,136 +1,62 @@
-<div class="container-fluid container-fullw">
+<alert ng-repeat="alert in usersCtrl.invitationAlerts" type="{{alert.type}}">
+  {{alert.msg}}
+</alert>
+<section id="page-title" class="ng-scope">
   <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <!--         <div class="col-md-12">
-          <button class="btn btn-primary btn-o btn-wide" ng-click="$state.go('^.invitations', {new: true});">
-            <i class="ti-plus"></i> Invite user
-          </button>
-        </div>
-      </div> -->
-        <div>
-          <alert ng-repeat="alert in usersCtrl.invitationAlerts" type="{{alert.type}}">
-            {{alert.msg}}
-          </alert>
-        </div>
-        <form class="form-register" name="Form" novalidate ng-if="currentUser.companyAdmin()">
-          <fieldset>
-            <div class="form-group" ng-class="{'has-error':Form.email.$dirty && Form.email.$invalid || regCtrl.emailError, 'has-success':Form.email.$valid}">
-              <span class="input-icon">
-              <input type="email" class="form-control" name="email" placeholder="{{'activerecord.attributes.user.email' | translate}}" ng-model="usersCtrl.userInvitation.user.email" required>
-              <i class="fa fa-envelope"></i> </span>
-              <span class="error text-small block" ng-if="Form.email.$dirty && Form.email.$error.required">
-                <div translate="dashboard.errors.required" translate-values="{attribute:'{{ 'activerecord.attributes.user.email'|translate}}'}"/>.
-              </span>
-              <span class="error text-small block" ng-if="Form.email.$error.email">Please, enter a valid email address.</span>
-              <span class="error text-small block" ng-if="regCtrl.emailError">Email  {{regCtrl.emailError}}</span>
-            </div>
-            <div class="form-group">
-              <ui-select ng-model="usersCtrl.userInvitation.user.role" theme="bootstrap">
-                <ui-select-match placeholder="{{'dashboard.select_list' | translate}}...">
-                  {{'dashboard.roles.'+ $select.selected | translate}}
-                </ui-select-match>
-                <ui-select-choices repeat="item in usersCtrl.roles | filter: $select.search">
-                  <div ng-bind-html="('dashboard.roles.'+item | translate) | highlight: $select.search"></div>
-                </ui-select-choices>
-              </ui-select>
-            </div>
-            <div class="form-actions">
-              <button type="submit" ng-click="usersCtrl.inviteUser()" class="btn btn-primary pull-right">
-                {{'dashboard.invite_user' | translate}} <i class="fa fa-arrow-circle-right"></i>
-              </button>
-            </div>
-          </fieldset>
-        </form>
-        <!-- /// controller:  'ngTableCtrl6' -  localtion: assets/js/controllers/ngTableCtrl.js /// -->
-        <div>
-          <div class="row margin-bottom-10">
-            <div class="col-md-12">
-              <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">
-                {{'dashboard.clear_sorting' | translate}}
-              </button>
-            </div>
-          </div>
-          <strong>Sorting:</strong> {{tableParams.sorting()|json}}
-          <div class="table-responsive">
-            <table ng-table="tableParams" class="table">
-              <tbody ng-repeat="p in usersCtrl.users">
-                <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
-                  <td class="rowTd" data-title="'activerecord.attributes.user.email' | translate" sortable="'fn'">{{p.email}}</td>
-                  <td class="rowTd" data-title="'activerecord.attributes.user.role' | translate" sortable="'ph'">
-                    
-                    <span ng-if="p.role == 'company_user'" class="label label-info">{{ p.company.name}}</span>
-                    {{'dashboard.roles.'+ (p.role == 'company_user'? p.company.role: p.role) | translate}}
-                    </td>
-                  <td class="rowTd" data-title="'activerecord.attributes.user.first_name' | translate" sortable="'ln'">{{p.first_name}}</td>
-                  <td class="rowTd" data-title="'activerecord.attributes.user.last_name' | translate" sortable="'dc'">{{p.last_name}}</td>
-                  <td class="rowTd" data-title="'activerecord.attributes.user.active' | translate" sortable="'em'">{{'dashboard.bools.'+ p.active | translate}}</td>
-                  <td class="rowTd" data-title="'activerecord.attributes.user.phone' | translate" sortable="'id'">{{p.phone}}</td>
-                  <td class="rowTd">
-                    <div class="pull-right margin-right-10" ng-if="currentUser.id == p.id || currentUser.companyAdmin()">
-                      <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit" ng-click="$state.go('app.users.profile', {edit: true, userId: {{p.id}}})">
-                      <!-- <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="quick edit" ng-click="usersCtrl.setEditId(p.id)"> -->
-                    </div>
-                  </td>
-                </tr>
-                <tr ng-show="usersCtrl.editId == p.id">
-                  <td colspan="7">
-                    <table class="table no-bg">
-                      <tr>
-                        <td rowspan="2">ID: {{p.id}}
-                          <input type="hidden" name="id" value="{{p.id}}">
-                        </td>
-                        <td>Firstname:</td>
-                        <td>
-                          <input class="form-control" type="text" name="fn" class="w100" ng-model="p.email">
-                        </td>
-                        <td>Approved:</td>
-                        <td>
-                          <div class="checkbox clip-check check-primary checkbox-inline">
-                            <input type="checkbox" id="checkbox-approve-{{p.id}}" class="form-control" class="w180" ng-model="p.approved" checked="">
-                            <label for="checkbox-approve-{{p.id}}">
-                            </label>
-                          </div>
-                          <!-- <input class="form-control" type="text" name="dc" class="w180" ng-model="p.approved">-->
-                        </td>
-                        <td>Confirmed:</td>
-                        <td>
-                          <div class="checkbox clip-check check-primary checkbox-inline">
-                            <input type="checkbox" id="checkbox-confim-{{p.id}}" class="form-control" class="w180" ng-model="p.confirmed" checked="">
-                            <label for="checkbox-confim-{{p.id}}">
-                            </label>
-                          </div>
-                          <!-- <input class="form-control" type="text" name="em" class="w180" ng-model="p.confirmed"> -->
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Active:</td>
-                        <td>
-                          <div class="checkbox clip-check check-primary checkbox-inline">
-                            <input type="checkbox" id="checkbox-activ-{{p.id}}" class="form-control" class="w100" ng-model="p.active" checked="">
-                            <label for="checkbox-activ-{{p.id}}">
-                            </label>
-                          </div>
-                          <!-- <input class="form-control" type="text" name="ln" class="w100" ng-model="p.active">-->
-                        </td>
-                        <td>Phone: </td>
-                        <td>
-                          <input class="form-control" type="text" name="ph" class="w120" ng-model="p.ph">
-                        </td>
-                        <td colspan="2">
-                          <div class="pull-right">
-                            <input type="button" class="btn btn-primary btn-sm margin-right-15" value=" save " ng-click="usersCtrl.save(p)">
-                            <input type="button" class="btn btn-primary btn-sm" value=" cancel" ng-click="usersCtrl.setEditId(-1)">
-                          </div>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <div class="col-sm-8">
+      <h1 class="mainTitle">
+           {{'dashboard.Manage_Users'|translate}}
+      </h1>
     </div>
   </div>
+</section>
+<div class="container-fluid container-fullw">
+  <div class="row margin-bottom-20">
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="" placeholder="Search Users">
+    </div>
+    <div class="col-md-6">
+      <button class="btn btn-primary btn-squared pull-right" ng-click="usersCtrl.openInviteModal()">
+        <i class="ti-plus"></i>
+        <span translate="{{'dashboard.invite_user' | translate}}" ></span>
+      </button>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table ng-table="tableParams" class="table table-striped table-bordered table-full-width">
+        <tbody ng-repeat="p in usersCtrl.users">
+          <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+            <td class="rowTd" data-title="'activerecord.attributes.user.email' | translate" sortable="'fn'">
+              {{p.email}}
+            </td>
+            <td class="rowTd" data-title="'activerecord.attributes.user.role' | translate" sortable="'ph'">
+              <span class="label label-sm label-info  ng-binding">
+                {{'dashboard.roles.'+ (p.role == 'company_user'? p.company.role: p.role) | translate}}
+              </span>
+
+            </td>
+            <td class="rowTd" data-title="'activerecord.attributes.user.first_name' | translate" sortable="'ln'">{{p.first_name}}</td>
+            <td class="rowTd" data-title="'activerecord.attributes.user.last_name' | translate" sortable="'dc'">{{p.last_name}}</td>
+            <td class="rowTd" data-title="'activerecord.attributes.user.active' | translate" sortable="'em'">{{'dashboard.bools.'+ p.active | translate}}</td>
+            <td class="rowTd" data-title="'activerecord.attributes.user.phone' | translate" sortable="'id'">{{p.phone}}</td>
+            <td class="rowTd">
+              <div class="pull-right margin-right-10">
+                <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="view" ng-click="$state.go('app.users.profile', {userId: {{p.id}}})">
+                <!-- <input type="button" class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="quick edit" ng-click="usersCtrl.setEditId(p.id)"> -->
+              </div>
+            </td>
+            <td class="rowTd">
+              <div class="margin-right-10" ng-if="currentUser.id == p.id || currentUser.companyAdmin()">
+                <input type="button" class="btn btn-primary btn-squared" id="editRowBtn{{p.id}}" value="Edit" ng-click="$state.go('app.users.profile', {edit: true, userId: {{p.id}}})">
+
+              </div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

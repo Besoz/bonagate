@@ -57,7 +57,8 @@ angular
                 with_role: $stateParams.role
               }});
           },
-          deps: mLoadSequence('ui.select', 'ngTable', 'moment', 'angularMoment', "userServices", "usersController")
+          deps: mLoadSequence('ui.select', 'ngTable', 'moment', 'angularMoment', "userServices",
+            "usersController", "userInvitationController")
         }, // resolve: loadSequence('jquery-sparkline', 'dashboardCtrl'),
         // title: 'Dashboard',
         ncyBreadcrumb: {
@@ -140,16 +141,16 @@ angular
             return GeneralDataServices.show('properties', $stateParams.propertyId);
           },
           propertyTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_types');
+            return GeneralDataServices.index('property_types/index_by_id');
           },
           serviceTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_service_types');
+            return GeneralDataServices.index('property_service_types/index_by_id');
           },
           propertyStatesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_states');
+            return GeneralDataServices.index('property_states/index_by_id');
           },
           propertyStatusesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_statuses');
+            return GeneralDataServices.index('property_statuses/index_by_id');
           },
           propertyDetailsRequest: function ($http) {
             return $http.get('property_details/index_by_id.json');
@@ -196,16 +197,16 @@ angular
             });
           },
           propertyTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_types');
+            return GeneralDataServices.index('property_types/index_by_id');
           },
           serviceTypesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_service_types');
+            return GeneralDataServices.index('property_service_types/index_by_id');
           },
           propertyStatesRequest: function (GeneralDataServices) {
             return GeneralDataServices.index('property_states');
           },
           propertyStatusesRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('property_statuses');
+            return GeneralDataServices.index('property_statuses/index_by_id');
           },
           propertyDetailsRequest: function ($http) {
             return $http.get('property_details/index_by_id.json');

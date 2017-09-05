@@ -5,6 +5,11 @@ class PropertyStatusesController < ApplicationController
   # GET /property_statuses
   # GET /property_statuses.json
   def index
+
+  end
+
+  def index_by_id
+
   end
 
   # GET /property_statuses/1

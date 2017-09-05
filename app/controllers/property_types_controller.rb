@@ -6,6 +6,11 @@ class PropertyTypesController < ApplicationController
   # GET /property_types
   # GET /property_types.json
   def index
+
+  end
+
+  def index_by_id
+
   end
 
   # GET /property_types/1
@@ -49,7 +54,7 @@ class PropertyTypesController < ApplicationController
     # @property_type.assign_attributes(property_type_params.except(:property_details_attributes))
     # puts property_type_params[:property_details_attributes].to_json
     # @property_type.set_property_details property_type_params[:property_details_attributes]
-    
+
     respond_to do |format|
       if  @property_type.update(property_type_params)
         format.html { redirect_to @property_type, notice: 'Property type was successfully updated.' }

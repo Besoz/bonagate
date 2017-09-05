@@ -15,7 +15,9 @@
       updateUser: updateUser,
       getUsers: getUsers,
       updateUserImage: updateUserImage,
-      inviteUser: inviteUser
+      inviteUser: inviteUser,
+      activateUser: activateUser,
+      deactivateUser: deactivateUser
     };
     return service;
 
@@ -46,6 +48,14 @@
 
     function inviteUser(userInvitation) {
       return $http.post('/user_invitations.json', userInvitation)
+    }
+
+    function activateUser(user){
+      return $http.post('/users/' + user.id + '/active.json');
+    }
+
+    function deactivateUser(user){
+      return $http.delete('/users/' + user.id + '/active.json');
     }
   }
 })();

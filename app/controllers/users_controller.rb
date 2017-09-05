@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout "cliptheme-layout", :only => [:new]
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :activate, :deactivate]
   before_action :require_user, except: [:new, :create, :create_user]
 
   load_and_authorize_resource  :except => [:new, :create, :create_user]
@@ -178,6 +178,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def activate
+    @user.update!(active: true)
+
+    respond_to do |format|
+      format.html {}
+      format.json { head :no_content }
+    end
+  end
+
+  def deactivate
+    @user.update!(active: false)
+
+    respond_to do |format|
+      format.html {}
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -187,7 +205,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation,
-                                   :confirmed, :approved, :active,
                                    :first_name, :last_name, :phone,
                                    :avatar)
     end
