@@ -1,5 +1,5 @@
 'use strict';
-/** 
+/**
  * controller for Wizard Form example
  */
 angular
@@ -18,12 +18,14 @@ angular
       vm.form;
       vm.property;
       vm.imagesUploader;
+      vm.stepsNumber;
 
       activate();
 
       function activate() {
         // Initial Value
         vm.currentStep = 1;
+        vm.stepsNumber = 6;
 
         vm.form = {
           next: next,
@@ -72,7 +74,7 @@ angular
         else if($rootScope.currentUser.admin){
           vm.companiesToBeShared.companies;
         }
-         
+
         vm.property = propertyRequest.data || {
           property_detail_instances_attributes: [],
           property_payment_plans_attributes: []

@@ -5,9 +5,11 @@ class PropertyServiceTypesController < ApplicationController
   # GET /property_service_types
   # GET /property_service_types.json
   def index
+
   end
 
   def index_by_id
+
   end
 
   # GET /property_service_types/1

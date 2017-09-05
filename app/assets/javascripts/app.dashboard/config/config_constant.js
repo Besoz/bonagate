@@ -39,6 +39,7 @@ angular
       'usersController': 'assets/app.dashboard/pages/users/users_controller.js',
       'userController': 'assets/app.dashboard/pages/users/user_controller.js',
       'userServices': 'assets/app.dashboard/pages/users/user_services.js',
+      'userInvitationController': 'assets/app.dashboard/pages/users/invitations/user_invitation_controller.js',
 
       //*** Company scripts
       'companyController': 'assets/app.dashboard/pages/companies/company_controller.js',

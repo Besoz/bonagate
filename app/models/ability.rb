@@ -6,7 +6,7 @@ class Ability
     alias_action :update, :destroy, :create, to: :write
     alias_action :create, :read, :update, :destroy, :to => :crud
     alias_action :index, :create, :read, :update, :destroy, :to => :crud_all
-    
+
     user ||= User.new # guest user (not logged in)
     if user.admin?
       can :manage, :all
@@ -33,17 +33,17 @@ class Ability
       can :templates, Property, company_id: user.company_user.company_id
 
       company_id = user.company_user.company_id
-      
+
       can :read_all, Property, Property.company_properties(company_id) do |property|
         (property.company_id == company_id) or SharedProperty.where(company_id: company_id, property_id: property.id).any?
       end
-      
+
       can :write, Property, :company_id => user.company_user.company_id
-      
+
       can [:search], Property, Property.published do |property|
           property.publish
       end
-      
+
       can :upload_image, Property, :company_id => user.company_user.company_id # to be changed company_user.company_id
 
       can :read_all, PropertyState, state: :active
@@ -53,15 +53,20 @@ class Ability
       can :read_all, PropertyDetailCategory, state: :active
       can :index_by_id, PropertyDetailCategory, state: :active
       can :read_all, PropertyStatus, state: :active
+
       can :index_by_id, PropertyStatus, state: :active
       can :read_all, PropertyServiceType, state: :active
       can :index_by_id, PropertyServiceType, state: :active
       can :read_all, PropertyType, state: :active
       can :index_by_id, PropertyType, state: :active
 
+      can :read_all, PropertyServiceType, state: :active
+      can :read_all, PropertyType, state: :active
+
+
     elsif user.user?
         can [:change_password, :user_profile], User
-        
+
         can [:index, :read, :search], Property, Property.published do |property|
             property.publish
         end

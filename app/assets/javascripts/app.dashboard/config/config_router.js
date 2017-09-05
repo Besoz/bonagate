@@ -57,7 +57,8 @@ angular
                 with_role: $stateParams.role
               }});
           },
-          deps: mLoadSequence('ui.select', 'ngTable', 'moment', 'angularMoment', "userServices", "usersController")
+          deps: mLoadSequence('ui.select', 'ngTable', 'moment', 'angularMoment', "userServices",
+            "usersController", "userInvitationController")
         }, // resolve: loadSequence('jquery-sparkline', 'dashboardCtrl'),
         // title: 'Dashboard',
         ncyBreadcrumb: {
@@ -168,18 +169,6 @@ angular
           },
           deps: mLoadSequence('angular-filter','angularFileUpload', 'ngMap', 'ui.select', "propertyWizardServices",
             'propertyFormController', 'propertiesServices', 'propertyDetailsServices')
-        }
-      }).state('app.property.payment', {
-        url: '/:propertyId/payment',
-        templateUrl: "assets/app.dashboard/pages/property/payment/payments.html",
-        controller: "PaymentsController",
-        controllerAs: 'paymentsCtrl',
-        resolve: {
-          paymentsRequest: function (GeneralDataServices) {
-            return GeneralDataServices.index('payments');
-          },
-          deps: mLoadSequence('ngTable', 'angular-filter', 'ngFileUpload', 'angularFileUpload', 'paymentServices',
-            'ui.select', "paymentController", "paymentsController")
         }
       }).state('app.property.payment', {
         url: '/:propertyId/payment',

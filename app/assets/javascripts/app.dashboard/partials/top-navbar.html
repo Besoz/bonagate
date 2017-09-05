@@ -25,7 +25,6 @@
       <!-- end: MESSAGES DROPDOWN -->
       <!-- start: ACTIVITIES DROPDOWN -->
       <!-- end: ACTIVITIES DROPDOWN -->
-      
       <!-- start: USER OPTIONS DROPDOWN -->
       <li class="dropdown current-user" dropdown on-toggle="toggled(open)">
         <a href class="dropdown-toggle" dropdown-toggle>
@@ -38,19 +37,24 @@
         <ul class="dropdown-menu dropdown-light">
           <li>
             <a ui-sref="app.users.profile({userId: {{currentUser.id}}})" translate="topbar.user.PROFILE">
-  						My Profile
-  					</a>
+              My Profile
+            </a>
           </li>
           <li>
             <a ng-click="redirectService.gotoLoginPage()" translate="topbar.user.LOGOUT">
-  						Log Out
-  					</a>
+              Log Out
+            </a>
+          </li>
+          <li ng-repeat="(localeId, langName) in language.available">
+            <a ng-click="language.set(localeId, $event)" href="#" class="menu-toggler">
+              {{langName}}
+            </a>
           </li>
         </ul>
       </li>
       <!-- end: USER OPTIONS DROPDOWN -->
       <!-- start: LANGUAGE SWITCHER -->
-      <li class="dropdown language" dropdown on-toggle="toggled(open)">
+      <!-- <li class="dropdown language" dropdown on-toggle="toggled(open)">
         <a href class="dropdown-toggle" dropdown-toggle>
           <i class="ti-world"></i> 
           <span class="language-selected">{{language.selected}}</span>
@@ -62,7 +66,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> -->
       <!-- end: LANGUAGE SWITCHER -->
     </ul>
     <!-- start: MENU TOGGLER FOR MOBILE DEVICES -->
